@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1B59A5</color>
+    <color name="primarylight">#257CE4</color>
+    <color name="primarydark">#174D8E</color>
+    <color name="primarydark1">#051C59</color>
+
+    <color name="accentlight">#fa5788</color>
+    <color name="accent">#c2185b</color>
+    <color name="accentdark">#8c0032</color>
+
+
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="textcolor_hint">#7F7F87</color>
+    <color name="tab_unselected">#D3F1FF</color>
+    <color name="transparent">#00000000</color>
+    <color name="instagram_accent">#FB296C</color>
+    <color name="story_bg_Color">#777777</color>
+    <color name="black_translucent2">#64000000</color>
+    <color name="statusbar">#ffffff</color>
+    <color name="text_unselected">#1E1E1E</color>
+
+    <color name="_FF719E">#FF719E</color>
+    <color name="_9767E6">#9767E6</color>
+    <color name="_49CF91">#49CF91</color>
+    <color name="_F38357">#F38357</color>
+</resources>

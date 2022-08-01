@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">All Video Downloader</string>
+    <string name="paste_link">Paste link</string>
+    <string name="paste">Paste</string>
+    <string name="download">Download</string>
+    <string name="label_ok">Ok</string>
+    <string name="message_no_permissions">Permission Denied.</string>
+    <string name="saved">Saved!</string>
+    <string name="ringtone_maker">Ringtone Maker</string>
+    <string name="video_editor">Video Editor</string>
+    <string name="collage_maker">Collage Maker</string>
+    <string name="insta_grid">Insta Grid</string>
+    <string name="status_n_saver">Status\nSaver</string>
+</resources>

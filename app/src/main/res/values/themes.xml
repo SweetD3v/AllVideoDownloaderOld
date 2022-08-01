@@ -1,0 +1,38 @@
+<resources>
+
+    <style name="Theme.AllVidDownloader" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primarydark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="MyProgressDialog" parent="@style/Theme.MaterialComponents.DayNight.Dialog">
+        <item name="dialogCornerRadius">8dp</item>
+        <item name="android:background">@drawable/rounded_bg_white_16</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+    </style>
+
+    <style name="Downloader.DialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:windowBackground">@drawable/dialog_bg</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="RoundedTabLayoutStylePrimary" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@drawable/tab_selector_primary</item>
+        <item name="tabIndicator">@null</item>
+        <item name="android:background">@drawable/tab_layout_bg</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextColor">@color/primary</item>
+    </style>
+
+    <style name="RoundedTabLayoutStyleAccent" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@drawable/tab_selector_accent</item>
+        <item name="tabIndicator">@null</item>
+        <item name="android:background">@drawable/tab_layout_bg</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextColor">@color/accent</item>
+    </style>
+</resources>
