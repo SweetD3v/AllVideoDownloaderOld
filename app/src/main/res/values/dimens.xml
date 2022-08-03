@@ -2,4 +2,7 @@
 <resources>
     <dimen name="tab_indicator_space">2dp</dimen>
     <dimen name="tab_indicator_radius">4dp</dimen>
+    <dimen name="rv_space">8dp</dimen>
+    <dimen name="bottom_sheet_corner_radius">16dp</dimen>
+    <dimen name="bottom_sheet_top_padding">8dp</dimen>
 </resources>

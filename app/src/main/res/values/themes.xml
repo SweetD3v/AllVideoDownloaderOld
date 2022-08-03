@@ -35,4 +35,24 @@
         <item name="tabSelectedTextColor">@color/white</item>
         <item name="tabTextColor">@color/accent</item>
     </style>
+
+    <style name="RoundedCornersImageView" parent="">
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet</item>
+    </style>
+
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/up_slide</item>
+        <item name="android:windowExitAnimation">@anim/bottom_slide</item>
+    </style>
 </resources>

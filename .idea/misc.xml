@@ -3,20 +3,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_bottom_sheet.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_left.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_left_ripple.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_right.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_right_ripple.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_shadow.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_shadow_rounded_8.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bottom_transparent_gradient_top.xml" value="0.2025" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/circle_bg_black.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/dialog_bg.xml" value="0.2025" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/et_bg_fb.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/et_bg_insta.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/et_bg_insta1.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/ic_download_white.xml" value="0.2025" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/ic_more.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_fbmain.xml" value="0.18958333333333333" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_fullview.xml" value="0.33" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_imageview.xml" value="0.18958333333333333" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_videoview.xml" value="0.18958333333333333" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_wallpapers.xml" value="0.25" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_wastatus.xml" value="0.18958333333333333" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/bottomsheet_fb.xml" value="0.375" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/bottomsheet_insta.xml" value="0.375" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/fragment_waimages.xml" value="0.18958333333333333" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/item_full_view.xml" value="0.375" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/item_status.xml" value="0.375" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/item_wall_categories.xml" value="0.375" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/item_wallpapers.xml" value="0.18958333333333333" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/toolbar_layout.xml" value="0.375" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/view_dialog.xml" value="0.37395833333333334" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/bg_primary.xml" value="0.2155" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_left.xml" value="0.2155" />

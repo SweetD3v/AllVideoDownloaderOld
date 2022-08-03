@@ -4,201 +4,346 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary_bg"
     tools:context=".ui.activities.MainActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout"
-        android:visibility="visible" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        style="@style/RoundedTabLayoutStylePrimary"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:visibility="gone"
-        app:tabRippleColor="@android:color/transparent">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home" />
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_layout"
+            android:visibility="gone" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status Saver" />
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerMain"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:layout_marginBottom="64dp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clBottomNavBar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="8dp">
-
-        <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/motionLayout"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            style="@style/RoundedTabLayoutStylePrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutDescription="@xml/activity_main_scene"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_below="@id/toolbar"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:tabRippleColor="@android:color/transparent">
 
-            <View
-                android:id="@+id/refView"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status Saver" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="4dp">
+
+            <TextView
+                android:id="@+id/txtTitle"
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginBottom="56dp"
-                android:background="@drawable/top_shadow"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-            <ImageView
-                android:id="@+id/bgImage"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@id/imgSettings"
+                android:background="@drawable/bg_rounded_right_ripple"
+                android:elevation="4dp"
+                android:fontFamily="@font/neutra_regular"
+                android:paddingVertical="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="0dp"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgSettings"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/circle_bg_black"
-                android:elevation="2dp"
-                android:padding="30dp"
-                app:layout_constraintBottom_toBottomOf="@id/refView"
-                app:layout_constraintEnd_toEndOf="@id/txt1"
-                app:layout_constraintStart_toStartOf="@id/txt1"
-                app:layout_constraintTop_toTopOf="@id/refView" />
-
-            <View
-                android:id="@+id/view1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="?selectableItemBackgroundBorderless"
-                app:layout_constraintBottom_toBottomOf="@id/txt1"
-                app:layout_constraintEnd_toEndOf="@id/txt1"
-                app:layout_constraintStart_toStartOf="@id/txt1"
-                app:layout_constraintTop_toTopOf="@id/img1" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img1"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:elevation="2dp"
-                app:layout_constraintBottom_toBottomOf="@id/refView"
-                app:layout_constraintEnd_toEndOf="@id/txt1"
-                app:layout_constraintStart_toStartOf="@id/txt1"
-                app:layout_constraintTop_toTopOf="@id/refView"
-                app:srcCompat="@drawable/ic_home"
+                android:backgroundTint="@color/primary"
+                android:elevation="4dp"
+                android:padding="4dp"
+                app:srcCompat="@drawable/ic_settings"
                 app:tint="@color/white" />
+        </RelativeLayout>
 
-            <TextView
-                android:id="@+id/txt1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="Home"
-                android:textColor="@color/accent"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/txt2"
-                app:layout_constraintStart_toStartOf="parent" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rlTop"
+            android:layout_marginBottom="?actionBarSize" />
 
-            <View
-                android:id="@+id/view2"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="?selectableItemBackgroundBorderless"
-                app:layout_constraintBottom_toBottomOf="@id/txt2"
-                app:layout_constraintEnd_toEndOf="@id/txt2"
-                app:layout_constraintStart_toStartOf="@id/txt2"
-                app:layout_constraintTop_toTopOf="@id/img2" />
+    </RelativeLayout>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img2"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:layout_constraintBottom_toTopOf="@id/txt2"
-                app:layout_constraintEnd_toEndOf="@id/txt2"
-                app:layout_constraintStart_toStartOf="@id/txt2"
-                app:srcCompat="@drawable/ic_downloads1" />
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/bottomCoordinate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
 
-            <TextView
-                android:id="@+id/txt2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="Downloads"
-                android:textColor="@color/text_unselected"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/txt3"
-                app:layout_constraintStart_toEndOf="@id/txt1" />
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomNavBar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            app:fabAlignmentMode="end"
+            app:fabAnimationMode="scale"
+            app:fabCradleMargin="8dp"
+            app:fabCradleRoundedCornerRadius="16dp"
+            app:fabCradleVerticalOffset="8dp">
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="?selectableItemBackgroundBorderless"
-                app:layout_constraintBottom_toBottomOf="@id/txt3"
-                app:layout_constraintEnd_toEndOf="@id/txt3"
-                app:layout_constraintStart_toStartOf="@id/txt3"
-                app:layout_constraintTop_toTopOf="@id/img3" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/txt3"
-                app:layout_constraintEnd_toEndOf="@id/txt3"
-                app:layout_constraintStart_toStartOf="@id/txt3"
-                app:srcCompat="@drawable/ic_tools" />
+                <LinearLayout
+                    android:id="@+id/llHome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.3"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="Tools"
-                android:textColor="@color/text_unselected"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/txt4"
-                app:layout_constraintStart_toEndOf="@id/txt2" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgHome"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal"
+                        android:tint="@color/primary"
+                        app:srcCompat="@drawable/ic_home" />
 
-            <View
-                android:id="@+id/view4"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="?selectableItemBackgroundBorderless"
-                app:layout_constraintBottom_toBottomOf="@id/txt4"
-                app:layout_constraintEnd_toEndOf="@id/txt4"
-                app:layout_constraintStart_toStartOf="@id/txt4"
-                app:layout_constraintTop_toTopOf="@id/img4" />
+                    <TextView
+                        android:id="@+id/txtHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_horizontal"
+                        android:text="Home"
+                        android:textColor="@color/primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/img4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/txt4"
-                app:layout_constraintEnd_toEndOf="@id/txt4"
-                app:layout_constraintStart_toStartOf="@id/txt4"
-                app:srcCompat="@drawable/ic_settings" />
+                <LinearLayout
+                    android:id="@+id/llDownloads"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.3"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="Settings"
-                android:textColor="@color/text_unselected"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/txt3" />
-        </androidx.constraintlayout.motion.widget.MotionLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgDownloads"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_horizontal"
+                        android:tint="@color/text_unselected"
+                        app:srcCompat="@drawable/ic_downloads1" />
+
+                    <TextView
+                        android:id="@+id/txtDownloads"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="center_horizontal"
+                        android:text="Downloads"
+                        android:textColor="@color/text_unselected"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2" />
+            </LinearLayout>
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabEntertainment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/accent"
+            app:layout_anchor="@id/bottomNavBar"
+            app:srcCompat="@drawable/ic_video_editor"
+            app:tint="@android:color/white" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/clBottomNavBar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_marginBottom="8dp"-->
+    <!--        android:visibility="gone">-->
+
+    <!--        <androidx.constraintlayout.motion.widget.MotionLayout-->
+    <!--            android:id="@+id/motionLayout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            app:layoutDescription="@xml/activity_main_scene"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent">-->
+
+    <!--            <View-->
+    <!--                android:id="@+id/refView"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="3dp"-->
+    <!--                android:layout_marginBottom="56dp"-->
+    <!--                android:background="@drawable/top_shadow"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent" />-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/bgImage"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:background="@drawable/circle_bg_black"-->
+    <!--                android:elevation="2dp"-->
+    <!--                android:padding="30dp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="@id/refView"-->
+    <!--                app:layout_constraintEnd_toEndOf="@id/txt1"-->
+    <!--                app:layout_constraintStart_toStartOf="@id/txt1"-->
+    <!--                app:layout_constraintTop_toTopOf="@id/refView" />-->
+
+    <!--            <View-->
+    <!--                android:id="@+id/view1"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="0dp"-->
+    <!--                android:background="?selectableItemBackgroundBorderless"-->
+    <!--                app:layout_constraintBottom_toBottomOf="@id/txt1"-->
+    <!--                app:layout_constraintEnd_toEndOf="@id/txt1"-->
+    <!--                app:layout_constraintStart_toStartOf="@id/txt1"-->
+    <!--                app:layout_constraintTop_toTopOf="@id/img1" />-->
+
+    <!--            <androidx.appcompat.widget.AppCompatImageView-->
+    <!--                android:id="@+id/img1"-->
+    <!--                android:layout_width="24dp"-->
+    <!--                android:layout_height="24dp"-->
+    <!--                android:elevation="2dp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="@id/refView"-->
+    <!--                app:layout_constraintEnd_toEndOf="@id/txt1"-->
+    <!--                app:layout_constraintStart_toStartOf="@id/txt1"-->
+    <!--                app:layout_constraintTop_toTopOf="@id/refView"-->
+    <!--                app:srcCompat="@drawable/ic_home"-->
+    <!--                app:tint="@color/white" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txt1"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:fontFamily="@font/montserrat_medium"-->
+    <!--                android:text="Home"-->
+    <!--                android:textColor="@color/accent"-->
+    <!--                android:textStyle="bold"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toStartOf="@id/txt2"-->
+    <!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+    <!--            <View-->
+    <!--                android:id="@+id/view2"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="0dp"-->
+    <!--                android:background="?selectableItemBackgroundBorderless"-->
+    <!--                app:layout_constraintBottom_toBottomOf="@id/txt2"-->
+    <!--                app:layout_constraintEnd_toEndOf="@id/txt2"-->
+    <!--                app:layout_constraintStart_toStartOf="@id/txt2"-->
+    <!--                app:layout_constraintTop_toTopOf="@id/img2" />-->
+
+    <!--            <androidx.appcompat.widget.AppCompatImageView-->
+    <!--                android:id="@+id/img2"-->
+    <!--                android:layout_width="48dp"-->
+    <!--                android:layout_height="48dp"-->
+    <!--                app:layout_constraintBottom_toTopOf="@id/txt2"-->
+    <!--                app:layout_constraintEnd_toEndOf="@id/txt2"-->
+    <!--                app:layout_constraintStart_toStartOf="@id/txt2"-->
+    <!--                app:srcCompat="@drawable/ic_downloads1" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txt2"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:fontFamily="@font/montserrat_medium"-->
+    <!--                android:text="Downloads"-->
+    <!--                android:textColor="@color/text_unselected"-->
+    <!--                android:textStyle="bold"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toStartOf="@id/txt3"-->
+    <!--                app:layout_constraintStart_toEndOf="@id/txt1" />-->
+
+    <!--            <View-->
+    <!--                android:id="@+id/view3"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="0dp"-->
+    <!--                android:background="?selectableItemBackgroundBorderless"-->
+    <!--                app:layout_constraintBottom_toBottomOf="@id/txt3"-->
+    <!--                app:layout_constraintEnd_toEndOf="@id/txt3"-->
+    <!--                app:layout_constraintStart_toStartOf="@id/txt3"-->
+    <!--                app:layout_constraintTop_toTopOf="@id/img3" />-->
+
+    <!--            <androidx.appcompat.widget.AppCompatImageView-->
+    <!--                android:id="@+id/img3"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                app:layout_constraintBottom_toTopOf="@id/txt3"-->
+    <!--                app:layout_constraintEnd_toEndOf="@id/txt3"-->
+    <!--                app:layout_constraintStart_toStartOf="@id/txt3"-->
+    <!--                app:srcCompat="@drawable/ic_tools" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txt3"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:fontFamily="@font/montserrat_medium"-->
+    <!--                android:text="Tools"-->
+    <!--                android:textColor="@color/text_unselected"-->
+    <!--                android:textStyle="bold"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toStartOf="@id/txt4"-->
+    <!--                app:layout_constraintStart_toEndOf="@id/txt2" />-->
+
+    <!--            <View-->
+    <!--                android:id="@+id/view4"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="0dp"-->
+    <!--                android:background="?selectableItemBackgroundBorderless"-->
+    <!--                app:layout_constraintBottom_toBottomOf="@id/txt4"-->
+    <!--                app:layout_constraintEnd_toEndOf="@id/txt4"-->
+    <!--                app:layout_constraintStart_toStartOf="@id/txt4"-->
+    <!--                app:layout_constraintTop_toTopOf="@id/img4" />-->
+
+    <!--            <androidx.appcompat.widget.AppCompatImageView-->
+    <!--                android:id="@+id/img4"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                app:layout_constraintBottom_toTopOf="@id/txt4"-->
+    <!--                app:layout_constraintEnd_toEndOf="@id/txt4"-->
+    <!--                app:layout_constraintStart_toStartOf="@id/txt4"-->
+    <!--                app:srcCompat="@drawable/ic_settings" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/txt4"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:fontFamily="@font/montserrat_medium"-->
+    <!--                android:text="Settings"-->
+    <!--                android:textColor="@color/text_unselected"-->
+    <!--                android:textStyle="bold"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toEndOf="@id/txt3" />-->
+    <!--        </androidx.constraintlayout.motion.widget.MotionLayout>-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </RelativeLayout>

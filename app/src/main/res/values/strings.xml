@@ -11,4 +11,6 @@
     <string name="collage_maker">Collage Maker</string>
     <string name="insta_grid">Insta Grid</string>
     <string name="status_n_saver">Status\nSaver</string>
+    <string name="cleaner">Cleaner</string>
+    <string name="demo_text_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
 </resources>

@@ -31,9 +31,11 @@ import com.example.allviddownloader.models.*
 import com.example.allviddownloader.ui.activities.FBMainActivity
 import com.example.allviddownloader.ui.activities.InstagramActivity
 import com.example.allviddownloader.ui.activities.WAStatusActivity
+import com.example.allviddownloader.ui.activities.WallpapersActivity
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.SMType.*
 import com.example.allviddownloader.utils.apis.CommonClassForAPI
+import com.example.allviddownloader.widgets.BSFragmentBuilder
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
@@ -67,6 +69,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     lateinit var storiesListAdapter: StoriesListAdapter
     var position: Int = 0
     var urlDownload: String? = null
+    var fbSheetBuilder: BSFragmentBuilder? = null
+    var instaSheetBuilder: BSFragmentBuilder? = null
 
     lateinit var permissionsList: MutableList<String>
     var permissionsStr = arrayOf(
@@ -174,16 +178,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             llInstagram.setOnClickListener {
-                startActivity(Intent(ctx, InstagramActivity::class.java))
+                instaSheetBuilder = BSFragmentBuilder().with(childFragmentManager)
+                    .title("Instagram")
+                    .setupLayout(ctx, R.layout.bottomsheet_insta)
+
+
+                instaSheetBuilder?.show()
+                val instaSheetView = instaSheetBuilder?.layout
+                initFBSheet(instaSheetView)
+//                startActivity(Intent(ctx, InstagramActivity::class.java))
             }
 
             llFacebook.setOnClickListener {
-                startActivity(Intent(ctx, FBMainActivity::class.java))
+                fbSheetBuilder = BSFragmentBuilder().with(childFragmentManager)
+                    .title("Facebook")
+                    .setupLayout(ctx, R.layout.bottomsheet_fb)
+
+
+                fbSheetBuilder?.show()
+                val fbSheetView = fbSheetBuilder?.layout
+                initFBSheet(fbSheetView)
+//                startActivity(Intent(ctx, FBMainActivity::class.java))
             }
 
             llFacebookWatch.setOnClickListener {
-                startActivity(Intent(ctx, FBMainActivity::class.java)
-                    .putExtra("fbtype", 0))
+                startActivity(
+                    Intent(ctx, FBMainActivity::class.java)
+                        .putExtra("fbtype", 0)
+                )
             }
 
             llWhatsappSide.setOnClickListener {
@@ -191,7 +213,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             llWallpaper.setOnClickListener {
-                startActivity(Intent(ctx, WAStatusActivity::class.java))
+                startActivity(Intent(ctx, WallpapersActivity::class.java))
             }
         }
 
@@ -234,6 +256,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     }
                 }
             }
+        }
+    }
+
+    private fun initFBSheet(fbSheetView: View?) {
+        fbSheetView?.let { sheetView ->
+
         }
     }
 
