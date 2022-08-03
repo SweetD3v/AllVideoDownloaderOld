@@ -24,6 +24,17 @@
         android:theme="@style/Theme.AllVidDownloader"
         tools:targetApi="30">
         <activity
+            android:name=".ui.activities.FunnyVideosActivity"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activities.VimeoActivity"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activities.WallpapersActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />

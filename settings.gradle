@@ -16,6 +16,6 @@ dependencyResolutionManagement {
         maven { url "https://jitpack.io" }
     }
 }
-rootProject.name = "AllVidDownloader"
+rootProject.name = "AllVideoDownloader"
 include ':app'
 include ':facebookurlextractor'

@@ -28,10 +28,7 @@ import com.example.allviddownloader.adapters.StoriesListAdapter
 import com.example.allviddownloader.databinding.FragmentHomeBinding
 import com.example.allviddownloader.databinding.ViewDialogBinding
 import com.example.allviddownloader.models.*
-import com.example.allviddownloader.ui.activities.FBMainActivity
-import com.example.allviddownloader.ui.activities.InstagramActivity
-import com.example.allviddownloader.ui.activities.WAStatusActivity
-import com.example.allviddownloader.ui.activities.WallpapersActivity
+import com.example.allviddownloader.ui.activities.*
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.SMType.*
 import com.example.allviddownloader.utils.apis.CommonClassForAPI
@@ -214,6 +211,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             llWallpaper.setOnClickListener {
                 startActivity(Intent(ctx, WallpapersActivity::class.java))
+            }
+
+            llFunny.setOnClickListener {
+                startActivity(Intent(ctx, FunnyVideosActivity::class.java))
+            }
+
+            llVimeo.setOnClickListener {
+                startActivity(Intent(ctx, VimeoActivity::class.java))
             }
         }
 

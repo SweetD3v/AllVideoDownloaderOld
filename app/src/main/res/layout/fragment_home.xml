@@ -299,14 +299,14 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                app:srcCompat="@drawable/ic_more" />
+                                app:srcCompat="@drawable/ic_sticker" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/roboto_medium"
-                                android:text="More"
+                                android:text="WA Stickers"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>

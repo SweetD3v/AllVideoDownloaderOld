@@ -15,12 +15,11 @@ import com.example.allviddownloader.ui.fragments.HomeFragment
 import com.example.allviddownloader.ui.fragments.WAStatusFragment
 import com.example.allviddownloader.utils.setLightStatusBarColor
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     val tabTitles = arrayOf("Home", "Status Saver")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setLightStatusBarColor(this, window, R.color.statusbar_primary)
         setContentView(binding.root)
 
         binding.run {
