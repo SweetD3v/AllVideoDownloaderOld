@@ -5,10 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.FBMainActivity">
 
+    <EditText
+        android:id="@+id/etFbLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/etFbLink" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,5 +25,5 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:src="@drawable/ic_download_white"
-        android:visibility="gone" />
+        android:visibility="visible" />
 </RelativeLayout>

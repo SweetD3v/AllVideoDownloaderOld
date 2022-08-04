@@ -56,6 +56,8 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
     implementation 'com.mindorks.android:prdownloader:0.6.0'
+//    implementation 'androidx.room:room-coroutines:2.1.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
 //    implementation 'com.github.Ashusolanki:FacebookUrlExtractor:0.0.5'
 
     implementation 'com.linsea:universalvideoview:1.1.0@aar'

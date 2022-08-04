@@ -187,15 +187,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             llFacebook.setOnClickListener {
-                fbSheetBuilder = BSFragmentBuilder().with(childFragmentManager)
-                    .title("Facebook")
-                    .setupLayout(ctx, R.layout.bottomsheet_fb)
-
-
-                fbSheetBuilder?.show()
-                val fbSheetView = fbSheetBuilder?.layout
-                initFBSheet(fbSheetView)
-//                startActivity(Intent(ctx, FBMainActivity::class.java))
+//                fbSheetBuilder = BSFragmentBuilder().with(childFragmentManager)
+//                    .title("Facebook")
+//                    .setupLayout(ctx, R.layout.bottomsheet_fb)
+//
+//
+//                fbSheetBuilder?.show()
+//                val fbSheetView = fbSheetBuilder?.layout
+//                initFBSheet(fbSheetView)
+                startActivity(Intent(ctx, FBMainActivity::class.java))
             }
 
             llFacebookWatch.setOnClickListener {
