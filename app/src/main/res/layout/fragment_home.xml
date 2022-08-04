@@ -157,7 +157,7 @@
                                 android:id="@+id/imgFacebookWatch"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                app:srcCompat="@drawable/ic_facebook" />
+                                app:srcCompat="@drawable/ic_facebook_watch" />
 
                             <TextView
                                 android:layout_width="wrap_content"

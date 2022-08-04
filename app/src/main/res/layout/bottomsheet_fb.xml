@@ -56,7 +56,7 @@
                 android:paddingEnd="8dp">
 
                 <EditText
-                    android:id="@+id/et_text"
+                    android:id="@+id/etText"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@drawable/et_bg_fb"
@@ -72,12 +72,12 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/et_text"
+                    android:layout_below="@+id/etText"
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/tv_paste"
+                        android:id="@+id/btnPaste"
                         style="?borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/btnDownload"
                         app:layout_constraintRight_toLeftOf="@id/btnDownload"
                         app:layout_constraintTop_toTopOf="@id/btnDownload"
-                        app:rippleColor="#FFE1EC" />
+                        app:rippleColor="#EAF2FD" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnDownload"

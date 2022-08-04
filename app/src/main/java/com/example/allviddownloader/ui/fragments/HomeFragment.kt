@@ -25,6 +25,7 @@ import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
 import com.example.allviddownloader.R
 import com.example.allviddownloader.adapters.StoriesListAdapter
+import com.example.allviddownloader.databinding.BottomsheetFbBinding
 import com.example.allviddownloader.databinding.FragmentHomeBinding
 import com.example.allviddownloader.databinding.ViewDialogBinding
 import com.example.allviddownloader.models.*
@@ -32,6 +33,7 @@ import com.example.allviddownloader.ui.activities.*
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.SMType.*
 import com.example.allviddownloader.utils.apis.CommonClassForAPI
+import com.example.allviddownloader.utils.downloader.BasicImageDownloader
 import com.example.allviddownloader.widgets.BSFragmentBuilder
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -40,10 +42,8 @@ import io.reactivex.observers.DisposableObserver
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.io.*
-import java.net.HttpURLConnection
-import java.net.MalformedURLException
-import java.net.URI
-import java.net.URL
+import java.net.*
+import java.util.regex.Pattern
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -182,20 +182,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                 instaSheetBuilder?.show()
                 val instaSheetView = instaSheetBuilder?.layout
-                initFBSheet(instaSheetView)
+                initInstaSheet(instaSheetView)
 //                startActivity(Intent(ctx, InstagramActivity::class.java))
             }
 
             llFacebook.setOnClickListener {
-//                fbSheetBuilder = BSFragmentBuilder().with(childFragmentManager)
-//                    .title("Facebook")
-//                    .setupLayout(ctx, R.layout.bottomsheet_fb)
-//
-//
-//                fbSheetBuilder?.show()
-//                val fbSheetView = fbSheetBuilder?.layout
-//                initFBSheet(fbSheetView)
-                startActivity(Intent(ctx, FBMainActivity::class.java))
+                val fbSheetBinding = BottomsheetFbBinding.inflate(layoutInflater)
+                fbSheetBuilder = BSFragmentBuilder().with(childFragmentManager)
+                    .title("Facebook")
+                    .apply {
+                        layout = fbSheetBinding.root
+                    }
+
+
+                fbSheetBuilder?.show()
+                initFBSheet(fbSheetBinding)
+//                startActivity(Intent(ctx, FBMainActivity::class.java))
             }
 
             llFacebookWatch.setOnClickListener {
@@ -264,9 +266,43 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun initFBSheet(fbSheetView: View?) {
-        fbSheetView?.let { sheetView ->
+    private fun initInstaSheet(instaSheetView: View?) {
 
+    }
+
+    private fun initFBSheet(fbSheetBinding: BottomsheetFbBinding) {
+        fbSheetBinding.run {
+            btnPaste.setOnClickListener {
+                Log.e("TAG", "initFBSheet: ${getClipboardItemsSpecific(FACEBOOK)}")
+                etText.setText(getClipboardItemsSpecific(FACEBOOK))
+            }
+
+            btnDownload.setOnClickListener {
+                etText.text.toString().let { text ->
+                    Log.e("TAG", "initFBSheet: $text")
+                    object : AsyncTaskRunner<String, Void>(ctx) {
+                        override fun doInBackground(params: String?): Void? {
+                            Log.e("TAG", "doInBackground: ${params}")
+                            linkParsing(params!!) { item ->
+                                Log.e("TAG", "onCreate: ${item.imageUrl}")
+                                val downloadUrl = item.imageUrl!!
+
+                                if (downloadUrl.contains(".jpg") || downloadUrl.contains(".png")) {
+                                    BasicImageDownloader(ctx).saveImageToExternal(
+                                        downloadUrl
+                                    )
+                                } else {
+                                    BasicImageDownloader(ctx).saveVideoToExternal(
+                                        downloadUrl
+                                    )
+                                }
+                            }
+                            return null
+                        }
+
+                    }.execute(text, false)
+                }
+            }
         }
     }
 
@@ -909,6 +945,150 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 Toast.makeText(activity, "Not valid URL", Toast.LENGTH_SHORT).show()
                 binding.etText.setText("")
             }
+        }
+    }
+
+    class DownloadItem {
+        var author: String? = ""
+        var filename: String? = ""
+        var postLink: String? = ""
+        var sdUrl: String? = ""
+        var ext: String? = ""
+        var thumbNailUrl: String? = ""
+        var hdUrl: String? = ""
+        var imageUrl: String? = ""
+    }
+
+    fun linkParsing(url: String, loaded: (item: DownloadItem) -> Unit) {
+        val showLogs = true
+        Log.e("post_url", url)
+        return try {
+            val getUrl = URL(url)
+            val urlConnection =
+                getUrl.openConnection() as HttpURLConnection
+            var reader: BufferedReader? = null
+            urlConnection.setRequestProperty("User-Agent", AppUtils.USER_AGENT)
+            urlConnection.setRequestProperty("Accept", "*/*")
+            val streamMap = StringBuilder()
+            try {
+                reader =
+                    BufferedReader(InputStreamReader(urlConnection.inputStream))
+                var line: String?
+                while (reader.readLine().also {
+                        line = it
+                    } != null) {
+                    streamMap.append(line)
+                }
+            } catch (E: Exception) {
+                E.printStackTrace()
+                reader?.close()
+                urlConnection.disconnect()
+            } finally {
+                reader?.close()
+                urlConnection.disconnect()
+            }
+            if (streamMap.toString().contains("You must log in to continue.")) {
+            } else {
+                val metaTAGTitle =
+                    Pattern.compile("<meta property=\"og:title\"(.+?)\" />")
+                val metaTAGTitleMatcher = metaTAGTitle.matcher(streamMap)
+                val metaTAGDescription =
+                    Pattern.compile("<meta property=\"og:description\"(.+?)\" />")
+                val metaTAGDescriptionMatcher =
+                    metaTAGDescription.matcher(streamMap)
+                var authorName: String? = ""
+                var fileName: String? = ""
+                if (metaTAGTitleMatcher.find()) {
+                    var author =
+                        streamMap.substring(metaTAGTitleMatcher.start(), metaTAGTitleMatcher.end())
+                    Log.e("Extractor", "AUTHOR :: $author")
+                    author = author.replace("<meta property=\"og:title\" content=\"", "")
+                        .replace("\" />", "")
+                    authorName = author
+                } else {
+                    authorName = "N/A"
+                }
+                if (metaTAGDescriptionMatcher.find()) {
+                    var name = streamMap.substring(
+                        metaTAGDescriptionMatcher.start(),
+                        metaTAGDescriptionMatcher.end()
+                    )
+                    Log.e("Extractor", "FILENAME :: $name")
+                    name = name.replace("<meta property=\"og:description\" content=\"", "")
+                        .replace("\" />", "")
+                    fileName = name
+                } else {
+                    fileName = "N/A"
+                }
+                val sdVideo =
+                    Pattern.compile("<meta property=\"og:video\"(.+?)\" />")
+                val sdVideoMatcher = sdVideo.matcher(streamMap)
+                val imagePattern =
+                    Pattern.compile("<meta property=\"og:image\"(.+?)\" />")
+                val imageMatcher = imagePattern.matcher(streamMap)
+                val thumbnailPattern =
+                    Pattern.compile("<img class=\"_3chq\" src=\"(.+?)\" />")
+                val thumbnailMatcher = thumbnailPattern.matcher(streamMap)
+                val hdVideo = Pattern.compile("(hd_src):\"(.+?)\"")
+                val hdVideoMatcher = hdVideo.matcher(streamMap)
+                val facebookFile = DownloadItem()
+                facebookFile.author = authorName
+                facebookFile.filename = fileName
+                facebookFile.postLink = url
+                if (sdVideoMatcher.find()) {
+                    var vUrl = sdVideoMatcher.group()
+                    vUrl = vUrl.substring(8, vUrl.length - 1) //sd_scr: 8 char
+                    facebookFile.sdUrl = vUrl
+                    facebookFile.ext = "mp4"
+                    var imageUrl = streamMap.substring(sdVideoMatcher.start(), sdVideoMatcher.end())
+                    imageUrl = imageUrl.replace("<meta property=\"og:video\" content=\"", "")
+                        .replace("\" />", "").replace("&amp;", "&")
+                    Log.e("Extractor", "FILENAME :: NULL")
+                    Log.e("Extractor", "FILENAME :: $imageUrl")
+                    facebookFile.sdUrl = URLDecoder.decode(imageUrl, "UTF-8")
+                    if (showLogs) {
+                        Log.e("Extractor", "SD_URL :: Null")
+                        Log.e("Extractor", "SD_URL :: $imageUrl")
+                    }
+                    if (thumbnailMatcher.find()) {
+                        var thumbNailUrl =
+                            streamMap.substring(thumbnailMatcher.start(), thumbnailMatcher.end())
+                        thumbNailUrl = thumbNailUrl.replace("<img class=\"_3chq\" src=\"", "")
+                            .replace("\" />", "").replace("&amp;", "&")
+                        Log.e("Extractor", "Thumbnail :: NULL")
+                        Log.e("Extractor", "Thumbnail :: $thumbNailUrl")
+                        facebookFile.thumbNailUrl = URLDecoder.decode(thumbNailUrl, "UTF-8")
+                    }
+
+                }
+                if (hdVideoMatcher.find()) {
+                    var vUrl1 = hdVideoMatcher.group()
+                    vUrl1 = vUrl1.substring(8, vUrl1.length - 1) //hd_scr: 8 char
+                    facebookFile.hdUrl = vUrl1
+
+                    if (showLogs) {
+                        Log.e("Extractor", "HD_URL :: Null")
+                        Log.e("Extractor", "HD_URL :: $vUrl1")
+                    }
+
+                } else {
+                    facebookFile.hdUrl = null
+                }
+                if (imageMatcher.find()) {
+                    var imageUrl =
+                        streamMap.substring(imageMatcher.start(), imageMatcher.end())
+                    imageUrl = imageUrl.replace("<meta property=\"og:image\" content=\"", "")
+                        .replace("\" />", "").replace("&amp;", "&")
+                    Log.e("Extractor", "FILENAME :: NULL")
+                    Log.e("Extractor", "FILENAME :: $imageUrl")
+                    facebookFile.imageUrl = URLDecoder.decode(imageUrl, "UTF-8")
+                }
+                if (facebookFile.sdUrl == null && facebookFile.hdUrl == null) {
+                }
+                loaded(facebookFile)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 

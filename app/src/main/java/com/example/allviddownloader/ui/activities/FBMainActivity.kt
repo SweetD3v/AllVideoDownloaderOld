@@ -11,6 +11,8 @@ import android.util.Log
 import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.ashudevs.facebookurlextractor.FacebookExtractor
+import com.ashudevs.facebookurlextractor.FacebookFile
 import com.example.allviddownloader.databinding.ActivityFbmainBinding
 import com.example.allviddownloader.utils.AppUtils
 import com.example.allviddownloader.utils.AsyncTaskRunner
@@ -78,7 +80,7 @@ class FBMainActivity : AppCompatActivity() {
 //                                + "var el = document.querySelectorAll('div[data-sigil]');"
 //                                + "for(var i=0;i<el.length; i++)"
 //                                + "{"
-//                                + "var sigil = el[i].dataset.sigil;"
+//                                + "var sigil = el[i].dataset.sigil;" 
 //                                + "if(sigil.indexOf('inlineVideo') > -1){"
 //                                + "delete el[i].dataset.sigil;"
 //                                + "console.log(i);"
@@ -111,7 +113,17 @@ class FBMainActivity : AppCompatActivity() {
                     Log.e("TAG", "doInBackground: ${params}")
                     linkParsing(params!!) { item ->
                         Log.e("TAG", "onCreate: ${item.imageUrl}")
-                        BasicImageDownloader(this@FBMainActivity).saveImageToExternal(item.imageUrl!!)
+                        val downloadUrl = item.imageUrl!!
+
+                        if (downloadUrl.contains(".jpg") || downloadUrl.contains(".png")) {
+                            BasicImageDownloader(this@FBMainActivity).saveImageToExternal(
+                                downloadUrl
+                            )
+                        } else {
+                            BasicImageDownloader(this@FBMainActivity).saveVideoToExternal(
+                                downloadUrl
+                            )
+                        }
                     }
                     return null
                 }

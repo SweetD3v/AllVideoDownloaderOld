@@ -7,8 +7,10 @@ import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Environment
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.NonNull
 import com.example.allviddownloader.utils.AsyncTaskRunner
+import com.example.allviddownloader.utils.RootDirectoryFacebookShow
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
@@ -31,40 +33,136 @@ class BasicImageDownloader(var ctx: Context) {
     @Throws(IOException::class)
     fun saveImageToExternal(imgUrl: String) {
 
-        val url = URL(imgUrl)
-        val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
-        Log.e("TAG", "saveImageToExternal: ${image.width}")
+        object : AsyncTaskRunner<String, String>(ctx) {
+            override fun doInBackground(params: String?): String {
+                val url = URL(imgUrl)
+                val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+                Log.e("TAG", "saveImageToExternal: ${image.width}")
 
-        //Create Path to save Image
+                //Create Path to save Image
+                val path = RootDirectoryFacebookShow //Creates app specific folder
+                path.mkdirs()
+                val imgName = "IMG_${System.currentTimeMillis()}"
+                val imageFile = File(path, "$imgName.png") // Imagename.png
+                val out = FileOutputStream(imageFile)
+                try {
+                    image.compress(Bitmap.CompressFormat.PNG, 100, out) // Compress Image
+                    out.flush()
+                    out.close()
+
+                    // Tell the media scanner about the new file so that it is
+                    // immediately available to the user.
+
+                    return imageFile.absolutePath
+                } catch (e: java.lang.Exception) {
+                    throw IOException()
+                }
+            }
+
+            override fun onPostExecute(result: String?) {
+                super.onPostExecute(result)
+                result?.let {
+                    Toast.makeText(ctx, "Photo saved!", Toast.LENGTH_SHORT).show()
+                    MediaScannerConnection.scanFile(
+                        ctx,
+                        arrayOf(it),
+                        null,
+                        object : MediaScannerConnection.OnScanCompletedListener {
+                            override fun onScanCompleted(path: String?, uri: Uri?) {
+                                Log.i("ExternalStorage", "Scanned $path:")
+                                Log.i("ExternalStorage", "-> uri=$uri")
+                            }
+                        })
+                }
+            }
+
+        }.execute(imgUrl, true)
+    }
+
+    @Throws(IOException::class)
+    fun saveVideoToExternal(imgUrl: String) {
         val path = File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
             "GGEZ"
         ) //Creates app specific folder
         path.mkdirs()
-        val imgName = "IMG_${System.currentTimeMillis()}"
-        val imageFile = File(path, "$imgName.png") // Imagename.png
-        val out = FileOutputStream(imageFile)
-        try {
-            image.compress(Bitmap.CompressFormat.PNG, 100, out) // Compress Image
-            out.flush()
-            out.close()
+        val imgName = "VID_${System.currentTimeMillis()}"
+        val imageFile = File(path, "$imgName.mp4") // Imagename.png
 
-            // Tell the media scanner about the new file so that it is
-            // immediately available to the user.
-            MediaScannerConnection.scanFile(
-                ctx,
-                arrayOf(imageFile.absolutePath),
-                null,
-                object : MediaScannerConnection.OnScanCompletedListener {
-                    override fun onScanCompleted(path: String?, uri: Uri?) {
-                        Log.i("ExternalStorage", "Scanned $path:")
-                        Log.i("ExternalStorage", "-> uri=$uri")
+        var input: InputStream? = null
+        var output: OutputStream? = null
+        var connection: HttpURLConnection? = null
+
+
+        object : AsyncTaskRunner<String?, String>(ctx) {
+            override fun doInBackground(params: String?): String? {
+                try {
+                    val url = URL(imgUrl)
+                    connection = url.openConnection() as HttpURLConnection
+                    connection?.connect()
+                    if (connection?.responseCode != HttpURLConnection.HTTP_OK) {
+                        return ("Server returned HTTP " + connection?.responseCode
+                                + " " + connection?.responseMessage)
                     }
+                    val fileLength = connection!!.contentLength
+                    input = connection?.inputStream
 
-                })
-        } catch (e: java.lang.Exception) {
-            throw IOException()
-        }
+                    output = FileOutputStream(imageFile)
+                    val data = ByteArray(4096)
+                    var total: Long = 0
+                    var count: Int
+                    while (input?.read(data).also { count = it!! } != -1) {
+                        if (isShutdown()) {
+                            input?.close()
+                            return null
+                        }
+                        total += count.toLong()
+//                        if (fileLength > 0) publishProgress((total * 100 / fileLength).toInt())
+                        output?.write(data, 0, count)
+                    }
+                } catch (e: Exception) {
+                    return e.toString()
+                } finally {
+                    try {
+                        output?.close()
+                        input?.close()
+                    } catch (ignored: IOException) {
+                    }
+                    connection?.disconnect()
+                }
+
+                return imageFile.absolutePath
+            }
+
+            override fun onPostExecute(result: String?) {
+                super.onPostExecute(result)
+                Log.e("TAG", "onPostExecute: ${result}")
+            }
+
+        }.execute(imgUrl, true)
+
+
+//        val out = FileOutputStream(imageFile)
+//        try {
+//            image.compress(Bitmap.CompressFormat.PNG, 100, out) // Compress Image
+//            out.flush()
+//            out.close()
+
+        // Tell the media scanner about the new file so that it is
+        // immediately available to the user.
+//            MediaScannerConnection.scanFile(
+//                ctx,
+//                arrayOf(imageFile.absolutePath),
+//                null,
+//                object : MediaScannerConnection.OnScanCompletedListener {
+//                    override fun onScanCompleted(path: String?, uri: Uri?) {
+//                        Log.i("ExternalStorage", "Scanned $path:")
+//                        Log.i("ExternalStorage", "-> uri=$uri")
+//                    }
+//                })
+//        } catch (e: java.lang.Exception) {
+//            throw IOException()
+//        }
     }
 
 
