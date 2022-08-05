@@ -222,6 +222,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             llVimeo.setOnClickListener {
                 startActivity(Intent(ctx, VimeoActivity::class.java))
             }
+
+            llRingtone.setOnClickListener {
+                startActivity(Intent(ctx, RingtoneActivity::class.java))
+            }
         }
 
         binding.apply {

@@ -16,7 +16,6 @@ import com.example.allviddownloader.databinding.ItemWallpapersBinding
 import com.example.allviddownloader.models.WallModelPixabay
 import com.example.allviddownloader.utils.NetworkState
 import com.example.allviddownloader.utils.apis.RestApi
-import com.example.allviddownloader.utils.dpToPx
 import com.example.allviddownloader.widgets.MarginItemDecoration
 import retrofit2.Call
 import retrofit2.Callback
@@ -71,11 +70,11 @@ class WallpapersActivity : AppCompatActivity() {
                                 Log.e("GG", "Last Item Wow !")
 
 //                                if (loadingPage == 0) {
-                                    pageIndex++
-                                    loadingPage++
-                                    progressBar.visibility = View.VISIBLE
-                                    getNewWallpapers(pageIndex, perPage)
-                                    loading = true
+                                pageIndex++
+                                loadingPage++
+                                progressBar.visibility = View.VISIBLE
+                                getNewWallpapers(pageIndex, perPage)
+                                loading = true
 //                                }
                             }
                         }
@@ -113,7 +112,7 @@ class WallpapersActivity : AppCompatActivity() {
     }
 
     private fun getNewWallpapers(page: Int, limit: Int) {
-        val service = RestApi.service
+        val service = RestApi.newInstance(RestApi.BASE_URL_WALLPAPER_PIXABAY).service
         val call: Call<WallModelPixabay> =
             service.getAllWallpapersPixabay(RestApi.API_KEY_WALLPAPERS_PIXABAY, page, limit)
         call.enqueue(object : Callback<WallModelPixabay> {

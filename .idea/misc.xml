@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_bottom_sheet.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_gr_ringtone.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_gradient1.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_gradient2.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_left.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_left_ripple.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_right.xml" value="0.209" />
@@ -12,6 +15,7 @@
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bg_shadow_rounded_8.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/bottom_transparent_gradient_top.xml" value="0.2025" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/circle_bg_black.xml" value="0.209" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/circle_bg_stroke.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/dialog_bg.xml" value="0.2025" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/et_bg_fb.xml" value="0.209" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/drawable/et_bg_insta.xml" value="0.209" />
@@ -23,6 +27,7 @@
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_funny_videos.xml" value="0.375" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_imageview.xml" value="0.18958333333333333" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_ringtone.xml" value="0.375" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_videoview.xml" value="0.18958333333333333" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_vimeo.xml" value="0.18958333333333333" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/activity_wallpapers.xml" value="0.25" />
@@ -32,6 +37,7 @@
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/fragment_waimages.xml" value="0.18958333333333333" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/item_full_view.xml" value="0.375" />
+        <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/item_ringtones.xml" value="0.33" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/item_status.xml" value="0.375" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/item_wall_categories.xml" value="0.375" />
         <entry key="..\:/Andoid Projects/Client Projects/AllVideoDownloader/app/src/main/res/layout/item_wallpapers.xml" value="0.18958333333333333" />

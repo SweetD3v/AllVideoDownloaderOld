@@ -4,5 +4,6 @@
         <domain includeSubdomains="true">api.pexels.com</domain>
         <domain includeSubdomains="true">pixabay.com</domain>
         <domain includeSubdomains="true">myvideo.fun</domain>
+        <domain includeSubdomains="true">www.freesound.org</domain>
     </domain-config>
 </network-security-config>
