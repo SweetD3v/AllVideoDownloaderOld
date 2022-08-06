@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.content.FileProvider
 import com.example.allviddownloader.utils.AsyncTaskRunner
+import com.example.allviddownloader.utils.originalPath
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
@@ -121,6 +122,127 @@ class BasicImageDownloader(var ctx: Context) {
                 result?.let {
                     val bmp = BitmapFactory.decodeFile(it)
                     bitmap(bmp)
+                    uri(FileProvider.getUriForFile(ctx, "${ctx.packageName}.provider", File(it)))
+                }
+            }
+
+        }.execute(imgUrl, showProgress)
+    }
+
+    @Throws(IOException::class)
+    fun saveRingtoneToTemp(
+        imgUrl: String,
+        file: File,
+        showProgress: Boolean,
+        uri: (Uri) -> Unit
+    ) {
+        if (!file.exists())
+            file.mkdirs()
+        object : AsyncTaskRunner<String, String>(ctx) {
+            override fun doInBackground(params: String?): String {
+                var count: Int
+                val url = URL(imgUrl)
+                val connection = url.openConnection()
+                Log.e("TAG", "saveImageToExternal: width")
+                connection.connect()
+
+                val lengthOfFile: Int = connection.contentLength
+                val input: InputStream = BufferedInputStream(url.openStream())
+                val path = file //Creates app specific folder
+                path.mkdirs()
+                val imgName = "RINGTONE_${System.currentTimeMillis()}"
+                val imageFile = File(path, "$imgName.mp3") // Imagename.png
+                val out = FileOutputStream(imageFile)
+                val data = ByteArray(1024)
+
+                try {
+                    var total: Long = 0
+
+                    while (input.read(data).also { count = it } != -1) {
+                        total += count
+                        out.write(data, 0, count)
+                    }
+
+                    out.flush()
+                    out.close()
+                    input.close()
+                    // Tell the media scanner about the new file so that it is
+                    // immediately available to the user.
+
+                    return imageFile.absolutePath
+                } catch (e: java.lang.Exception) {
+                    throw IOException()
+                }
+            }
+
+            override fun onPostExecute(result: String?) {
+                super.onPostExecute(result)
+                result?.let {
+                    val bmp = BitmapFactory.decodeFile(it)
+                    uri(FileProvider.getUriForFile(ctx, "${ctx.packageName}.provider", File(it)))
+                }
+            }
+
+        }.execute(imgUrl, showProgress)
+    }
+
+    @Throws(IOException::class)
+    fun downloadRingtone(
+        imgUrl: String,
+        showProgress: Boolean,
+        uri: (Uri) -> Unit
+    ) {
+        val file = File(originalPath, "Ringtones")
+        if (!file.exists())
+            file.mkdirs()
+        object : AsyncTaskRunner<String, String>(ctx) {
+            override fun doInBackground(params: String?): String {
+                var count: Int
+                val url = URL(imgUrl)
+                val connection = url.openConnection()
+                Log.e("TAG", "saveImageToExternal: width")
+                connection.connect()
+
+                val lengthOfFile: Int = connection.contentLength
+                val input: InputStream = BufferedInputStream(url.openStream())
+                val path = file //Creates app specific folder
+                path.mkdirs()
+                val imgName = "RINGTONE_${System.currentTimeMillis()}"
+                val imageFile = File(path, "$imgName.mp3") // Imagename.png
+                val out = FileOutputStream(imageFile)
+                val data = ByteArray(1024)
+
+                try {
+                    var total: Long = 0
+
+                    while (input.read(data).also { count = it } != -1) {
+                        total += count
+                        out.write(data, 0, count)
+                    }
+
+                    out.flush()
+                    out.close()
+                    input.close()
+                    // Tell the media scanner about the new file so that it is
+                    // immediately available to the user.
+
+                    return imageFile.absolutePath
+                } catch (e: java.lang.Exception) {
+                    throw IOException()
+                }
+            }
+
+            override fun onPostExecute(result: String?) {
+                super.onPostExecute(result)
+                result?.let {
+                    MediaScannerConnection.scanFile(
+                        ctx,
+                        arrayOf(it),
+                        null
+                    ) { path, uri ->
+                        Log.i("ExternalStorage", "Scanned $path:")
+                        Log.i("ExternalStorage", "-> uri=$uri")
+                    }
                     uri(FileProvider.getUriForFile(ctx, "${ctx.packageName}.provider", File(it)))
                 }
             }
@@ -306,7 +428,7 @@ class BasicImageDownloader(var ctx: Context) {
         @NonNull listener: OnBitmapSaveListener,
         @NonNull format: Bitmap.CompressFormat?, shouldOverwrite: Boolean
     ) {
-        if (imageFile.isDirectory()) {
+        if (imageFile.isDirectory) {
             listener.onBitmapSaveError(
                 ImageError(
                     "the specified path points to a directory, " +
@@ -335,7 +457,7 @@ class BasicImageDownloader(var ctx: Context) {
                 return
             }
         }
-        val parent: File = imageFile.getParentFile()
+        val parent: File = imageFile.parentFile
         if (!parent.exists() && !parent.mkdirs()) {
             listener.onBitmapSaveError(
                 ImageError("could not create parent directory")
@@ -393,8 +515,8 @@ class BasicImageDownloader(var ctx: Context) {
     }
 
     fun readFromDisk(@NonNull imageFile: File): Bitmap? {
-        return if (!imageFile.exists() || imageFile.isDirectory()) null else BitmapFactory.decodeFile(
-            imageFile.getAbsolutePath()
+        return if (!imageFile.exists() || imageFile.isDirectory) null else BitmapFactory.decodeFile(
+            imageFile.absolutePath
         )
     }
 
@@ -424,7 +546,7 @@ class BasicImageDownloader(var ctx: Context) {
         var errorCode = 0
             private set
 
-        constructor(@NonNull message: String?) : super(message) {}
+        constructor(@NonNull message: String?) : super(message)
         constructor(@NonNull error: Throwable) : super(error.message, error.cause) {
             stackTrace = error.stackTrace
         }

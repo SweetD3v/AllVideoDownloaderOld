@@ -31,10 +31,13 @@
         android:theme="@style/Theme.AllVidDownloader"
         tools:targetApi="30">
         <activity
+            android:name=".ui.activities.StatusMakerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activities.WallpapersDetailsActivity"
             android:configChanges="screenSize|orientation"
             android:exported="false" />
-
         <activity
             android:name=".ui.activities.RingtoneActivity"
             android:configChanges="screenSize|orientation"

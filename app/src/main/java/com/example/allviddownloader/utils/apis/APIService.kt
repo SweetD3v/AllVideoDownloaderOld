@@ -30,6 +30,7 @@ interface APIService {
     @GET("search/text?")
     fun getAllRingtones(
         @Query("token") token: String,
+        @Query("query") query: String,
         @Query("page") page: Int,
         @Query("page_size") perPage: Int
     ): Call<RingtoneModel>

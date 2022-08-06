@@ -22,9 +22,7 @@ class FileUtilsss {
         fun copyFileAPI30(
             ctx: Context,
             inputUri: Uri,
-            tempFile: File?,
             outputVideoFile: File,
-            mimeType: String,
             file: (File) -> Unit
         ) {
             if (!outputVideoFile.parentFile.exists())

@@ -26,4 +26,21 @@ class RingPreviewModel {
 
     @SerializedName("download")
     var download: String? = ""
+
+    @SerializedName("previews")
+    var previews: Previews? = Previews()
+
+    class Previews {
+        @SerializedName("preview-lq-ogg")
+        var previewLQOgg: String? = ""
+
+        @SerializedName("preview-lq-mp3")
+        var previewLQMp3: String? = ""
+
+        @SerializedName("preview-hq-ogg")
+        var previewHQOgg: String? = ""
+
+        @SerializedName("preview-hq-mp3")
+        var previewHQMp3: String? = ""
+    }
 }

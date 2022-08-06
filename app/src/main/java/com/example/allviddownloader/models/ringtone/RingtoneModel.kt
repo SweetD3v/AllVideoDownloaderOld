@@ -17,6 +17,9 @@ class RingtoneModel {
         @SerializedName("name")
         var name: String? = ""
 
+        @SerializedName("isPlaying")
+        var isPlaying: Boolean? = false
+
         @SerializedName("tags")
         var tags: MutableList<String>? = mutableListOf()
 

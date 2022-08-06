@@ -21,6 +21,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.allviddownloader.databinding.ActivityWastatusBinding
 import com.example.allviddownloader.ui.fragments.WAImagesFragment
 import com.example.allviddownloader.ui.fragments.WAVideoFragment
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class WAStatusActivity : AppCompatActivity() {
@@ -29,6 +30,7 @@ class WAStatusActivity : AppCompatActivity() {
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE"
     )
+    private val tabTitles = arrayOf("Photos", "Videos")
 
     val permissionsLauncher =
         registerForActivityResult(
@@ -71,7 +73,7 @@ class WAStatusActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.toolbar.imgBack.setOnClickListener {
+        binding.imgBack.setOnClickListener {
             onBackPressed()
         }
     }
@@ -89,6 +91,10 @@ class WAStatusActivity : AppCompatActivity() {
                 ) {
                 }
             })
+
+            TabLayoutMediator(tabLayout, viewPagerStatus) { tab, position ->
+                tab.text = tabTitles[position]
+            }.attach()
         }
     }
 

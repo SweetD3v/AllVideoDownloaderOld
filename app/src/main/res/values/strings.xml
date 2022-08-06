@@ -21,4 +21,7 @@
     <string name="status">Status</string>
     <string name="paste_instagram_link_here">Paste Instagram link here</string>
     <string name="paste_facebook_link_here">Paste Facebook link here</string>
+    <string name="ringtones">Ringtones</string>
+    <string name="status_maker">Status Maker</string>
+    <string name="whatsapp_status">Whatsapp Status</string>
 </resources>

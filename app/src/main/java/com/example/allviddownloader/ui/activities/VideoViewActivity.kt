@@ -4,12 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.example.allviddownloader.databinding.ActivityVideoviewBinding
-import com.universalvideoview.UniversalMediaController
 
 class VideoViewActivity : AppCompatActivity() {
     private val binding by lazy { ActivityVideoviewBinding.inflate(layoutInflater) }
-
-    private val mMediaController: UniversalMediaController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +14,7 @@ class VideoViewActivity : AppCompatActivity() {
 
         binding.apply {
             videoView.setVideoURI(intent.getStringExtra("path").toString().toUri())
-            videoView.setMediaController(mMediaController)
+            videoView.setMediaController(mediaController)
             videoView.start()
         }
     }
@@ -28,6 +25,6 @@ class VideoViewActivity : AppCompatActivity() {
                 videoView.pause()
             }
         }
-        super.onBackPressed()
+        finish()
     }
 }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.StatusMakerActivity">
 
     <RelativeLayout
         android:id="@+id/rlTop"
@@ -35,10 +37,11 @@
                 android:fontFamily="@font/neutra_regular"
                 android:gravity="center"
                 android:paddingVertical="10dp"
-                android:text="@string/whatsapp_status"
+                android:text="@string/status_maker"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/llCategory"
@@ -64,31 +67,18 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        style="@style/RoundedTabLayoutStyleAccent"
-        android:layout_width="match_parent"
+
+    <RelativeLayout
+        android:id="@+id/rlEdit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rlTop"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp"
-        app:tabRippleColor="@android:color/transparent">
+        android:layout_centerHorizontal="true">
 
-        <com.google.android.material.tabs.TabItem
+        <ImageView
+            android:id="@+id/imgEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Photos" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Videos" />
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tabLayout"
-        android:layout_marginTop="8dp" />
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 </RelativeLayout>

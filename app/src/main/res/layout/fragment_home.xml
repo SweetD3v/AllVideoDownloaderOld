@@ -151,7 +151,7 @@
                             android:focusable="true"
                             android:gravity="center"
                             android:orientation="vertical"
-                            app:layout_constraintEnd_toStartOf="@id/llVimeo"
+                            app:layout_constraintEnd_toStartOf="@id/llFunnyNew"
                             app:layout_constraintStart_toEndOf="@id/llFacebook"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -173,7 +173,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/llVimeo"
+                            android:id="@+id/llFunnyNew"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/ripple_vimeo"
@@ -187,14 +187,14 @@
                                 android:id="@+id/imgVimeo"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                app:srcCompat="@drawable/ic_vimeo" />
+                                app:srcCompat="@drawable/ic_fun_video" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/roboto_medium"
-                                android:text="Vimeo"
+                                android:text="Comedy"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -203,18 +203,17 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
                         android:layout_marginTop="16dp"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/llFunny"
+                            android:id="@+id/llStatusMaker"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/ripple_whatsapp"
                             android:gravity="center"
                             android:orientation="vertical"
-                            app:layout_constraintEnd_toStartOf="@id/llMore"
+                            app:layout_constraintEnd_toStartOf="@id/llDPCreator"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -229,20 +228,20 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/roboto_medium"
                                 android:gravity="center"
-                                android:text="@string/comedy"
+                                android:text="@string/status_maker"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/llMore"
+                            android:id="@+id/llDPCreator"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/ripple_instagram"
                             android:gravity="center"
                             android:orientation="vertical"
                             app:layout_constraintEnd_toStartOf="@id/llWallpaper"
-                            app:layout_constraintStart_toEndOf="@id/llFunny"
+                            app:layout_constraintStart_toEndOf="@id/llStatusMaker"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -255,7 +254,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/roboto_medium"
-                                android:text="WA Stickers"
+                                android:text="DP Creator"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -267,8 +266,8 @@
                             android:background="@drawable/ripple_instagram"
                             android:gravity="center"
                             android:orientation="vertical"
-                            app:layout_constraintEnd_toStartOf="@id/llRingtone"
-                            app:layout_constraintStart_toEndOf="@id/llMore"
+                            app:layout_constraintEnd_toStartOf="@id/llWAStickers"
+                            app:layout_constraintStart_toEndOf="@id/llDPCreator"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -288,7 +287,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/llRingtone"
+                            android:id="@+id/llWAStickers"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/ripple_facebook"
@@ -301,14 +300,14 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                app:srcCompat="@drawable/ic_ringtone" />
+                                app:srcCompat="@drawable/ic_sticker" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/roboto_medium"
-                                android:text="Ringtone"
+                                android:text="WA Stickers"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>

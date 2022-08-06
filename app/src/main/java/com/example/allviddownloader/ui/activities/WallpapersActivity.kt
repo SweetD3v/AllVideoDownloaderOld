@@ -84,20 +84,14 @@ class WallpapersActivity : BaseActivity() {
                     super.onScrolled(recyclerView, dx, dy)
 
                     val visibleItemCount = layoutManager.childCount
-                    // number of items in layout
                     val totalItemCount = layoutManager.itemCount
-                    // the position of first visible item
                     val firstVisibleItemPosition =
                         layoutManager.findFirstCompletelyVisibleItemPosition()
 
                     val isNotLoadingAndNotLastPage = !loading && !mIsLastPage
-                    // flag if number of visible items is at the last
                     val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
-                    // validate non negative values
                     val isValidFirstItem = firstVisibleItemPosition >= 0
-                    // validate total items are more than possible visible items
                     val totalIsMoreThanVisible = totalItemCount >= perPage
-                    // flag to know whether to load more
                     val shouldLoadMore =
                         isValidFirstItem && isAtLastItem && totalIsMoreThanVisible && isNotLoadingAndNotLastPage
                     Log.e("TAG", "onScrolled: ${isAtLastItem}")

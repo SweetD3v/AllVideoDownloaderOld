@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -47,6 +48,7 @@ class FullViewActivity : AppCompatActivity() {
                 executeImageOld()
             }
         } else {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 loadVideo()
             } else {
@@ -56,6 +58,10 @@ class FullViewActivity : AppCompatActivity() {
 
         if (extFile.exists())
             extFile.delete()
+
+        binding.imgBack.setOnClickListener {
+            onBackPressed()
+        }
 
         binding.fabDownload.setOnClickListener {
             imagesList.let { list ->
@@ -118,8 +124,7 @@ class FullViewActivity : AppCompatActivity() {
                         if (extFile.exists())
                             extFile.delete()
                         FileUtilsss.copyFileAPI30(
-                            this, image.uri, null,
-                            File(getExternalFilesDir("Videos"), "video.mp4"), "video/mp4"
+                            this, image.uri, File(getExternalFilesDir("Videos"), "video.mp4")
                         ) { file ->
                             Log.e("TAG", "filePath: ${file.absolutePath}")
                             FileUtilsss.saveVideoAPI30(
@@ -144,9 +149,7 @@ class FullViewActivity : AppCompatActivity() {
                             FileUtilsss.copyFileAPI30(
                                 this,
                                 imagesList[position].uri,
-                                null,
-                                dest,
-                                "video/mp4"
+                                dest
                             ) { file1 ->
                                 Log.e("TAG", "onCopied: ${file1.absolutePath}")
                                 MediaScannerConnection.scanFile(
@@ -307,11 +310,18 @@ class FullViewActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: VH, position: Int) {
             val item = itemList[holder.adapterPosition]
+
             Glide.with(ctx).load(item.uri)
                 .placeholder(R.drawable.ic_whatsapp_svg).into(holder.binding.imgView)
 
-
             holder.binding.imgPlay.visibility = if (item.isVideo) View.VISIBLE else View.GONE
+            holder.binding.rlRoot.setBackgroundColor(
+                if (item.isVideo)
+                    ContextCompat.getColor(ctx, R.color.black) else ContextCompat.getColor(
+                    ctx,
+                    R.color.white
+                )
+            )
 
 
             holder.binding.imgPlay.setOnClickListener {

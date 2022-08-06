@@ -8,11 +8,12 @@
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        android:elevation="2dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_transparent_gradient_top">
 
         <ImageView
-            android:id="@+id/back"
+            android:id="@+id/imgBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -24,8 +25,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar">
+        android:layout_height="match_parent">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPagerMedia"
