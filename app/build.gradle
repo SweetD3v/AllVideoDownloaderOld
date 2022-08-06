@@ -58,12 +58,12 @@ dependencies {
     implementation 'com.mindorks.android:prdownloader:0.6.0'
 //    implementation 'androidx.room:room-coroutines:2.1.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
-//    implementation 'com.github.Ashusolanki:FacebookUrlExtractor:0.0.5'
+    implementation project(path: ':facebookurlextractor')
 
     implementation 'com.linsea:universalvideoview:1.1.0@aar'
     implementation group: 'androidx.swiperefreshlayout', name: 'swiperefreshlayout', version: '1.1.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation project(path: ':facebookurlextractor')
+    implementation 'com.nambimobile.widgets:expandable-fab:1.2.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

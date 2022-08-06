@@ -1,6 +1,7 @@
 package com.example.allviddownloader.ui.activities
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -33,6 +34,7 @@ class WallpapersActivity : AppCompatActivity() {
     companion object {
         var pageIndex = 1
         var perPage: Int = 20
+        const val WALLPAPER_ORIGINAL_URL: String = "wallUrl"
     }
 
     lateinit var wallpapersAdapter: WallpapersAdapter
@@ -219,15 +221,14 @@ class WallpapersActivity : AppCompatActivity() {
                 .into(holder.binding.ivThumbnail)
 
             holder.itemView.setOnClickListener {
-//                ctx.startActivity(
-//                    Intent(ctx, FullViewActivity::class.java)
-//                        .putExtra("position", holder.adapterPosition)
-//                        .putExtra(
-//                            "type",
-//                            if (wallpapers[holder.adapterPosition].isVideo) "video"
-//                            else "photo"
-//                        )
-//                )
+                ctx.startActivity(
+                    Intent(ctx, WallpapersDetailsActivity::class.java)
+                        .putExtra("position", holder.adapterPosition)
+                        .putExtra(
+                            WALLPAPER_ORIGINAL_URL,
+                            wallpapers[holder.adapterPosition].largeImageURL
+                        )
+                )
             }
         }
 

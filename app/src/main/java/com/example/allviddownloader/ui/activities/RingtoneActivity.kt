@@ -14,6 +14,7 @@ import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityRingtoneBinding
 import com.example.allviddownloader.databinding.ItemRingtonesBinding
 import com.example.allviddownloader.interfaces.RingToneSelectionListener
+import com.example.allviddownloader.models.ringtone.RingPreviewModel
 import com.example.allviddownloader.models.ringtone.RingtoneModel
 import com.example.allviddownloader.utils.apis.RestApi
 import com.example.allviddownloader.widgets.MarginItemDecoration
@@ -52,6 +53,7 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
 
             ringtonesList = mutableListOf()
             ringtonesAdapter = RingtonesAdapter(this@RingtoneActivity)
+            ringtonesAdapter.ringToneSelectionListener = this@RingtoneActivity
             rvRingtones.adapter = ringtonesAdapter
             ringtonesAdapter.updateList(mutableListOf())
             Log.e("TAG", "loadRingtones: ")
@@ -122,7 +124,7 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
                 txtTitle.text = ringtone.name
             }
             holder.itemView.setOnClickListener {
-                ringToneSelectionListener?.onRingToneSelected(ringtone.id.toString())
+                ringToneSelectionListener?.onRingToneSelected(ringtone.id!!)
 //                ctx.startActivity(
 //                    Intent(ctx, FullViewActivity::class.java)
 //                        .putExtra("position", holder.adapterPosition)
@@ -144,13 +146,34 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
         finish()
     }
 
-    override fun onRingToneSelected(url: String) {
-
-        playMediaFromURL(url)
+    override fun onRingToneSelected(id: Long) {
+        Log.e("TAG", "onRingToneSelected: $id")
+        getRingToneFromId(id)
+//        playMediaFromURL(url)
     }
 
-    lateinit var mediaPlayer: MediaPlayer
-    fun playMediaFromURL(url: String) {
+    private fun getRingToneFromId(id: Long) {
+        val service = RestApi.newInstance(RestApi.BASE_URL_RINGTONE).service
+        val call: Call<RingPreviewModel> = service.getRingtoneFromId(id, RestApi.API_KEY_RINGTONE)
+        call.enqueue(object : Callback<RingPreviewModel> {
+            override fun onResponse(
+                call: Call<RingPreviewModel>,
+                response: Response<RingPreviewModel>
+            ) {
+                response.body()?.let {body->
+                    playMediaFromURL(body.download!!)
+                }
+            }
+
+            override fun onFailure(call: Call<RingPreviewModel>, t: Throwable) {
+
+            }
+
+        })
+    }
+
+    var mediaPlayer: MediaPlayer = MediaPlayer()
+    fun playMediaFromURL(url: String?) {
         if (mediaPlayer.isPlaying) {
             mediaPlayer.stop()
             mediaPlayer.release()
