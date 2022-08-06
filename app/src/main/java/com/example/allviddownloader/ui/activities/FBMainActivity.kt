@@ -16,6 +16,7 @@ import com.ashudevs.facebookurlextractor.FacebookFile
 import com.example.allviddownloader.databinding.ActivityFbmainBinding
 import com.example.allviddownloader.utils.AppUtils
 import com.example.allviddownloader.utils.AsyncTaskRunner
+import com.example.allviddownloader.utils.RootDirectoryFacebookShow
 import com.example.allviddownloader.utils.downloader.BasicImageDownloader
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -117,7 +118,7 @@ class FBMainActivity : AppCompatActivity() {
 
                         if (downloadUrl.contains(".jpg") || downloadUrl.contains(".png")) {
                             BasicImageDownloader(this@FBMainActivity).saveImageToExternal(
-                                downloadUrl
+                                downloadUrl, RootDirectoryFacebookShow
                             )
                         } else {
                             BasicImageDownloader(this@FBMainActivity).saveVideoToExternal(

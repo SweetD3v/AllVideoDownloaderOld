@@ -20,7 +20,7 @@ class VimeoActivity : BaseActivity() {
                 javaScriptEnabled = true
                 loadWithOverviewMode = true
                 useWideViewPort = true
-                builtInZoomControls = true
+                builtInZoomControls = false
                 loadsImagesAutomatically = true
                 domStorageEnabled = true
             }

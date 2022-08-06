@@ -59,7 +59,9 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -165,7 +167,7 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/roboto_medium"
                                 android:gravity="center"
-                                android:text="Facebook Watch"
+                                android:text="@string/watch"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -212,7 +214,7 @@
                             android:background="@drawable/ripple_whatsapp"
                             android:gravity="center"
                             android:orientation="vertical"
-                            app:layout_constraintEnd_toStartOf="@id/llWallpaper"
+                            app:layout_constraintEnd_toStartOf="@id/llMore"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -227,7 +229,33 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/roboto_medium"
                                 android:gravity="center"
-                                android:text="Funny Videos"
+                                android:text="@string/comedy"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llMore"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ripple_instagram"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toStartOf="@id/llWallpaper"
+                            app:layout_constraintStart_toEndOf="@id/llFunny"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                app:srcCompat="@drawable/ic_sticker" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="WA Stickers"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -240,7 +268,7 @@
                             android:gravity="center"
                             android:orientation="vertical"
                             app:layout_constraintEnd_toStartOf="@id/llRingtone"
-                            app:layout_constraintStart_toEndOf="@id/llFunny"
+                            app:layout_constraintStart_toEndOf="@id/llMore"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -266,7 +294,7 @@
                             android:background="@drawable/ripple_facebook"
                             android:gravity="center"
                             android:orientation="vertical"
-                            app:layout_constraintEnd_toStartOf="@id/llMore"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/llWallpaper"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -281,32 +309,6 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/roboto_medium"
                                 android:text="Ringtone"
-                                android:textColor="@color/black"
-                                android:textSize="14sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/llMore"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/ripple_instagram"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/llRingtone"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                app:srcCompat="@drawable/ic_sticker" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="WA Stickers"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -581,8 +583,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:padding="4dp"
-                                app:srcCompat="@drawable/ic_ringotne_editor"
+                                app:srcCompat="@drawable/ic_ringtone_maker"
                                 app:tint="#53289A" />
 
                             <TextView
@@ -613,6 +614,8 @@
                         android:elevation="8dp"
                         android:focusable="true"
                         android:orientation="horizontal"
+                        android:paddingHorizontal="4dp"
+                        android:paddingVertical="2dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -650,6 +653,8 @@
                         android:background="@drawable/bg_rounded_left_ripple"
                         android:elevation="8dp"
                         android:orientation="horizontal"
+                        android:paddingHorizontal="4dp"
+                        android:paddingVertical="2dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -670,10 +675,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="4dp"
+                            android:layout_marginHorizontal="8dp"
                             android:fontFamily="@font/agane_bold"
                             android:gravity="center_vertical"
-                            android:paddingEnd="8dp"
                             android:text="@string/status_n_saver"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -748,7 +752,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="8dp"
                                         android:fontFamily="@font/karla_semibold"
-                                        android:text="Calculator"
+                                        android:text="Calculator vault"
                                         android:textColor="@color/black"
                                         android:textSize="16sp" />
 
@@ -789,13 +793,13 @@
                                         android:layout_height="match_parent"
                                         android:background="@drawable/rounded_bg_white_16"
                                         android:backgroundTint="#FFDFCF"
-                                        android:padding="24dp">
+                                        android:padding="18dp">
 
                                         <androidx.appcompat.widget.AppCompatImageView
-                                            android:layout_width="48dp"
-                                            android:layout_height="48dp"
+                                            android:layout_width="56dp"
+                                            android:layout_height="56dp"
                                             android:layout_centerInParent="true"
-                                            app:srcCompat="@drawable/ic_tools2"
+                                            app:srcCompat="@drawable/ic_video_recorder"
                                             app:tint="#C24E18" />
                                     </RelativeLayout>
 
@@ -804,7 +808,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="8dp"
                                         android:fontFamily="@font/karla_semibold"
-                                        android:text="Tools"
+                                        android:text="@string/screen_recorder"
                                         android:textColor="@color/black"
                                         android:textSize="16sp" />
 

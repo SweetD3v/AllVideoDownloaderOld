@@ -19,11 +19,11 @@ class BSFragmentBuilder : BottomSheetDialogFragment() {
     private var exploreMode = false
     private var canGoBack: Boolean = false
     private var onSearchClick: OnSearchClick? = null
+    private var fullHeight = true
     var layout: View? = null
 
     fun with(manager: FragmentManager): BSFragmentBuilder {
-        val fragment: BSFragmentBuilder =
-            BSFragmentBuilder()
+        val fragment = BSFragmentBuilder()
         fragment.fManager = manager
         return fragment
     }
@@ -35,6 +35,11 @@ class BSFragmentBuilder : BottomSheetDialogFragment() {
 
     fun exploreMode(enabled: Boolean): BSFragmentBuilder {
         exploreMode = enabled
+        return this
+    }
+
+    fun fullHeight(fullHeight: Boolean): BSFragmentBuilder {
+        this.fullHeight = fullHeight
         return this
     }
 
@@ -77,10 +82,13 @@ class BSFragmentBuilder : BottomSheetDialogFragment() {
         dialog.setContentView(contentView!!)
         val layoutParams =
             (contentView.parent as View).layoutParams as CoordinatorLayout.LayoutParams
-        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+        layoutParams.height = if (fullHeight) {
+            WindowManager.LayoutParams.MATCH_PARENT
+        } else {
+            WindowManager.LayoutParams.WRAP_CONTENT
+        }
         val behavior = layoutParams.behavior
         if (behavior != null && behavior is BottomSheetBehavior<*>) {
-//            setupFullHeight(contentView)
             behavior.setBottomSheetCallback(mBottomSheetBehaviorCallback)
             behavior.state = STATE_EXPANDED
             behavior.skipCollapsed = true
@@ -89,7 +97,7 @@ class BSFragmentBuilder : BottomSheetDialogFragment() {
 
     private val mBottomSheetBehaviorCallback: BottomSheetCallback = object : BottomSheetCallback() {
         override fun onStateChanged(bottomSheet: View, newState: Int) {
-            if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+            if (newState == STATE_HIDDEN) {
                 dismiss()
             }
         }

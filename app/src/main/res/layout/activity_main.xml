@@ -54,7 +54,7 @@
                 android:background="@drawable/bg_rounded_right_ripple"
                 android:elevation="4dp"
                 android:fontFamily="@font/neutra_regular"
-                android:paddingVertical="8dp"
+                android:paddingVertical="10dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="0dp"
                 android:text="@string/app_name"
@@ -63,8 +63,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgSettings"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="8dp"
@@ -177,11 +177,12 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabEntertainment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             app:backgroundTint="@color/accent"
             app:layout_anchor="@id/bottomNavBar"
-            app:srcCompat="@drawable/ic_video_editor"
+            app:maxImageSize="32dp"
+            app:srcCompat="@drawable/ic_fire"
             app:tint="@android:color/white" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->

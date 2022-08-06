@@ -259,3 +259,31 @@ fun getMediaQMinus(ctx: Context, file: File): MutableList<Media> {
 
     return items
 }
+
+fun String.toTitleCase(): String? {
+    var string = this
+    // Check if String is null
+    var whiteSpace = true
+    val builder = StringBuilder(string) // String builder to store string
+    val builderLength = builder.length
+
+    // Loop through builder
+    for (i in 0 until builderLength) {
+        val c = builder[i] // Get character at builders position
+        if (whiteSpace) {
+
+            // Check if character is not white space
+            if (!Character.isWhitespace(c)) {
+
+                // Convert to title case and leave whitespace mode.
+                builder.setCharAt(i, c.titlecaseChar())
+                whiteSpace = false
+            }
+        } else if (Character.isWhitespace(c)) {
+            whiteSpace = true // Set character is white space
+        } else {
+            builder.setCharAt(i, c.lowercaseChar()) // Set character to lowercase
+        }
+    }
+    return builder.toString() // Return builders text
+}

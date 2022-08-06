@@ -7,7 +7,9 @@ import com.example.allviddownloader.adapters.AllMediaAdapter
 import com.example.allviddownloader.adapters.WAMediaAdapter
 import com.example.allviddownloader.databinding.FragmentWaimagesBinding
 import com.example.allviddownloader.models.Media
+import com.example.allviddownloader.utils.dpToPx
 import com.example.allviddownloader.utils.getMedia
+import com.example.allviddownloader.widgets.MarginItemDecoration
 
 
 class AllVideosFragment : BaseFragment<FragmentWaimagesBinding>() {
@@ -29,6 +31,7 @@ class AllVideosFragment : BaseFragment<FragmentWaimagesBinding>() {
     private fun loadVideos() {
         binding.run {
             rvWAImages.layoutManager = GridLayoutManager(ctx, 2)
+            rvWAImages.addItemDecoration(MarginItemDecoration(dpToPx(8)))
 
             getMedia(ctx) { list ->
                 if (imagesList.size != list.size) {

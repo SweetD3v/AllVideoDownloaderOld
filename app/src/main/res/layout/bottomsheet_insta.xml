@@ -3,12 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF7FA"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@id/llCategory"
+            android:background="@drawable/bg_rounded_right_ripple"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgBack"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:background="?selectableItemBackground"
+                android:padding="12dp"
+                app:srcCompat="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingVertical="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="0dp"
+                android:text="Instagram"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDownloads"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/circle_bg_black"
+                android:backgroundTint="@color/primary"
+                android:elevation="4dp"
+                android:padding="8dp"
+                app:srcCompat="@drawable/ic_downloads1"
+                app:tint="@color/white" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/rlTop"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
@@ -26,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="8dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPasteInsta"
@@ -41,6 +102,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    android:visibility="gone"
                     app:cornerRadius="8dp"
                     app:rippleColor="@color/tab_unselected" />
             </RelativeLayout>
@@ -58,10 +120,10 @@
                 <EditText
                     android:id="@+id/et_text"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="48dp"
                     android:background="@drawable/et_bg_insta1"
-                    android:fontFamily="@font/agane_regular"
-                    android:hint="@string/paste_link"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="@string/paste_instagram_link_here"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:singleLine="true"
@@ -79,33 +141,38 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/tv_paste"
                         style="?borderlessButtonStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:fontFamily="@font/agane_regular"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/poppins_regular"
                         android:gravity="center"
                         android:text="@string/paste"
                         android:textAllCaps="false"
                         android:textColor="#EF1A5E"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@id/btnDownload"
-                        app:layout_constraintRight_toLeftOf="@id/btnDownload"
+                        app:layout_constraintEnd_toStartOf="@id/btnDownload"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/btnDownload"
-                        app:rippleColor="#FFE1EC" />
+                        app:rippleColor="#FFE1EC"
+                        app:strokeColor="#EF1A5E"
+                        app:strokeWidth="1dp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnDownload"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="2dp"
                         android:backgroundTint="#EF1A5E"
-                        android:fontFamily="@font/agane_regular"
+                        android:fontFamily="@font/poppins_regular"
                         android:gravity="center"
                         android:text="@string/download"
                         android:textAllCaps="false"
                         android:textSize="14sp"
-                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_paste"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </RelativeLayout>

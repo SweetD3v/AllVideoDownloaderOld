@@ -22,6 +22,7 @@ interface APIService {
     @GET("api")
     fun getAllWallpapersPixabay(
         @Query("key") api_key: String,
+        @Query("category") category: String,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
     ): Call<WallModelPixabay>

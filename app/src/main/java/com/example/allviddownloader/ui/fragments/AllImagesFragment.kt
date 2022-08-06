@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.allviddownloader.adapters.AllMediaAdapter
 import com.example.allviddownloader.databinding.FragmentWaimagesBinding
 import com.example.allviddownloader.models.Media
+import com.example.allviddownloader.utils.dpToPx
 import com.example.allviddownloader.utils.getMedia
+import com.example.allviddownloader.widgets.MarginItemDecoration
 
 
 class AllImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
@@ -28,6 +30,7 @@ class AllImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
     private fun loadImages() {
         binding.run {
             rvWAImages.layoutManager = GridLayoutManager(ctx, 2)
+            rvWAImages.addItemDecoration(MarginItemDecoration(dpToPx(8)))
 
             getMedia(ctx) { list ->
                 if (imagesList.size != list.size) {

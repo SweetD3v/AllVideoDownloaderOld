@@ -26,6 +26,7 @@ import com.downloader.PRDownloader
 import com.example.allviddownloader.R
 import com.example.allviddownloader.adapters.StoriesListAdapter
 import com.example.allviddownloader.databinding.BottomsheetFbBinding
+import com.example.allviddownloader.databinding.BottomsheetInstaBinding
 import com.example.allviddownloader.databinding.FragmentHomeBinding
 import com.example.allviddownloader.databinding.ViewDialogBinding
 import com.example.allviddownloader.models.*
@@ -175,6 +176,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             llInstagram.setOnClickListener {
+                val instaSheetBinding = BottomsheetInstaBinding.inflate(layoutInflater)
                 instaSheetBuilder = BSFragmentBuilder().with(childFragmentManager)
                     .title("Instagram")
                     .setupLayout(ctx, R.layout.bottomsheet_insta)
@@ -182,7 +184,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                 instaSheetBuilder?.show()
                 val instaSheetView = instaSheetBuilder?.layout
-                initInstaSheet(instaSheetView)
+                initInstaSheet(instaSheetBinding)
 //                startActivity(Intent(ctx, InstagramActivity::class.java))
             }
 
@@ -270,12 +272,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun initInstaSheet(instaSheetView: View?) {
-
+    private fun initInstaSheet(instaSheetBinding: BottomsheetInstaBinding) {
+        instaSheetBinding.run {
+            imgBack.setOnClickListener {
+                instaSheetBuilder?.dismiss()
+            }
+        }
     }
 
     private fun initFBSheet(fbSheetBinding: BottomsheetFbBinding) {
         fbSheetBinding.run {
+            imgBack.setOnClickListener {
+                fbSheetBuilder?.dismiss()
+            }
+
             btnPaste.setOnClickListener {
                 Log.e("TAG", "initFBSheet: ${getClipboardItemsSpecific(FACEBOOK)}")
                 etText.setText(getClipboardItemsSpecific(FACEBOOK))
@@ -293,7 +303,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                                 if (downloadUrl.contains(".jpg") || downloadUrl.contains(".png")) {
                                     BasicImageDownloader(ctx).saveImageToExternal(
-                                        downloadUrl
+                                        downloadUrl,
+                                        RootDirectoryFacebookShow
                                     )
                                 } else {
                                     BasicImageDownloader(ctx).saveVideoToExternal(

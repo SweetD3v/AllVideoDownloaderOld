@@ -9,8 +9,8 @@ import android.os.Environment
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
+import androidx.core.content.FileProvider
 import com.example.allviddownloader.utils.AsyncTaskRunner
-import com.example.allviddownloader.utils.RootDirectoryFacebookShow
 import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
@@ -31,8 +31,9 @@ class BasicImageDownloader(var ctx: Context) {
     }
 
     @Throws(IOException::class)
-    fun saveImageToExternal(imgUrl: String) {
-
+    fun saveImageToExternal(imgUrl: String, file: File) {
+        if (!file.exists())
+            file.mkdirs()
         object : AsyncTaskRunner<String, String>(ctx) {
             override fun doInBackground(params: String?): String {
                 val url = URL(imgUrl)
@@ -40,7 +41,7 @@ class BasicImageDownloader(var ctx: Context) {
                 Log.e("TAG", "saveImageToExternal: ${image.width}")
 
                 //Create Path to save Image
-                val path = RootDirectoryFacebookShow //Creates app specific folder
+                val path = file //Creates app specific folder
                 path.mkdirs()
                 val imgName = "IMG_${System.currentTimeMillis()}"
                 val imageFile = File(path, "$imgName.png") // Imagename.png
@@ -77,6 +78,54 @@ class BasicImageDownloader(var ctx: Context) {
             }
 
         }.execute(imgUrl, true)
+    }
+
+    @Throws(IOException::class)
+    fun saveImageToTemp(
+        imgUrl: String,
+        file: File,
+        showProgress: Boolean,
+        bitmap: (Bitmap) -> Unit,
+        uri: (Uri) -> Unit
+    ) {
+        if (!file.exists())
+            file.mkdirs()
+        object : AsyncTaskRunner<String, String>(ctx) {
+            override fun doInBackground(params: String?): String {
+                val url = URL(imgUrl)
+                val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+                Log.e("TAG", "saveImageToExternal: ${image.width}")
+
+                //Create Path to save Image
+                val path = file //Creates app specific folder
+                path.mkdirs()
+                val imgName = "IMG_${System.currentTimeMillis()}"
+                val imageFile = File(path, "$imgName.png") // Imagename.png
+                val out = FileOutputStream(imageFile)
+                try {
+                    image.compress(Bitmap.CompressFormat.PNG, 100, out) // Compress Image
+                    out.flush()
+                    out.close()
+
+                    // Tell the media scanner about the new file so that it is
+                    // immediately available to the user.
+
+                    return imageFile.absolutePath
+                } catch (e: java.lang.Exception) {
+                    throw IOException()
+                }
+            }
+
+            override fun onPostExecute(result: String?) {
+                super.onPostExecute(result)
+                result?.let {
+                    val bmp = BitmapFactory.decodeFile(it)
+                    bitmap(bmp)
+                    uri(FileProvider.getUriForFile(ctx, "${ctx.packageName}.provider", File(it)))
+                }
+            }
+
+        }.execute(imgUrl, showProgress)
     }
 
     @Throws(IOException::class)

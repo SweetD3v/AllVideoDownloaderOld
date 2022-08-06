@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="120dp"
-    android:layout_height="64dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_category_stroke"
     android:orientation="vertical">
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imgCategory"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/cat2"
-        app:shapeAppearance="@style/RoundedCornersImageView" />
 
     <TextView
         android:id="@+id/txtCategory"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_shadow_rounded_8"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/agane_bold"
         android:gravity="center"
-        android:text="Natural"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:padding="8dp"
+        android:text="Nature"
+        android:textAllCaps="false"
+        android:textColor="@color/accent"
+        android:textSize="16sp" />
 </FrameLayout>

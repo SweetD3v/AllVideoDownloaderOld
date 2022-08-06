@@ -13,8 +13,10 @@ import com.example.allviddownloader.adapters.WAMediaAdapter
 import com.example.allviddownloader.databinding.FragmentWaimagesBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.utils.AppUtils
+import com.example.allviddownloader.utils.dpToPx
 import com.example.allviddownloader.utils.getBitmapFromUri
 import com.example.allviddownloader.utils.getMediaQMinus
+import com.example.allviddownloader.widgets.MarginItemDecoration
 import java.util.concurrent.Executors
 
 
@@ -45,6 +47,7 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
     private fun loadImages() {
         binding.apply {
             rvWAImages.layoutManager = GridLayoutManager(ctx, 2)
+            rvWAImages.addItemDecoration(MarginItemDecoration(dpToPx(8)))
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 executeNew()
