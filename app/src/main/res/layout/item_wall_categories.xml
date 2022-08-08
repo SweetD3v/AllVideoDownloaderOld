@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_category_stroke"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/agane_bold"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Nature"
+        android:textAllCaps="false"
+        android:textColor="@color/accent"
+        android:textSize="16sp" />
+</FrameLayout>

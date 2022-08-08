@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="Theme.AllVidDownloader" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primarydark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+</resources>
