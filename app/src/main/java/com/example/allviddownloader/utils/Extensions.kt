@@ -12,7 +12,10 @@ import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.Size
+import android.widget.Toast
 import androidx.core.content.FileProvider
+import androidx.core.net.toUri
+import androidx.documentfile.provider.DocumentFile
 import com.example.allviddownloader.AllVidApp
 import com.example.allviddownloader.R
 import com.example.allviddownloader.models.Media
@@ -28,6 +31,11 @@ val originalPath =
     File(
         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),
         AllVidApp.getInstance().resources.getString(R.string.app_name)
+    )
+val cachePathWA =
+    File(
+        AllVidApp.getInstance().cacheDir,
+        "temp_wa"
     )
 var RootDirectoryFacebookShow = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
@@ -260,8 +268,65 @@ fun getMediaQMinus(ctx: Context, file: File): MutableList<Media> {
     return items
 }
 
-fun String.toTitleCase(): String? {
-    var string = this
+fun getMediaWA(ctx: Context, block: (MutableList<Media>) -> Unit) {
+    val mediaListFinal: MutableList<Media> = mutableListOf()
+
+    object : AsyncTaskRunner<Void?, MutableList<Media>>(ctx) {
+        override fun doInBackground(params: Void?): MutableList<Media> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val persistedUri = ctx.contentResolver.persistedUriPermissions[0]
+                persistedUri?.let {
+                    val fromTreeUri = DocumentFile.fromTreeUri(
+                        ctx,
+                        it.uri
+                    )
+
+                    val listFiles = fromTreeUri?.listFiles()
+                    if (listFiles != null) {
+                        for (documentFile in listFiles) {
+                            val uri = documentFile.uri
+                            Log.e("TAG", "loadImagesA30: ${ctx.contentResolver.getType(documentFile.uri)!!.contains("video")}")
+                            val status = Media(
+                                uri,
+                                uri.toString(),
+                                ctx.contentResolver.getType(documentFile.uri)!!.contains("video"),
+                                documentFile.lastModified()
+                            )
+                            if (!status.uri.toString().contains(".nomedia", true)) {
+                                mediaListFinal.add(status)
+                                Log.e("TAG", "doInBackground: ${mediaListFinal.size}")
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (AppUtils.STATUS_DIRECTORY.exists()) {
+                    val imagesListNew = getMediaQMinus(ctx, AppUtils.STATUS_DIRECTORY)
+                    for (media in imagesListNew) {
+                        if (!media.isVideo) {
+                            mediaListFinal.add(media)
+                        }
+                    }
+                }
+            }
+
+            Log.e("TAG", "mediaListFinal: ${mediaListFinal.size}")
+            return mediaListFinal
+        }
+
+        override fun onPostExecute(result: MutableList<Media>?) {
+            super.onPostExecute(result)
+
+            result?.let { list ->
+                block(list)
+            }
+        }
+
+    }.execute(null, false)
+}
+
+fun String.toTitleCase(): String {
+    val string = this
     // Check if String is null
     var whiteSpace = true
     val builder = StringBuilder(string) // String builder to store string
@@ -286,4 +351,52 @@ fun String.toTitleCase(): String? {
         }
     }
     return builder.toString() // Return builders text
+}
+
+fun toastShort(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+}
+
+fun toastLong(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+}
+
+fun shareMedia(
+    context: Context,
+    uri: Uri?,
+    filePath: String
+) {
+    var fileURI: Uri = "".toUri()
+    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+        type =
+            uri?.let {
+                fileURI = it
+                context.contentResolver.getType(fileURI)
+            }
+                ?: let {
+                    fileURI = FileProvider.getUriForFile(
+                        context, context.packageName + ".provider",
+                        File(filePath)
+                    )
+                    context.contentResolver.getType(fileURI)
+                }
+        flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        putExtra(
+            Intent.EXTRA_SUBJECT,
+            "Sharing file from the ${context.getString(R.string.app_name)}"
+        )
+        putExtra(
+            Intent.EXTRA_TEXT,
+            "Sharing file from the ${context.getString(R.string.app_name)} with some description"
+        )
+        putExtra(Intent.EXTRA_STREAM, fileURI)
+    }
+    context.startActivity(
+        Intent.createChooser(
+            shareIntent,
+            context.getString(R.string.share_media)
+        )
+    )
 }

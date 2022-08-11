@@ -19,8 +19,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.allviddownloader.databinding.ActivityWastatusBinding
+import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.ui.fragments.WAImagesFragment
 import com.example.allviddownloader.ui.fragments.WAVideoFragment
+import com.example.allviddownloader.utils.getMediaWA
 import com.google.android.material.tabs.TabLayoutMediator
 
 
@@ -31,6 +33,57 @@ class WAStatusActivity : AppCompatActivity() {
         "android.permission.WRITE_EXTERNAL_STORAGE"
     )
     private val tabTitles = arrayOf("Photos", "Videos")
+
+    var imagesList = mutableListOf<Media>()
+    var videosList = mutableListOf<Media>()
+
+    val imgFragment: WAImagesFragment = WAImagesFragment.newInstance(imagesList)
+    val vidFragment: WAVideoFragment = WAVideoFragment.newInstance(videosList)
+
+    private fun loadImages() {
+        var imagesListNew = mutableListOf<Media>()
+        var videosListNew = mutableListOf<Media>()
+        getMediaWA(this@WAStatusActivity) { list ->
+            for (media in list) {
+                if (!media.isVideo) {
+                    imagesListNew.add(media)
+                } else {
+                    videosListNew.add(media)
+                }
+            }
+
+            if (imagesListNew.size != imagesList.size) {
+                imagesList = imagesListNew
+            }
+
+            if (videosListNew.size != videosList.size) {
+                videosList = videosListNew
+            }
+
+            Log.e("TAG", "loadImagesHaha1: ${imagesList.size}")
+            Log.e("TAG", "loadImagesHaha2: ${imagesListNew.size}")
+
+            Log.e("TAG", "loadImagesHaha3: ${videosList.size}")
+            Log.e("TAG", "loadImagesHaha4: ${videosListNew.size}")
+
+//            imgFragment.refreshImages()
+        }
+    }
+
+    private fun loadVideos() {
+        val videoListNew = mutableListOf<Media>()
+        getMediaWA(this@WAStatusActivity) { list ->
+            for (media in list) {
+                if (media.isVideo) {
+                    videoListNew.add(media)
+                }
+            }
+
+//            if (videoListNew.size != videosList.size) {
+            videosList = videoListNew
+//            }
+        }
+    }
 
     val permissionsLauncher =
         registerForActivityResult(
@@ -76,6 +129,24 @@ class WAStatusActivity : AppCompatActivity() {
         binding.imgBack.setOnClickListener {
             onBackPressed()
         }
+
+        setupViewPager()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && arePermissionDenied()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                openDocTreeStatus()
+            } else {
+                permissionsLauncher.launch(PERMISSIONS)
+            }
+        } else {
+            loadImages()
+
+            loadVideos()
+        }
     }
 
     private fun setupViewPager() {
@@ -95,22 +166,6 @@ class WAStatusActivity : AppCompatActivity() {
             TabLayoutMediator(tabLayout, viewPagerStatus) { tab, position ->
                 tab.text = tabTitles[position]
             }.attach()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e("TAG", "onResume: " + arePermissionDenied())
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && arePermissionDenied()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                openDocTreeStatus()
-            } else {
-                permissionsLauncher.launch(PERMISSIONS)
-            }
-        } else {
-//            AppUtils.APP_DIR = getExternalFilesDir(getString(R.string.app_name))!!.path
-//            Log.d("App Path", AppUtils.APP_DIR.toString())
-            setupViewPager()
         }
     }
 
@@ -151,14 +206,18 @@ class WAStatusActivity : AppCompatActivity() {
         override fun createFragment(position: Int): Fragment {
             when (position) {
                 0 -> {
-                    return WAImagesFragment.newInstance()
+                    Log.e("TAG", "createFragment: ${imagesList.size}")
+                    return WAImagesFragment.newInstance(imagesList)
                 }
                 1 -> {
-                    return WAVideoFragment.newInstance()
+                    return WAVideoFragment.newInstance(videosList)
                 }
             }
-            return WAImagesFragment.newInstance()
+            return WAImagesFragment.newInstance(imagesList)
         }
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
 }

@@ -29,7 +29,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AllVidDownloader"
-        tools:targetApi="30">
+        tools:targetApi="30"
+        tools:replace="android:theme">
+
+        <activity
+            android:name="com.karumi.dexter.DexterActivity"
+            android:theme="@style/Dexter.Internal.Theme.Transparent" />
+        <activity
+            android:name=".ui.activities.CleanerActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activities.StatusMakerActivity"
             android:exported="false"
@@ -61,7 +69,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activities.FullViewActivity"
+            android:name=".ui.activities.FullViewWhatsappActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.FullViewDownloadsActivity"

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wrapper_font_item"
+    android:layout_width="35.0dip"
+    android:layout_height="35.0dip"
+    android:layout_gravity="center"
+    android:layout_margin="5.0dip"
+    android:background="@android:color/transparent">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/magicBrush"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/butterfly"
+        app:civ_border_color="@color/colorAccent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

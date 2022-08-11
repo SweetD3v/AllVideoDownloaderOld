@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8.0dip"
+    android:layout_marginTop="4.0dip"
+    android:layout_marginRight="8.0dip"
+    android:layout_marginBottom="4.0dip"
+    android:padding="4.0dip">
+
+    <ImageView
+        android:id="@+id/imgToolIcon"
+        android:layout_width="20.0dip"
+        android:layout_height="20.0dip"
+        android:layout_margin="4.0dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/txtTool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4.0dip"
+        android:textColor="@color/white"
+        android:textSize="12.0sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgToolIcon" />
+</androidx.constraintlayout.widget.ConstraintLayout>

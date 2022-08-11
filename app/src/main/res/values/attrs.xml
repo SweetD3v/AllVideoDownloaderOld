@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="animation_duration" format="integer">
+    </attr>
+    <attr name="borderAlpha" format="integer">
+    </attr>
+    <attr name="borderColor" format="color">
+    </attr>
+    <attr name="bringToFrontCurrentSticker" format="boolean">
+    </attr>
+    <attr name="frame" format="reference">
+    </attr>
+    <attr name="handle_bar_color" format="color">
+    </attr>
+    <attr name="image" format="reference">
+    </attr>
+    <attr name="item_width" format="integer">
+    </attr>
+    <attr name="piece_padding" format="dimension">
+    </attr>
+    <attr name="line_color" format="color">
+    </attr>
+    <attr name="line_size" format="integer">
+    </attr>
+    <attr name="mask" format="reference">
+    </attr>
+    <attr name="need_draw_line" format="boolean">
+    </attr>
+    <attr name="need_draw_outer_line" format="boolean">
+    </attr>
+    <attr name="pic_padding" format="dimension">
+    </attr>
+    <attr name="radian" format="float">
+    </attr>
+    <attr name="rtl_scrollEnabled" format="boolean">
+    </attr>
+    <attr name="rtl_tabBackground" format="reference">
+    </attr>
+    <attr name="rtl_tabIndicatorColor" format="color">
+    </attr>
+    <attr name="rtl_tabIndicatorHeight" format="dimension">
+    </attr>
+    <attr name="rtl_tabMaxWidth" format="dimension">
+    </attr>
+    <attr name="rtl_tabMinWidth" format="dimension">
+    </attr>
+    <attr name="rtl_tabOnScreenLimit" format="integer">
+    </attr>
+    <attr name="rtl_tabPadding" format="dimension">
+    </attr>
+    <attr name="rtl_tabPaddingBottom" format="dimension">
+    </attr>
+    <attr name="rtl_tabPaddingEnd" format="dimension">
+    </attr>
+    <attr name="rtl_tabPaddingStart" format="dimension">
+    </attr>
+    <attr name="rtl_tabPaddingTop" format="dimension">
+    </attr>
+    <attr name="rtl_tabSelectedTextColor" format="color">
+    </attr>
+    <attr name="rtl_tabTextAppearance" format="reference">
+    </attr>
+    <attr name="selected_line_color" format="color">
+    </attr>
+
+    <attr name="showBorder" format="boolean">
+    </attr>
+
+    <attr name="showIcons" format="boolean">
+    </attr>
+
+    <declare-styleable name="PinLockView">
+        <attr name="pinLength" format="integer" />
+        <attr name="keypadTextColor" format="color" />
+        <attr name="keypadTextSize" format="dimension" />
+        <attr name="keypadButtonSize" format="dimension" />
+        <attr name="keypadVerticalSpacing" format="dimension" />
+        <attr name="keypadHorizontalSpacing" format="dimension" />
+        <attr name="keypadDeleteButtonDrawable" format="integer" />
+        <attr name="keypadDeleteButtonSize" format="dimension" />
+        <attr name="keypadShowDeleteButton" format="boolean" />
+        <attr name="keypadDeleteButtonPressedColor" format="color" />
+
+        <attr name="dotEmptyBackground" format="reference" />
+        <attr name="dotFilledBackground" format="reference" />
+        <attr name="dotDiameter" format="dimension" />
+        <attr name="dotSpacing" format="dimension" />
+        <attr name="indicatorType" format="enum">
+            <enum name="fixed" value="0" />
+            <enum name="fill" value="1" />
+            <enum name="fillWithAnimation" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <attr name="cs_colors" format="reference">
+    </attr>
+    <attr name="cs_from_color" format="color">
+    </attr>
+    <attr name="cs_hex_colors" format="reference">
+    </attr>
+    <attr name="cs_steps" format="integer">
+    </attr>
+    <attr name="cs_to_color" format="color">
+    </attr>
+
+</resources>

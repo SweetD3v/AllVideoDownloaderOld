@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.allviddownloader.databinding.ItemStatusBinding
 import com.example.allviddownloader.models.Media
-import com.example.allviddownloader.ui.activities.FullViewActivity
+import com.example.allviddownloader.ui.activities.FullViewWhatsappActivity
 import com.example.allviddownloader.utils.getVideoThumbnail
 
 class WAMediaAdapter(
@@ -40,7 +40,7 @@ class WAMediaAdapter(
 
         holder.itemView.setOnClickListener {
             ctx.startActivity(
-                Intent(ctx, FullViewActivity::class.java)
+                Intent(ctx, FullViewWhatsappActivity::class.java)
                     .putExtra("position", holder.adapterPosition)
                     .putExtra(
                         "type",

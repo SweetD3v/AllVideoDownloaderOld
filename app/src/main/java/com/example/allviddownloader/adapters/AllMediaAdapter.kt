@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.allviddownloader.databinding.ItemStatusBinding
 import com.example.allviddownloader.models.Media
-import com.example.allviddownloader.ui.activities.FullViewActivity
 import com.example.allviddownloader.ui.activities.FullViewDownloadsActivity
 import com.example.allviddownloader.utils.getVideoThumbnail
 
@@ -40,12 +39,13 @@ class AllMediaAdapter(
         }
 
         holder.itemView.setOnClickListener {
+            Log.e("TAG", "onBindViewHolder: ${media.isVideo}")
             ctx.startActivity(
                 Intent(ctx, FullViewDownloadsActivity::class.java)
                     .putExtra("position", holder.adapterPosition)
                     .putExtra(
                         "type",
-                        if (mediaList[holder.adapterPosition].isVideo) "video"
+                        if (media.isVideo) "video"
                         else "photo"
                     )
             )

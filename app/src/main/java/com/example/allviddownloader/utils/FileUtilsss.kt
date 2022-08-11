@@ -73,9 +73,11 @@ class FileUtilsss {
         fun copyFile(
             context: Context,
             uri: Uri?,
-            dst: File?,
-            copyStatusListener: CopyStatusListener
+            dst: File,
+            filePath: (String) -> Unit
         ): Boolean {
+            if (!dst.exists())
+                dst.createNewFile()
             val parcelFileDescriptor = context.contentResolver.openFileDescriptor(
                 uri!!, "r"
             )
@@ -89,7 +91,7 @@ class FileUtilsss {
             }
             is1.close()
             os.close()
-            copyStatusListener.onCopyComplete("Copy Done...")
+            filePath(dst!!.absolutePath)
             return true
         }
 
@@ -129,6 +131,40 @@ class FileUtilsss {
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }
+                }
+            }
+            return file1
+        }
+
+        @Throws(IOException::class)
+        fun saveBitmapAsFileCache(
+            context: Context,
+            bitmap: Bitmap?,
+            fileName: String,
+            filePath: (String) -> Unit
+        ): File {
+            val executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+            val handler = Handler(Looper.getMainLooper())
+            val fileOutputStream: FileOutputStream
+            val file = cachePathWA
+
+            if (!file.exists()) {
+                file.mkdirs()
+            }
+            val name = fileName.replace("(\\W|^_)*".toRegex(), "_")
+            var file1 = File(file.absolutePath + File.separator + name + ".jpg")
+            file1.createNewFile()
+            fileOutputStream = FileOutputStream(file1)
+            executor.execute {
+                bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+                handler.post {
+                    try {
+                        fileOutputStream.flush()
+                        fileOutputStream.close()
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                    filePath(file1.absolutePath)
                 }
             }
             return file1

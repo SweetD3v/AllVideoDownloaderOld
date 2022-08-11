@@ -16,7 +16,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.ashudevs.facebookurlextractor.FacebookExtractor
 import com.ashudevs.facebookurlextractor.FacebookFile
@@ -25,6 +27,7 @@ import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
 import com.example.allviddownloader.R
 import com.example.allviddownloader.adapters.StoriesListAdapter
+import com.example.allviddownloader.collage_maker.ui.activities.CollageViewActivity
 import com.example.allviddownloader.databinding.BottomsheetFbBinding
 import com.example.allviddownloader.databinding.BottomsheetInstaBinding
 import com.example.allviddownloader.databinding.FragmentHomeBinding
@@ -42,6 +45,12 @@ import com.example.allviddownloader.widgets.BSFragmentBuilder
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.DexterError
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import io.reactivex.observers.DisposableObserver
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -156,6 +165,60 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             })
 
+    val KEY_DATA_RESULT = "KEY_DATA_RESULT"
+    val KEY_SELECTED_PHOTOS = "SELECTED_PHOTOS"
+
+    var multiImagePicker = registerForActivityResult(
+        GetMultipleContents()
+    ) { uriList ->
+        if (uriList.size > 0) {
+            if (uriList.size > 1) {
+                val pathList =
+                    java.util.ArrayList<String>()
+                for (uri in uriList) {
+                    pathList.add(uri.toString())
+                }
+                val intent = Intent(
+                    ctx,
+                    CollageViewActivity::class.java
+                )
+                intent.putStringArrayListExtra(KEY_DATA_RESULT, pathList)
+                startActivity(intent)
+            } else {
+                toastShort(ctx, "Please select more than 1 images.")
+            }
+        }
+    }
+
+    private fun launchCollage() {
+        Dexter.withContext(ctx).withPermissions(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ).withListener(object : MultiplePermissionsListener {
+            override fun onPermissionsChecked(multiplePermissionsReport: MultiplePermissionsReport) {
+                if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                    multiImagePicker.launch("image/*")
+                }
+                if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied) {
+                    AppSettingsDialog.showSettingDialog(ctx as AppCompatActivity)
+                }
+            }
+
+            override fun onPermissionRationaleShouldBeShown(
+                list: List<PermissionRequest>,
+                permissionToken: PermissionToken
+            ) {
+                permissionToken.continuePermissionRequest()
+            }
+        }).withErrorListener { dexterError: DexterError? ->
+            Toast.makeText(
+                ctx,
+                "Error occurred! ",
+                Toast.LENGTH_SHORT
+            ).show()
+        }.onSameThread().check()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         commonClassForAPI = CommonClassForAPI()
@@ -234,6 +297,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             llStatusMaker.setOnClickListener {
 
+            }
+
+            llCollageMakerNew.setOnClickListener {
+                launchCollage()
             }
         }
 
@@ -675,7 +742,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             }
                             pd?.dismissDialog()
                             if (videoUrl != "") {
-                                val file: File = File(
+                                val file = File(
                                     RootDirectoryWhatsappShow,
                                     getVideoFilenameFromURL(videoUrl)
                                 )

@@ -32,4 +32,13 @@
     <color name="_F38357">#F38357</color>
     <color name="fb_primary">#2461BC</color>
     <color name="insta_primary">#EF1A5E</color>
+    <color name="white_blur">#ffc8c8c8</color>
+    <color name="textColorPrimary">#65131A</color>
+    <color name="colorAccentLight">#FFBFBC</color>
+    <color name="tool_bg">#F6D5D5</color>
+    <color name="colorAccent">#ff8984</color>
+    <color name="colorPrimary">#eb5757</color>
+    <color name="unselected_color">#ff7d7d7d</color>
+    <color name="colorPrimaryDark">#b3202e</color>
+    <color name="dark_grey">#ff1c1d21</color>
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="category_arr">
+        <item>nature</item>
+        <item>science</item>
+        <item>education</item>
+        <item>feelings</item>
+        <item>health</item>
+        <item>religion</item>
+        <item>places</item>
+        <item>animals</item>
+        <item>food</item>
+        <item>sports</item>
+        <item>buildings</item>
+        <item>business</item>
+        <item>music</item>
+        <item>backgrounds</item>
+        <item>transportation</item>
+    </array>
+</resources>

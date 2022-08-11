@@ -2,6 +2,7 @@ package com.example.allviddownloader.ui.activities
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
@@ -26,16 +27,108 @@ import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.utils.*
 import java.io.File
 
-class FullViewActivity : AppCompatActivity() {
+class FullViewWhatsappActivity : AppCompatActivity() {
     val binding by lazy { ActivityFullviewBinding.inflate(layoutInflater) }
     val imagesList = mutableListOf<Media>()
     var position = 0
     val extFile by lazy { File(getExternalFilesDir("Videos"), "video.mp4") }
     var isVideo = false
+    var isAllVisible: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.run {
+            setSupportActionBar(toolbar)
+            toolbar.setNavigationOnClickListener {
+                onBackPressed()
+            }
+
+            fabDownload.hide()
+            fabShare.hide()
+            fabSetWP.hide()
+            txtDownload.visibility = View.GONE
+            txtShare.visibility = View.GONE
+            txtSetWp.visibility = View.GONE
+
+            fabMore.setOnClickListener {
+                isAllVisible = if (!isAllVisible) {
+                    fabDownload.show()
+                    fabShare.show()
+                    fabSetWP.show()
+                    txtDownload.visibility = View.VISIBLE
+                    txtShare.visibility = View.VISIBLE
+                    txtSetWp.visibility = View.VISIBLE
+
+                    true
+                } else {
+                    fabDownload.hide()
+                    fabShare.hide()
+                    fabSetWP.hide()
+                    txtDownload.visibility = View.GONE
+                    txtShare.visibility = View.GONE
+                    txtSetWp.visibility = View.GONE
+
+                    false
+                }
+            }
+
+            fabShare.setOnClickListener {
+                val image = imagesList[binding.viewPagerMedia.currentItem]
+                if (image.uri.toString().endsWith(".jpg")
+                    or image.uri.toString().endsWith(".png")
+                ) {
+                    val bitmap =
+                        if (image.uri.toString().endsWith(".jpg")
+                            or image.uri.toString().endsWith(".png")
+                        ) getBitmapFromUri(this@FullViewWhatsappActivity, image.uri)
+                        else getVideoThumbnail(this@FullViewWhatsappActivity, image.uri)
+
+                    saveImageTemp(bitmap)
+                } else {
+                    saveVideoTemp(image.uri)
+                }
+            }
+
+            fabShare.setOnClickListener {
+                shareMedia(
+                    this@FullViewWhatsappActivity, imagesList[viewPagerMedia.currentItem].uri,
+                    imagesList[viewPagerMedia.currentItem].path
+                )
+            }
+
+            fabDownload.setOnClickListener {
+                val image = imagesList[binding.viewPagerMedia.currentItem]
+                val bitmap =
+                    if (image.uri.toString().endsWith(".jpg")
+                        or image.uri.toString().endsWith(".png")
+                    ) getBitmapFromUri(this@FullViewWhatsappActivity, image.uri)
+                    else getVideoThumbnail(this@FullViewWhatsappActivity, image.uri)
+
+                //                val file = File(
+                //                    RootDirectoryWhatsappShow, "IMG_${System.currentTimeMillis()}${
+                //                        if (image.uri.toString().endsWith(".jpg")) ".jpg" else ".png"
+                //                    }"
+                //                )
+                //                FileUtilsss.copyFileAPI30(this, image.uri, null, file,
+                //                    if (image.uri.toString().endsWith(".jpg")) ".jpg" else ".png") {
+                //                    Toast.makeText(
+                //                        this@FullViewActivity,
+                //                        "Saved!",
+                //                        Toast.LENGTH_SHORT
+                //                    ).show()
+                //                }
+
+                if (image.uri.toString().endsWith(".jpg")
+                    or image.uri.toString().endsWith(".png")
+                ) {
+                    saveImage(bitmap)
+                } else {
+                    saveVideo(imagesList[position].uri)
+                }
+            }
+        }
 
         if (intent.hasExtra("type")) {
             isVideo = intent.getStringExtra("type").equals("video")
@@ -58,121 +151,134 @@ class FullViewActivity : AppCompatActivity() {
 
         if (extFile.exists())
             extFile.delete()
+    }
 
-        binding.imgBack.setOnClickListener {
-            onBackPressed()
-        }
-
-        binding.fabDownload.setOnClickListener {
-            imagesList.let { list ->
-                val image = list[binding.viewPagerMedia.currentItem]
-                val bitmap =
-                    if (image.uri.toString().endsWith(".jpg")
-                        or image.uri.toString().endsWith(".png")
-                    ) getBitmapFromUri(this, image.uri)
-                    else getVideoThumbnail(this, image.uri)
-
-                //                val file = File(
-                //                    RootDirectoryWhatsappShow, "IMG_${System.currentTimeMillis()}${
-                //                        if (image.uri.toString().endsWith(".jpg")) ".jpg" else ".png"
-                //                    }"
-                //                )
-                //                FileUtilsss.copyFileAPI30(this, image.uri, null, file,
-                //                    if (image.uri.toString().endsWith(".jpg")) ".jpg" else ".png") {
-                //                    Toast.makeText(
-                //                        this@FullViewActivity,
-                //                        "Saved!",
-                //                        Toast.LENGTH_SHORT
-                //                    ).show()
-                //                }
-
-                if (image.uri.toString().endsWith(".jpg")
-                    or image.uri.toString().endsWith(".png")
+    private fun saveVideo(uri: Uri) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val extFile = File(getExternalFilesDir("Videos"), "video.mp4")
+            if (extFile.exists())
+                extFile.delete()
+            FileUtilsss.copyFileAPI30(
+                this@FullViewWhatsappActivity,
+                uri,
+                File(getExternalFilesDir("Videos"), "video.mp4")
+            ) { file ->
+                Log.e("TAG", "filePath: ${file.absolutePath}")
+                FileUtilsss.saveVideoAPI30(
+                    this@FullViewWhatsappActivity, file,
+                    "VID_${System.currentTimeMillis()}",
+                    RootDirectoryWhatsappShow
                 ) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        FileUtilsss.saveBitmapAPI30(
-                            this, bitmap,
-                            "IMG_${System.currentTimeMillis()}.jpg",
-                            "image/jpeg",
-                            RootDirectoryWhatsappShow
-                        ) {
-                            Toast.makeText(
-                                this@FullViewActivity,
-                                "Saved!",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    } else {
-                        val file1 = FileUtilsss.saveBitmapAsFile(
-                            this, bitmap, "IMG_${System.currentTimeMillis()}.jpg"
-                        )
-
-                        file1.let { file ->
-                            MediaScannerConnection.scanFile(
-                                this, arrayOf(
-                                    file.absolutePath
-                                ), null
-                            ) { _: String?, _: Uri? ->
-
-                            }
-                        }
-                    }
-
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        val extFile = File(getExternalFilesDir("Videos"), "video.mp4")
-                        if (extFile.exists())
-                            extFile.delete()
-                        FileUtilsss.copyFileAPI30(
-                            this, image.uri, File(getExternalFilesDir("Videos"), "video.mp4")
-                        ) { file ->
-                            Log.e("TAG", "filePath: ${file.absolutePath}")
-                            FileUtilsss.saveVideoAPI30(
-                                this, file,
-                                "VID_${System.currentTimeMillis()}",
-                                RootDirectoryWhatsappShow
-                            ) {
+                    Toast.makeText(
+                        this@FullViewWhatsappActivity,
+                        getString(R.string.saved),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        } else {
+            val file = File(imagesList[position].path)
+            val dest =
+                File(RootDirectoryWhatsappShow, "VID${System.currentTimeMillis()}.mp4")
+            try {
+                Log.e("TAG", "uri: $uri")
+//                            copy(file, File("${dest}.mp4"))
+                FileUtilsss.copyFileAPI30(
+                    this@FullViewWhatsappActivity,
+                    uri,
+                    dest
+                ) { file1 ->
+                    Log.e("TAG", "onCopied: ${file1.absolutePath}")
+                    MediaScannerConnection.scanFile(
+                        this@FullViewWhatsappActivity, arrayOf(
+                            file1.absolutePath
+                        ), null
+                    ) { _: String?, uri: Uri? ->
+                        Handler(Looper.getMainLooper())
+                            .post {
                                 Toast.makeText(
-                                    this@FullViewActivity,
+                                    this@FullViewWhatsappActivity,
                                     getString(R.string.saved),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
-                        }
-                    } else {
-                        val file = File(imagesList[position].path)
-                        val dest =
-                            File(RootDirectoryWhatsappShow, "VID${System.currentTimeMillis()}.mp4")
-                        try {
-                            Log.e("TAG", "uri: ${imagesList[position].uri}")
-//                            copy(file, File("${dest}.mp4"))
-                            FileUtilsss.copyFileAPI30(
-                                this,
-                                imagesList[position].uri,
-                                dest
-                            ) { file1 ->
-                                Log.e("TAG", "onCopied: ${file1.absolutePath}")
-                                MediaScannerConnection.scanFile(
-                                    this@FullViewActivity, arrayOf(
-                                        file1.absolutePath
-                                    ), null
-                                ) { _: String?, uri: Uri? ->
-                                    Handler(Looper.getMainLooper())
-                                        .post {
-                                            Toast.makeText(
-                                                this@FullViewActivity,
-                                                getString(R.string.saved),
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        }
-                                }
-                            }
-                        } catch (e: Exception) {
-                            Log.e("TAG", "copyExc: ${e.message}")
-                        }
                     }
                 }
+            } catch (e: Exception) {
+                Log.e("TAG", "copyExc: ${e.message}")
             }
+        }
+    }
+
+    private fun saveImage(bitmap: Bitmap?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            FileUtilsss.saveBitmapAPI30(
+                this@FullViewWhatsappActivity, bitmap,
+                "IMG_${System.currentTimeMillis()}.jpg",
+                "image/jpeg",
+                RootDirectoryWhatsappShow
+            ) {
+                Toast.makeText(
+                    this@FullViewWhatsappActivity,
+                    "Saved!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        } else {
+            val file1 = FileUtilsss.saveBitmapAsFile(
+                this@FullViewWhatsappActivity,
+                bitmap,
+                "IMG_${System.currentTimeMillis()}.jpg"
+            )
+
+            file1.let { file ->
+                MediaScannerConnection.scanFile(
+                    this@FullViewWhatsappActivity, arrayOf(
+                        file.absolutePath
+                    ), null
+                ) { _: String?, _: Uri? ->
+
+                }
+            }
+        }
+    }
+
+    private fun saveImageTemp(bitmap: Bitmap?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//            FileUtilsss.saveBitmapAPI30(
+//                this@FullViewWhatsappActivity, bitmap,
+//                "IMG_${System.currentTimeMillis()}.jpg",
+//                "image/jpeg",
+//                cachePathWA
+//            ) {
+//                toastShort(this, it.toString())
+//            }
+            val file1 = FileUtilsss.saveBitmapAsFileCache(
+                this@FullViewWhatsappActivity,
+                bitmap,
+                "IMG_${System.currentTimeMillis()}.jpg"
+            ) {
+                toastShort(this, it)
+            }
+        } else {
+            val file1 = FileUtilsss.saveBitmapAsFileCache(
+                this@FullViewWhatsappActivity,
+                bitmap,
+                "IMG_${System.currentTimeMillis()}.jpg"
+            ) {
+                toastShort(this, it)
+            }
+        }
+    }
+
+    private fun saveVideoTemp(uri: Uri) {
+        FileUtilsss.copyFileAPI30(
+            this@FullViewWhatsappActivity,
+            uri,
+            File(cachePathWA, "TEMP_VID_${System.currentTimeMillis()}.mp4")
+        ) { path ->
+            Log.e("TAG", "filePath: ${path}")
+            toastShort(this, path.absolutePath)
         }
     }
 
@@ -286,11 +392,11 @@ class FullViewActivity : AppCompatActivity() {
                 viewPagerMedia.registerOnPageChangeCallback(object :
                     ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
-                        this@FullViewActivity.position = position
+                        this@FullViewWhatsappActivity.position = position
                     }
                 })
 
-                viewPagerMedia.adapter = ImageViewAdapter(this@FullViewActivity, it)
+                viewPagerMedia.adapter = ImageViewAdapter(this@FullViewWhatsappActivity, it)
 
                 position = intent.getIntExtra("position", 0)
                 viewPagerMedia.setCurrentItem(position, false)
