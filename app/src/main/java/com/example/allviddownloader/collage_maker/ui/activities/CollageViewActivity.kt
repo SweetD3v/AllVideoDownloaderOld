@@ -12,23 +12,32 @@ import android.media.MediaScannerConnection
 import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.AsyncTask
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.exifinterface.media.ExifInterface
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.allviddownloader.R
 import com.example.allviddownloader.collage_maker.features.college.CollageLayout
 import com.example.allviddownloader.collage_maker.features.college.CollegeLayoutParser
+import com.example.allviddownloader.collage_maker.features.college.CollegeUtils
 import com.example.allviddownloader.collage_maker.features.college.adapter.CollegeAdapter
 import com.example.allviddownloader.collage_maker.ui.ToolType
 import com.example.allviddownloader.collage_maker.ui.ToolType.*
@@ -42,8 +51,15 @@ import com.example.allviddownloader.collage_maker.utils.SystemUtils
 import com.example.allviddownloader.collage_maker.utils.UtilsFilter
 import com.example.allviddownloader.databinding.ActivityCollageBinding
 import com.example.allviddownloader.ui.activities.BaseActivity
+import com.example.allviddownloader.ui.fragments.HomeFragment
+import com.example.allviddownloader.utils.AsyncTaskRunner
+import com.example.allviddownloader.utils.FileUtilsss
+import com.example.allviddownloader.utils.originalPath
 import com.example.allviddownloader.utils.toastShort
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
 import com.steelkiwi.cropiwa.AspectRatio
+import org.wysaid.nativePort.CGENativeLibrary
 import org.wysaid.nativePort.CGENativeLibrary.LoadImageCallback
 import java.io.File
 import java.io.IOException
@@ -58,7 +74,6 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
     val binding by lazy { ActivityCollageBinding.inflate(layoutInflater) }
 
     private val instance: CollageViewActivity? = null
-    var puzzle: CollageViewActivity? = null
     var currentAspect: AspectRatio? = null
     var currentBackgroundState: CollegeBGAdapter.SquareView? = null
     var currentMode: ToolType? = null
@@ -72,8 +87,7 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
 
     var collegeLayout: CollageLayout? = null
 
-    var targets: List<Target> = ArrayList()
-    var collageViewActivity: CollageViewActivity? = null
+    var targets: MutableList<Target> = ArrayList()
 
     var builder: AlertDialog.Builder? = null
     var view: View? = null
@@ -81,7 +95,7 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
 
     var singleImagePicker = registerForActivityResult(
         GetContent()
-    ) { uri -> replaceCurrentPic(SystemUtils.getRealPathFromUri(this@CollageViewActivity, uri)) }
+    ) { uri -> replaceCurrentPic(uri) }
 
     private val mEditingToolsAdapter = EditingToolsAdapter(this, true)
     var mLoadImageCallback: LoadImageCallback = object : LoadImageCallback {
@@ -278,7 +292,7 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
                         lstOriginalDrawable.add(drawable.drawable)
                     }
                 }
-                LoadFilterBitmap().execute()
+                loadFilterBitmap()
                 slideUpSaveView()
                 return
             }
@@ -443,7 +457,143 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(binding.root)
+
+        binding.toolbar.appTitle.text = "Collage Maker"
+        setSupportActionBar(binding.toolbar.toolbar)
+        binding.toolbar.toolbar.setNavigationOnClickListener { v -> onBackPressed() }
+
+        init()
+        binding.skBorder.setOnSeekBarChangeListener(onSeekBarChangeListener)
+        binding.skBorderRadius.setOnSeekBarChangeListener(onSeekBarChangeListener)
+        binding.rvConstraintTools.layoutManager =
+            GridLayoutManager(this, 4)
+        binding.rvPieceControl.layoutManager =
+            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        lstPaths = intent.getStringArrayListExtra(HomeFragment.KEY_DATA_RESULT)
+        collegeLayout = CollegeUtils.getPuzzleLayouts(lstPaths!!.size).get(0)
+        binding.puzzleView.collegeLayout = collegeLayout
+        binding.puzzleView.setTouchEnable(true)
+        binding.puzzleView.setNeedDrawLine(false)
+        binding.puzzleView.setNeedDrawOuterLine(false)
+        binding.puzzleView.setLineSize(4)
+        binding.puzzleView.piecePadding = 6.0f
+        binding.puzzleView.pieceRadian = 15.0f
+        binding.puzzleView.setLineColor(ContextCompat.getColor(this, R.color.white))
+        binding.puzzleView.setSelectedLineColor(ContextCompat.getColor(this, R.color.colorAccent))
+        binding.puzzleView.setHandleBarColor(ContextCompat.getColor(this, R.color.colorAccent))
+        binding.puzzleView.setAnimateDuration(300)
+        binding.puzzleView.setOnPieceSelectedListener { collegePiece, i ->
+            slideDown(binding.rvConstraintTools)
+            slideUp(binding.rvPieceControl)
+            slideUpSaveView()
+            val layoutParams =
+                binding.rvPieceControl.layoutParams as ConstraintLayout.LayoutParams
+            layoutParams.bottomMargin = SystemUtils.dpToPx(applicationContext, 10)
+            binding.rvPieceControl.layoutParams = layoutParams
+            currentMode = PIECE
+        }
+        binding.puzzleView.setOnPieceUnSelectedListener {
+            slideDown(binding.rvPieceControl)
+            slideUp(binding.rvConstraintTools)
+            slideDownSaveView()
+            val layoutParams =
+                binding.rvPieceControl.layoutParams as ConstraintLayout.LayoutParams
+            layoutParams.bottomMargin = 0
+            binding.rvPieceControl.layoutParams = layoutParams
+            currentMode = NONE
+        }
+        binding.puzzleView.post { loadPhoto() }
+        binding.imgCloseLayout.setOnClickListener(onClickListener)
+        binding.imgSaveLayout.setOnClickListener(onClickListener)
+        binding.imgCloseSticker.setOnClickListener(onClickListener)
+        binding.imgCloseFilter.setOnClickListener(onClickListener)
+        binding.imgCloseBackground.setOnClickListener(onClickListener)
+        binding.imgSaveSticker.setOnClickListener(onClickListener)
+        binding.imgCloseText.setOnClickListener(onClickListener)
+        binding.imgSaveText.setOnClickListener(onClickListener)
+        binding.imgSaveFilter.setOnClickListener(onClickListener)
+        binding.imgSaveBackground.setOnClickListener(onClickListener)
+        binding.tvChangeLayout.setOnClickListener(onClickListener)
+        binding.tvChangeBorder.setOnClickListener(onClickListener)
+        binding.tvChangeRatio.setOnClickListener(onClickListener)
+        binding.tvColor.setOnClickListener(onClickListener)
+        binding.tvRadian.setOnClickListener(onClickListener)
+        binding.tvBlur.setOnClickListener(onClickListener)
+        val collegeAdapter = CollegeAdapter()
+        binding.puzzleList.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        binding.puzzleList.adapter = collegeAdapter
+        collegeAdapter.refreshData(CollegeUtils.getPuzzleLayouts(lstPaths!!.size), null)
+        collegeAdapter.setOnItemClickListener(this)
+        val aspectRatioPreviewAdapter = AspectRatioPreviewAdapter()
+        aspectRatioPreviewAdapter.setListener(this)
+        binding.radioLayout.layoutManager =
+            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        binding.radioLayout.adapter = aspectRatioPreviewAdapter
+        binding.addNewText.visibility = View.GONE
+        binding.addNewText.setOnClickListener { view ->
+            binding.puzzleView.setHandlingSticker(null)
+        }
+        binding.toolbar.imgsave.visibility = View.VISIBLE
+        binding.toolbar.imgsave.setOnClickListener { view ->
+            isSaveDialog = true
+            saveDiscardDialog(isSaveDialog)
+        }
+
+        binding.puzzleView.setBackgroundColor(-16777216)
+        binding.puzzleView.setLocked(false)
+        binding.puzzleView.setConstrained(true)
+        binding.changeLayoutLayout.alpha = 0.0f
+        binding.stickerLayout.alpha = 0.0f
+        binding.textControl.alpha = 0.0f
+        binding.filterLayout.alpha = 0.0f
+        binding.changeBackgroundLayout.alpha = 0.0f
+        binding.rvPieceControl.alpha = 0.0f
+        binding.puzzleLayout.post {
+            slideDown(binding.changeLayoutLayout)
+            slideDown(binding.stickerLayout)
+            slideDown(binding.textControl)
+            slideDown(binding.changeBackgroundLayout)
+            slideDown(binding.filterLayout)
+            slideDown(binding.rvPieceControl)
+        }
+        Handler().postDelayed({
+            binding.changeLayoutLayout.alpha = 1.0f
+            binding.stickerLayout.alpha = 1.0f
+            binding.textControl.alpha = 1.0f
+            binding.filterLayout.alpha = 1.0f
+            binding.changeBackgroundLayout.alpha = 1.0f
+            binding.rvPieceControl.alpha = 1.0f
+        }, 1000)
+
+        showLoading(false)
+        currentBackgroundState = CollegeBGAdapter.SquareView(Color.parseColor("#ffffff"), "", true)
+        binding.colorList.layoutManager =
+            LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        binding.colorList.setHasFixedSize(true)
+        binding.colorList.adapter = CollegeBGAdapter(applicationContext, this)
+        binding.radianList.layoutManager =
+            LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        binding.radianList.setHasFixedSize(true)
+        binding.radianList.adapter = CollegeBGAdapter(applicationContext, this, true)
+        binding.backgroundList.layoutManager =
+            LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+        binding.backgroundList.setHasFixedSize(true)
+        val defaultDisplay = windowManager.defaultDisplay
+        val point = Point()
+        defaultDisplay.getSize(point)
+        val layoutParams = binding.puzzleView.layoutParams as ConstraintLayout.LayoutParams
+        layoutParams.height = point.x
+        layoutParams.width = point.x
+        binding.puzzleView.layoutParams = layoutParams
+        currentAspect = AspectRatio(1, 1)
+        binding.puzzleView.aspectRatio = AspectRatio(1, 1)
+        currentMode = NONE
+        CGENativeLibrary.setLoadImageCallback(mLoadImageCallback, null)
     }
 
     private fun init() {
@@ -453,9 +603,64 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
         view = LayoutInflater.from(this).inflate(R.layout.save_dialog, null)
     }
 
-    fun replaceCurrentPic(str: String) {
+    fun loadPhoto() {
+        val i: Int
+        val arrayList: ArrayList<Bitmap> = ArrayList()
+        i = if (lstPaths!!.size > collegeLayout!!.areaCount) {
+            collegeLayout!!.areaCount
+        } else {
+            lstPaths!!.size
+        }
+        for (j in 0 until i) {
+            val r4: Target = object : Target {
+                override fun onBitmapFailed(exc: Exception?, drawable: Drawable?) {}
+                override fun onPrepareLoad(drawable: Drawable?) {}
+                override fun onBitmapLoaded(bitmap: Bitmap, loadedFrom: Picasso.LoadedFrom?) {
+                    var bitmap = bitmap
+                    val width = bitmap.width
+                    val f = width.toFloat()
+                    val height = bitmap.height.toFloat()
+                    val max = Math.max(f / f, height / f)
+                    if (max > 1.0f) {
+                        bitmap = Bitmap.createScaledBitmap(
+                            bitmap,
+                            (f / max).toInt(),
+                            (height / max).toInt(),
+                            false
+                        )
+                    }
+                    arrayList.add(bitmap)
+                    if (arrayList.size == i) {
+                        if (lstPaths!!.size < collegeLayout!!.areaCount) {
+                            for (i in 0 until collegeLayout!!.areaCount) {
+                                try {
+                                    binding.puzzleView.addPiece(arrayList[i % i] as Bitmap)
+                                } catch (e: java.lang.Exception) {
+                                    Toast.makeText(
+                                        this@CollageViewActivity,
+                                        "An error occurred while loading image",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        } else {
+                            binding.puzzleView.addPieces(arrayList)
+                        }
+                    }
+                    targets.remove(this)
+                }
+            }
+            val picasso: Picasso = Picasso.get()
+            picasso.load(Uri.parse(lstPaths!![j]))
+                .resize(deviceWidth, deviceWidth).centerInside().config(Bitmap.Config.RGB_565)
+                .into(r4)
+            targets.add(r4)
+        }
+    }
+
+    fun replaceCurrentPic(uri: Uri) {
         loadBitmapFromUri()
-            .execute(str)
+            .execute(uri.toString())
     }
 
     fun showLoading(z: Boolean) {
@@ -468,41 +673,56 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
         binding.loadingView.visibility = View.GONE
     }
 
-    inner class LoadFilterBitmap :
-        AsyncTask<Void?, Void?, Void?>() {
-        public override fun onPreExecute() {
-            showLoading(true)
-        }
+    private fun loadFilterBitmap() {
+        object : AsyncTaskRunner<Void?, MutableList<Bitmap>>(this) {
+            override fun onPreExecute() {
+                super.onPreExecute()
+                showLoading(true)
+            }
 
-        @SuppressLint("WrongThread")
-        override fun doInBackground(vararg voidArr: Void?): Void? {
-            lstBitmapWithFilter.clear()
-            lstBitmapWithFilter.addAll(
-                UtilsFilter.getLstBitmapWithFilter(
-                    ThumbnailUtils.extractThumbnail(
-                        (binding.puzzleView.getCollegePieces().get(0)
-                            .drawable as BitmapDrawable).bitmap,
-                        100,
-                        100
+            override fun doInBackground(params: Void?): MutableList<Bitmap> {
+                var lstBitmapWithFilter: MutableList<Bitmap>? = mutableListOf()
+                try {
+                    lstBitmapWithFilter = UtilsFilter.getLstBitmapWithFilter(
+                        ThumbnailUtils.extractThumbnail(
+                            (binding.puzzleView.getCollegePieces()[0]
+                                .drawable as BitmapDrawable).bitmap,
+                            100,
+                            100
+                        )
                     )
-                )
-            )
-            return null
-        }
+                } catch (e: Exception) {
+                    Log.e("TAG", "doInBackground: ${e.message}")
+                }
+                Log.e("TAG", "doInBackground: ${binding.puzzleView.getCollegePieces().size}")
+                return lstBitmapWithFilter!!
+            }
 
-        public override fun onPostExecute(voidR: Void?) {
-            binding.rvFilterView.adapter = AdapterFilterView(
-                lstBitmapWithFilter,
-                this@CollageViewActivity,
-                this@CollageViewActivity,
-                UtilsFilter.EFFECT_CONFIGS.asList()
-            )
-            slideDown(binding.rvConstraintTools)
-            slideUp(binding.filterLayout)
-            showLoading(false)
-            binding.puzzleView.setLocked(false)
-            binding.puzzleView.setTouchEnable(false)
-        }
+            override fun onPostExecute(result: MutableList<Bitmap>?) {
+                super.onPostExecute(result)
+
+                var configList = mutableListOf<UtilsFilter.FilterBean>()
+                for (config in UtilsFilter.EFFECT_CONFIGS) {
+                    configList.add(config)
+                }
+                Log.e("TAG", "onPostExecute: ${configList.size}")
+
+                result?.let { list ->
+                    lstBitmapWithFilter = list
+                    binding.rvFilterView.adapter = AdapterFilterView(
+                        lstBitmapWithFilter,
+                        this@CollageViewActivity,
+                        this@CollageViewActivity,
+                        configList
+                    )
+                    slideDown(binding.rvConstraintTools)
+                    slideUp(binding.filterLayout)
+                    showLoading(false)
+                    binding.puzzleView.setLocked(false)
+                    binding.puzzleView.setTouchEnable(false)
+                }
+            }
+        }.execute(null, false)
     }
 
     inner class LoadFilterBitmapForCurrentPiece :
@@ -574,7 +794,7 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
 
         override fun doInBackground(vararg strArr: String?): Bitmap? {
             return try {
-                val fromFile = Uri.fromFile(File(strArr[0]!!))
+                val fromFile = Uri.parse(strArr[0]!!)
                 val rotateBitmap = SystemUtils.rotateBitmap(
                     MediaStore.Images.Media.getBitmap(contentResolver, fromFile),
                     ExifInterface(contentResolver.openInputStream(fromFile)!!).getAttributeInt(
@@ -704,54 +924,6 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
         }
     }
 
-    inner class SavePuzzleAsFile :
-        AsyncTask<Bitmap?, String?, String?>() {
-        public override fun onPreExecute() {
-            showLoading(true)
-        }
-
-        override fun doInBackground(vararg bitmapArr: Bitmap?): String? {
-            val bitmap = bitmapArr[0]
-            val bitmap2 = bitmapArr[1]
-            val createBitmap =
-                Bitmap.createBitmap(bitmap!!.width, bitmap.height, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(createBitmap)
-            canvas.drawBitmap(
-                bitmap,
-                null,
-                RectF(0.0f, 0.0f, bitmap.width.toFloat(), bitmap.height.toFloat()),
-                null
-            )
-            canvas.drawBitmap(
-                bitmap2!!,
-                null,
-                RectF(0.0f, 0.0f, bitmap.width.toFloat(), bitmap.height.toFloat()),
-                null
-            )
-            bitmap.recycle()
-            bitmap2.recycle()
-            val saveBitmapAsFile = FileUtils.saveBitmapAsFile(createBitmap) ?: return null
-            return try {
-                MediaScannerConnection.scanFile(
-                    applicationContext, arrayOf(saveBitmapAsFile.absolutePath), null
-                ) { str, uri -> }
-                createBitmap.recycle()
-                saveBitmapAsFile.absolutePath
-            } catch (e: java.lang.Exception) {
-                createBitmap.recycle()
-                null
-            } catch (th: Throwable) {
-                createBitmap.recycle()
-                throw th
-            }
-        }
-
-        public override fun onPostExecute(str: String?) {
-            showLoading(false)
-            toastShort(this@CollageViewActivity, str!!)
-        }
-    }
-
     fun saveDiscardDialog(isSaveDialog: Boolean) {
         val ok = view!!.findViewById<TextView>(R.id.btn_okay)
         val cancel = view!!.findViewById<ImageView>(R.id.btn_cancel)
@@ -780,7 +952,64 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
                 val createBitmap: Bitmap =
                     FileUtils.createBitmap(binding.puzzleView, 1920)
                 val createBitmap2 = binding.puzzleView.createBitmap()
-                SavePuzzleAsFile().execute(createBitmap, createBitmap2)
+
+                object : AsyncTaskRunner<Void?, String>(this) {
+                    override fun doInBackground(params: Void?): String? {
+                        val bitmap = createBitmap
+                        val bitmap2 = createBitmap2
+                        val createBitmap =
+                            Bitmap.createBitmap(
+                                bitmap.width,
+                                bitmap.height,
+                                Bitmap.Config.ARGB_8888
+                            )
+                        val canvas = Canvas(createBitmap)
+                        canvas.drawBitmap(
+                            bitmap,
+                            null,
+                            RectF(0.0f, 0.0f, bitmap.width.toFloat(), bitmap.height.toFloat()),
+                            null
+                        )
+                        canvas.drawBitmap(
+                            bitmap2,
+                            null,
+                            RectF(0.0f, 0.0f, bitmap.width.toFloat(), bitmap.height.toFloat()),
+                            null
+                        )
+                        bitmap.recycle()
+                        bitmap2.recycle()
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            var path = ""
+                            FileUtilsss.saveBitmapAPI30(
+                                this@CollageViewActivity,
+                                createBitmap, "IMG_${System.currentTimeMillis()}.jpg",
+                                "image/jpeg",
+                                File(originalPath, "Collagemaker")
+                            ) {
+                                path = it.toString()
+                            }
+                            return path
+                        } else {
+                            val saveBitmapAsFile =
+                                FileUtilsss.saveBitmapAsFileDir(
+                                    this@CollageViewActivity,
+                                    createBitmap,
+                                    "Collagemaker"
+                                )
+                            MediaScannerConnection.scanFile(
+                                applicationContext, arrayOf(saveBitmapAsFile.absolutePath), null
+                            ) { str, uri -> }
+                            createBitmap.recycle()
+                            return saveBitmapAsFile.absolutePath
+                        }
+                    }
+
+                    override fun onPostExecute(result: String?) {
+                        super.onPostExecute(result)
+                        toastShort(this@CollageViewActivity, "Image saved.")
+                    }
+                }.execute(null, true)
             } else {
                 currentMode = null
                 finish()

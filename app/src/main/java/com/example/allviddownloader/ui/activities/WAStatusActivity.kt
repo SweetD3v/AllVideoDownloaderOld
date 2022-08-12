@@ -144,8 +144,8 @@ class WAStatusActivity : AppCompatActivity() {
             }
         } else {
             loadImages()
-
             loadVideos()
+            setupViewPager()
         }
     }
 

@@ -188,6 +188,7 @@
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 app:srcCompat="@drawable/ic_fun_video" />
+                            app:srcCompat="@drawable/ic_vimeo" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -203,6 +204,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
                         android:layout_marginTop="16dp"
                         android:orientation="vertical">
 

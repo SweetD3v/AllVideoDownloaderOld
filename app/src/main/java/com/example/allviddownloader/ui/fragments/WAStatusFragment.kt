@@ -78,17 +78,18 @@ class WAStatusFragment : BaseFragment<FragmentWastatusBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         Log.e("TAG", "onResume: " + arePermissionDenied())
-        if (Build.VERSION.SDK_INT >= 23 && arePermissionDenied()) {
-            if (Build.VERSION.SDK_INT >= 29) {
-                openDocTreeStatus()
-            } else {
-                permissionsLauncher.launch(PERMISSIONS)
-            }
-        } else {
-            AppUtils.APP_DIR = ctx.getExternalFilesDir(getString(R.string.app_name))!!.path
-            Log.d("App Path", AppUtils.APP_DIR.toString())
-            setupViewPager()
-        }
+//        if (Build.VERSION.SDK_INT >= 23 && arePermissionDenied()) {
+//            if (Build.VERSION.SDK_INT >= 29) {
+//                openDocTreeStatus()
+//            } else {
+//                permissionsLauncher.launch(PERMISSIONS)
+//            }
+//        } else {
+//            AppUtils.APP_DIR = ctx.getExternalFilesDir(getString(R.string.app_name))!!.path
+//            Log.d("App Path", AppUtils.APP_DIR.toString())
+//            setupViewPager()
+//        }
+        setupViewPager()
     }
 
     private fun setupViewPager() {

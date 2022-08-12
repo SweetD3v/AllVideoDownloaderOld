@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.allviddownloader.databinding.ItemStatusBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.ui.activities.FullViewWhatsappActivity
+import com.example.allviddownloader.ui.activities.FullViewActivity
 import com.example.allviddownloader.utils.getVideoThumbnail
 
 class WAMediaAdapter(

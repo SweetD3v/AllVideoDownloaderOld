@@ -1,6 +1,7 @@
 package com.example.allviddownloader.collage_maker.utils;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import org.wysaid.common.SharedContext;
 import org.wysaid.nativePort.CGEImageHandler;
@@ -29,8 +30,6 @@ public class UtilsFilter {
         public String getName() {
             return this.name;
         }
-
-
     }
 
     public static Bitmap getBlurImageFromBitmap(Bitmap bitmap) {
@@ -82,16 +81,19 @@ public class UtilsFilter {
     }
 
     public static List<Bitmap> getLstBitmapWithFilter(Bitmap bitmap) {
-        ArrayList<Bitmap> arrayList = new ArrayList<Bitmap>();
+        ArrayList<Bitmap> arrayList = new ArrayList<>();
         SharedContext create = SharedContext.create();
         create.makeCurrent();
         CGEImageHandler cGEImageHandler = new CGEImageHandler();
         cGEImageHandler.initWithBitmap(bitmap);
+        Log.e("TAG", "getLstBitmapWithFilter: " + EFFECT_CONFIGS.length);
         for (FilterBean config : EFFECT_CONFIGS) {
             cGEImageHandler.setFilterWithConfig(config.getConfig());
             cGEImageHandler.processFilters();
             arrayList.add(cGEImageHandler.getResultBitmap());
+            Log.e("TAG", "getLstBitmapWithFilter: " + arrayList.size());
         }
+        Log.e("TAG", "getLstBitmapWithFilter: " + arrayList.size());
         create.release();
         return arrayList;
     }

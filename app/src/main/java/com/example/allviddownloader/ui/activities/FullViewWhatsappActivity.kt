@@ -1,7 +1,10 @@
 package com.example.allviddownloader.ui.activities
 
+import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
 import android.net.Uri
@@ -91,12 +94,38 @@ class FullViewWhatsappActivity : AppCompatActivity() {
                 }
             }
 
-            fabShare.setOnClickListener {
-                shareMedia(
-                    this@FullViewWhatsappActivity, imagesList[viewPagerMedia.currentItem].uri,
-                    imagesList[viewPagerMedia.currentItem].path
+            fabSetWP.setOnClickListener {
+                val image = imagesList[binding.viewPagerMedia.currentItem]
+                val wallpaperManager = WallpaperManager.getInstance(applicationContext)
+                val uri = image.uri
+                Log.e("TAG", "uriWP: ${uri}")
+                val intent = Intent(Intent.ACTION_ATTACH_DATA)
+                intent.addCategory(Intent.CATEGORY_DEFAULT)
+                grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                intent.setDataAndType(uri, contentResolver.getType(uri))
+                intent.putExtra("mimeType", contentResolver.getType(uri))
+
+                val resInfoList: List<ResolveInfo> = packageManager.queryIntentActivities(
+                    intent,
+                    PackageManager.MATCH_DEFAULT_ONLY
                 )
+                for (resolveInfo in resInfoList) {
+                    val packageName: String = resolveInfo.activityInfo.packageName
+                    grantUriPermission(
+                        packageName,
+                        uri,
+                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
+                }
+                startActivity(Intent.createChooser(intent, "Set as:"))
             }
+
+//            fabShare.setOnClickListener {
+//                shareMedia(
+//                    this@FullViewWhatsappActivity, imagesList[viewPagerMedia.currentItem].uri,
+//                    imagesList[viewPagerMedia.currentItem].path
+//                )
+//            }
 
             fabDownload.setOnClickListener {
                 val image = imagesList[binding.viewPagerMedia.currentItem]
@@ -135,13 +164,14 @@ class FullViewWhatsappActivity : AppCompatActivity() {
         }
 
         if (!isVideo) {
+            binding.fabSetWP.visibility = View.GONE
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 loadImages()
             } else {
                 executeImageOld()
             }
         } else {
-
+            binding.fabSetWP.visibility = View.VISIBLE
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 loadVideo()
             } else {

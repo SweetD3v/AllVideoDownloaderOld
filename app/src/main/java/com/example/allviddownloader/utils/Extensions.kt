@@ -325,8 +325,8 @@ fun getMediaWA(ctx: Context, block: (MutableList<Media>) -> Unit) {
     }.execute(null, false)
 }
 
-fun String.toTitleCase(): String {
-    val string = this
+fun String.toTitleCase(): String? {
+    var string = this
     // Check if String is null
     var whiteSpace = true
     val builder = StringBuilder(string) // String builder to store string

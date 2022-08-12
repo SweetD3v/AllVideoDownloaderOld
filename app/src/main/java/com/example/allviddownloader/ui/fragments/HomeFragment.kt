@@ -14,10 +14,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.ashudevs.facebookurlextractor.FacebookExtractor
@@ -63,6 +61,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
 
     companion object {
+        val KEY_DATA_RESULT = "KEY_DATA_RESULT"
+        val KEY_SELECTED_PHOTOS = "SELECTED_PHOTOS"
+
         open fun newInstance(): HomeFragment {
             return HomeFragment()
         }
@@ -129,44 +130,38 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     val permissionsLauncher =
         registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions(),
-            object : ActivityResultCallback<Map<String, Boolean>> {
-                @RequiresApi(Build.VERSION_CODES.M)
-                override fun onActivityResult(result: Map<String, Boolean>?) {
-                    val list: ArrayList<Boolean> = ArrayList(result!!.values)
-                    permissionsList = ArrayList()
-                    permissionsCount = 0
-                    for (i in 0 until list.size) {
-                        if (shouldShowRequestPermissionRationale(permissionsStr.get(i))) {
-                            permissionsList.add(permissionsStr[i])
-                        } else if (!hasPermission(ctx, permissionsStr.get(i))) {
-                            permissionsCount++
-                        }
-                    }
-                    if (permissionsList.size > 0) {
-                        //Some permissions are denied and can be asked again.
-                        askForPermissions(permissionsList)
-                    } else if (permissionsCount > 0) {
-                        //Show alert dialog
-                        showPermissionDialog()
-                    } else {
-                        //All permissions granted. Do your stuff 🤞
-//                        downloadSingleImage(urlDownload)
-                        if (urlDownload.toString().contains("instagram")) {
-                            callDownload(urlDownload!!)
-                        } else if (urlDownload.toString().contains("facebook")) {
-//                            GetFacebookData().execute(binding.etText.text.toString())
-                            var txtUrl = binding.etText.text.toString()
-                            if (txtUrl.contains("/?app=fbl"))
-                                txtUrl = txtUrl.split("/?app=fbl")[0]
-                            getFacebookData(txtUrl)
-                        }
-                    }
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { result ->
+            val list: ArrayList<Boolean> = ArrayList(result!!.values)
+            permissionsList = ArrayList()
+            permissionsCount = 0
+            for (i in 0 until list.size) {
+                if (shouldShowRequestPermissionRationale(permissionsStr.get(i))) {
+                    permissionsList.add(permissionsStr[i])
+                } else if (!hasPermission(ctx, permissionsStr.get(i))) {
+                    permissionsCount++
                 }
-            })
-
-    val KEY_DATA_RESULT = "KEY_DATA_RESULT"
-    val KEY_SELECTED_PHOTOS = "SELECTED_PHOTOS"
+            }
+            if (permissionsList.size > 0) {
+                //Some permissions are denied and can be asked again.
+                askForPermissions(permissionsList)
+            } else if (permissionsCount > 0) {
+                //Show alert dialog
+                showPermissionDialog()
+            } else {
+                //All permissions granted. Do your stuff 🤞
+                //                        downloadSingleImage(urlDownload)
+                if (urlDownload.toString().contains("instagram")) {
+                    callDownload(urlDownload!!)
+                } else if (urlDownload.toString().contains("facebook")) {
+                    //                            GetFacebookData().execute(binding.etText.text.toString())
+                    var txtUrl = binding.etText.text.toString()
+                    if (txtUrl.contains("/?app=fbl"))
+                        txtUrl = txtUrl.split("/?app=fbl")[0]
+                    getFacebookData(txtUrl)
+                }
+            }
+        }
 
     var multiImagePicker = registerForActivityResult(
         GetMultipleContents()
@@ -191,32 +186,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun launchCollage() {
-        Dexter.withContext(ctx).withPermissions(
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ).withListener(object : MultiplePermissionsListener {
-            override fun onPermissionsChecked(multiplePermissionsReport: MultiplePermissionsReport) {
-                if (multiplePermissionsReport.areAllPermissionsGranted()) {
-                    multiImagePicker.launch("image/*")
-                }
-                if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied) {
-                    AppSettingsDialog.showSettingDialog(ctx as AppCompatActivity)
-                }
-            }
-
-            override fun onPermissionRationaleShouldBeShown(
-                list: List<PermissionRequest>,
-                permissionToken: PermissionToken
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (hasPermission(ctx, Manifest.permission.READ_EXTERNAL_STORAGE))
+                multiImagePicker.launch("image/*")
+        } else {
+            if (hasPermission(ctx, Manifest.permission.READ_EXTERNAL_STORAGE)
+                && hasPermission(ctx, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             ) {
-                permissionToken.continuePermissionRequest()
+                multiImagePicker.launch("image/*")
             }
-        }).withErrorListener { dexterError: DexterError? ->
-            Toast.makeText(
-                ctx,
-                "Error occurred! ",
-                Toast.LENGTH_SHORT
-            ).show()
-        }.onSameThread().check()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -302,9 +281,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             llCollageMakerNew.setOnClickListener {
                 launchCollage()
             }
-        }
 
-        binding.apply {
+            llFunnyNew.setOnClickListener {
+                startActivity(Intent(ctx, FunnyVideosActivity::class.java))
+            }
+
             btnDownload.setOnClickListener {
                 urlDownload = etText.text.toString()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -552,7 +533,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun selectTab(type: SMType) {
         when (type) {
             INSTA -> {
-                binding.btnPasteInstagram.setTextColor(ContextCompat.getColor(ctx, R.color.white))
+                binding.btnPasteInstagram.setTextColor(
+                    ContextCompat.getColor(
+                        ctx,
+                        R.color.white
+                    )
+                )
                 binding.btnPasteInstagram.backgroundTintList =
                     ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
                 binding.btnPasteFacebook.setTextColor(
@@ -589,7 +575,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 )
                 binding.btnPasteInstagram.backgroundTintList =
                     ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteFacebook.setTextColor(ContextCompat.getColor(ctx, R.color.white))
+                binding.btnPasteFacebook.setTextColor(
+                    ContextCompat.getColor(
+                        ctx,
+                        R.color.white
+                    )
+                )
                 binding.btnPasteFacebook.backgroundTintList =
                     ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
                 binding.btnPasteTwitter.setTextColor(
@@ -742,7 +733,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             }
                             pd?.dismissDialog()
                             if (videoUrl != "") {
-                                val file = File(
+                                val file: File = File(
                                     RootDirectoryWhatsappShow,
                                     getVideoFilenameFromURL(videoUrl)
                                 )
@@ -941,7 +932,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         public override fun onPostExecute(document: Document?) {
             AsyncTaskRunner.MyProgressDialog(ctx).dismissDialog()
             try {
-                videoUrl = document!!.select("meta[property=\"og:video\"]").last().attr("content")
+                videoUrl =
+                    document!!.select("meta[property=\"og:video\"]").last().attr("content")
                 if (videoUrl != "") {
                     try {
                         download_data(
@@ -1089,7 +1081,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 var fileName: String? = ""
                 if (metaTAGTitleMatcher.find()) {
                     var author =
-                        streamMap.substring(metaTAGTitleMatcher.start(), metaTAGTitleMatcher.end())
+                        streamMap.substring(
+                            metaTAGTitleMatcher.start(),
+                            metaTAGTitleMatcher.end()
+                        )
                     Log.e("Extractor", "AUTHOR :: $author")
                     author = author.replace("<meta property=\"og:title\" content=\"", "")
                         .replace("\" />", "")
@@ -1129,7 +1124,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     vUrl = vUrl.substring(8, vUrl.length - 1) //sd_scr: 8 char
                     facebookFile.sdUrl = vUrl
                     facebookFile.ext = "mp4"
-                    var imageUrl = streamMap.substring(sdVideoMatcher.start(), sdVideoMatcher.end())
+                    var imageUrl =
+                        streamMap.substring(sdVideoMatcher.start(), sdVideoMatcher.end())
                     imageUrl = imageUrl.replace("<meta property=\"og:video\" content=\"", "")
                         .replace("\" />", "").replace("&amp;", "&")
                     Log.e("Extractor", "FILENAME :: NULL")
@@ -1141,7 +1137,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     }
                     if (thumbnailMatcher.find()) {
                         var thumbNailUrl =
-                            streamMap.substring(thumbnailMatcher.start(), thumbnailMatcher.end())
+                            streamMap.substring(
+                                thumbnailMatcher.start(),
+                                thumbnailMatcher.end()
+                            )
                         thumbNailUrl = thumbNailUrl.replace("<img class=\"_3chq\" src=\"", "")
                             .replace("\" />", "").replace("&amp;", "&")
                         Log.e("Extractor", "Thumbnail :: NULL")

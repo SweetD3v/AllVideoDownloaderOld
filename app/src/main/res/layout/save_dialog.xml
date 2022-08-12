@@ -15,11 +15,11 @@
 
         <ImageView
             android:id="@+id/btn_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:elevation="10dp"
+            android:elevation="8dp"
             android:src="@drawable/close_press" />
 
         <RelativeLayout

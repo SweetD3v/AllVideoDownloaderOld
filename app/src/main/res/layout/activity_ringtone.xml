@@ -67,6 +67,11 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRingtones"
         android:layout_width="match_parent"

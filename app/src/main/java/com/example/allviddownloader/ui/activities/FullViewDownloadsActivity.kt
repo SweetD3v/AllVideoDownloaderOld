@@ -110,8 +110,6 @@ class FullViewDownloadsActivity : AppCompatActivity() {
                 .placeholder(R.drawable.ic_whatsapp_svg).into(holder.binding.imgView)
 
             holder.binding.imgPlay.visibility = if (item.isVideo) View.VISIBLE else View.GONE
-            holder.binding.imgView.visibility = if (!item.isVideo) View.VISIBLE else View.GONE
-
 
             holder.binding.imgPlay.setOnClickListener {
                 if (item.isVideo)

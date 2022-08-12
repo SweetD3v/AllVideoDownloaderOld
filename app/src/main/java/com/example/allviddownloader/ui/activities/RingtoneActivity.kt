@@ -3,7 +3,6 @@ package com.example.allviddownloader.ui.activities
 import android.content.Context
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -58,8 +57,10 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
             imgBack.setOnClickListener {
                 onBackPressed()
             }
-
             rvRingtones.layoutManager = layoutManager
+            rvRingtones.layoutManager = LinearLayoutManager(this@RingtoneActivity).apply {
+                orientation = RecyclerView.VERTICAL
+            }
             rvRingtones.addItemDecoration(
                 MarginItemDecoration(
                     resources.getDimensionPixelSize(
@@ -138,9 +139,17 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
 
                         loading = false
                         mIsLastPage = WallpapersActivity.pageIndex == 11
+                        ringtonesList.let { ringtones ->
+                            val startIndex = ringtonesAdapter.itemCount + 1
+                            ringtonesAdapter.updateList(ringtones)
+                            ringtonesAdapter.notifyItemRangeInserted(
+                                startIndex,
+                                ringtonesAdapter.itemCount
+                            )
+                        }
                     }
+                    binding.progressBar.visibility = View.GONE
                 }
-                binding.progressBar.visibility = View.GONE
             }
 
             override fun onFailure(call: Call<RingtoneModel>, t: Throwable) {
@@ -239,6 +248,18 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
                     stopMediaPlayer()
                     holder.binding.btnPlayPause.setImageResource(R.drawable.ic_play)
                 }
+                holder.itemView.setOnClickListener {
+                    ringToneSelectionListener?.onRingToneSelected(ringtone.id!!)
+//                ctx.startActivity(
+//                    Intent(ctx, FullViewActivity::class.java)
+//                        .putExtra("position", holder.adapterPosition)
+//                        .putExtra(
+//                            "type",
+//                            if (wallpapers[holder.adapterPosition].isVideo) "video"
+//                            else "photo"
+//                        )
+//                )
+                }
             }
         }
 
@@ -282,7 +303,7 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
                                 false
                             ) { uri ->
                                 dialog.dismissDialog()
-                                playMediaFromURL(uri)
+                                playMediaFromURL(uri.toString())
                             }
                         } else {
                             BasicImageDownloader(this@RingtoneActivity).saveRingtoneToTemp(
@@ -292,7 +313,10 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
                             ) { uri ->
                                 dialog.dismissDialog()
                                 val dest =
-                                    File(originalPath, "RINGTONE_${System.currentTimeMillis()}.mp3")
+                                    File(
+                                        originalPath,
+                                        "RINGTONE_${System.currentTimeMillis()}.mp3"
+                                    )
                                 FileUtilsss.copyFileAPI30(this@RingtoneActivity, uri, dest) {
                                     Toast.makeText(
                                         this@RingtoneActivity,
@@ -325,6 +349,22 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
 
     var mediaPlayer: MediaPlayer? = MediaPlayer()
 
+    fun playMediaFromURL(url: String?) {
+        if (mediaPlayer?.isPlaying!!) {
+            mediaPlayer?.stop()
+            mediaPlayer?.release()
+        }
+        mediaPlayer = MediaPlayer()
+        mediaPlayer?.setAudioStreamType(AudioManager.STREAM_MUSIC)
+        try {
+            mediaPlayer?.setDataSource(url)
+            mediaPlayer?.prepare()
+            mediaPlayer?.start()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
     fun stopMediaPlayer() {
         try {
             if (mediaPlayer?.isPlaying == true) {
@@ -335,18 +375,25 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
         }
     }
 
-    fun playMediaFromURL(uri: Uri) {
-        stopMediaPlayer()
-        mediaPlayer?.release()
-        mediaPlayer = MediaPlayer()
-        mediaPlayer?.setAudioStreamType(AudioManager.STREAM_MUSIC)
-        try {
-            mediaPlayer?.setDataSource(this, uri)
-            mediaPlayer?.prepare()
-            mediaPlayer?.start()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+    private fun getRingToneFromId(id: Long) {
+        val service = RestApi.newInstance(RestApi.BASE_URL_RINGTONE).service
+        val call: Call<RingPreviewModel> =
+            service.getRingtoneFromId(id, RestApi.API_KEY_RINGTONE)
+        call.enqueue(object : Callback<RingPreviewModel> {
+            override fun onResponse(
+                call: Call<RingPreviewModel>,
+                response: Response<RingPreviewModel>
+            ) {
+                response.body()?.let { body ->
+                    playMediaFromURL(body.download!!)
+                }
+            }
+
+            override fun onFailure(call: Call<RingPreviewModel>, t: Throwable) {
+
+            }
+
+        })
     }
 
     override fun onPause() {

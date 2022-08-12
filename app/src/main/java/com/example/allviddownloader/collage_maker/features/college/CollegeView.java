@@ -16,7 +16,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.example.allviddownloader.R;
-import com.example.allviddownloader.collage_maker.features.StickerView;
 import com.steelkiwi.cropiwa.AspectRatio;
 
 import java.util.ArrayList;
@@ -775,9 +774,9 @@ public class CollegeView extends com.example.allviddownloader.collage_maker.feat
         return this.pieceRadian;
     }
 
-    public List<CollegePiece> getCollegePieces() {
+    public ArrayList<CollegePiece> getCollegePieces() {
         int size = this.collegePieces.size();
-        ArrayList arrayList = new ArrayList(size);
+        ArrayList<CollegePiece> arrayList = new ArrayList<>(size);
         this.collageLayout.sortAreas();
         for (int i = 0; i < size; i++) {
             arrayList.add(this.areaPieceMap.get(this.collageLayout.getArea(i)));
