@@ -59,6 +59,58 @@ var RootDirectoryWhatsappShow = File(
             + File.separator + AllVidApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Whatsapp"
 )
+public var RootDirectoryInstaDownlaoder = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Insta Downloader"
+)
+
+public var RootDirectoryFBDownlaoder = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "FB Downloader"
+)
+
+fun saveBitmapImage(
+    context: Context, bitmap: Bitmap?,
+    displayName: String,
+    directory: String,
+    path: (String) -> Unit
+) {
+    val values = ContentValues()
+    values.put(MediaStore.MediaColumns.DISPLAY_NAME, displayName)
+    values.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        values.put(
+            MediaStore.MediaColumns.RELATIVE_PATH,
+            Environment.DIRECTORY_DCIM + File.separator
+                    + context.getString(R.string.app_name) + File.separator
+                    + File(directory).name
+        )
+    } else {
+        values.put(
+            MediaStore.MediaColumns.DATA,
+            Environment.DIRECTORY_DCIM + File.separator + File(directory).name
+        )
+    }
+    val uri = context.contentResolver
+        .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+    try {
+        val stream =
+            context.contentResolver.openOutputStream(uri!!)
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+    } catch (e: Exception) {
+        Log.e("TAG", "saveBitmapExc: ${e.message}")
+        e.printStackTrace()
+    }
+    path(
+        File(
+            Environment.DIRECTORY_DCIM + File.separator
+                    + context.getString(R.string.app_name) + File.separator
+                    + File(directory).name
+        ).absolutePath
+    )
+}
 
 fun getClipBoardItems(ctx: Context): MutableList<String> {
     val clipboard: ClipboardManager? =
@@ -171,6 +223,28 @@ fun getVideoThumbnail(context: Context, videoUri: Uri): Bitmap? {
     return bitmap
 }
 
+fun getMedia(ctx: Context, dirName: File, block: (MutableList<Media>) -> Unit) {
+    var mediaListFinal: MutableList<Media>
+    object : AsyncTaskRunner<String, MutableList<Media>>(ctx) {
+        override fun doInBackground(params: String?): MutableList<Media> {
+            if (dirName.exists()) {
+                return getMediaQMinus(ctx, dirName).reversed().toMutableList()
+            }
+            return mutableListOf()
+        }
+
+        override fun onPostExecute(result: MutableList<Media>?) {
+            super.onPostExecute(result)
+
+            result?.let { list ->
+                mediaListFinal = list
+                Log.e("TAG", "doInBackground: ${mediaListFinal}")
+                block(mediaListFinal)
+            }
+        }
+    }.execute("%${dirName.name}%", false)
+}
+
 fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
     var mediaListFinal: MutableList<Media>
     object : AsyncTaskRunner<String, MutableList<Media>>(ctx) {
@@ -266,6 +340,33 @@ fun getMediaQMinus(ctx: Context, file: File): MutableList<Media> {
     }
 
     return items
+}
+
+fun shareMediaUri(
+    context: Context,
+    uriList: ArrayList<Uri>
+) {
+    var fileURI: Uri
+    val shareIntent = Intent(Intent.ACTION_SEND_MULTIPLE).apply {
+        type = uriList.let {
+            fileURI = it[0]
+            context.contentResolver.getType(fileURI)
+        }
+        flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        putExtra(
+            Intent.EXTRA_SUBJECT,
+            "Sharing file from the ${context.getString(R.string.app_name)}"
+        )
+        putParcelableArrayListExtra(Intent.EXTRA_STREAM, uriList)
+    }
+    context.startActivity(
+        Intent.createChooser(
+            shareIntent,
+            context.getString(R.string.share_media)
+        )
+    )
 }
 
 fun getMediaWA(ctx: Context, block: (MutableList<Media>) -> Unit) {

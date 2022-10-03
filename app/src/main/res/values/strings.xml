@@ -28,4 +28,6 @@
     <string name="save">Save</string>
     <string name="dialog_save_text">Are you sure want to Save this Image?</string>
     <string name="dialog_discard_text">Your changes will be discarded.\nDo you want to proceed?</string>
+    <string name="instagram">Instagram</string>
+    <string name="facebook">Facebook</string>
 </resources>

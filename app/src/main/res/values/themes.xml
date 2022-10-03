@@ -26,6 +26,13 @@
         <item name="rtl_tabTextAppearance">@style/rtl_RecyclerTabLayout.Tab</item>
     </style>
 
+    <style name="RoundedCornersDialog" parent="@style/Theme.MaterialComponents.DayNight.Dialog">
+        <item name="dialogCornerRadius">8dp</item>
+        <item name="android:background">@drawable/rounded_bg_white_8</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+    </style>
+
     <style name="rtl_RecyclerTabLayout.Tab" parent="@style/rtl_RecyclerTabLayout">
         <item name="android:textSize">14.0sp</item>
         <item name="android:textColor">?android:textColorSecondary</item>

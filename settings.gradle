@@ -20,3 +20,4 @@ rootProject.name = "AllVideoDownloader"
 include ':app'
 include ':facebookurlextractor'
 include ':shapeimageview'
+include ':files_commons'

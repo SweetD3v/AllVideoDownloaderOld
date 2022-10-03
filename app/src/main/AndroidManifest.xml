@@ -31,17 +31,28 @@
         android:theme="@style/Theme.AllVidDownloader"
         tools:replace="android:theme"
         tools:targetApi="30">
-
+        <activity
+            android:name=".ui.activities.MyCreationFullViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.FBDownloaderHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mycreation.MyCreationToolsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.InstaDownloaderHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.karumi.dexter.DexterActivity"
             android:theme="@style/Dexter.Internal.Theme.Transparent" />
         <activity
             android:name=".ui.activities.CleanerActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.activities.StatusMakerActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.StatusMakerActivity"
             android:exported="false"
@@ -126,6 +137,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id" />
     </application>
 
 </manifest>

@@ -41,4 +41,8 @@
     <color name="unselected_color">#ff7d7d7d</color>
     <color name="colorPrimaryDark">#b3202e</color>
     <color name="dark_grey">#ff1c1d21</color>
+    <color name="black_50">#80000000</color>
+    <color name="md_red">#F44336</color>
+    <color name="photo_placeholder">#DDDDDD</color>
+    <color name="black_translucent">#50000000</color>
 </resources>

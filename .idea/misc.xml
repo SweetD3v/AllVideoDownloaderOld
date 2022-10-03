@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/close.xml" value="0.236" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/error_placeholder.xml" value="0.236" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/et_bg_insta1.xml" value="0.236" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/ic_delete_file.xml" value="0.236" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/rounded_bg_bottom_4.xml" value="0.236" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/rounded_bg_bottom_4_1.xml" value="0.236" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/rounded_bg_tr_white_8.xml" value="0.1845" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/rounded_bg_white_8.xml" value="0.236" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_fbdownloader_home.xml" value="0.340625" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_insta_downloader_home.xml" value="0.33" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_my_creation_full_view.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_my_creation_tools.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/admob_native_medium_new.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/admob_native_small.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/bottomsheet_fb.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/bottomsheet_insta.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/empty_view.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_my_creation.xml" value="0.3536458333333333" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/progress_dialog.xml" value="0.3546875" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>

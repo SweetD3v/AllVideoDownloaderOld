@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_bg_white_8"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtTitleCompress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Compressing..."
+        android:textColor="@color/textColorPrimary"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txtPerc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="0%"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="12sp" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@id/txtPerc"
+        android:layout_marginTop="16dp"
+        app:indicatorColor="@color/colorAccent"
+        app:trackColor="@color/colorAccentLight"
+        app:trackCornerRadius="6dp"
+        app:trackThickness="8dp" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="?borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressBar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/md_red"
+        android:textSize="16sp" />
+</RelativeLayout>

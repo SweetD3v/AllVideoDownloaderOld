@@ -40,4 +40,18 @@ interface APIService {
         @Path(value = "slug", encoded = true) id: Long,
         @Query("token") token: String
     ): Call<RingPreviewModel>
+
+    @GET("api/facebook/video")
+    fun getMediaUrlFacebook(
+        @Header("X-RapidAPI-Key") rapid_key: String,
+        @Header("X-RapidAPI-Host") rapid_host: String,
+        @Query("video_link") videoLink: String
+    ): Call<FBModel>
+
+    @GET("index")
+    fun getMediaUrlInstagram(
+        @Header("X-RapidAPI-Key") rapid_key: String,
+        @Header("X-RapidAPI-Host") rapid_host: String,
+        @Query("url") mediaLink: String
+    ): Call<InstaModel>
 }
