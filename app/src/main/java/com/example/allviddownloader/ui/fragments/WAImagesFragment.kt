@@ -1,31 +1,33 @@
 package com.example.allviddownloader.ui.fragments
 
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.allviddownloader.adapters.WAMediaAdapter
 import com.example.allviddownloader.databinding.FragmentWaimagesBinding
 import com.example.allviddownloader.models.Media
-import com.example.allviddownloader.utils.AppUtils
-import com.example.allviddownloader.utils.dpToPx
-import com.example.allviddownloader.utils.getBitmapFromUri
-import com.example.allviddownloader.utils.getMediaQMinus
+import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.widgets.MarginItemDecoration
 import java.util.concurrent.Executors
 
 
 class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
     override val binding by lazy { FragmentWaimagesBinding.inflate(layoutInflater) }
-    var imagesList = mutableListOf<Media>()
 
     companion object {
+        var imagesList: MutableList<Media> = mutableListOf()
+
         open fun newInstance(): WAImagesFragment {
+            return WAImagesFragment()
+        }
+
+        open fun newInstance(mediaList: MutableList<Media>): WAImagesFragment {
+            imagesList = mediaList
+            Log.e("TAG", "newInstanceI: ${imagesList.size}")
             return WAImagesFragment()
         }
     }
@@ -33,12 +35,39 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (allPermissionsGranted()) {
-            onPermissionGranted()
-        } else {
-            permissionRequest.launch(permissions.toTypedArray())
+//        if (allPermissionsGranted()) {
+//            onPermissionGranted()
+//        } else {
+//            permissionRequest.launch(permissions.toTypedArray())
+//        }
+        binding.run {
+            rvWAImages.layoutManager = GridLayoutManager(ctx, 2)
+            rvWAImages.addItemDecoration(MarginItemDecoration(dpToPx(8)))
+
+            Log.e("TAG", "onPermissionGranted: ${imagesList.size}")
+            waMediaAdapter = WAMediaAdapter(ctx, imagesList, binding.rlMain)
+            binding.rvWAImages.adapter = waMediaAdapter
+            waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
         }
     }
+
+    lateinit var waMediaAdapter: WAMediaAdapter
+//    override fun onPermissionGranted() {
+//        binding.run {
+//            rvWAImages.layoutManager = GridLayoutManager(ctx, 2)
+//            rvWAImages.addItemDecoration(MarginItemDecoration(dpToPx(8)))
+//
+//            Log.e("TAG", "onPermissionGranted: ${imagesList.size}")
+//            waMediaAdapter = WAMediaAdapter(ctx, imagesList, binding.rlMain)
+//            binding.rvWAImages.adapter = waMediaAdapter
+//            waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+//        }
+//        if (allPermissionsGranted()) {
+//            onPermissionGranted()
+//        } else {
+//            permissionRequest.launch(permissions.toTypedArray())
+//        }
+//    }
 
     override fun onPermissionGranted() {
         loadImages()
@@ -48,15 +77,30 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
         binding.apply {
             rvWAImages.layoutManager = GridLayoutManager(ctx, 2)
             rvWAImages.addItemDecoration(MarginItemDecoration(dpToPx(8)))
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                executeNew()
-            } else if (AppUtils.STATUS_DIRECTORY.exists()) {
-                executeOld()
-            } else {
-                Toast.makeText(activity, "Can't find Whatsapp", Toast.LENGTH_SHORT).show()
+            val imageListNew = mutableListOf<Media>()
+            getMediaWA(ctx) { list ->
+                for (media in list) {
+                    if (!media.isVideo and !media.uri.toString().contains(".nomedia", true)
+                    ) {
+                        imageListNew.add(media)
+                    }
+                }
+                if (imageListNew.size != imagesList.size) {
+                    imagesList = imageListNew
+                    val waMediaAdapter = WAMediaAdapter(ctx, imagesList, binding.rlMain)
+                    binding.rvWAImages.adapter = waMediaAdapter
+                    waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+                }
             }
         }
+    }
+
+    fun refreshImages() {
+        waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+    }
+
+    override fun onBackPressed() {
+        requireActivity().finish()
     }
 
 
@@ -137,7 +181,4 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
         WAMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
     }
 
-    override fun onBackPressed() {
-        TODO("Not yet implemented")
-    }
 }

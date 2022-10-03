@@ -29,7 +29,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AllVidDownloader"
+        tools:replace="android:theme"
         tools:targetApi="30">
+
+        <activity
+            android:name="com.karumi.dexter.DexterActivity"
+            android:theme="@style/Dexter.Internal.Theme.Transparent" />
+        <activity
+            android:name=".ui.activities.CleanerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.StatusMakerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.StatusMakerActivity"
             android:exported="false"
@@ -48,6 +60,10 @@
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".collage_maker.ui.activities.CollageViewActivity"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activities.VimeoActivity"
             android:exported="false"
             android:hardwareAccelerated="true"
@@ -60,6 +76,9 @@
             android:name=".ui.activities.FBMainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.FullViewWhatsappActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activities.FullViewActivity"
             android:exported="false" />

@@ -73,9 +73,11 @@ class FileUtilsss {
         fun copyFile(
             context: Context,
             uri: Uri?,
-            dst: File?,
-            copyStatusListener: CopyStatusListener
+            dst: File,
+            filePath: (String) -> Unit
         ): Boolean {
+            if (!dst.exists())
+                dst.createNewFile()
             val parcelFileDescriptor = context.contentResolver.openFileDescriptor(
                 uri!!, "r"
             )
@@ -89,7 +91,7 @@ class FileUtilsss {
             }
             is1.close()
             os.close()
-            copyStatusListener.onCopyComplete("Copy Done...")
+            filePath(dst.absolutePath)
             return true
         }
 
@@ -106,7 +108,8 @@ class FileUtilsss {
 
         @Throws(IOException::class)
         fun saveBitmapAsFile(context: Context, bitmap: Bitmap?, fileName: String): File {
-            val executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+            val executor =
+                Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
             val handler = Handler(Looper.getMainLooper())
             val fileOutputStream: FileOutputStream
             val file = File(
@@ -134,6 +137,73 @@ class FileUtilsss {
             return file1
         }
 
+        @Throws(IOException::class)
+        fun saveBitmapAsFileDir(context: Context, bitmap: Bitmap?, dirName: String): File {
+            val executor =
+                Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+            val handler = Handler(Looper.getMainLooper())
+            val fileOutputStream: FileOutputStream
+            val file = File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+                        + File.separator + context.getString(R.string.app_name)
+                        + File.separator + dirName
+            )
+            if (!file.exists()) {
+                file.mkdirs()
+            }
+            val name = "IMG_${System.currentTimeMillis()}"
+            var file1 = File(file.absolutePath + File.separator + name + ".jpg")
+            file1.createNewFile()
+            fileOutputStream = FileOutputStream(file1)
+            executor.execute {
+                bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+                handler.post {
+                    try {
+                        fileOutputStream.flush()
+                        fileOutputStream.close()
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+            return file1
+        }
+
+        @Throws(IOException::class)
+        fun saveBitmapAsFileCache(
+            context: Context,
+            bitmap: Bitmap?,
+            fileName: String,
+            filePath: (String) -> Unit
+        ): File {
+            val executor =
+                Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+            val handler = Handler(Looper.getMainLooper())
+            val fileOutputStream: FileOutputStream
+            val file = cachePathWA
+
+            if (!file.exists()) {
+                file.mkdirs()
+            }
+            val name = fileName.replace("(\\W|^_)*".toRegex(), "_")
+            var file1 = File(file.absolutePath + File.separator + name + ".jpg")
+            file1.createNewFile()
+            fileOutputStream = FileOutputStream(file1)
+            executor.execute {
+                bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+                handler.post {
+                    try {
+                        fileOutputStream.flush()
+                        fileOutputStream.close()
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                    filePath(file1.absolutePath)
+                }
+            }
+            return file1
+        }
+
         fun saveBitmapAPI30(
             context: Context, bitmap: Bitmap?,
             displayName: String,
@@ -141,7 +211,8 @@ class FileUtilsss {
             directory: File,
             action: (Uri) -> Unit
         ) {
-            val executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+            val executor =
+                Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
             val handler = Handler(Looper.getMainLooper())
             executor.execute {
                 val values = ContentValues()
@@ -186,7 +257,10 @@ class FileUtilsss {
             valuesvideos.put(MediaStore.Video.Media.TITLE, "${fileName}.mp4")
             valuesvideos.put(MediaStore.Video.Media.DISPLAY_NAME, "${fileName}.mp4")
             valuesvideos.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
-            valuesvideos.put(MediaStore.Video.Media.DATE_ADDED, System.currentTimeMillis() / 1000)
+            valuesvideos.put(
+                MediaStore.Video.Media.DATE_ADDED,
+                System.currentTimeMillis() / 1000
+            )
             valuesvideos.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis())
             valuesvideos.put(MediaStore.Video.Media.IS_PENDING, 1)
             val resolver = context.contentResolver
@@ -194,7 +268,8 @@ class FileUtilsss {
                 MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
             val uriSavedVideo = resolver.insert(collection, valuesvideos)
             val pfd = context.contentResolver.openFileDescriptor(uriSavedVideo!!, "w")
-            val executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+            val executor =
+                Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
             val handler = Handler(Looper.getMainLooper())
             executor.execute {
                 if (pfd != null) {
@@ -236,5 +311,4 @@ class FileUtilsss {
             }
         }
     }
-
 }

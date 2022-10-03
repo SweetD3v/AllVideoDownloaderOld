@@ -85,6 +85,10 @@
             android:text="Videos" />
     </com.google.android.material.tabs.TabLayout>
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerStatus"
         android:layout_width="match_parent"

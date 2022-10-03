@@ -68,7 +68,7 @@ class FullViewDownloadsActivity : AppCompatActivity() {
                             imagesList.add(media)
                         }
                     } else {
-                        if (media.isVideo) {
+                        if (!media.isVideo) {
                             imagesList.add(media)
                         }
                     }
@@ -109,9 +109,7 @@ class FullViewDownloadsActivity : AppCompatActivity() {
             Glide.with(ctx).load(item.uri)
                 .placeholder(R.drawable.ic_whatsapp_svg).into(holder.binding.imgView)
 
-
             holder.binding.imgPlay.visibility = if (item.isVideo) View.VISIBLE else View.GONE
-
 
             holder.binding.imgPlay.setOnClickListener {
                 if (item.isVideo)

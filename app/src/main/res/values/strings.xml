@@ -24,4 +24,8 @@
     <string name="ringtones">Ringtones</string>
     <string name="status_maker">Status Maker</string>
     <string name="whatsapp_status">Whatsapp Status</string>
+    <string name="share_media">Share</string>
+    <string name="save">Save</string>
+    <string name="dialog_save_text">Are you sure want to Save this Image?</string>
+    <string name="dialog_discard_text">Your changes will be discarded.\nDo you want to proceed?</string>
 </resources>

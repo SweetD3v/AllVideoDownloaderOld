@@ -40,12 +40,13 @@ class AllMediaAdapter(
         }
 
         holder.itemView.setOnClickListener {
+            Log.e("TAG", "onBindViewHolder: ${media.isVideo}")
             ctx.startActivity(
                 Intent(ctx, FullViewDownloadsActivity::class.java)
                     .putExtra("position", holder.adapterPosition)
                     .putExtra(
                         "type",
-                        if (mediaList[holder.adapterPosition].isVideo) "video"
+                        if (media.isVideo) "video"
                         else "photo"
                     )
             )

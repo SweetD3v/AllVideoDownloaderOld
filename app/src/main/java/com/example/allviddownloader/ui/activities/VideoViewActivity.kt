@@ -26,5 +26,6 @@ class VideoViewActivity : AppCompatActivity() {
             }
         }
         finish()
+        super.onBackPressed()
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wrapper_font_item"
+    android:layout_width="36dp"
+    android:layout_height="36dp"
+    android:layout_gravity="center"
+    android:layout_margin="4dp"
+    android:background="@android:color/transparent">
+
+    <com.github.pavlospt.CircleView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/color"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cv_backgroundColorValue="@android:color/transparent"
+        app:cv_fillColor="@android:color/transparent"
+        app:cv_fillRadius="0.9"
+        app:cv_strokeColorValue="@color/black"
+        app:cv_strokeWidthSize="2.0"
+        app:cv_subtitleText=""
+        app:cv_titleText="" />
+</androidx.constraintlayout.widget.ConstraintLayout>
