@@ -30,7 +30,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class WallpapersActivity : BaseActivity() {
     val binding by lazy { ActivityWallpapersBinding.inflate(layoutInflater) }
     lateinit var wallpapersList: MutableList<WallModelPixabay.PhotoDetails>
