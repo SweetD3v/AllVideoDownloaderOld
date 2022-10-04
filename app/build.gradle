@@ -108,6 +108,7 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation project(path: ':shapeimageview')
 //    implementation project(path: ':files_commons')
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

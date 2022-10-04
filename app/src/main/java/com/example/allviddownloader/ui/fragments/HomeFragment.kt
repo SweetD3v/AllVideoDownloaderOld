@@ -263,6 +263,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 startActivity(Intent(ctx, FunnyVideosActivity::class.java))
             }
 
+            llCleaner.setOnClickListener {
+                startActivity(Intent(ctx, CleanerActivity::class.java))
+            }
+
 //            llVimeo.setOnClickListener {
 //                startActivity(Intent(ctx, VimeoActivity::class.java))
 //            }

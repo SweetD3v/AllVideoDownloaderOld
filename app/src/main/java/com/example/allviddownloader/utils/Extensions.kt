@@ -22,6 +22,7 @@ import com.example.allviddownloader.models.Media
 import java.io.File
 import java.io.IOException
 import java.io.OutputStream
+import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 var RECEIVER_ADDRESS = "andro.ops151@gmail.com"
@@ -70,6 +71,41 @@ public var RootDirectoryFBDownlaoder = File(
             + File.separator + AllVidApp.getInstance()
         .getString(R.string.app_name) + File.separator + "FB Downloader"
 )
+
+fun File.getProperSize(countHiddenItems: Boolean): Long {
+    return if (isDirectory) {
+        getDirectorySize(this, countHiddenItems)
+    } else {
+        length()
+    }
+}
+
+private fun getDirectorySize(dir: File, countHiddenItems: Boolean): Long {
+    var size = 0L
+    if (dir.exists()) {
+        val files = dir.listFiles()
+        if (files != null) {
+            for (i in files.indices) {
+                if (files[i].isDirectory) {
+                    size += getDirectorySize(files[i], countHiddenItems)
+                } else if (!files[i].name.startsWith('.') && !dir.name.startsWith('.') || countHiddenItems) {
+                    size += files[i].length()
+                }
+            }
+        }
+    }
+    return size
+}
+
+fun Long.formatSize(): String {
+    if (this <= 0) {
+        return "0 B"
+    }
+
+    val units = arrayOf("B", "kB", "MB", "GB", "TB")
+    val digitGroups = (Math.log10(toDouble()) / Math.log10(1024.0)).toInt()
+    return "${DecimalFormat("#,##0.#").format(this / Math.pow(1024.0, digitGroups.toDouble()))} ${units[digitGroups]}"
+}
 
 fun saveBitmapImage(
     context: Context, bitmap: Bitmap?,

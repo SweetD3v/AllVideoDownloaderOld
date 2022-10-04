@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndoidProjects/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_cache_cleaner.xml" value="0.33" />
+        <entry key="..\:/AndoidProjects/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_cleaner.xml" value="0.375" />
+        <entry key="..\:/AndoidProjects/ClientProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home.xml" value="0.3537037037037037" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/close.xml" value="0.236" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/error_placeholder.xml" value="0.236" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/et_bg_insta1.xml" value="0.236" />
