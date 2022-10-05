@@ -12,8 +12,11 @@ import com.bumptech.glide.Glide
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityWallpaperDetailsBinding
 import com.example.allviddownloader.ui.activities.WallpapersActivity.Companion.WALLPAPER_ORIGINAL_URL
+import com.example.allviddownloader.utils.AdsUtils
+import com.example.allviddownloader.utils.NetworkState
 import com.example.allviddownloader.utils.downloader.BasicImageDownloader
 import com.example.allviddownloader.utils.originalPath
+import com.example.allviddownloader.utils.shareMediaUri
 import java.io.File
 
 class WallpapersDetailsActivity : BaseActivity() {
@@ -27,12 +30,20 @@ class WallpapersDetailsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (intent.hasExtra(WALLPAPER_ORIGINAL_URL))
-            downloadUrl = intent.getStringExtra(WALLPAPER_ORIGINAL_URL)!!
+        if (intent.hasExtra(WallpapersActivity.WALLPAPER_ORIGINAL_URL))
+            downloadUrl = intent.getStringExtra(WallpapersActivity.WALLPAPER_ORIGINAL_URL)!!
         loadWallpaper()
 
         binding.run {
-            setSupportActionBar(toolbar)
+
+//            if (NetworkState.isOnline())
+//                AdsUtils.loadBanner(
+//                    this@WallpapersDetailsActivity, binding.bannerContainer,
+//                    getString(R.string.banner_id_details)
+//                )
+
+            appTitle.text = ""
+            setSupportActionBar(binding.toolbar)
             toolbar.setNavigationOnClickListener {
                 onBackPressed()
             }
@@ -67,10 +78,29 @@ class WallpapersDetailsActivity : BaseActivity() {
             }
 
             fabDownload.setOnClickListener {
+                AdsUtils.loadInterstitialAd(
+                    this@WallpapersDetailsActivity,
+                    getString(R.string.interstitial_id),
+                    object : AdsUtils.Companion.FullScreenCallback() {
+                        override fun continueExecution() {
+                            imageUrl = downloadUrl
+                            imageUrl?.let { url ->
+                                BasicImageDownloader(this@WallpapersDetailsActivity)
+                                    .saveImageToExternal(url, File(originalPath, "Wallpapers"))
+                            }
+                        }
+                    })
+            }
+
+            fabShare.setOnClickListener {
                 imageUrl = downloadUrl
                 imageUrl?.let { url ->
                     BasicImageDownloader(this@WallpapersDetailsActivity)
-                        .saveImageToExternal(url, File(originalPath, "Wallpapers"))
+                        .saveImageToTemp(url, File(originalPath, "Wallpapers"), false, {
+                        }) {
+                            Log.e("TAG", "onCreate: ${it}")
+                            shareMediaUri(this@WallpapersDetailsActivity, arrayListOf(it))
+                        }
                 }
             }
 
@@ -98,7 +128,10 @@ class WallpapersDetailsActivity : BaseActivity() {
                         intent.setDataAndType(uri, contentResolver.getType(uri))
                         intent.putExtra("mimeType", contentResolver.getType(uri))
 
-                        val resInfoList: List<ResolveInfo> = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+                        val resInfoList: List<ResolveInfo> = packageManager.queryIntentActivities(
+                            intent,
+                            PackageManager.MATCH_DEFAULT_ONLY
+                        )
                         for (resolveInfo in resInfoList) {
                             val packageName: String = resolveInfo.activityInfo.packageName
                             grantUriPermission(
@@ -110,7 +143,6 @@ class WallpapersDetailsActivity : BaseActivity() {
 
                         startActivity(Intent.createChooser(intent, "Set as:"))
                     }
-
             }
         }
     }
@@ -119,7 +151,30 @@ class WallpapersDetailsActivity : BaseActivity() {
         Log.e("TAG", "loadWallpaper: ${downloadUrl}")
 
         Glide.with(this).load(downloadUrl)
-            .placeholder(R.drawable.ic_wallpaper)
+            .placeholder(R.drawable.ic_wallpapers)
             .into(binding.imgWallpaper)
+    }
+
+    override fun onDestroy() {
+        AdsUtils.destroyBanner()
+        super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        AdsUtils.clicksCountWallp++
+        if (AdsUtils.clicksCountWallp == 4) {
+            AdsUtils.clicksCountWallp = 0
+
+            AdsUtils.loadInterstitialAd(
+                this,
+                getString(R.string.interstitial_id),
+                object : AdsUtils.Companion.FullScreenCallback() {
+                    override fun continueExecution() {
+                        finish()
+                    }
+                })
+            return
+        }
+        finish()
     }
 }

@@ -256,7 +256,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             llWallpaper.setOnClickListener {
-                startActivity(Intent(ctx, WallpapersActivity::class.java))
+                startActivity(Intent(ctx, WallpapersActivity::class.java)
+                    .putExtra("walpType", "wallpapers"))
             }
 
             llFunnyNew.setOnClickListener {

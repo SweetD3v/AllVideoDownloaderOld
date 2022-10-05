@@ -20,6 +20,7 @@ import com.example.allviddownloader.databinding.ItemWallCategoriesBinding
 import com.example.allviddownloader.databinding.ItemWallpapersBinding
 import com.example.allviddownloader.interfaces.CategorySelectionListener
 import com.example.allviddownloader.models.WallModelPixabay
+import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.NetworkState
 import com.example.allviddownloader.utils.apis.RestApi
 import com.example.allviddownloader.utils.dpToPx
@@ -57,17 +58,29 @@ class WallpapersActivity : BaseActivity() {
         setContentView(binding.root)
 
         if (NetworkState.isOnline()) {
+
+//            AdsUtils.loadBanner(
+//                this, binding.bannerContainer,
+//                getString(R.string.banner_id_details)
+//            )
+
+//            AdsUtils.loadNative(
+//                this@WallpapersActivity,
+//                getString(R.string.admob_native_id),
+//                binding.adFrame
+//            )
+
             loadWallpapers()
         }
     }
 
     private fun loadWallpapers() {
         binding.run {
-
-
             imgBack.setOnClickListener {
                 onBackPressed()
             }
+
+            rvWallpapers.isNestedScrollingEnabled = false
 
             rvWallpapers.layoutManager = layoutManager
             rvWallpapers.addItemDecoration(
@@ -78,94 +91,25 @@ class WallpapersActivity : BaseActivity() {
                 )
             )
 
-            rvWallpapers.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
+            wallpapersList = mutableListOf()
+            wallpapersAdapter = WallpapersAdapter(this@WallpapersActivity)
+            binding.rvWallpapers.adapter = wallpapersAdapter
 
-                    val visibleItemCount = layoutManager.childCount
-                    val totalItemCount = layoutManager.itemCount
-                    val firstVisibleItemPosition =
-                        layoutManager.findFirstCompletelyVisibleItemPosition()
+            val arr: Array<String>
+            if (intent.getStringExtra("walpType") == "wallpapers")
+                arr = resources.getStringArray(R.array.wallp_arr)
+            else arr = resources.getStringArray(R.array.status_arr)
 
-                    val isNotLoadingAndNotLastPage = !loading && !mIsLastPage
-                    val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
-                    val isValidFirstItem = firstVisibleItemPosition >= 0
-                    val totalIsMoreThanVisible = totalItemCount >= perPage
-                    val shouldLoadMore =
-                        isValidFirstItem && isAtLastItem && totalIsMoreThanVisible && isNotLoadingAndNotLastPage
-                    Log.e("TAG", "onScrolled: ${isAtLastItem}")
-
-                    if (shouldLoadMore) {
-                        progressBar.visibility = View.VISIBLE
-                        pageIndex++
-                        reset = false
-                        getNewWallpapers(category!!, pageIndex, perPage)
-                    }
-                }
-            })
-
-//            rvWallpapers.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                    if (dy > 0) { //check for scroll down
-//                        totalItemCount = rvWallpapers.layoutManager!!.itemCount
-//                        lastVisiblesItems =
-//                            (rvWallpapers.layoutManager!! as GridLayoutManager).findLastCompletelyVisibleItemPosition()
-//                        if (loading) {
-//                            if (lastVisiblesItems == totalItemCount - 1) {
-//                                Log.e("GG", "Last Item Wow !")
-//
-//                                pageIndex++
-//                                progressBar.visibility = View.VISIBLE
-//                                getNewWallpapers(pageIndex, perPage)
-//                                loading = false
-//                            }
-//                        }
-//                    }
-//                }
-//            })
-
-//            nScrollView.isNestedScrollingEnabled = false
-//            nScrollView.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener {
-//                override fun onScrollChange(
-//                    v: NestedScrollView?,
-//                    scrollX: Int,
-//                    scrollY: Int,
-//                    oldScrollX: Int,
-//                    oldScrollY: Int
-//                ) {
-//                    if (scrollY == v!!.getChildAt(0).measuredHeight - v.measuredHeight) {
-//                        // in this method we are incrementing page number,
-//                        // making progress bar visible and calling get data method.
-//                        pageIndex++
-//                        progressBar.visibility = View.VISIBLE
-//                        getNewWallpapers(pageIndex, pageIndex)
-//                    }
-//                }
-//
-//            })
-
-            fabCategory.setOnClickListener {
-                Log.e("TAG", "category: $category")
-                val catSheetBinding = CategorySheetBinding.inflate(layoutInflater)
-                categorySheet = BSFragmentBuilder().with(supportFragmentManager)
-                    .title("Categories")
-                    .apply {
-                        fullHeight(false)
-                        layout = catSheetBinding.root
-                    }
-
-                categorySheet?.show()
-                initCategorySheet(catSheetBinding)
+            for (photo in arr) {
+                val photoDetails = WallModelPixabay.PhotoDetails()
+                photoDetails.largeImageURL = photo
+                wallpapersList.add(photoDetails)
             }
-        }
 
-        wallpapersList = mutableListOf()
-        wallpapersAdapter = WallpapersAdapter(this@WallpapersActivity)
-        binding.rvWallpapers.adapter = wallpapersAdapter
-        wallpapersAdapter.updateList(mutableListOf())
-        Log.e("TAG", "loadWallpapers: ")
-        reset = false
-        getNewWallpapers(category!!, pageIndex, perPage)
+            wallpapersList.shuffle()
+            wallpapersAdapter.setList(wallpapersList)
+
+        }
     }
 
     private fun initCategorySheet(catSheetBinding: CategorySheetBinding) {
@@ -245,49 +189,6 @@ class WallpapersActivity : BaseActivity() {
             }
         })
 
-//        object : AsyncTaskRunner<String, MutableList<WallpaperModel.PhotosDetails>?>(this) {
-//            override fun doInBackground(params: String?): MutableList<WallpaperModel.PhotosDetails>? {
-//                val service = RestApi.service
-//                val call: Call<WallpaperModel> = service.getAllWallpapers(20)
-//                call.enqueue(object : Callback<WallpaperModel> {
-//                    override fun onResponse(
-//                        call: Call<WallpaperModel>,
-//                        response: Response<WallpaperModel>
-//                    ) {
-//                        response.body()?.let { body ->
-//                            body.photosDetails?.let { photosDetails ->
-//                                wallpapersList = mutableListOf()
-//                                for (picDetails in photosDetails) {
-//                                    Log.e("TAG", "onResponse: ${picDetails.src?.small}")
-//                                    wallpapersList?.add(picDetails)
-//                                }
-//
-//                                onPostExecute(wallpapersList)
-//                            }
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<WallpaperModel>, t: Throwable) {
-//                        wallpapersList = mutableListOf()
-//                    }
-//                })
-//                return wallpapersList
-//            }
-//
-//            override fun onPostExecute(list: MutableList<WallpaperModel.PhotosDetails>?) {
-//                super.onPostExecute(list)
-//
-//                list?.let { wallsList ->
-//                    wallpapersList = wallsList
-//                    Log.e("TAG", "onPostExecute: ${wallsList.size}")
-//                    wallpapersList?.let { wallpapers ->
-//                        val wallpapersAdapter =
-//                            WallpapersAdapter(this@WallpapersActivity, wallpapers)
-//                        binding.rvWallpapers.adapter = wallpapersAdapter
-//                    }
-//                }
-//            }
-//        }.execute("", true)
     }
 
     class WallpapersAdapter(
@@ -387,11 +288,11 @@ class WallpapersActivity : BaseActivity() {
             if (catSelected == holder.adapterPosition) {
                 holder.binding.run {
                     txtCategory.setTextColor(ContextCompat.getColor(ctx, R.color.white))
-                    txtCategory.setBackgroundColor(ContextCompat.getColor(ctx, R.color.accent))
+                    txtCategory.setBackgroundColor(ContextCompat.getColor(ctx, R.color.colorAccent))
                 }
             } else {
                 holder.binding.run {
-                    txtCategory.setTextColor(ContextCompat.getColor(ctx, R.color.accent))
+                    txtCategory.setTextColor(ContextCompat.getColor(ctx, R.color.colorAccent))
                     txtCategory.setBackgroundColor(ContextCompat.getColor(ctx, R.color.white))
                 }
             }
@@ -404,7 +305,7 @@ class WallpapersActivity : BaseActivity() {
                     holder.binding.run {
                         txtCategory.setTextColor(ContextCompat.getColor(ctx, R.color.white))
                         txtCategory.backgroundTintList =
-                            ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.accent))
+                            ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.colorAccent))
                     }
 
                     categorySelectionListener?.onCategorySelected(holder.adapterPosition, category)
@@ -415,5 +316,10 @@ class WallpapersActivity : BaseActivity() {
         override fun getItemCount(): Int {
             return wallpapers.size
         }
+    }
+
+    override fun onDestroy() {
+        AdsUtils.destroyBanner()
+        super.onDestroy()
     }
 }
