@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
+import androidx.recyclerview.widget.RecyclerView
 import com.example.allviddownloader.AllVidApp
 import com.example.allviddownloader.R
 import com.example.allviddownloader.models.Media
@@ -104,7 +105,14 @@ fun Long.formatSize(): String {
 
     val units = arrayOf("B", "kB", "MB", "GB", "TB")
     val digitGroups = (Math.log10(toDouble()) / Math.log10(1024.0)).toInt()
-    return "${DecimalFormat("#,##0.#").format(this / Math.pow(1024.0, digitGroups.toDouble()))} ${units[digitGroups]}"
+    return "${
+        DecimalFormat("#,##0.#").format(
+            this / Math.pow(
+                1024.0,
+                digitGroups.toDouble()
+            )
+        )
+    } ${units[digitGroups]}"
 }
 
 fun saveBitmapImage(
@@ -422,7 +430,13 @@ fun getMediaWA(ctx: Context, block: (MutableList<Media>) -> Unit) {
                     if (listFiles != null) {
                         for (documentFile in listFiles) {
                             val uri = documentFile.uri
-                            Log.e("TAG", "loadImagesA30: ${ctx.contentResolver.getType(documentFile.uri)!!.contains("video")}")
+                            Log.e(
+                                "TAG",
+                                "loadImagesA30: ${
+                                    ctx.contentResolver.getType(documentFile.uri)!!
+                                        .contains("video")
+                                }"
+                            )
                             val status = Media(
                                 uri,
                                 uri.toString(),
@@ -535,5 +549,14 @@ fun shareMedia(
             shareIntent,
             context.getString(R.string.share_media)
         )
+    )
+}
+
+fun RecyclerView.addOuterGridSpacing(spacing: Int) {
+    this.setPadding(
+        paddingStart + spacing,
+        paddingTop,
+        paddingEnd + spacing,
+        paddingBottom + spacing
     )
 }

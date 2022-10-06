@@ -1,7 +1,9 @@
 package com.example.allviddownloader.ui.activities
 
 import android.content.res.ColorStateList
+import android.os.Build
 import android.os.Bundle
+import android.security.NetworkSecurityPolicy
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment

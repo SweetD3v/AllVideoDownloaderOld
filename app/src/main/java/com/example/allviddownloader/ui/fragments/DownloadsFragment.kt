@@ -74,6 +74,11 @@ class DownloadsFragment : BaseFragment<FragmentsDownloadsBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         if (allPermissionsGranted()) {
             onPermissionGranted()
         } else {
@@ -82,7 +87,6 @@ class DownloadsFragment : BaseFragment<FragmentsDownloadsBinding>() {
     }
 
     override fun onPermissionGranted() {
-
         setupViewPager()
     }
 

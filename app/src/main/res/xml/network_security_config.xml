@@ -3,9 +3,11 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">api.pexels.com</domain>
         <domain includeSubdomains="true">pixabay.com</domain>
-        <domain includeSubdomains="true">myvideo.fun</domain>
+        <domain includeSubdomains="false">myvideo.fun</domain>
         <domain includeSubdomains="true">www.freesound.org</domain>
-        <domain includeSubdomains="true">instagram-downloader-download-instagram-videos-stories.p.rapidapi.com</domain>
+        <domain includeSubdomains="true">
+            instagram-downloader-download-instagram-videos-stories.p.rapidapi.com
+        </domain>
         <domain includeSubdomains="true">socialdownloader.p.rapidapi.com</domain>
     </domain-config>
 </network-security-config>

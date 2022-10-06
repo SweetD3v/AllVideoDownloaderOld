@@ -70,13 +70,13 @@ public class StorageHelper {
         String suffixPathPart = null;
 
         if (sdcardPath != null) {
-            if ((file.getPath().indexOf(sdcardPath)) != -1)
+            if (file.getPath().contains(sdcardPath))
                 suffixPathPart = file.getAbsolutePath().substring(sdcardPath.length());
         } else {
             HashSet<File> storageRoots = StorageHelper.getStorageRoots(context);
             for (File root : storageRoots) {
                 if (root != null) {
-                    if ((file.getPath().indexOf(root.getPath())) != -1)
+                    if (file.getPath().contains(root.getPath()))
                         suffixPathPart = file.getAbsolutePath().substring(file.getPath().length());
                 }
             }

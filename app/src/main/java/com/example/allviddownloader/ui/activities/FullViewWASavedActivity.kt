@@ -17,22 +17,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.documentfile.provider.DocumentFile
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.allviddownloader.R
-import com.example.allviddownloader.databinding.ActivityFullviewWaBinding
+import com.example.allviddownloader.databinding.ActivityFullviewWaSavedBinding
 import com.example.allviddownloader.databinding.ItemFullViewBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.utils.*
 import java.io.File
 
-class FullViewWhatsappActivity : AppCompatActivity() {
-    val binding by lazy { ActivityFullviewWaBinding.inflate(layoutInflater) }
-    val imagesList = mutableListOf<Media>()
+class FullViewWASavedActivity : AppCompatActivity() {
+    val binding by lazy { ActivityFullviewWaSavedBinding.inflate(layoutInflater) }
+    var imagesList = mutableListOf<Media>()
     var position = 0
     val extFile by lazy { File(getExternalFilesDir("Videos"), "video.mp4") }
     var isVideo = false
@@ -44,46 +44,71 @@ class FullViewWhatsappActivity : AppCompatActivity() {
 
         binding.run {
 
-            if (NetworkState.isOnline())
-                AdsUtils.loadBanner(
-                    this@FullViewWhatsappActivity, bannerContainer,
-                    getString(R.string.banner_id_details)
-                )
+//            if (NetworkState.isOnline())
+//                AdsUtils.loadBanner(
+//                    this@FullViewWASavedActivity, bannerContainer,
+//                    getString(R.string.banner_id_details)
+//                )
 
             setSupportActionBar(toolbar)
             toolbar.setNavigationOnClickListener {
                 onBackPressed()
             }
 
-            fabDownload.hide()
+            fabDelete.hide()
             fabShare.hide()
             fabSetWP.hide()
-            txtDownload.visibility = View.GONE
+            txtDelete.visibility = View.GONE
             txtShare.visibility = View.GONE
             txtSetWp.visibility = View.GONE
 
             fabMore.setOnClickListener {
                 isAllVisible = if (!isAllVisible) {
-                    fabDownload.show()
+                    fabDelete.show()
                     fabShare.show()
                     if (!imagesList[viewPagerMedia.currentItem].isVideo) {
                         fabSetWP.show()
                         txtSetWp.visibility = View.VISIBLE
                     }
-                    txtDownload.visibility = View.VISIBLE
+                    txtDelete.visibility = View.VISIBLE
                     txtShare.visibility = View.VISIBLE
 
                     true
                 } else {
-                    fabDownload.hide()
+                    fabDelete.hide()
                     fabShare.hide()
                     fabSetWP.hide()
-                    txtDownload.visibility = View.GONE
+                    txtDelete.visibility = View.GONE
                     txtShare.visibility = View.GONE
                     txtSetWp.visibility = View.GONE
 
                     false
                 }
+            }
+
+            fabDelete.setOnClickListener {
+                val builder =
+                    AlertDialog.Builder(this@FullViewWASavedActivity, R.style.RoundedCornersDialog)
+                        .setTitle("Delete")
+                        .setMessage("Are you sure want to delete this file?")
+                        .setCancelable(true)
+                        .setPositiveButton("Delete") { dialog, _ ->
+                            dialog.dismiss()
+                            val image = imagesList[binding.viewPagerMedia.currentItem]
+                            val file = File(image.path)
+
+                            file.delete()
+                            toastShort(this@FullViewWASavedActivity, "File deleted.")
+                            imagesList.remove(image)
+                            refreshAdapter()
+                            if (imagesList.size == 0)
+                                finish()
+                        }.setNegativeButton("Cancel") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+
+                val alertDialog = builder.create()
+                alertDialog.show()
             }
 
             fabShare.setOnClickListener {
@@ -94,8 +119,8 @@ class FullViewWhatsappActivity : AppCompatActivity() {
                     val bitmap =
                         if (image.uri.toString().endsWith(".jpg")
                             or image.uri.toString().endsWith(".png")
-                        ) getBitmapFromUri(this@FullViewWhatsappActivity, image.uri)
-                        else getVideoThumbnail(this@FullViewWhatsappActivity, image.uri)
+                        ) getBitmapFromUri(this@FullViewWASavedActivity, image.uri)
+                        else getVideoThumbnail(this@FullViewWASavedActivity, image.uri)
 
                     saveImageTemp(bitmap)
                 } else {
@@ -129,56 +154,14 @@ class FullViewWhatsappActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(intent, "Set as:"))
             }
 
-//            fabShare.setOnClickListener {
-//                shareMedia(
-//                    this@FullViewWhatsappActivity, imagesList[viewPagerMedia.currentItem].uri,
-//                    imagesList[viewPagerMedia.currentItem].path
-//                )
-//            }
-
-            fabDownload.setOnClickListener {
-                AdsUtils.loadInterstitialAd(
-                    this@FullViewWhatsappActivity,
-                    getString(R.string.interstitial_id),
-                    object : AdsUtils.Companion.FullScreenCallback() {
-                        override fun continueExecution() {
-                            val image = imagesList[binding.viewPagerMedia.currentItem]
-                            val bitmap =
-                                if (image.uri.toString().endsWith(".jpg")
-                                    or image.uri.toString().endsWith(".png")
-                                ) getBitmapFromUri(this@FullViewWhatsappActivity, image.uri)
-                                else getVideoThumbnail(this@FullViewWhatsappActivity, image.uri)
-                            if (image.uri.toString().endsWith(".jpg")
-                                or image.uri.toString().endsWith(".png")
-                            ) {
-                                saveImage(bitmap)
-                            } else {
-                                saveVideo(imagesList[position].uri)
-                            }
-                        }
-                    })
-            }
         }
 
         if (intent.hasExtra("type")) {
             isVideo = intent.getStringExtra("type").equals("video")
         }
 
-        if (!isVideo) {
-            binding.fabSetWP.visibility = View.GONE
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                loadImages()
-            } else {
-                executeImageOld()
-            }
-        } else {
-            binding.fabSetWP.visibility = View.VISIBLE
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                loadVideo()
-            } else {
-                executeVideoOld()
-            }
-        }
+        binding.fabSetWP.visibility = View.GONE
+        loadImages()
 
         if (extFile.exists())
             extFile.delete()
@@ -190,18 +173,18 @@ class FullViewWhatsappActivity : AppCompatActivity() {
             if (extFile.exists())
                 extFile.delete()
             FileUtilsss.copyFileAPI30(
-                this@FullViewWhatsappActivity,
+                this@FullViewWASavedActivity,
                 uri,
                 File(getExternalFilesDir("Videos"), "video.mp4")
             ) { file ->
                 Log.e("TAG", "filePath: ${file.absolutePath}")
                 FileUtilsss.saveVideoAPI30(
-                    this@FullViewWhatsappActivity, file,
+                    this@FullViewWASavedActivity, file,
                     "VID_${System.currentTimeMillis()}",
                     RootDirectoryWhatsappShow
                 ) {
                     Toast.makeText(
-                        this@FullViewWhatsappActivity,
+                        this@FullViewWASavedActivity,
                         getString(R.string.saved),
                         Toast.LENGTH_SHORT
                     ).show()
@@ -215,20 +198,20 @@ class FullViewWhatsappActivity : AppCompatActivity() {
                 Log.e("TAG", "uri: $uri")
 //                            copy(file, File("${dest}.mp4"))
                 FileUtilsss.copyFileAPI30(
-                    this@FullViewWhatsappActivity,
+                    this@FullViewWASavedActivity,
                     uri,
                     dest
                 ) { file1 ->
                     Log.e("TAG", "onCopied: ${file1.absolutePath}")
                     MediaScannerConnection.scanFile(
-                        this@FullViewWhatsappActivity, arrayOf(
+                        this@FullViewWASavedActivity, arrayOf(
                             file1.absolutePath
                         ), null
                     ) { _: String?, uri: Uri? ->
                         Handler(Looper.getMainLooper())
                             .post {
                                 Toast.makeText(
-                                    this@FullViewWhatsappActivity,
+                                    this@FullViewWASavedActivity,
                                     getString(R.string.saved),
                                     Toast.LENGTH_SHORT
                                 ).show()
@@ -244,27 +227,27 @@ class FullViewWhatsappActivity : AppCompatActivity() {
     private fun saveImage(bitmap: Bitmap?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             FileUtilsss.saveBitmapAPI30(
-                this@FullViewWhatsappActivity, bitmap,
+                this@FullViewWASavedActivity, bitmap,
                 "IMG_${System.currentTimeMillis()}.jpg",
                 "image/jpeg",
                 RootDirectoryWhatsappShow
             ) {
                 Toast.makeText(
-                    this@FullViewWhatsappActivity,
+                    this@FullViewWASavedActivity,
                     "Saved!",
                     Toast.LENGTH_SHORT
                 ).show()
             }
         } else {
             val file1 = FileUtilsss.saveBitmapAsFile(
-                this@FullViewWhatsappActivity,
+                this@FullViewWASavedActivity,
                 bitmap,
                 "IMG_${System.currentTimeMillis()}.jpg"
             )
 
             file1.let { file ->
                 MediaScannerConnection.scanFile(
-                    this@FullViewWhatsappActivity, arrayOf(
+                    this@FullViewWASavedActivity, arrayOf(
                         file.absolutePath
                     ), null
                 ) { _: String?, _: Uri? ->
@@ -277,7 +260,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
     private fun saveImageTemp(bitmap: Bitmap?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             FileUtilsss.saveBitmapAsFileCache(
-                this@FullViewWhatsappActivity,
+                this@FullViewWASavedActivity,
                 bitmap,
                 "IMG_${System.currentTimeMillis()}.jpg"
             ) { path ->
@@ -286,7 +269,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
             }
         } else {
             FileUtilsss.saveBitmapAsFileCache(
-                this@FullViewWhatsappActivity,
+                this@FullViewWASavedActivity,
                 bitmap,
                 "IMG_${System.currentTimeMillis()}.jpg"
             ) { path ->
@@ -298,7 +281,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
 
     private fun saveVideoTemp(uri: Uri) {
         FileUtilsss.copyFileAPI30(
-            this@FullViewWhatsappActivity,
+            this@FullViewWASavedActivity,
             uri,
             File(cachePathWA, "TEMP_VID_${System.currentTimeMillis()}.mp4")
         ) { path ->
@@ -308,106 +291,21 @@ class FullViewWhatsappActivity : AppCompatActivity() {
         }
     }
 
-    fun executeImageOld() {
-        val handler = Handler(Looper.getMainLooper())
-        imagesList.clear()
-        if (AppUtils.STATUS_DIRECTORY.exists()) {
-            val imagesListNew = getMediaQMinus(this, AppUtils.STATUS_DIRECTORY)
-            for (media in imagesListNew) {
-//                if (!media.isVideo) {
-                imagesList.add(media)
-//                }
-            }
-            Log.e("TAG", "executeOld: ${imagesList}")
-            handler.post {
-                refreshAdapter()
-            }
-        }
-    }
-
-    fun executeVideoOld() {
-        val handler = Handler(Looper.getMainLooper())
-        imagesList.clear()
-        if (AppUtils.STATUS_DIRECTORY.exists()) {
-            val imagesListNew = getMediaQMinus(this, AppUtils.STATUS_DIRECTORY)
-            for (media in imagesListNew) {
-//                if (media.isVideo) {
-                imagesList.add(media)
-//                }
-            }
-            Log.e("TAG", "executeOld: ${imagesList}")
-            handler.post {
-                refreshAdapter()
-            }
-        }
-    }
-
     fun loadImages() {
-        val handler = Handler(Looper.getMainLooper())
-        val fromTreeUri = DocumentFile.fromTreeUri(
-            this,
-            contentResolver.persistedUriPermissions[0].uri
-        )
-        Log.e("TAG", "loadImagesA30: ${fromTreeUri}")
-        imagesList.clear()
-        if (fromTreeUri == null) {
-            handler.post { }
-            return
+        binding.apply {
+            val imageListNew = mutableListOf<Media>()
+            getMedia(this@FullViewWASavedActivity, RootDirectoryWhatsappShow) { list ->
+                for (media in list) {
+                    imageListNew.add(media)
+                }
+                Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
+                Log.e("TAG", "loadImages: ${imagesList.size}")
+                if (imageListNew.size != imagesList.size) {
+                    imagesList = imageListNew
+                    refreshAdapter()
+                }
+            }
         }
-        val listFiles = fromTreeUri.listFiles()
-        if (listFiles.isEmpty()) {
-            handler.post { }
-            return
-        }
-        for (documentFile in listFiles) {
-            Log.e("TAG", "loadImagesA30: ${documentFile.uri}")
-            val media = Media(
-                documentFile.uri,
-                documentFile.uri.toString(),
-                contentResolver.getType(documentFile.uri)!!.contains("video"),
-                documentFile.lastModified()
-            )
-//            if (!media.isVideo) {
-            if (!media.uri.toString().contains(".nomedia"))
-                imagesList.add(media)
-//            }
-        }
-        Log.e("HEY: ", "${imagesList}")
-        handler.post { refreshAdapter() }
-    }
-
-    fun loadVideo() {
-        val handler = Handler(Looper.getMainLooper())
-        val fromTreeUri = DocumentFile.fromTreeUri(
-            this,
-            contentResolver.persistedUriPermissions[0].uri
-        )
-        Log.e("TAG", "loadImagesA30: ${fromTreeUri}")
-        imagesList.clear()
-        if (fromTreeUri == null) {
-            handler.post { }
-            return
-        }
-        val listFiles = fromTreeUri.listFiles()
-        if (listFiles.isEmpty()) {
-            handler.post { }
-            return
-        }
-        for (documentFile in listFiles) {
-            Log.e("TAG", "loadImagesA30: ${documentFile.uri}")
-            val media = Media(
-                documentFile.uri,
-                documentFile.uri.toString(),
-                contentResolver.getType(documentFile.uri)!!.contains("video"),
-                documentFile.lastModified()
-            )
-//            if (media.isVideo) {
-            if (!media.uri.toString().contains(".nomedia"))
-                imagesList.add(media)
-//            }
-        }
-        Log.e("HEY: ", "${imagesList}")
-        handler.post { refreshAdapter() }
     }
 
     private fun refreshAdapter() {
@@ -418,7 +316,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
                 viewPagerMedia.registerOnPageChangeCallback(object :
                     ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
-                        this@FullViewWhatsappActivity.position = position
+                        this@FullViewWASavedActivity.position = position
                         if (it[position].isVideo) {
                             fabSetWP.hide()
                             fabSetWP.visibility = View.GONE
@@ -427,7 +325,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
                     }
                 })
 
-                viewPagerMedia.adapter = ImageViewAdapter(this@FullViewWhatsappActivity, it)
+                viewPagerMedia.adapter = ImageViewAdapter(this@FullViewWASavedActivity, it)
 
                 position = intent.getIntExtra("position", 0)
                 viewPagerMedia.setCurrentItem(position, false)
@@ -468,11 +366,26 @@ class FullViewWhatsappActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        AdsUtils.clicksCountWA++
+        if (AdsUtils.clicksCountWA == 4) {
+            AdsUtils.clicksCountWA = 0
+
+            AdsUtils.loadInterstitialAd(
+                this,
+                getString(R.string.interstitial_id),
+                object : AdsUtils.Companion.FullScreenCallback() {
+                    override fun continueExecution() {
+                        finish()
+                    }
+                })
+
+            return
+        }
         finish()
     }
 
     override fun onDestroy() {
-//        AdsUtils.destroyBanner()
+        AdsUtils.destroyBanner()
         super.onDestroy()
     }
 }

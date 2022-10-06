@@ -113,6 +113,8 @@ class BasicImageDownloader(var ctx: Context) {
                 displayName = "IMG_${System.currentTimeMillis()}"
                 val imageFile = File(path, "$displayName.png") // Imagename.png
                 val out = FileOutputStream(imageFile)
+                if (!imageFile.exists())
+                    imageFile.createNewFile()
 
                 val fileLength: Int = connection.contentLength
                 val data = ByteArray(2048)
@@ -349,6 +351,8 @@ class BasicImageDownloader(var ctx: Context) {
         dirName.mkdirs()
         val imgName = "VID_${System.currentTimeMillis()}"
         val imageFile = File(dirName, "$imgName.mp4") // Imagename.png
+        if (!imageFile.exists())
+            imageFile.createNewFile()
 
         pdBinding = ProgressDialogBinding.inflate(LayoutInflater.from(ctx))
         object : AsyncTaskV2<String?, Int, String>() {

@@ -11,9 +11,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityWallpaperDetailsBinding
-import com.example.allviddownloader.ui.activities.WallpapersActivity.Companion.WALLPAPER_ORIGINAL_URL
 import com.example.allviddownloader.utils.AdsUtils
-import com.example.allviddownloader.utils.NetworkState
 import com.example.allviddownloader.utils.downloader.BasicImageDownloader
 import com.example.allviddownloader.utils.originalPath
 import com.example.allviddownloader.utils.shareMediaUri

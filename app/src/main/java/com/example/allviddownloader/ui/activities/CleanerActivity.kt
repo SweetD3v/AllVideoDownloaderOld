@@ -13,7 +13,7 @@ import com.example.allviddownloader.utils.AsyncTaskRunner
 import com.example.allviddownloader.utils.formatSize
 import com.example.allviddownloader.utils.getProperSize
 
-class CleanerActivity : AppCompatActivity() {
+class CleanerActivity : BaseActivity() {
     val binding by lazy { ActivityCacheCleanerBinding.inflate(layoutInflater) }
 
     var handler: Handler? = Handler(Looper.getMainLooper())

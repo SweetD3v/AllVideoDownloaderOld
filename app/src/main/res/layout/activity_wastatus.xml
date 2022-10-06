@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primary_bg">
 
     <RelativeLayout
         android:id="@+id/rlTop"
@@ -85,14 +86,18 @@
             android:text="Videos" />
     </com.google.android.material.tabs.TabLayout>
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout" />
-
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerStatus"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bannerContainer"
         android:layout_below="@id/tabLayout"
         android:layout_marginTop="8dp" />
+
+    <FrameLayout
+        android:id="@+id/bannerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="2dp" />
 </RelativeLayout>

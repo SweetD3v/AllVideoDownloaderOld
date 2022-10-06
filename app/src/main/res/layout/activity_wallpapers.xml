@@ -38,8 +38,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:elevation="4dp"
-                    android:gravity="center"
                     android:fontFamily="@font/neutra_regular"
+                    android:gravity="center"
                     android:paddingVertical="10dp"
                     android:text="@string/wallpapers"
                     android:textColor="@color/white"
@@ -86,8 +86,8 @@
             android:id="@+id/rvWallpapers"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
             android:layout_below="@id/rlTop"
+            android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/item_status" />
@@ -99,7 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:indeterminate="true"
-            android:progressTint="@color/primary" />
+            android:progressTint="@color/primary"
+            android:visibility="gone" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCategory"

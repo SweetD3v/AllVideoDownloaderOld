@@ -1,6 +1,8 @@
 package com.example.allviddownloader.ui.activities
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -9,103 +11,52 @@ import android.os.storage.StorageManager
 import android.provider.DocumentsContract
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.allviddownloader.databinding.ActivityWastatusBinding
-import com.example.allviddownloader.models.Media
+import com.example.allviddownloader.ui.fragments.WADownloadsFragment
 import com.example.allviddownloader.ui.fragments.WAImagesFragment
 import com.example.allviddownloader.ui.fragments.WAVideoFragment
-import com.example.allviddownloader.utils.getMediaWA
 import com.google.android.material.tabs.TabLayoutMediator
 
 
-class WAStatusActivity : AppCompatActivity() {
+class WAStatusActivity : BaseActivity() {
     val binding by lazy { ActivityWastatusBinding.inflate(layoutInflater) }
-    private val PERMISSIONS = arrayOf(
-        "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE"
-    )
-    private val tabTitles = arrayOf("Photos", "Videos")
-
-    var imagesList = mutableListOf<Media>()
-    var videosList = mutableListOf<Media>()
-
-    val imgFragment: WAImagesFragment = WAImagesFragment.newInstance(imagesList)
-    val vidFragment: WAVideoFragment = WAVideoFragment.newInstance(videosList)
-
-    private fun loadImages() {
-        var imagesListNew = mutableListOf<Media>()
-        var videosListNew = mutableListOf<Media>()
-        getMediaWA(this@WAStatusActivity) { list ->
-            for (media in list) {
-                if (!media.isVideo) {
-                    imagesListNew.add(media)
-                } else {
-                    videosListNew.add(media)
-                }
-            }
-
-            if (imagesListNew.size != imagesList.size) {
-                imagesList = imagesListNew
-            }
-
-            if (videosListNew.size != videosList.size) {
-                videosList = videosListNew
-            }
-
-            Log.e("TAG", "loadImagesHaha1: ${imagesList.size}")
-            Log.e("TAG", "loadImagesHaha2: ${imagesListNew.size}")
-
-            Log.e("TAG", "loadImagesHaha3: ${videosList.size}")
-            Log.e("TAG", "loadImagesHaha4: ${videosListNew.size}")
-
-//            imgFragment.refreshImages()
+    private val PERMISSIONS = mutableListOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    ).apply {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }
     }
+    private val tabTitles = arrayOf("Status", "Downloads")
 
-    private fun loadVideos() {
-        val videoListNew = mutableListOf<Media>()
-        getMediaWA(this@WAStatusActivity) { list ->
-            for (media in list) {
-                if (media.isVideo) {
-                    videoListNew.add(media)
-                }
-            }
-
-//            if (videoListNew.size != videosList.size) {
-            videosList = videoListNew
-//            }
-        }
-    }
+    val imgFragment = WAImagesFragment.newInstance()
+    val vidFragment = WAVideoFragment.newInstance()
+    val savedFragment = WADownloadsFragment.newInstance()
 
     val permissionsLauncher =
         registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions(),
-            object : ActivityResultCallback<Map<String, Boolean>> {
-                @RequiresApi(Build.VERSION_CODES.M)
-                override fun onActivityResult(result: Map<String, Boolean>?) {
-                    var granted = true
-                    if (result != null) {
-                        for (b in result.values) {
-                            if (!b) {
-                                granted = false
-                                break
-                            }
-                        }
-                    } else granted = false
-
-                    if (granted) {
-                        setupViewPager()
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { result ->
+            var granted = true
+            if (result != null) {
+                for (b in result.values) {
+                    if (!b) {
+                        granted = false
+                        break
                     }
                 }
-            })
+            } else granted = false
+
+        }
 
     val statusFileResultLauncher =
         registerForActivityResult(
@@ -126,42 +77,40 @@ class WAStatusActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+//        if (NetworkState.isOnline())
+//            AdsUtils.loadBanner(
+//                this, binding.bannerContainer,
+//                getString(R.string.banner_id_details)
+//            )
+
         binding.imgBack.setOnClickListener {
             onBackPressed()
         }
-
-        setupViewPager()
     }
 
     override fun onResume() {
         super.onResume()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && arePermissionDenied()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        Log.e("TAG", "onCreate: " + allPermissionsGranted())
+        if (!allPermissionsGranted() || contentResolver.persistedUriPermissions.size <= 0) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
+                && contentResolver.persistedUriPermissions.size <= 0
+            ) {
                 openDocTreeStatus()
             } else {
-                permissionsLauncher.launch(PERMISSIONS)
+                if (!allPermissionsGranted())
+                    permissionsLauncher.launch(PERMISSIONS.toTypedArray())
+                else setupViewPager()
             }
         } else {
-            loadImages()
-            loadVideos()
             setupViewPager()
         }
     }
 
     private fun setupViewPager() {
-        binding.run {
+        binding.apply {
             viewPagerStatus.orientation = ViewPager2.ORIENTATION_HORIZONTAL
             viewPagerStatus.adapter = FragmentsAdapter(this@WAStatusActivity)
-            viewPagerStatus.registerOnPageChangeCallback(object :
-                ViewPager2.OnPageChangeCallback() {
-                override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
-                ) {
-                }
-            })
 
             TabLayoutMediator(tabLayout, viewPagerStatus) { tab, position ->
                 tab.text = tabTitles[position]
@@ -169,18 +118,25 @@ class WAStatusActivity : AppCompatActivity() {
         }
     }
 
+    private fun allPermissionsGranted() = PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
+    }
+
     private fun arePermissionDenied(): Boolean {
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             return contentResolver.persistedUriPermissions.size <= 0
         }
         for (str in PERMISSIONS) {
-            if (ActivityCompat.checkSelfPermission(applicationContext, str) != 0) {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    str
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 return true
             }
         }
         return false
     }
-
 
     @RequiresApi(Build.VERSION_CODES.R)
     private fun openDocTreeStatus() {
@@ -197,7 +153,6 @@ class WAStatusActivity : AppCompatActivity() {
         statusFileResultLauncher.launch(createOpenDocumentTreeIntent)
     }
 
-
     inner class FragmentsAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int {
             return 2
@@ -206,18 +161,22 @@ class WAStatusActivity : AppCompatActivity() {
         override fun createFragment(position: Int): Fragment {
             when (position) {
                 0 -> {
-                    Log.e("TAG", "createFragment: ${imagesList.size}")
-                    return WAImagesFragment.newInstance(imagesList)
+                    return imgFragment
                 }
                 1 -> {
-                    return WAVideoFragment.newInstance(videosList)
+                    return savedFragment
                 }
             }
-            return WAImagesFragment.newInstance(imagesList)
+            return imgFragment
         }
     }
 
     override fun onBackPressed() {
         finish()
+    }
+
+    override fun onDestroy() {
+//        AdsUtils.destroyBanner()
+        super.onDestroy()
     }
 }

@@ -16,7 +16,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.ashudevs.facebookurlextractor.FacebookExtractor
 import com.ashudevs.facebookurlextractor.FacebookFile
@@ -40,12 +39,6 @@ import com.example.allviddownloader.widgets.BSFragmentBuilder
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.DexterError
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import io.reactivex.observers.DisposableObserver
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -256,8 +249,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             llWallpaper.setOnClickListener {
-                startActivity(Intent(ctx, WallpapersActivity::class.java)
-                    .putExtra("walpType", "wallpapers"))
+                startActivity(
+                    Intent(ctx, WallpapersActivity::class.java)
+                        .putExtra("walpType", "wallpapers")
+                )
+            }
+
+            llStatusMaker.setOnClickListener {
+                startActivity(
+                    Intent(ctx, WallpapersActivity::class.java)
+                        .putExtra("walpType", "status")
+                )
             }
 
             llFunnyNew.setOnClickListener {
@@ -275,10 +277,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 //            llRingtone.setOnClickListener {
 //                startActivity(Intent(ctx, RingtoneActivity::class.java))
 //            }
-
-            llStatusMaker.setOnClickListener {
-
-            }
 
             llCollageMakerNew.setOnClickListener {
                 launchCollage()

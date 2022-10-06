@@ -140,6 +140,7 @@ class InstaDownloaderHomeActivity : BaseActivity() {
                         MyProgressDialog.dismissDialog()
                     }
                 } else {
+                    Log.e("TAG", "onResponseError: ${response.errorBody()}")
                     MyProgressDialog.dismissDialog()
                     Toast.makeText(
                         this@InstaDownloaderHomeActivity,

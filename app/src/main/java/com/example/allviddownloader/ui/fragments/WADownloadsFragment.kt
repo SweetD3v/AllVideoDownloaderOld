@@ -7,21 +7,22 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allviddownloader.R
-import com.example.allviddownloader.adapters.WAMediaAdapter
+import com.example.allviddownloader.adapters.WAMediaSavedAdapter
 import com.example.allviddownloader.databinding.FragmentWaimagesBinding
 import com.example.allviddownloader.models.Media
+import com.example.allviddownloader.utils.RootDirectoryWhatsappShow
 import com.example.allviddownloader.utils.addOuterGridSpacing
-import com.example.allviddownloader.utils.getMediaWA
+import com.example.allviddownloader.utils.getMedia
 
-
-class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
+class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>() {
     override val binding by lazy { FragmentWaimagesBinding.inflate(layoutInflater) }
+
     var imagesList: MutableList<Media> = mutableListOf()
     var decorationAdded: Boolean? = false
 
     companion object {
-        open fun newInstance(): WAImagesFragment {
-            return WAImagesFragment()
+        open fun newInstance(): WADownloadsFragment {
+            return WADownloadsFragment()
         }
     }
 
@@ -29,6 +30,14 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.run {
+
+//            AdsUtils.loadNative(
+//                requireActivity(),
+//                getString(R.string.admob_native_id),
+//                adFrame
+//            )
+
+            rvWAImages.isNestedScrollingEnabled = false
             rvWAImages.layoutManager = GridLayoutManager(ctx, 2)
 //            rvWAImages.addItemDecoration(MarginItemDecoration(dpToPx(8)))
             val albumGridSpacing = resources.getDimension(R.dimen.rv_margin)
@@ -72,18 +81,15 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
     private fun loadImages() {
         binding.apply {
             val imageListNew = mutableListOf<Media>()
-            getMediaWA(ctx) { list ->
+            getMedia(ctx, RootDirectoryWhatsappShow) { list ->
                 for (media in list) {
-//                    if (!media.isVideo and !media.uri.toString().contains(".nomedia", true)
-//                    ) {
                     imageListNew.add(media)
-//                    }
                 }
                 Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
                 Log.e("TAG", "loadImages: ${imagesList.size}")
                 if (imageListNew.size != imagesList.size) {
                     imagesList = imageListNew
-                    val waMediaAdapter = WAMediaAdapter(ctx, imagesList, binding.rlMain)
+                    val waMediaAdapter = WAMediaSavedAdapter(ctx, imagesList)
                     binding.rvWAImages.adapter = waMediaAdapter
                     waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
                 }
