@@ -80,4 +80,43 @@
         <item name="android:windowEnterAnimation">@anim/up_slide</item>
         <item name="android:windowExitAnimation">@anim/bottom_slide</item>
     </style>
+
+    <style name="Icon">
+        <item name="android:shadowColor">@color/black_translucent2</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
+    <style name="PlayButton">
+        <item name="android:src">@drawable/play</item>
+        <item name="android:backgroundTint">#00000000</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:contentDescription">@string/exo_controls_play_description</item>
+    </style>
+
+    <style name="PauseButton">
+        <item name="android:src">@drawable/pauseexo</item>
+        <item name="android:backgroundTint">#00000000</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:contentDescription">@string/exo_controls_pause_description</item>
+    </style>
+
+    <style name="RewindButton">
+        <item name="android:src">@drawable/previos</item>
+        <item name="android:backgroundTint">#00000000</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:contentDescription">@string/exo_controls_rewind_description</item>
+    </style>
+
+    <style name="FastForwardButton">
+        <item name="android:src">@drawable/nextvid</item>
+        <item name="android:backgroundTint">#00000000</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:contentDescription">@string/exo_controls_fastforward_description</item>
+    </style>
 </resources>

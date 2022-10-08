@@ -45,4 +45,10 @@
     <color name="md_red">#F44336</color>
     <color name="photo_placeholder">#DDDDDD</color>
     <color name="black_translucent">#50000000</color>
+    <color name="thumb_background_color">#000000</color>
+    <color name="cardColorAge">#F4F7FF</color>
+    <color name="age_calc_divider">#F49093</color>
+    <color name="grey_800">#424242</color>
+    <color name="colorAccentDark">#D68100</color>
+    <color name="colorAccentLight1">#FFE1B3</color>
 </resources>

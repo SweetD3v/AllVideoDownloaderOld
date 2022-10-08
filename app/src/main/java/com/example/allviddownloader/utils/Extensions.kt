@@ -73,6 +73,36 @@ public var RootDirectoryFBDownlaoder = File(
         .getString(R.string.app_name) + File.separator + "FB Downloader"
 )
 
+public var RootDirectoryCompressedVideo = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Compressed Video"
+)
+
+public var RootDirectoryCartoonified = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Cartoonified"
+)
+
+public var RootDirectorySketchified = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Skecthified"
+)
+
+public var RootDirectoryPhotoFilter = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "PhotoFilter"
+)
+
+public var RootDirectoryPhotoWarp = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "PhotoWarp"
+)
+
 fun File.getProperSize(countHiddenItems: Boolean): Long {
     return if (isDirectory) {
         getDirectorySize(this, countHiddenItems)
@@ -560,3 +590,9 @@ fun RecyclerView.addOuterGridSpacing(spacing: Int) {
         paddingBottom + spacing
     )
 }
+
+fun Any.toBoolean() = toString() == "true"
+
+fun Any.toInt() = Integer.parseInt(toString())
+
+fun Any.toStringSet() = toString().split(",".toRegex()).toSet()

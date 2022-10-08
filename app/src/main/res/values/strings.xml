@@ -30,6 +30,25 @@
     <string name="dialog_discard_text">Your changes will be discarded.\nDo you want to proceed?</string>
     <string name="instagram">Instagram</string>
     <string name="facebook">Facebook</string>
+    <string name="save_and_share"><![CDATA[Save & Share]]></string>
+    <string name="photo_filters">Photo Filters</string>
+    <string name="image_saved_text">Image saved successfully..!</string>
+    <string name="photo_warp">Photo Warp</string>
+    <string name="age_calculator">Age Calculator</string>
+    <string name="your_age">Your Age</string>
+    <string name="age_details_subtitle">Here is your age simplified and converted to many formats with all details!</string>
+    <string name="_75_high">75% (High)</string>
+    <string name="_25_low">25% (Low)</string>
+    <string name="_50_medium">50% (Medium)</string>
+    <string name="video_player">Video Player</string>
+
+    <string name="error_unsupported_video">Media includes video tracks, but none are playable by this device</string>
+    <string name="error_unsupported_audio">Media includes audio tracks, but none are playable by this device</string>
+    <string name="error_no_decoder">This device does not provide a decoder for %1$s</string>
+    <string name="error_no_secure_decoder">This device does not provide a secure decoder for %1$s</string>
+    <string name="error_instantiating_decoder">Unable to instantiate decoder %1$s</string>
+    <string name="error_querying_decoders">Unable to query device decoders</string>
+    <string name="downloads">Downloads</string>
 
     <string-array name="wallp_arr">
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fJjphUzRq64EoCViXztAyJXBE6kzAnIAf6sJKArZzASRmUaJESz2r1qWMzUZxuXHaAR3eJuOGxiQej_3hdFzaBkV_OQDwPhjtBt26EGoqOoy6LkvDNq65oes5QZk5Cv__RagBLcBDkvL-4riMOdFbbK5Dwnms_E628Mh6P1OfhwHn35r8yMR6poY/s1280/photo_2022-09-17_06-02-57.jpg</item>

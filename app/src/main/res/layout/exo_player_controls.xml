@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layoutDirection="ltr"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/controlsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="#B3000000"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/exo_rew"
+                style="@style/RewindButton"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/ripple" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/exo_play"
+                style="@style/PlayButton"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/ripple" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/exo_pause"
+                style="@style/PauseButton"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/ripple" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/exo_ffwd"
+                style="@style/FastForwardButton"
+                android:background="@drawable/ripple" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/exo_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:includeFontPadding="false"
+            android:textColor="#FFBEBEBE"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/controlsLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="18:20" />
+
+        <com.google.android.exoplayer2.ui.DefaultTimeBar
+            android:id="@+id/exo_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:bar_height="2dp"
+            app:buffered_color="#B9E6FF"
+            app:layout_constraintBottom_toBottomOf="@id/exo_position"
+            app:layout_constraintEnd_toStartOf="@id/exo_duration"
+            app:layout_constraintStart_toEndOf="@+id/exo_position"
+            app:layout_constraintTop_toTopOf="@+id/exo_position"
+            app:played_color="@color/colorAccent"
+            app:scrubber_drawable="@drawable/ic_seek_thumb"
+            app:unplayed_color="#ffffff" />
+
+        <TextView
+            android:id="@+id/exo_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="8dp"
+            android:includeFontPadding="false"
+            android:textColor="#FFBEBEBE"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/exo_position"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="25:23" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

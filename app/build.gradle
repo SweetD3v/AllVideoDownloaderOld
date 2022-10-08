@@ -14,6 +14,11 @@ android {
         versionName "1.0"
         multiDexEnabled true
 
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
+
+        ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -48,6 +53,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    lint {
+        abortOnError false
+        disable 'MissingTranslation', 'ExtraTranslation'
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -58,6 +67,9 @@ android {
     buildFeatures {
         viewBinding true
     }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
@@ -66,6 +78,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.multidex:multidex-instrumentation:2.0.0'
+
+    implementation 'com.google.android.exoplayer:exoplayer:2.10.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.10.1'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
@@ -109,6 +124,13 @@ dependencies {
     implementation project(path: ':shapeimageview')
 //    implementation project(path: ':files_commons')
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
+    implementation project(path: ':opencv')
+    implementation project(path: ':image_lib')
+    implementation project(path: ':imagepicker')
+    implementation project(path: ':photofilterssdk')
+    implementation project(path: ':rxffmpeg')
+    implementation project(path: ':files_commons')
+    implementation project(path: ':guide_view')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

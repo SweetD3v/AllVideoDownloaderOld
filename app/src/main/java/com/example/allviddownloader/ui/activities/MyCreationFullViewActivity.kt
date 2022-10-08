@@ -174,28 +174,30 @@ class MyCreationFullViewActivity : AppCompatActivity() {
         var file: File? = RootDirectoryInstaDownlaoder
 //        if (type.equals("photo_cmp")) {
 //            file = RootDirectoryCompressedPhoto
-//        } else if (type.equals("video_cmp")) {
-//            file = RootDirectoryCompressedVideo
-//        } else if (type.equals("photo_editor")) {
+//        } else
+        if (type.equals("video_cmp")) {
+            file = RootDirectoryCompressedVideo
+        } else
+//        if (type.equals("photo_editor")) {
 //            file = RootDirectoryPhotoEditor
 //        } else if (type.equals("video_editor")) {
 //            file = RootDirectoryVideoEditor
 //        } else if (type.equals("collage_maker")) {
 //            file = RootDirectoryCollageMaker
-//        } else if (type.equals("cartoonify")) {
-//            file = RootDirectoryCartoonified
-//        } else if (type.equals("sketchify")) {
-//            file = RootDirectorySketchified
-//        } else if (type.equals("photo_filter")) {
-//            file = RootDirectoryPhotoFilter
-//        } else if (type.equals("photo_warp")) {
-//            file = RootDirectoryPhotoWarp
 //        } else
-        if (type.equals("insta_downloader")) {
-            file = RootDirectoryInstaDownlaoder
-        } else if (type.equals("fb_downloader")) {
-            file = RootDirectoryFBDownlaoder
-        }
+            if (type.equals("cartoonify")) {
+                file = RootDirectoryCartoonified
+            } else if (type.equals("sketchify")) {
+                file = RootDirectorySketchified
+            } else if (type.equals("photo_filter")) {
+                file = RootDirectoryPhotoFilter
+            } else if (type.equals("photo_warp")) {
+                file = RootDirectoryPhotoWarp
+            } else if (type.equals("insta_downloader")) {
+                file = RootDirectoryInstaDownlaoder
+            } else if (type.equals("fb_downloader")) {
+                file = RootDirectoryFBDownlaoder
+            }
 
         Log.e("TAG", "loadMedia: ${file?.absolutePath}")
 

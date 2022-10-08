@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.allviddownloader.R
 import java.io.*
+import java.text.DecimalFormat
 import java.util.concurrent.Executors
 
 class FileUtilsss {
@@ -104,6 +105,46 @@ class FileUtilsss {
                 e.printStackTrace()
             }
             return null
+        }
+
+        @Throws(IOException::class)
+        fun saveBitmapAsFileTools(
+            context: Context,
+            bitmap: Bitmap?,
+            fileName: String,
+            dirName: String,
+            pathExported: (String) -> Unit
+        ): File {
+            val executor =
+                Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+            val handler = Handler(Looper.getMainLooper())
+            val fileOutputStream: FileOutputStream
+            val file = File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+                        + File.separator + context.getString(R.string.app_name)
+            )
+            if (!file.exists()) {
+                file.mkdirs()
+            }
+            if (!File(file, dirName).exists())
+                File(file, dirName).mkdirs()
+            val file1 =
+                File(file.absolutePath + File.separator + dirName + File.separator + fileName + ".jpg")
+            file1.createNewFile()
+            fileOutputStream = FileOutputStream(file1)
+            executor.execute {
+                bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+                handler.post {
+                    try {
+                        fileOutputStream.flush()
+                        fileOutputStream.close()
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                    pathExported(file1.absolutePath)
+                }
+            }
+            return file1
         }
 
         @Throws(IOException::class)
@@ -309,6 +350,56 @@ class FileUtilsss {
                     }
                 }
             }
+        }
+
+        @Throws(IOException::class)
+        fun saveBitmapAsFileA10(
+            context: Context,
+            bitmap: Bitmap?,
+            fileName: String,
+            dirName: String,
+            pathExported: (String) -> Unit
+        ): File {
+            val fileOutputStream: FileOutputStream
+            val file = File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+                        + File.separator + context.getString(R.string.app_name)
+            )
+            if (!file.exists()) {
+                file.mkdirs()
+            }
+            if (!File(file, dirName).exists())
+                File(file, dirName).mkdirs()
+            val file1 =
+                File(file.absolutePath + File.separator + dirName + File.separator + fileName + ".jpg")
+            file1.createNewFile()
+            fileOutputStream = FileOutputStream(file1)
+            bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+            try {
+                fileOutputStream.flush()
+                fileOutputStream.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            pathExported(file1.absolutePath)
+            return file1
+        }
+
+        fun getFileLength(size: Long?): String {
+            var lenStr = ""
+            size?.let { length ->
+                val formater = DecimalFormat("#0.##")
+                lenStr = if (length < 1024.0) {
+                    formater.format(length) + " Byte"
+                } else if (length < 1024.0 * 1024.0) {
+                    formater.format((length / 1024.0).toDouble()) + " KB"
+                } else if (length < 1024.0 * 1024.0 * 1024.0) {
+                    formater.format(length / (1024.0 * 1024.0)) + " MB"
+                } else {
+                    formater.format(length / (1024.0 * 1024.0 * 1024.0)) + " GB"
+                }
+            }
+            return lenStr
         }
     }
 }

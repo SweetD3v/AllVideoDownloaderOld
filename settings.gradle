@@ -1,26 +1,11 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        jcenter()
-        mavenCentral()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        jcenter()
-        mavenCentral()
-        maven { url 'https://dl.bintray.com/sayyam/maven' }
-        maven { url "https://jitpack.io" }
-        maven {
-            url = uri("https://plugins.gradle.org/m2/")
-        }
-    }
-}
 rootProject.name = "AllVideoDownloader"
 include ':app'
 include ':facebookurlextractor'
 include ':shapeimageview'
 include ':files_commons'
+include ':image_lib'
+include ':opencv'
+include ':imagepicker'
+include ':photofilterssdk'
+include ':rxffmpeg'
+include ':guide_view'

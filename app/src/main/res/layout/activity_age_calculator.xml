@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tools.age_calc.AgeCalculatorActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bannerContainer">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@id/llCategory"
+                android:background="@drawable/bg_rounded_right_ripple"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgBack"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:background="?selectableItemBackground"
+                    android:padding="12dp"
+                    app:srcCompat="@drawable/ic_back" />
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:paddingVertical="10dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="0dp"
+                    android:text="My Creations"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgDownloads"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circle_bg_black"
+                    android:backgroundTint="@color/primary"
+                    android:elevation="4dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_downloads1"
+                    app:tint="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llEditText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/karla_semibold"
+                android:paddingHorizontal="16dp"
+                android:text="Date of Birth"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="#FBFCFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="16dp">
+
+                    <EditText
+                        android:id="@+id/edtDay1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_bg_white_8"
+                        android:backgroundTint="#D7EBFB"
+                        android:gravity="center"
+                        android:hint="DD"
+                        android:inputType="numberSigned"
+                        android:maxLength="2"
+                        android:minEms="2"
+                        android:padding="8dp"
+                        android:textColorHint="#688FB1"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtMonth1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_bg_white_8"
+                        android:backgroundTint="#D7EBFB"
+                        android:gravity="center"
+                        android:hint="MM"
+                        android:inputType="numberSigned"
+                        android:maxLength="2"
+                        android:minEms="2"
+                        android:padding="8dp"
+                        android:textColorHint="#688FB1" />
+
+                    <EditText
+                        android:id="@+id/edtYear1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_bg_white_8"
+                        android:backgroundTint="#D7EBFB"
+                        android:gravity="center"
+                        android:hint="YYYY"
+                        android:inputType="numberSigned"
+                        android:maxLength="4"
+                        android:minEms="4"
+                        android:padding="8dp"
+                        android:textColorHint="#688FB1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgCalendar1"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/rounded_bg_white_8"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_calendar"
+                            app:tint="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llEditText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llEditText1"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/karla_semibold"
+                android:paddingHorizontal="16dp"
+                android:text="Today's Date"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="#FBFCFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="16dp">
+
+                    <EditText
+                        android:id="@+id/edtDay2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_bg_white_8"
+                        android:backgroundTint="#D7EBFB"
+                        android:gravity="center"
+                        android:hint="DD"
+                        android:inputType="numberSigned"
+                        android:maxLength="2"
+                        android:minEms="2"
+                        android:padding="8dp"
+                        android:textColorHint="#688FB1"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtMonth2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_bg_white_8"
+                        android:backgroundTint="#D7EBFB"
+                        android:gravity="center"
+                        android:hint="MM"
+                        android:inputType="numberSigned"
+                        android:maxLength="2"
+                        android:minEms="2"
+                        android:padding="8dp"
+                        android:textColorHint="#688FB1" />
+
+                    <EditText
+                        android:id="@+id/edtYear2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_bg_white_8"
+                        android:backgroundTint="#D7EBFB"
+                        android:gravity="center"
+                        android:hint="YYYY"
+                        android:inputType="numberSigned"
+                        android:maxLength="4"
+                        android:minEms="4"
+                        android:padding="8dp"
+                        android:textColorHint="#688FB1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgCalendar2"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/rounded_bg_white_8"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_calendar"
+                            app:tint="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clCalculate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llEditText2"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:id="@+id/btnReset"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/rounded_bg_white_8"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="4dp"
+                android:fontFamily="@font/karla_semibold"
+                android:gravity="center"
+                android:paddingHorizontal="36dp"
+                android:paddingVertical="16dp"
+                android:text="Reset"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnCalculate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btnCalculate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_bg_white_8"
+                android:backgroundTint="@color/colorPrimary"
+                android:elevation="4dp"
+                android:fontFamily="@font/karla_semibold"
+                android:gravity="center"
+                android:paddingHorizontal="36dp"
+                android:paddingVertical="16dp"
+                android:text="Calculate"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnReset"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/adCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/clCalculate"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true">
+
+            <FrameLayout
+                android:id="@+id/adFrame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/bannerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="2dp" />
+</RelativeLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_bg_white_8"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtTitleCompress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/karla_semibold"
+        android:text="Compressing..."
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txtProgressValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/karla_semibold"
+        android:text="0%"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressCompress"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@id/txtProgressValue"
+        android:layout_marginTop="16dp"
+        app:indicatorColor="@color/colorAccentDark"
+        app:trackColor="@color/colorAccentLight1"
+        app:trackCornerRadius="6dp"
+        app:trackThickness="8dp" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="?borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressCompress"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/md_red"
+        android:textSize="16sp" />
+</RelativeLayout>

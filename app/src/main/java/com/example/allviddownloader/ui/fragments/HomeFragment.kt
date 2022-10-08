@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
@@ -25,11 +26,20 @@ import com.downloader.PRDownloader
 import com.example.allviddownloader.R
 import com.example.allviddownloader.adapters.StoriesListAdapter
 import com.example.allviddownloader.collage_maker.ui.activities.CollageViewActivity
+import com.example.allviddownloader.collage_maker.utils.SystemUtils
 import com.example.allviddownloader.databinding.BottomsheetFbBinding
 import com.example.allviddownloader.databinding.BottomsheetInstaBinding
 import com.example.allviddownloader.databinding.FragmentHomeBinding
 import com.example.allviddownloader.databinding.ViewDialogBinding
 import com.example.allviddownloader.models.*
+import com.example.allviddownloader.tools.age_calc.AgeCalculatorActivity
+import com.example.allviddownloader.tools.cartoonify.CartoonifyHomeActivity
+import com.example.allviddownloader.tools.cartoonify.SketchifyHomeActivity
+import com.example.allviddownloader.tools.compress.CompressVideoHomeActivity
+import com.example.allviddownloader.tools.photo_filters.PhotoFilterHomeActivity
+import com.example.allviddownloader.tools.photo_filters.deform.PhotoWarpHomeActivity
+import com.example.allviddownloader.tools.video_player.DemoUtil
+import com.example.allviddownloader.tools.video_player.VideoPlayerActivity
 import com.example.allviddownloader.ui.activities.*
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.SMType.*
@@ -39,6 +49,7 @@ import com.example.allviddownloader.widgets.BSFragmentBuilder
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import gun0912.tedimagepicker.builder.TedImagePicker.Companion.with
 import io.reactivex.observers.DisposableObserver
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -229,19 +240,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 //                    .title("Facebook")
 //                    .apply {
 //                        layout = fbSheetBinding.root
-//                    }
+//                    }s
 //
 //
 //                fbSheetBuilder?.show()
 //                initFBSheet(fbSheetBinding)
                 startActivity(Intent(ctx, FBDownloaderHomeActivity::class.java))
-            }
-
-            llFacebookWatch.setOnClickListener {
-                startActivity(
-                    Intent(ctx, FBMainActivity::class.java)
-                        .putExtra("fbtype", 0)
-                )
             }
 
             llWhatsappSide.setOnClickListener {
@@ -262,28 +266,60 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 )
             }
 
-            llFunnyNew.setOnClickListener {
+            llFunny.setOnClickListener {
                 startActivity(Intent(ctx, FunnyVideosActivity::class.java))
+            }
+
+            llAgeCalc.setOnClickListener {
+                startActivity(Intent(ctx, AgeCalculatorActivity::class.java))
+            }
+
+            llVideoCompress.setOnClickListener {
+                startActivity(Intent(ctx, CompressVideoHomeActivity::class.java))
             }
 
             llCleaner.setOnClickListener {
                 startActivity(Intent(ctx, CleanerActivity::class.java))
             }
 
-//            llVimeo.setOnClickListener {
-//                startActivity(Intent(ctx, VimeoActivity::class.java))
-//            }
-//
-//            llRingtone.setOnClickListener {
-//                startActivity(Intent(ctx, RingtoneActivity::class.java))
-//            }
-
-            llCollageMakerNew.setOnClickListener {
+            llCollageMaker.setOnClickListener {
                 launchCollage()
             }
 
-            llFunnyNew.setOnClickListener {
-                startActivity(Intent(ctx, FunnyVideosActivity::class.java))
+            llCartoonify.setOnClickListener {
+                startActivity(Intent(ctx, CartoonifyHomeActivity::class.java))
+            }
+
+            llSketchify.setOnClickListener {
+                startActivity(Intent(ctx, SketchifyHomeActivity::class.java))
+            }
+
+            llPhotoFilter.setOnClickListener {
+                startActivity(Intent(ctx, PhotoFilterHomeActivity::class.java))
+            }
+
+            llPhotoWarp.setOnClickListener {
+                startActivity(Intent(ctx, PhotoWarpHomeActivity::class.java))
+            }
+
+            llDownloads.setOnClickListener { startActivity(Intent(ctx, AllDownloadsActivity::class.java)) }
+
+            llVideoPlayer.setOnClickListener {
+                with(ctx)
+                    .dropDownAlbum()
+                    .video()
+                    .showVideoDuration(true)
+                    .imageCountTextFormat("%s videos")
+                    .start { uri: Uri? ->
+                        val videoPath: String =
+                            SystemUtils.getRealPathFromUri(context, uri)
+                        val intent =
+                            Intent(context, VideoPlayerActivity::class.java)
+                        intent.putExtra("selectedvideo", videoPath)
+                        intent.putExtra(DemoUtil.VID_ORIENTATION, DeviceUtils.rotateScreen(context, uri))
+                        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                        startActivity(intent)
+                    }
             }
 
             btnDownload.setOnClickListener {

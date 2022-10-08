@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#4AB3FF</color>
+    <color name="colorPrimaryDark">#224E6F</color>
+    <color name="colorAccent">#52a5ff</color>
+    <color name="white">#ffffffff</color>
+    <color name="colorAccentDarkTheme">#ffb701</color>
+    <color name="textColorPrimary">#000000</color>
+    <color name="textColorPrimaryInverse">#ffffff</color>
+    <color name="theme_color">#ffffff</color>
+
+    <color name="colorSelectableItemWhite">#77ffffff</color>
+    <color name="yellowPlay">#FFE063</color>
+
+    <color name="pink_transparent">#44700d39</color>
+    <color name="green_transparent">#44375a1f</color>
+    <color name="blue_transparent">#44293576</color>
+    <color name="red_transparent">#447f3907</color>
+    <color name="purple_transparent">#44432677</color>
+
+    <color name="black_translucent">#66000000</color>
+    <color name="black_translucent_dark">#B3000000</color>
+    <color name="black">#000000</color>
+    <color name="white_translucent">#c8ffffff</color>
+    <color name="ripple_color">#91C6FF</color>
+    <color name="text_second">#ff888893</color>
+    <color name="gnt_ad_green">#ff3a6728</color>
+
+</resources>

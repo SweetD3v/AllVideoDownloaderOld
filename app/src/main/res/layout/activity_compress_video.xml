@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bannerContainer">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@id/llCategory"
+                android:background="@drawable/bg_rounded_right_ripple"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgBack"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:background="?selectableItemBackground"
+                    android:padding="12dp"
+                    app:srcCompat="@drawable/ic_back" />
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:paddingVertical="10dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="0dp"
+                    android:text="Compress Video"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgDownloads"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/circle_bg_black"
+                    android:backgroundTint="@color/primary"
+                    android:elevation="4dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_downloads1"
+                    app:tint="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/llTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp"
+                        app:cardUseCompatPadding="true">
+
+                        <VideoView
+                            android:id="@+id/videoView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rlBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/llTop"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtVideoSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/karla_semibold"
+                        android:gravity="center_horizontal"
+                        android:text="Video size: 100 KB"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.slider.Slider
+                            android:id="@+id/sliderCompress"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:stepSize="25"
+                            android:value="75"
+                            android:valueFrom="0"
+                            android:valueTo="100" />
+
+                        <TextView
+                            android:id="@+id/txtCompressPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:paddingStart="8dp"
+                            android:text="@string/_75_high"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llPresets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginVertical="16dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <FrameLayout
+                            android:id="@+id/btnPresetHigh"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ripple_category_stroke">
+
+                            <TextView
+                                android:id="@+id/txtPresetHigh"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/karla_semibold"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:text="High"
+                                android:textAllCaps="false"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="16sp" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:id="@+id/btnPresetMed"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ripple_category_stroke">
+
+                            <TextView
+                                android:id="@+id/txtPresetMed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/karla_semibold"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:text="Medium"
+                                android:textAllCaps="false"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="16sp" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:id="@+id/btnPresetLow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ripple_category_stroke">
+
+                            <TextView
+                                android:id="@+id/txtPresetLow"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/karla_semibold"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:text="Low"
+                                android:textAllCaps="false"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="16sp" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnCompress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginHorizontal="8dp"
+                        android:fontFamily="@font/karla_semibold"
+                        android:paddingVertical="8dp"
+                        android:text="Compress"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/adCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rlBottom"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:cardUseCompatPadding="true">
+
+                    <FrameLayout
+                        android:id="@+id/adFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/bannerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="2dp" />
+</RelativeLayout>

@@ -33,6 +33,71 @@
         tools:targetApi="30">
 
         <activity
+            android:name=".tools.video_player.VideoPlayerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.activities.AllDownloadsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.compress.CompressSaveVideoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.compress.CompressVideoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.compress.CompressVideoHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.age_calc.AgeCalcDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.age_calc.AgeCalculatorActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.photo_filters.deform.PhotoWarpActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.photo_filters.deform.PhotoWarpHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.photo_filters.PhotoFilterHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.photo_filters.PhotoFiltersSaveActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.photo_filters.PhotoFilterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.cartoonify.CartoonActivity"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.cartoonify.SketchifyActivity"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.cartoonify.CartoonifyHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.cartoonify.SketchifyHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.cartoonify.SaveShareCartoonActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activities.FullViewWASavedActivity"
             android:exported="false" />
         <activity

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:id="@+id/exo_player_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:controller_layout_id="@layout/exo_player_controls">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/app_video_center_bg"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/app_video_volume_box"
+                    android:layout_width="80.0dip"
+                    android:layout_height="80.0dip"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/app_video_volume_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/sound_on" />
+
+                    <TextView
+                        android:id="@+id/app_video_volume"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50%"
+                        android:textColor="@android:color/white"
+                        android:textSize="18.0dip" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/app_video_brightness_box"
+                    android:layout_width="80.0dip"
+                    android:layout_height="80.0dip"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/brightness" />
+
+                    <TextView
+                        android:id="@+id/app_video_brightness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50%"
+                        android:textColor="@android:color/white"
+                        android:textSize="16.0dip" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/app_video_fastForward_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8.0dip"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/app_video_fastForward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8.0dip"
+                        android:text="50%"
+                        android:textColor="@android:color/white"
+                        android:textSize="16.0dip" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_player"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:indeterminate="false"
+                        android:progressDrawable="@drawable/player_progessbar" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="8.0dip">
+
+                        <TextView
+                            android:id="@+id/app_video_fastForward_target"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="48dp"
+                            android:layout_marginRight="48dp"
+                            android:text="50%"
+                            android:textColor="@android:color/white"
+                            android:textSize="16.0dip" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/app_video_ratio_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8.0dip"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fit to screeen"
+                        android:textColor="@android:color/white"
+                        android:textSize="20.0dip" />
+                </LinearLayout>
+            </FrameLayout>
+        </RelativeLayout>
+    </com.google.android.exoplayer2.ui.SimpleExoPlayerView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/footer_view"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="bottom">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/exo_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ripple"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/lock" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/exo_aspect"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ripple"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_aspect" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/buffer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/header_set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_bg_video"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|start"
+            android:layout_marginStart="10.0dip"
+            android:background="@drawable/ripple"
+            android:padding="8dp"
+            app:srcCompat="@drawable/rotate" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btnEquilizer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ripple"
+                android:padding="8dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/equalizer"
+                app:tint="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btnVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/video_white" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btnAudio"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/audiod" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>
