@@ -21,6 +21,7 @@ import com.example.allviddownloader.AllVidApp
 import com.example.allviddownloader.R
 import com.example.allviddownloader.models.Media
 import java.io.File
+import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.OutputStream
 import java.text.DecimalFormat
@@ -390,6 +391,77 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
     }.execute("%${originalPath.name}%", false)
 }
 
+fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> Unit) {
+    var mediaListFinal: MutableList<Media>
+    object : AsyncTaskRunner<String, MutableList<Media>>(ctx) {
+        override fun doInBackground(fileName: String?): MutableList<Media> {
+            if (originalPath.exists()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    val mediaList = mutableListOf<Media>()
+                    val selection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        MediaStore.MediaColumns.RELATIVE_PATH + " LIKE ? "
+                    } else {
+                        MediaStore.Images.Media.DATA + " LIKE ? "
+                    }
+                    val selectionArgs = arrayOf("%${ctx.getString(R.string.app_name)}%")
+                    val contentResolver = ctx.applicationContext.contentResolver
+                    contentResolver.query(
+                        MediaStore.Files.getContentUri("external"),
+                        null,
+                        selection,
+                        selectionArgs,
+                        "${MediaStore.Video.Media.DATE_TAKEN} DESC"
+                    )?.use { cursor ->
+                        while (cursor.moveToNext()) {
+                            val imageCol =
+                                cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                            val id = cursor.getLong(cursor.getColumnIndexOrThrow(BaseColumns._ID))
+                            val path =
+                                cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
+                            val date =
+                                cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED))
+                            val pathId = cursor.getString(imageCol)
+                            val uri = Uri.parse(pathId)
+                            var contentUri: Uri
+                            contentUri = if (uri.toString().endsWith(".mp4")) {
+                                ContentUris.withAppendedId(
+                                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                                    id
+                                )
+                            } else {
+                                ContentUris.withAppendedId(
+                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                                    id
+                                )
+                            }
+                            val media =
+                                Media(contentUri, path, uri.toString().endsWith(".mp4"), date)
+
+                            mediaList.add(media)
+                        }
+                    }
+
+                    mediaList.sortByDescending { it.date }
+                    return mediaList
+                } else {
+                    return getMediaQMinus(ctx, dirName).reversed().toMutableList()
+                }
+            }
+            return mutableListOf()
+        }
+
+        override fun onPostExecute(result: MutableList<Media>?) {
+            super.onPostExecute(result)
+
+            result?.let { list ->
+                mediaListFinal = list
+                Log.e("TAG", "doInBackground: ${mediaListFinal}")
+                block(mediaListFinal)
+            }
+        }
+    }.execute("%${dirName.name}%", false)
+}
+
 fun getMediaQMinus(ctx: Context): MutableList<Media> {
     val items = mutableListOf<Media>()
 
@@ -596,3 +668,22 @@ fun Any.toBoolean() = toString() == "true"
 fun Any.toInt() = Integer.parseInt(toString())
 
 fun Any.toStringSet() = toString().split(",".toRegex()).toSet()
+
+fun shareToInsta(
+    ctx: Context,
+    uriList: ArrayList<Uri>
+) {
+    val shareIntent = Intent()
+    shareIntent.action = Intent.ACTION_SEND
+    shareIntent.setPackage("com.instagram.android")
+    try {
+        shareIntent.putExtra(
+            Intent.EXTRA_STREAM,
+            uriList[0]
+        )
+    } catch (e: FileNotFoundException) {
+        e.printStackTrace()
+    }
+    shareIntent.type = "image/jpeg"
+    ctx.startActivity(shareIntent)
+}

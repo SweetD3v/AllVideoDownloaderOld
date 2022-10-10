@@ -36,11 +36,13 @@ import com.example.allviddownloader.tools.age_calc.AgeCalculatorActivity
 import com.example.allviddownloader.tools.cartoonify.CartoonifyHomeActivity
 import com.example.allviddownloader.tools.cartoonify.SketchifyHomeActivity
 import com.example.allviddownloader.tools.compress.CompressVideoHomeActivity
+import com.example.allviddownloader.tools.insta_grid.InstaGridActivity
 import com.example.allviddownloader.tools.photo_filters.PhotoFilterHomeActivity
 import com.example.allviddownloader.tools.photo_filters.deform.PhotoWarpHomeActivity
 import com.example.allviddownloader.tools.video_player.DemoUtil
 import com.example.allviddownloader.tools.video_player.VideoPlayerActivity
 import com.example.allviddownloader.ui.activities.*
+import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.SMType.*
 import com.example.allviddownloader.utils.apis.CommonClassForAPI
@@ -274,6 +276,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 startActivity(Intent(ctx, AgeCalculatorActivity::class.java))
             }
 
+            llInstaGrid.setOnClickListener {
+                startActivity(Intent(ctx, InstaGridActivity::class.java))
+            }
+
             llVideoCompress.setOnClickListener {
                 startActivity(Intent(ctx, CompressVideoHomeActivity::class.java))
             }
@@ -302,7 +308,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 startActivity(Intent(ctx, PhotoWarpHomeActivity::class.java))
             }
 
-            llDownloads.setOnClickListener { startActivity(Intent(ctx, AllDownloadsActivity::class.java)) }
+            llDownloads.setOnClickListener {
+                startActivity(
+                    Intent(
+                        ctx,
+                        MyCreationToolsActivity::class.java
+                    )
+                )
+            }
 
             llVideoPlayer.setOnClickListener {
                 with(ctx)
@@ -316,7 +329,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         val intent =
                             Intent(context, VideoPlayerActivity::class.java)
                         intent.putExtra("selectedvideo", videoPath)
-                        intent.putExtra(DemoUtil.VID_ORIENTATION, DeviceUtils.rotateScreen(context, uri))
+                        intent.putExtra(
+                            DemoUtil.VID_ORIENTATION,
+                            DeviceUtils.rotateScreen(context, uri)
+                        )
                         intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
                         startActivity(intent)
                     }

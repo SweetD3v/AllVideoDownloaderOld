@@ -1,7 +1,6 @@
 package com.example.allviddownloader.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -109,8 +108,7 @@ class InstaDownloaderHomeActivity : BaseActivity() {
                         if (model.getPostType() == POST_TYPE.PHOTO) {
                             BasicImageDownloader(this@InstaDownloaderHomeActivity)
                                 .saveImageToExternalInsta(
-                                    instaModel.media,
-                                    RootDirectoryInstaDownlaoder
+                                    instaModel.media
                                 ) {
                                     Toast.makeText(
                                         this@InstaDownloaderHomeActivity,
@@ -120,9 +118,8 @@ class InstaDownloaderHomeActivity : BaseActivity() {
                                 }
                         } else {
                             BasicImageDownloader(this@InstaDownloaderHomeActivity)
-                                .saveVideoToExternal(
-                                    instaModel.media,
-                                    RootDirectoryInstaDownlaoder
+                                .saveVideoToExternalInsta(
+                                    instaModel.media
                                 ) {
                                     Toast.makeText(
                                         this@InstaDownloaderHomeActivity,

@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/photofilterssdk" />
             <option value="$PROJECT_DIR$/rxffmpeg" />
             <option value="$PROJECT_DIR$/shapeimageview" />
+            <option value="$PROJECT_DIR$/ucrop" />
           </set>
         </option>
       </GradleProjectSettings>

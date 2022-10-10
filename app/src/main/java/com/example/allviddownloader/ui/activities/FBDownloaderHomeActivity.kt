@@ -113,9 +113,8 @@ class FBDownloaderHomeActivity : BaseActivity() {
                         model.fbModelDetails?.let { fbModelDetails ->
                             fbModelDetails.videoHD?.let { urlHD ->
                                 BasicImageDownloader(this@FBDownloaderHomeActivity)
-                                    .saveVideoToExternal(
-                                        urlHD,
-                                        RootDirectoryFBDownlaoder
+                                    .saveVideoToExternalFB(
+                                        urlHD
                                     ) {
                                         Toast.makeText(
                                             this@FBDownloaderHomeActivity,

@@ -113,12 +113,14 @@ class MyCreationToolsActivity : BaseActivity() {
                 file = RootDirectoryInstaDownlaoder
             } else if (type.equals("fb_downloader")) {
                 file = RootDirectoryFBDownlaoder
+            } else if (type.equals("all")) {
+                file = originalPath
             }
 
         Log.e("TAG", "loadMedia: ${file?.exists()}")
 
         file?.let {
-            getMedia(this, it) { mediaList ->
+            getMediaByName(this, it) { mediaList ->
                 for (media in mediaList) {
                     Log.e("TAG", "loadMedia: ${media.path}")
                 }

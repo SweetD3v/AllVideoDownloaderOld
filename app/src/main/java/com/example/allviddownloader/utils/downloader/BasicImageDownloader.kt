@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaScannerConnection
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
@@ -87,7 +88,7 @@ class BasicImageDownloader(var ctx: Context) {
     }
 
     @Throws(IOException::class)
-    fun saveImageToExternalInsta(imgUrl: String, dirName: File, action: () -> Unit) {
+    fun saveImageToExternalInsta(imgUrl: String, action: () -> Unit) {
         if (!NetworkState.isOnline()) {
             Toast.makeText(
                 AllVidApp.getInstance(),
@@ -96,6 +97,7 @@ class BasicImageDownloader(var ctx: Context) {
             ).show()
             return
         }
+        val dirName = AllVidApp.getInstance().getExternalFilesDir("insta")!!
         if (!dirName.exists())
             dirName.mkdirs()
         object : AsyncTaskRunner<String, Bitmap>(ctx) {
@@ -116,31 +118,8 @@ class BasicImageDownloader(var ctx: Context) {
                 if (!imageFile.exists())
                     imageFile.createNewFile()
 
-                val fileLength: Int = connection.contentLength
-                val data = ByteArray(2048)
-                var total: Long = 0
-                var count: Int
-                var increment = fileLength / 100
-
-                val input = connection.getInputStream()
-
                 try {
                     image.compress(Bitmap.CompressFormat.PNG, 100, out) // Compress Image
-
-//                    val outStream = ByteArrayOutputStream()
-//                    var count = -1
-//                    var progress = 0
-//
-//                    while (input.read(data, 0, increment).also { count = it } != -1) {
-//                        progress += count
-////                        publishProgress((progress * 100 / fileLength))
-//                        outStream.write(data, 0, count)
-//                    }
-//                    val bitmap = BitmapFactory.decodeByteArray(
-//                        outStream.toByteArray(), 0, data.size
-//                    )
-//                    input.close()
-//                    outStream.close()
                     return image
                 } catch (e: java.lang.Exception) {
                     throw IOException()
@@ -154,7 +133,7 @@ class BasicImageDownloader(var ctx: Context) {
                     saveBitmapImage(
                         ctx, bmp,
                         displayName,
-                        dirName.name
+                        RootDirectoryInstaDownlaoder.name
                     ) {
                         Toast.makeText(ctx, "Photo saved!", Toast.LENGTH_SHORT).show()
                         MediaScannerConnection.scanFile(
@@ -366,7 +345,7 @@ class BasicImageDownloader(var ctx: Context) {
                 alertDialog = builder.create()
                 alertDialog?.show()
 
-                pdBinding.txtTitleCompress.text  =  "Downloading..."
+                pdBinding.txtTitleCompress.text = "Downloading..."
                 pdBinding.btnCancel.setOnClickListener {
                     cancel(true)
                     toastShort(ctx, "Download cancelled.")
@@ -444,6 +423,242 @@ class BasicImageDownloader(var ctx: Context) {
                     ) { path1, uri ->
                         Log.i("ExternalStorage", "Scanned $path1:")
                         Log.i("ExternalStorage", "-> uri=$uri")
+                    }
+                }
+                action()
+            }
+        }.execute(imgUrl)
+    }
+
+    @Throws(IOException::class)
+    fun saveVideoToExternalInsta(imgUrl: String, action: () -> Unit) {
+        val dirName = AllVidApp.getInstance().getExternalFilesDir("insta")!!
+        if (!dirName.exists())
+            dirName.mkdirs()
+        val imgName = "VID_${System.currentTimeMillis()}"
+        val imageFile = File(dirName, "$imgName.mp4") // Imagename.png
+        if (!imageFile.exists())
+            imageFile.createNewFile()
+
+        pdBinding = ProgressDialogBinding.inflate(LayoutInflater.from(ctx))
+        object : AsyncTaskV2<String?, Int, String>() {
+            override fun onPreExecute() {
+                super.onPreExecute()
+
+                val builder = AlertDialog.Builder(ctx, R.style.MyProgressDialog)
+                    .setCancelable(false)
+                    .setView(pdBinding.root)
+
+                alertDialog = builder.create()
+                alertDialog?.show()
+
+                pdBinding.txtTitleCompress.text = "Downloading..."
+                pdBinding.btnCancel.setOnClickListener {
+                    cancel(true)
+                    toastShort(ctx, "Download cancelled.")
+                    alertDialog?.dismiss()
+                    imageFile.delete()
+                }
+            }
+
+            override fun onProgressUpdate(progress: Int) {
+                super.onProgressUpdate(progress)
+
+                Log.e("TAG", "onProgressUpdate: $progress")
+
+                pdBinding.progressBar.progress = progress
+                pdBinding.txtPerc.text = "$progress %"
+                pdBinding.txtPerc
+
+                if (progress == 100)
+                    onPostExecute(imageFile.absolutePath)
+            }
+
+            override fun doInBackground(params: String?): String? {
+                var count = 0
+
+                try {
+                    val url = URL(params)
+                    val connection: URLConnection = url.openConnection()
+                    connection.connect()
+
+                    // this will be useful so that you can show a tipical 0-100%
+                    // progress bar
+                    val lenghtOfFile: Int = connection.contentLength
+
+                    // download the file
+                    val input: InputStream = BufferedInputStream(
+                        url.openStream(),
+                        8192
+                    )
+
+                    // Output stream
+                    val output: OutputStream = FileOutputStream(imageFile)
+                    val data = ByteArray(1024)
+                    var total: Long = 0
+                    while ((input.read(data).also { count = it }) != -1) {
+                        total += count.toLong()
+                        // publishing the progress....
+                        // After this onProgressUpdate will be called
+                        publishProgress(((total * 100) / lenghtOfFile).toInt())
+
+                        // writing data to file
+                        output.write(data, 0, count)
+                    }
+
+                    // flushing output
+                    output.flush()
+
+                    // closing streams
+                    output.close()
+                    input.close()
+                } catch (e: Exception) {
+                    Log.e("Error: ", (e.message)!!)
+                }
+
+                return imageFile.absolutePath
+            }
+
+            override fun onPostExecute(result: String?) {
+                super.onPostExecute(result)
+                alertDialog?.dismiss()
+                result?.let { path ->
+                    Log.e("TAG", "onPostExecute: $path")
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        FileUtilsss.saveVideoAPI30(
+                            ctx, imageFile, imageFile.name,
+                            RootDirectoryInstaDownlaoder
+                        ) {
+                            Log.e("TAG", "onPostExecuteFinal: $it")
+                            MediaScannerConnection.scanFile(
+                                ctx,
+                                arrayOf(
+                                    it
+                                ),
+                                null
+                            ) { path1, uri ->
+                                Log.i("ExternalStorage", "Scanned $path1:")
+                                Log.i("ExternalStorage", "-> uri=$uri")
+                            }
+                        }
+                    }
+                }
+                action()
+            }
+        }.execute(imgUrl)
+    }
+
+    @Throws(IOException::class)
+    fun saveVideoToExternalFB(imgUrl: String, action: () -> Unit) {
+        val dirName = AllVidApp.getInstance().getExternalFilesDir("fb")!!
+        if (!dirName.exists())
+            dirName.mkdirs()
+        val imgName = "VID_${System.currentTimeMillis()}"
+        val imageFile = File(dirName, "$imgName.mp4") // Imagename.png
+        if (!imageFile.exists())
+            imageFile.createNewFile()
+
+        pdBinding = ProgressDialogBinding.inflate(LayoutInflater.from(ctx))
+        object : AsyncTaskV2<String?, Int, String>() {
+            override fun onPreExecute() {
+                super.onPreExecute()
+
+                val builder = AlertDialog.Builder(ctx, R.style.MyProgressDialog)
+                    .setCancelable(false)
+                    .setView(pdBinding.root)
+
+                alertDialog = builder.create()
+                alertDialog?.show()
+
+                pdBinding.txtTitleCompress.text = "Downloading..."
+                pdBinding.btnCancel.setOnClickListener {
+                    cancel(true)
+                    toastShort(ctx, "Download cancelled.")
+                    alertDialog?.dismiss()
+                    imageFile.delete()
+                }
+            }
+
+            override fun onProgressUpdate(progress: Int) {
+                super.onProgressUpdate(progress)
+
+                Log.e("TAG", "onProgressUpdate: $progress")
+
+                pdBinding.progressBar.progress = progress
+                pdBinding.txtPerc.text = "$progress %"
+                pdBinding.txtPerc
+
+                if (progress == 100)
+                    onPostExecute(imageFile.absolutePath)
+            }
+
+            override fun doInBackground(params: String?): String? {
+                var count = 0
+
+                try {
+                    val url = URL(params)
+                    val connection: URLConnection = url.openConnection()
+                    connection.connect()
+
+                    // this will be useful so that you can show a tipical 0-100%
+                    // progress bar
+                    val lenghtOfFile: Int = connection.contentLength
+
+                    // download the file
+                    val input: InputStream = BufferedInputStream(
+                        url.openStream(),
+                        8192
+                    )
+
+                    // Output stream
+                    val output: OutputStream = FileOutputStream(imageFile)
+                    val data = ByteArray(1024)
+                    var total: Long = 0
+                    while ((input.read(data).also { count = it }) != -1) {
+                        total += count.toLong()
+                        // publishing the progress....
+                        // After this onProgressUpdate will be called
+                        publishProgress(((total * 100) / lenghtOfFile).toInt())
+
+                        // writing data to file
+                        output.write(data, 0, count)
+                    }
+
+                    // flushing output
+                    output.flush()
+
+                    // closing streams
+                    output.close()
+                    input.close()
+                } catch (e: Exception) {
+                    Log.e("Error: ", (e.message)!!)
+                }
+
+                return imageFile.absolutePath
+            }
+
+            override fun onPostExecute(result: String?) {
+                super.onPostExecute(result)
+                alertDialog?.dismiss()
+                result?.let { path ->
+                    Log.e("TAG", "onPostExecute: $path")
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        FileUtilsss.saveVideoAPI30(
+                            ctx, imageFile, imageFile.name,
+                            RootDirectoryFBDownlaoder
+                        ) {
+                            Log.e("TAG", "onPostExecuteFinal: $it")
+                            MediaScannerConnection.scanFile(
+                                ctx,
+                                arrayOf(
+                                    it
+                                ),
+                                null
+                            ) { path1, uri ->
+                                Log.i("ExternalStorage", "Scanned $path1:")
+                                Log.i("ExternalStorage", "-> uri=$uri")
+                            }
+                        }
                     }
                 }
                 action()

@@ -33,9 +33,16 @@
         tools:targetApi="30">
 
         <activity
+            android:name=".tools.insta_grid.GridSaveActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.insta_grid.InstaGridActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".tools.video_player.VideoPlayerActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.activities.AllDownloadsActivity"
             android:exported="false"

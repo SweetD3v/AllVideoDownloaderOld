@@ -287,7 +287,7 @@ class FileUtilsss {
             file: File?,
             fileName: String?,
             destinationFile: File?,
-            action: () -> Unit
+            path: (String) -> Unit
         ) {
             val valuesvideos: ContentValues
             valuesvideos = ContentValues()
@@ -333,7 +333,13 @@ class FileUtilsss {
                     }
                     handler.post {
                         context.contentResolver.update(uriSavedVideo, valuesvideos, null, null)
-                        action()
+                        path(
+                            File(
+                                Environment.DIRECTORY_DCIM
+                                        + File.separator + context.getString(R.string.app_name) + File.separator + destinationFile,
+                                fileName
+                            ).absolutePath
+                        )
                     }
                 }
             }

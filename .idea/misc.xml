@@ -7,6 +7,8 @@
         <entry key="..\:/AndoidProjects/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_cleaner.xml" value="0.375" />
         <entry key="..\:/AndoidProjects/ClientProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home.xml" value="0.3537037037037037" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/app_video_center_bg.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_right.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_right_ripple.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/bottom_transparent_gradient_top.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_calendar.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_cartoonify.xml" value="0.209" />
@@ -24,7 +26,10 @@
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_compress_video.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_compress_video_home.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_fbdownloader_home.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_grid_save.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_insta_downloader_home.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_insta_grid.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_my_creation_full_view.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_my_creation_tools.xml" value="0.34444444444444444" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_photo_filter.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_photo_filter_home.xml" value="0.375" />
