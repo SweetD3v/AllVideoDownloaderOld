@@ -1,8 +1,8 @@
 package com.example.allviddownloader.collage_maker.features.college.layout.straight;
 
-import com.example.allviddownloader.collage_maker.features.college.straight.StraightCollageLayout;
+import com.example.allviddownloader.collage_maker.features.college.straight.StraightPuzzleLayout;
 
-public abstract class NumberStraightLayout extends StraightCollageLayout {
+public abstract class NumberStraightLayout extends StraightPuzzleLayout {
     protected int theme;
 
     public abstract int getThemeCount();
@@ -10,7 +10,7 @@ public abstract class NumberStraightLayout extends StraightCollageLayout {
     public NumberStraightLayout() {
     }
 
-    public NumberStraightLayout(StraightCollageLayout straightPuzzleLayout, boolean z) {
+    public NumberStraightLayout(StraightPuzzleLayout straightPuzzleLayout, boolean z) {
         super(straightPuzzleLayout, z);
     }
 

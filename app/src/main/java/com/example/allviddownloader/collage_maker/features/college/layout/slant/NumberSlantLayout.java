@@ -1,9 +1,9 @@
 package com.example.allviddownloader.collage_maker.features.college.layout.slant;
 
 
-import com.example.allviddownloader.collage_maker.features.college.slant.SlantCollageLayout;
+import com.example.allviddownloader.collage_maker.features.college.slant.SlantPuzzleLayout;
 
-public abstract class NumberSlantLayout extends SlantCollageLayout {
+public abstract class NumberSlantLayout extends SlantPuzzleLayout {
     protected int theme;
 
     public abstract int getThemeCount();
@@ -11,7 +11,7 @@ public abstract class NumberSlantLayout extends SlantCollageLayout {
     public NumberSlantLayout() {
     }
 
-    public NumberSlantLayout(SlantCollageLayout slantPuzzleLayout, boolean z) {
+    public NumberSlantLayout(SlantPuzzleLayout slantPuzzleLayout, boolean z) {
         super(slantPuzzleLayout, z);
     }
 

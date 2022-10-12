@@ -25,6 +25,7 @@ import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
 import com.example.allviddownloader.R
 import com.example.allviddownloader.adapters.StoriesListAdapter
+import com.example.allviddownloader.collage_maker.ui.activities.CollageMakerHomeActivity
 import com.example.allviddownloader.collage_maker.ui.activities.CollageViewActivity
 import com.example.allviddownloader.collage_maker.utils.SystemUtils
 import com.example.allviddownloader.databinding.BottomsheetFbBinding
@@ -189,16 +190,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun launchCollage() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (hasPermission(ctx, Manifest.permission.READ_EXTERNAL_STORAGE))
-                multiImagePicker.launch("image/*")
-        } else {
-            if (hasPermission(ctx, Manifest.permission.READ_EXTERNAL_STORAGE)
-                && hasPermission(ctx, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            ) {
-                multiImagePicker.launch("image/*")
-            }
-        }
+        startActivity(
+            Intent(
+                context,
+                CollageMakerHomeActivity::class.java
+            ).putExtra(MyCreationToolsActivity.CREATION_TYPE, "collage_maker")
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

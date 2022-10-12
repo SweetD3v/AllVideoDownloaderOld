@@ -119,4 +119,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:contentDescription">@string/exo_controls_fastforward_description</item>
     </style>
+
+    <style name="SeekBaStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">20.0dip</item>
+        <item name="android:layout_marginLeft">56.0dip</item>
+        <item name="android:layout_marginRight">56.0dip</item>
+        <item name="android:progressDrawable">@drawable/custom_progressbar_drawable</item>
+        <item name="android:thumb">@drawable/custom_thumb</item>
+        <item name="android:splitTrack">false</item>
+    </style>
 </resources>

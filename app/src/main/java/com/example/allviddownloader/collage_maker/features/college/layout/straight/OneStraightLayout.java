@@ -1,15 +1,15 @@
 package com.example.allviddownloader.collage_maker.features.college.layout.straight;
 
-import com.example.allviddownloader.collage_maker.features.college.CollageLayout;
+import com.example.allviddownloader.collage_maker.features.college.PuzzleLayout;
 import com.example.allviddownloader.collage_maker.features.college.Line;
-import com.example.allviddownloader.collage_maker.features.college.straight.StraightCollageLayout;
+import com.example.allviddownloader.collage_maker.features.college.straight.StraightPuzzleLayout;
 
 public class OneStraightLayout extends NumberStraightLayout {
     public int getThemeCount() {
         return 6;
     }
 
-    public OneStraightLayout(StraightCollageLayout straightPuzzleLayout, boolean z) {
+    public OneStraightLayout(StraightPuzzleLayout straightPuzzleLayout, boolean z) {
         super(straightPuzzleLayout, z);
     }
 
@@ -43,7 +43,7 @@ public class OneStraightLayout extends NumberStraightLayout {
         }
     }
 
-    public CollageLayout clone(CollageLayout CollageLayout) {
-        return new OneStraightLayout((StraightCollageLayout) CollageLayout, true);
+    public PuzzleLayout clone(PuzzleLayout PuzzleLayout) {
+        return new OneStraightLayout((StraightPuzzleLayout) PuzzleLayout, true);
     }
 }

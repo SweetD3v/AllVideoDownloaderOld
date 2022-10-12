@@ -20,8 +20,8 @@ import android.widget.ImageView;
 import androidx.core.content.ContextCompat;
 
 import com.example.allviddownloader.R;
-import com.example.allviddownloader.collage_maker.features.BrushDrawView;
 import com.example.allviddownloader.collage_maker.utils.SystemUtils;
+import com.example.allviddownloader.tools.photoeditor.BrushDrawingView;
 
 import java.util.Iterator;
 import java.util.Stack;
@@ -34,10 +34,10 @@ public class MosaicView extends ImageView {
     private Paint circlePaint;
     private float currentX;
     private float currentY;
-    private Stack<BrushDrawView.LinePath> lstPoints = new Stack<>();
+    private Stack<BrushDrawingView.LinePath> lstPoints = new Stack<>();
     private Path mPath;
-    private Stack<BrushDrawView.LinePath> mPoints = new Stack<>();
-    private Stack<BrushDrawView.LinePath> mRedoPaths = new Stack<>();
+    private Stack<BrushDrawingView.LinePath> mPoints = new Stack<>();
+    private Stack<BrushDrawingView.LinePath> mRedoPaths = new Stack<>();
     private float mTouchX;
     private float mTouchY;
     private AdapterMosaic.MosaicItem mosaicItem;
@@ -106,7 +106,7 @@ public class MosaicView extends ImageView {
         super.onDraw(canvas);
         Iterator it = this.mPoints.iterator();
         while (it.hasNext()) {
-            BrushDrawView.LinePath linePath = (BrushDrawView.LinePath) it.next();
+            BrushDrawingView.LinePath linePath = (BrushDrawingView.LinePath) it.next();
             canvas.drawPath(linePath.getDrawPath(), linePath.getDrawPaint());
         }
         if (this.mosaicItem.mode == AdapterMosaic.Mode.BLUR || this.mosaicItem.mode == AdapterMosaic.Mode.MOSAIC) {
@@ -153,12 +153,12 @@ public class MosaicView extends ImageView {
 
 
     public void onTouchUp() {
-        BrushDrawView.LinePath linePath;
+        BrushDrawingView.LinePath linePath;
         this.showTouchIcon = false;
         if (this.mosaicItem.mode == AdapterMosaic.Mode.BLUR || this.mosaicItem.mode == AdapterMosaic.Mode.MOSAIC) {
-            linePath = new BrushDrawView.LinePath(this.mPath, this.blurPaint);
+            linePath = new BrushDrawingView.LinePath(this.mPath, this.blurPaint);
         } else {
-            linePath = new BrushDrawView.LinePath(this.mPath, this.bitmapPaint);
+            linePath = new BrushDrawingView.LinePath(this.mPath, this.bitmapPaint);
         }
         this.mPoints.push(linePath);
         this.lstPoints.push(linePath);
@@ -219,7 +219,7 @@ public class MosaicView extends ImageView {
 
     public boolean undo() {
         if (!this.lstPoints.empty()) {
-            BrushDrawView.LinePath pop = this.lstPoints.pop();
+            BrushDrawingView.LinePath pop = this.lstPoints.pop();
             this.mRedoPaths.push(pop);
             this.mPoints.remove(pop);
             invalidate();
@@ -230,7 +230,7 @@ public class MosaicView extends ImageView {
 
     public boolean redo() {
         if (!this.mRedoPaths.empty()) {
-            BrushDrawView.LinePath pop = this.mRedoPaths.pop();
+            BrushDrawingView.LinePath pop = this.mRedoPaths.pop();
             this.mPoints.push(pop);
             this.lstPoints.push(pop);
             invalidate();
@@ -246,7 +246,7 @@ public class MosaicView extends ImageView {
         canvas.drawBitmap(bitmap, null, new RectF(0.0f, 0.0f, (float) width, (float) height), null);
         Iterator it = this.mPoints.iterator();
         while (it.hasNext()) {
-            BrushDrawView.LinePath linePath = (BrushDrawView.LinePath) it.next();
+            BrushDrawingView.LinePath linePath = (BrushDrawingView.LinePath) it.next();
             canvas.drawPath(linePath.getDrawPath(), linePath.getDrawPaint());
         }
         Bitmap createBitmap2 = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);

@@ -16,7 +16,7 @@ import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityPhotoWarpBinding
 import com.example.allviddownloader.tools.cartoonify.CartoonActivity
 import com.example.allviddownloader.tools.photo_filters.PhotoFiltersSaveActivity
-import com.example.allviddownloader.tools.photo_filters.Utils
+import com.example.allviddownloader.tools.photo_filters.PhotoFiltersUtils
 import com.example.allviddownloader.utils.*
 import org.wysaid.common.Common
 import org.wysaid.nativePort.CGEDeformFilterWrapper
@@ -217,7 +217,7 @@ class PhotoWarpActivity : AppCompatActivity() {
                                     getString(R.string.interstitial_id),
                                     object : AdsUtils.Companion.FullScreenCallback() {
                                         override fun continueExecution() {
-                                            Utils.photoFilterBmp = it
+                                            PhotoFiltersUtils.photoFilterBmp = it
                                             startActivity(
                                                 Intent(
                                                     this@PhotoWarpActivity,
@@ -236,7 +236,7 @@ class PhotoWarpActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        Utils.photoFilterBmp = null
+        PhotoFiltersUtils.photoFilterBmp = null
         AdsUtils.destroyBanner()
         super.onDestroy()
     }

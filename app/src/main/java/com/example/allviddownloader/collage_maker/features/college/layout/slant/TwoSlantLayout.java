@@ -1,8 +1,8 @@
 package com.example.allviddownloader.collage_maker.features.college.layout.slant;
 
-import com.example.allviddownloader.collage_maker.features.college.CollageLayout;
+import com.example.allviddownloader.collage_maker.features.college.PuzzleLayout;
 import com.example.allviddownloader.collage_maker.features.college.Line;
-import com.example.allviddownloader.collage_maker.features.college.slant.SlantCollageLayout;
+import com.example.allviddownloader.collage_maker.features.college.slant.SlantPuzzleLayout;
 
 public class TwoSlantLayout extends NumberSlantLayout {
     public int getThemeCount() {
@@ -10,7 +10,7 @@ public class TwoSlantLayout extends NumberSlantLayout {
     }
 
 
-    public TwoSlantLayout(SlantCollageLayout slantPuzzleLayout, boolean z) {
+    public TwoSlantLayout(SlantPuzzleLayout slantPuzzleLayout, boolean z) {
         super(slantPuzzleLayout, z);
     }
 
@@ -30,7 +30,7 @@ public class TwoSlantLayout extends NumberSlantLayout {
         }
     }
 
-    public CollageLayout clone(CollageLayout CollageLayout) {
-        return new TwoSlantLayout((SlantCollageLayout) CollageLayout, true);
+    public PuzzleLayout clone(PuzzleLayout PuzzleLayout) {
+        return new TwoSlantLayout((SlantPuzzleLayout) PuzzleLayout, true);
     }
 }

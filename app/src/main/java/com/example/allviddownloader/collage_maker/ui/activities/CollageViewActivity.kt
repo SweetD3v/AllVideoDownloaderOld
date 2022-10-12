@@ -3,6 +3,7 @@ package com.example.allviddownloader.collage_maker.ui.activities
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
@@ -11,37 +12,32 @@ import android.graphics.drawable.GradientDrawable
 import android.media.MediaScannerConnection
 import android.media.ThumbnailUtils
 import android.net.Uri
-import android.os.AsyncTask
-import android.os.Build
-import android.os.Bundle
-import android.os.Handler
+import android.os.*
 import android.provider.MediaStore
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.SeekBar
-import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts.GetContent
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
-import androidx.exifinterface.media.ExifInterface
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allviddownloader.R
-import com.example.allviddownloader.collage_maker.features.college.CollageLayout
-import com.example.allviddownloader.collage_maker.features.college.CollegeLayoutParser
 import com.example.allviddownloader.collage_maker.features.college.CollegeUtils
-import com.example.allviddownloader.collage_maker.features.college.adapter.CollegeAdapter
-import com.example.allviddownloader.collage_maker.ui.ToolType
-import com.example.allviddownloader.collage_maker.ui.ToolType.*
-import com.example.allviddownloader.collage_maker.ui.adapters.*
+import com.example.allviddownloader.collage_maker.features.college.PuzzleLayout
+import com.example.allviddownloader.collage_maker.features.college.PuzzleLayoutParser
+import com.example.allviddownloader.collage_maker.features.college.PuzzleView
+import com.example.allviddownloader.collage_maker.features.college.adapter.PuzzleAdapter
+import com.example.allviddownloader.collage_maker.ui.EditingToolType
+import com.example.allviddownloader.collage_maker.ui.EditingToolType.*
+import com.example.allviddownloader.collage_maker.ui.adapters.AspectRatioPreviewAdapter
+import com.example.allviddownloader.collage_maker.ui.adapters.BottomToolsAdapter
+import com.example.allviddownloader.collage_maker.ui.adapters.CollegeBGAdapter
+import com.example.allviddownloader.collage_maker.ui.adapters.PieceToolsAdapter
 import com.example.allviddownloader.collage_maker.ui.fragments.FilterDialogFragment
 import com.example.allviddownloader.collage_maker.ui.fragments.PicsartCropDialogFragment
 import com.example.allviddownloader.collage_maker.ui.interfaces.FilterListener
@@ -49,62 +45,85 @@ import com.example.allviddownloader.collage_maker.ui.interfaces.Sticker_interfce
 import com.example.allviddownloader.collage_maker.utils.FileUtils
 import com.example.allviddownloader.collage_maker.utils.SystemUtils
 import com.example.allviddownloader.collage_maker.utils.UtilsFilter
-import com.example.allviddownloader.databinding.ActivityCollageBinding
+import com.example.allviddownloader.databinding.ActivityPuzzleBinding
+import com.example.allviddownloader.tools.photo_filters.PhotoFiltersUtils
 import com.example.allviddownloader.ui.activities.BaseActivity
+import com.example.allviddownloader.ui.activities.MainActivity
 import com.example.allviddownloader.ui.fragments.HomeFragment
-import com.example.allviddownloader.utils.AsyncTaskRunner
-import com.example.allviddownloader.utils.FileUtilsss
-import com.example.allviddownloader.utils.originalPath
-import com.example.allviddownloader.utils.toastShort
+import com.example.allviddownloader.utils.AdsUtils
+import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.dpToPx
+import com.google.android.material.button.MaterialButton
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Picasso.LoadedFrom
 import com.squareup.picasso.Target
 import com.steelkiwi.cropiwa.AspectRatio
+import gun0912.tedimagepicker.builder.TedImagePicker.Companion.with
 import org.wysaid.nativePort.CGENativeLibrary
 import org.wysaid.nativePort.CGENativeLibrary.LoadImageCallback
-import java.io.File
 import java.io.IOException
 
-class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
+class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
     AspectRatioPreviewAdapter.OnNewSelectedListener,
     CollegeBGAdapter.BackgroundChangeListener, FilterListener,
     PicsartCropDialogFragment.OnCropPhoto,
     FilterDialogFragment.OnFilterSavePhoto,
-    PieceToolsAdapter.OnPieceFuncItemSelected, CollegeAdapter.OnItemClickListener,
+    PieceToolsAdapter.OnPieceFuncItemSelected, PuzzleAdapter.OnItemClickListener,
     Sticker_interfce {
-    val binding by lazy { ActivityCollageBinding.inflate(layoutInflater) }
+    val binding by lazy { ActivityPuzzleBinding.inflate(layoutInflater) }
+    var isSaved = false
 
-    private val instance: CollageViewActivity? = null
-    var currentAspect: AspectRatio? = null
-    var currentBackgroundState: CollegeBGAdapter.SquareView? = null
-    var currentMode: ToolType? = null
+    lateinit var instance: CollageViewActivity
+    lateinit var puzzle: CollageViewActivity
+    lateinit var changeBackgroundLayout: ConstraintLayout
+    lateinit var changeBorder: LinearLayout
+    lateinit var changeLayoutLayout: ConstraintLayout
+    lateinit var currentAspect: AspectRatio
+    lateinit var currentBackgroundState: CollegeBGAdapter.SquareView
+    var currentMode: EditingToolType? = null
     var deviceWidth = 0
-    var lstBitmapWithFilter: MutableList<Bitmap> = ArrayList()
-    var lstOriginalDrawable: MutableList<Drawable> = ArrayList()
-    var lstPaths: List<String>? = null
+    lateinit var loadingView: RelativeLayout
+    var lstBitmapWithFilter: MutableList<Bitmap> = arrayListOf()
+    var lstOriginalDrawable: MutableList<Drawable> = arrayListOf()
+    var lstPaths: MutableList<String>? = null
+    var isActivityLeft = false
+
     var pieceBorderRadius = 0f
+
     var piecePadding = 0f
-    private val pieceToolsAdapter = PieceToolsAdapter(this)
+    private val bottomSubToolsAdapter: PieceToolsAdapter = PieceToolsAdapter(this)
 
-    var collegeLayout: CollageLayout? = null
+    lateinit var puzzleLayout: PuzzleLayout
+    lateinit var puzzleList: RecyclerView
 
-    var targets: MutableList<Target> = ArrayList()
+    lateinit var puzzleView: PuzzleView
+    lateinit var radiusLayout: RecyclerView
+    lateinit var rvBackgroundList: RecyclerView
+    lateinit var rvBackgroundColor: RecyclerView
+    lateinit var rvBackgroundGradient: RecyclerView
 
-    var builder: AlertDialog.Builder? = null
-    var view: View? = null
-    var isSaveDialog = false
+    lateinit var rvPieceControl: RecyclerView
+    lateinit var sbChangeBorderRadius: SeekBar
+    lateinit var sbChangeBorderSize: SeekBar
+    lateinit var toolbar: Toolbar
 
-    var singleImagePicker = registerForActivityResult(
-        GetContent()
-    ) { uri -> replaceCurrentPic(uri) }
+    var targets: MutableList<Target> = arrayListOf()
+    lateinit var tvChangeBackgroundBlur: TextView
+    lateinit var tvChangeBackgroundColor: TextView
+    lateinit var tvChangeBackgroundGradient: TextView
+    lateinit var tvChangeBorder: TextView
+    lateinit var tvChangeLayout: TextView
+    lateinit var tvChangeRatio: TextView
+    lateinit var wrapPuzzleView: ConstraintLayout
+    lateinit var puzzleViewActivity: CollageViewActivity
 
-    private val mEditingToolsAdapter = EditingToolsAdapter(this, true)
+    lateinit var mBottomToolsAdapter: BottomToolsAdapter
     var mLoadImageCallback: LoadImageCallback = object : LoadImageCallback {
         override fun loadImage(str: String, obj: Any): Bitmap? {
             return try {
                 BitmapFactory.decodeStream(assets.open(str))
             } catch (io: IOException) {
-                io.printStackTrace()
-                return null
+                null
             }
         }
 
@@ -113,328 +132,89 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
         }
     }
 
-    fun slideUpSaveView() {
-        binding.toolbar.toolbar.visibility = View.GONE
-    }
-
-    fun slideDownSaveView() {
-        binding.toolbar.toolbar.visibility = View.VISIBLE
-    }
-
-    fun slideUp(view: View) {
-        ObjectAnimator.ofFloat(view, "translationY", *floatArrayOf(view.height.toFloat(), 0.0f))
-            .start()
-    }
-
-    fun slideDown(view: View) {
-        ObjectAnimator.ofFloat(view, "translationY", 0.0f, view.height.toFloat()).start()
-    }
+    lateinit var mRvTools: RecyclerView
+    lateinit var mainActivity: ConstraintLayout
 
     var onClickListener = View.OnClickListener { view: View ->
         when (view.id) {
-            R.id.imgCloseBackground, R.id.imgCloseFilter, R.id.imgCloseLayout, R.id.imgCloseSticker, R.id.imgCloseText -> {
+            R.id.imgCloseBackground, R.id.imgCloseLayout -> {
                 slideDownSaveView()
+                slideDown(changeLayoutLayout)
                 onBackPressed()
+                return@OnClickListener
             }
             R.id.imgSaveBackground -> {
-                slideDown(binding.changeBackgroundLayout)
-                slideUp(binding.rvConstraintTools)
+                slideDown(changeBackgroundLayout)
+                slideUp(mRvTools)
                 slideDownSaveView()
                 showDownFunction()
-                binding.puzzleView.setLocked(true)
-                binding.puzzleView.setTouchEnable(true)
-                if (binding.puzzleView.backgroundResourceMode === 0) {
-                    currentBackgroundState!!.isColor = true
-                    currentBackgroundState!!.isBitmap = false
-                    currentBackgroundState!!.drawableId =
-                        (binding.puzzleView.background as ColorDrawable).color
-                    currentBackgroundState!!.drawable = null
-                } else if (binding.puzzleView.backgroundResourceMode === 1) {
-                    currentBackgroundState!!.isColor = false
-                    currentBackgroundState!!.isBitmap = false
-                    currentBackgroundState!!.drawable = binding.puzzleView.background
+                puzzleView.setLocked(true)
+                puzzleView.setTouchEnable(true)
+                if (puzzleView.backgroundResourceMode == 0) {
+                    currentBackgroundState.isColor = true
+                    currentBackgroundState.isBitmap = false
+                    currentBackgroundState.drawableId =
+                        (puzzleView.background as ColorDrawable).color
+                    currentBackgroundState.drawable = null
+                } else if (puzzleView.backgroundResourceMode == 1) {
+                    currentBackgroundState.isColor = false
+                    currentBackgroundState.isBitmap = false
+                    currentBackgroundState.drawable = puzzleView.background
                 } else {
-                    currentBackgroundState!!.isColor = false
-                    currentBackgroundState!!.isBitmap = true
-                    currentBackgroundState!!.drawable = binding.puzzleView.background
+                    currentBackgroundState.isColor = false
+                    currentBackgroundState.isBitmap = true
+                    currentBackgroundState.drawable = puzzleView.background
                 }
                 currentMode = NONE
+                return@OnClickListener
             }
-            R.id.imgSaveFilter -> {
-                slideDown(binding.filterLayout)
-                slideUp(binding.rvConstraintTools)
-                currentMode = NONE
-                slideDownSaveView()
-                binding.puzzleView.setTouchEnable(true)
-            }
+//            R.id.imgSaveFilter -> {
+//                slideUp(mRvTools)
+//                currentMode = NONE
+//                slideDownSaveView()
+//                puzzleView.setTouchEnable(true)
+//                return@OnClickListener
+//            }
             R.id.imgSaveLayout -> {
-                slideUp(binding.rvConstraintTools)
-                slideDown(binding.changeLayoutLayout)
+                slideUp(mRvTools)
+                slideDown(changeLayoutLayout)
                 slideDownSaveView()
                 showDownFunction()
-                collegeLayout = binding.puzzleView.collegeLayout
-                pieceBorderRadius = binding.puzzleView.pieceRadian
-                piecePadding = binding.puzzleView.piecePadding
-                binding.puzzleView.setLocked(true)
-                binding.puzzleView.setTouchEnable(true)
-                currentAspect = binding.puzzleView.aspectRatio
+                puzzleLayout = puzzleView.puzzleLayout
+                pieceBorderRadius = puzzleView.pieceRadian
+                piecePadding = puzzleView.piecePadding
+                puzzleView.setLocked(true)
+                puzzleView.setTouchEnable(true)
+                currentAspect = puzzleView.aspectRatio
                 currentMode = NONE
-            }
-            R.id.imgSaveSticker -> {
-                binding.puzzleView.setHandlingSticker(null)
-                slideDown(binding.stickerLayout)
-                slideUp(binding.rvConstraintTools)
-                slideDownSaveView()
-                binding.puzzleView.setLocked(true)
-                binding.puzzleView.setTouchEnable(true)
-                currentMode = NONE
-                binding.stickerGridFragmentContainer.visibility = View.GONE
-            }
-            R.id.imgSaveText -> {
-                binding.puzzleView.setHandlingSticker(null)
-                binding.puzzleView.setLocked(true)
-                binding.addNewText.visibility = View.GONE
-                slideDown(binding.textControl)
-                slideUp(binding.rvConstraintTools)
-                slideDownSaveView()
-                binding.puzzleView.setLocked(true)
-                binding.puzzleView.setTouchEnable(true)
-                currentMode = NONE
+                return@OnClickListener
             }
             R.id.tv_blur -> {
                 selectBackgroundBlur()
+                return@OnClickListener
             }
             R.id.tv_change_border -> {
                 selectBorderTool()
+                return@OnClickListener
             }
             R.id.tv_change_layout -> {
                 selectLayoutTool()
+                return@OnClickListener
             }
             R.id.tv_change_ratio -> {
                 selectRadiusTool()
+                return@OnClickListener
             }
             R.id.tv_color -> {
                 selectBackgroundColorTab()
+                return@OnClickListener
             }
             R.id.tv_radian -> {
                 selectBackgroundGradientTab()
+                return@OnClickListener
             }
             else -> {}
         }
-    }
-
-    override fun onToolSelected(toolType: ToolType?) {
-        currentMode = toolType
-        when (toolType) {
-            LAYOUT -> {
-                collegeLayout = binding.puzzleView.collegeLayout
-                currentAspect = binding.puzzleView.aspectRatio
-                pieceBorderRadius = binding.puzzleView.pieceRadian
-                piecePadding = binding.puzzleView.piecePadding
-                binding.puzzleList.scrollToPosition(0)
-                (binding.puzzleList.adapter as CollegeAdapter?)!!.setSelectedIndex(-1)
-                binding.puzzleList.adapter!!.notifyDataSetChanged()
-                binding.radioLayout.scrollToPosition(0)
-                (binding.radioLayout.adapter as AspectRatioPreviewAdapter?)!!.setLastSelectedView(-1)
-                binding.radioLayout.adapter!!.notifyDataSetChanged()
-                selectLayoutTool()
-                slideUpSaveView()
-                slideUp(binding.changeLayoutLayout)
-                slideDown(binding.rvConstraintTools)
-                showUpFunction(binding.changeLayoutLayout)
-                binding.puzzleView.setLocked(false)
-                binding.puzzleView.setTouchEnable(false)
-                return
-            }
-            BORDER -> {
-                collegeLayout = binding.puzzleView.collegeLayout
-                currentAspect = binding.puzzleView.aspectRatio
-                pieceBorderRadius = binding.puzzleView.pieceRadian
-                piecePadding = binding.puzzleView.piecePadding
-                binding.puzzleList.scrollToPosition(0)
-                (binding.puzzleList.adapter as CollegeAdapter?)!!.setSelectedIndex(-1)
-                binding.puzzleList.adapter!!.notifyDataSetChanged()
-                binding.radioLayout.scrollToPosition(0)
-                (binding.radioLayout.adapter as AspectRatioPreviewAdapter?)!!.setLastSelectedView(-1)
-                binding.radioLayout.adapter!!.notifyDataSetChanged()
-                selectBorderTool()
-                slideUpSaveView()
-                slideUp(binding.changeLayoutLayout)
-                slideDown(binding.rvConstraintTools)
-                showUpFunction(binding.changeLayoutLayout)
-                binding.puzzleView.setLocked(false)
-                binding.puzzleView.setTouchEnable(false)
-                return
-            }
-            RATIO -> {
-                collegeLayout = binding.puzzleView.collegeLayout
-                currentAspect = binding.puzzleView.aspectRatio
-                pieceBorderRadius = binding.puzzleView.pieceRadian
-                piecePadding = binding.puzzleView.piecePadding
-                binding.puzzleList.scrollToPosition(0)
-                (binding.puzzleList.adapter as CollegeAdapter?)!!.setSelectedIndex(-1)
-                binding.puzzleList.adapter!!.notifyDataSetChanged()
-                binding.radioLayout.scrollToPosition(0)
-                (binding.radioLayout.adapter as AspectRatioPreviewAdapter?)!!.setLastSelectedView(-1)
-                binding.radioLayout.adapter!!.notifyDataSetChanged()
-                selectRadiusTool()
-                slideUpSaveView()
-                slideUp(binding.changeLayoutLayout)
-                slideDown(binding.rvConstraintTools)
-                showUpFunction(binding.changeLayoutLayout)
-                binding.puzzleView.setLocked(false)
-                binding.puzzleView.setTouchEnable(false)
-                return
-            }
-            FILTER -> {
-                if (lstOriginalDrawable.isEmpty()) {
-                    for (drawable in binding.puzzleView.getCollegePieces()) {
-                        lstOriginalDrawable.add(drawable.drawable)
-                    }
-                }
-                loadFilterBitmap()
-                slideUpSaveView()
-                return
-            }
-            BACKGROUND -> {
-                binding.puzzleView.setLocked(false)
-                binding.puzzleView.setTouchEnable(false)
-                slideUpSaveView()
-                selectBackgroundColorTab()
-                slideDown(binding.rvConstraintTools)
-                slideUp(binding.changeBackgroundLayout)
-                showUpFunction(binding.changeBackgroundLayout)
-                if (binding.puzzleView.backgroundResourceMode === 0) {
-                    currentBackgroundState!!.isColor = true
-                    currentBackgroundState!!.isBitmap = false
-                    currentBackgroundState!!.drawableId =
-                        (binding.puzzleView.background as ColorDrawable).color
-                    return
-                } else if (binding.puzzleView.backgroundResourceMode === 2 || binding.puzzleView.background is ColorDrawable) {
-                    currentBackgroundState!!.isBitmap = true
-                    currentBackgroundState!!.isColor = false
-                    currentBackgroundState!!.drawable = binding.puzzleView.background
-                    return
-                } else if (binding.puzzleView.background is GradientDrawable) {
-                    currentBackgroundState!!.isBitmap = false
-                    currentBackgroundState!!.isColor = false
-                    currentBackgroundState!!.drawable = binding.puzzleView.background
-                    return
-                } else {
-                    return
-                }
-            }
-            else -> {}
-        }
-    }
-
-    fun selectBackgroundBlur() {
-        val arrayList: ArrayList<Drawable> = ArrayList()
-        for (drawable in binding.puzzleView.getCollegePieces()) {
-            arrayList.add(drawable.drawable)
-        }
-        val collegeBGAdapter =
-            CollegeBGAdapter(applicationContext, this, arrayList as List<Drawable?>)
-        collegeBGAdapter.setSelectedSquareIndex(-1)
-        binding.backgroundList.adapter = collegeBGAdapter
-        binding.backgroundList.visibility = View.VISIBLE
-        binding.tvBlur.setBackgroundResource(R.drawable.border_bottom)
-        binding.tvBlur.setTextColor(ContextCompat.getColor(this, R.color.black))
-        binding.radianList.visibility = View.GONE
-        binding.tvRadian.setBackgroundResource(0)
-        binding.tvRadian.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-        binding.colorList.visibility = View.GONE
-        binding.tvColor.setBackgroundResource(0)
-        binding.tvColor.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-    }
-
-    fun selectBackgroundColorTab() {
-        binding.colorList.visibility = View.VISIBLE
-        binding.tvColor.setBackgroundResource(R.drawable.border_bottom)
-        binding.tvColor.setTextColor(ContextCompat.getColor(this, R.color.black))
-        binding.colorList.scrollToPosition(0)
-        (binding.colorList.adapter as CollegeBGAdapter?)!!.setSelectedSquareIndex(-1)
-        binding.colorList.adapter!!.notifyDataSetChanged()
-        binding.radianList.visibility = View.GONE
-        binding.tvRadian.setBackgroundResource(0)
-        binding.tvRadian.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-        binding.backgroundList.visibility = View.GONE
-        binding.tvBlur.setBackgroundResource(0)
-        binding.tvBlur.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-    }
-
-    fun selectBackgroundGradientTab() {
-        binding.radianList.visibility = View.VISIBLE
-        binding.tvRadian.setBackgroundResource(R.drawable.border_bottom)
-        binding.tvRadian.setTextColor(ContextCompat.getColor(this, R.color.black))
-        binding.radianList.scrollToPosition(0)
-        (binding.radianList.adapter as CollegeBGAdapter?)!!.setSelectedSquareIndex(-1)
-        binding.radianList.adapter!!.notifyDataSetChanged()
-        binding.colorList.visibility = View.GONE
-        binding.tvColor.setBackgroundResource(0)
-        binding.tvColor.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-        binding.backgroundList.visibility = View.GONE
-        binding.tvBlur.setBackgroundResource(0)
-        binding.tvBlur.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-    }
-
-
-    fun selectLayoutTool() {
-        binding.puzzleList.visibility = View.VISIBLE
-        binding.tvChangeLayout.setBackgroundResource(R.drawable.border_bottom)
-        binding.tvChangeLayout.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimary))
-        binding.changeBorder.visibility = View.GONE
-        binding.tvChangeBorder.setBackgroundResource(0)
-        binding.tvChangeBorder.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-        binding.radioLayout.visibility = View.GONE
-        binding.tvChangeRatio.setBackgroundResource(0)
-        binding.tvChangeRatio.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-    }
-
-
-    fun selectRadiusTool() {
-        binding.radioLayout.visibility = View.VISIBLE
-        binding.tvChangeRatio.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimary))
-        binding.tvChangeRatio.setBackgroundResource(R.drawable.border_bottom)
-        binding.puzzleList.visibility = View.GONE
-        binding.tvChangeLayout.setBackgroundResource(0)
-        binding.tvChangeLayout.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-        binding.changeBorder.visibility = View.GONE
-        binding.tvChangeBorder.setBackgroundResource(0)
-        binding.tvChangeBorder.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-    }
-
-    fun selectBorderTool() {
-        binding.changeBorder.visibility = View.VISIBLE
-        binding.tvChangeBorder.setBackgroundResource(R.drawable.border_bottom)
-        binding.tvChangeBorder.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimary))
-        binding.puzzleList.visibility = View.GONE
-        binding.tvChangeLayout.setBackgroundResource(0)
-        binding.tvChangeLayout.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-        binding.radioLayout.visibility = View.GONE
-        binding.tvChangeRatio.setBackgroundResource(0)
-        binding.tvChangeRatio.setTextColor(ContextCompat.getColor(this, R.color.unselected_color))
-        binding.skBorderRadius.progress = binding.puzzleView.pieceRadian.toInt()
-        binding.skBorder.progress = binding.puzzleView.piecePadding.toInt()
-    }
-
-    private fun showUpFunction(view: View) {
-        val constraintSet = ConstraintSet()
-        constraintSet.clone(binding.puzzleLayout)
-        constraintSet.connect(binding.wrapPuzzleView.id, 1, binding.puzzleLayout.id, 1, 0)
-        constraintSet.connect(binding.wrapPuzzleView.id, 4, view.id, 3, 0)
-        constraintSet.connect(binding.wrapPuzzleView.id, 2, binding.puzzleLayout.id, 2, 0)
-        constraintSet.applyTo(binding.puzzleLayout)
-    }
-
-
-    fun showDownFunction() {
-        val constraintSet = ConstraintSet()
-        constraintSet.clone(binding.puzzleLayout)
-        constraintSet.connect(binding.wrapPuzzleView.id, 1, binding.puzzleLayout.id, 1, 0)
-        constraintSet.connect(binding.wrapPuzzleView.id, 4, binding.rvConstraintTools.id, 3, 0)
-        constraintSet.connect(binding.wrapPuzzleView.id, 2, binding.puzzleLayout.id, 2, 0)
-        constraintSet.applyTo(binding.puzzleLayout)
     }
 
     var onSeekBarChangeListener: SeekBar.OnSeekBarChangeListener =
@@ -443,199 +223,472 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
             override fun onProgressChanged(seekBar: SeekBar, i: Int, z: Boolean) {
                 when (seekBar.id) {
-                    R.id.sk_border -> binding.puzzleView.piecePadding = i.toFloat()
-                    R.id.sk_border_radius -> binding.puzzleView.pieceRadian = i.toFloat()
+                    R.id.sk_border -> puzzleView.piecePadding = i.toFloat()
+                    R.id.sk_border_radius -> puzzleView.pieceRadian = i.toFloat()
                 }
-                binding.puzzleView.invalidate()
+                puzzleView.invalidate()
             }
         }
 
-    fun getInstance(): CollageViewActivity? {
-        return instance
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+    override fun onCreate(bundle: Bundle?) {
+        super.onCreate(bundle)
+        requestWindowFeature(1)
+        window.setFlags(1024, 1024)
         setContentView(binding.root)
-
-        binding.toolbar.appTitle.text = "Collage Maker"
-        setSupportActionBar(binding.toolbar.toolbar)
-        binding.toolbar.toolbar.setNavigationOnClickListener { v -> onBackPressed() }
-
-        init()
-        binding.skBorder.setOnSeekBarChangeListener(onSeekBarChangeListener)
-        binding.skBorderRadius.setOnSeekBarChangeListener(onSeekBarChangeListener)
-        binding.rvConstraintTools.layoutManager =
-            GridLayoutManager(this, 4)
-        binding.rvPieceControl.layoutManager =
-            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        if (NetworkState.isOnline()) AdsUtils.loadBanner(
+            this, binding.bannerContainer,
+            getString(R.string.banner_id_details)
+        )
+        toolbar = findViewById(R.id.toolbar)
+        (toolbar.findViewById<View>(R.id.app_title) as TextView).text = ""
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener({ v: View? -> onBackPressed() })
+        PhotoFiltersUtils.string = "XYZ"
+        puzzleViewActivity = this
+        deviceWidth = resources.displayMetrics.widthPixels
+        loadingView = findViewById(R.id.loadingView)
+        puzzleView = findViewById(R.id.puzzle_view)
+        wrapPuzzleView = findViewById(R.id.wrapPuzzleView)
+        mRvTools = findViewById(R.id.rvConstraintTools)
+        mRvTools.layoutManager = GridLayoutManager(this, 4)
+        mBottomToolsAdapter =
+            BottomToolsAdapter(
+                true
+            )
+        mBottomToolsAdapter.setmOnItemSelected(this@CollageViewActivity)
+        mRvTools.adapter = mBottomToolsAdapter
+        rvPieceControl = findViewById(R.id.rvPieceControl)
+        rvPieceControl.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        rvPieceControl.adapter = bottomSubToolsAdapter
+        sbChangeBorderSize = findViewById(R.id.sk_border)
+        sbChangeBorderSize.setOnSeekBarChangeListener(onSeekBarChangeListener)
+        sbChangeBorderRadius = findViewById(R.id.sk_border_radius)
+        sbChangeBorderRadius.setOnSeekBarChangeListener(onSeekBarChangeListener)
         lstPaths = intent.getStringArrayListExtra(HomeFragment.KEY_DATA_RESULT)
-        collegeLayout = CollegeUtils.getPuzzleLayouts(lstPaths!!.size).get(0)
-        binding.puzzleView.collegeLayout = collegeLayout
-        binding.puzzleView.setTouchEnable(true)
-        binding.puzzleView.setNeedDrawLine(false)
-        binding.puzzleView.setNeedDrawOuterLine(false)
-        binding.puzzleView.setLineSize(4)
-        binding.puzzleView.piecePadding = 6.0f
-        binding.puzzleView.pieceRadian = 15.0f
-        binding.puzzleView.setLineColor(ContextCompat.getColor(this, R.color.white))
-        binding.puzzleView.setSelectedLineColor(ContextCompat.getColor(this, R.color.colorAccent))
-        binding.puzzleView.setHandleBarColor(ContextCompat.getColor(this, R.color.colorAccent))
-        binding.puzzleView.setAnimateDuration(300)
-        binding.puzzleView.setOnPieceSelectedListener { collegePiece, i ->
-            slideDown(binding.rvConstraintTools)
-            slideUp(binding.rvPieceControl)
-            slideUpSaveView()
+        puzzleLayout = CollegeUtils.getPuzzleLayouts(lstPaths!!.size)[0]
+        puzzleView.puzzleLayout = puzzleLayout
+        puzzleView.setTouchEnable(true)
+        puzzleView.setNeedDrawLine(false)
+        puzzleView.setNeedDrawOuterLine(false)
+        puzzleView.setLineSize(4)
+        puzzleView.piecePadding = 6.0f
+        puzzleView.pieceRadian = 15.0f
+        puzzleView.setLineColor(ContextCompat.getColor(this, R.color.white))
+        puzzleView.setSelectedLineColor(ContextCompat.getColor(this, R.color.colorAccent))
+        puzzleView.setHandleBarColor(ContextCompat.getColor(this, R.color.colorAccent))
+        puzzleView.setAnimateDuration(300)
+        puzzleView.setOnPieceSelectedListener { puzzlePiece, i ->
+            Log.e("TAG", "pieceSelected: ")
             val layoutParams =
-                binding.rvPieceControl.layoutParams as ConstraintLayout.LayoutParams
-            layoutParams.bottomMargin = SystemUtils.dpToPx(applicationContext, 10)
-            binding.rvPieceControl.layoutParams = layoutParams
+                rvPieceControl.layoutParams as ConstraintLayout.LayoutParams
+            layoutParams.bottomMargin = dpToPx(applicationContext, 10)
+            rvPieceControl.layoutParams = layoutParams
             currentMode = PIECE
+            slideDown(mRvTools)
+            slideUp(rvPieceControl)
         }
-        binding.puzzleView.setOnPieceUnSelectedListener {
-            slideDown(binding.rvPieceControl)
-            slideUp(binding.rvConstraintTools)
+        puzzleView.setOnPieceUnSelectedListener {
+            Log.e("TAG", "pieceSelectedNot: ")
+            slideDown(rvPieceControl)
+            slideUp(mRvTools)
             slideDownSaveView()
             val layoutParams =
-                binding.rvPieceControl.layoutParams as ConstraintLayout.LayoutParams
+                rvPieceControl.layoutParams as ConstraintLayout.LayoutParams
             layoutParams.bottomMargin = 0
-            binding.rvPieceControl.layoutParams = layoutParams
+            rvPieceControl.layoutParams = layoutParams
             currentMode = NONE
         }
-        binding.puzzleView.post { loadPhoto() }
-        binding.imgCloseLayout.setOnClickListener(onClickListener)
-        binding.imgSaveLayout.setOnClickListener(onClickListener)
-        binding.imgCloseSticker.setOnClickListener(onClickListener)
-        binding.imgCloseFilter.setOnClickListener(onClickListener)
-        binding.imgCloseBackground.setOnClickListener(onClickListener)
-        binding.imgSaveSticker.setOnClickListener(onClickListener)
-        binding.imgCloseText.setOnClickListener(onClickListener)
-        binding.imgSaveText.setOnClickListener(onClickListener)
-        binding.imgSaveFilter.setOnClickListener(onClickListener)
-        binding.imgSaveBackground.setOnClickListener(onClickListener)
-        binding.tvChangeLayout.setOnClickListener(onClickListener)
-        binding.tvChangeBorder.setOnClickListener(onClickListener)
-        binding.tvChangeRatio.setOnClickListener(onClickListener)
-        binding.tvColor.setOnClickListener(onClickListener)
-        binding.tvRadian.setOnClickListener(onClickListener)
-        binding.tvBlur.setOnClickListener(onClickListener)
-        val collegeAdapter = CollegeAdapter()
-        binding.puzzleList.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-        binding.puzzleList.adapter = collegeAdapter
-        collegeAdapter.refreshData(CollegeUtils.getPuzzleLayouts(lstPaths!!.size), null)
-        collegeAdapter.setOnItemClickListener(this)
-        val aspectRatioPreviewAdapter = AspectRatioPreviewAdapter()
-        aspectRatioPreviewAdapter.setListener(this)
-        binding.radioLayout.layoutManager =
-            LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-        binding.radioLayout.adapter = aspectRatioPreviewAdapter
-        binding.addNewText.visibility = View.GONE
-        binding.addNewText.setOnClickListener { view ->
-            binding.puzzleView.setHandlingSticker(null)
+        puzzleView.post { PhotoFiltersUtils.loadPhoto(this,
+        lstPaths, puzzleLayout, puzzleView, targets, deviceWidth) }
+        findViewById<ImageView>(R.id.imgCloseLayout).setOnClickListener(onClickListener)
+        findViewById<ImageView>(R.id.imgSaveLayout).setOnClickListener(onClickListener)
+        findViewById<ImageView>(R.id.imgCloseBackground).setOnClickListener(onClickListener)
+        findViewById<ImageView>(R.id.imgSaveBackground).setOnClickListener(onClickListener)
+        changeLayoutLayout = findViewById(R.id.changeLayoutLayout)
+        changeBorder = findViewById(R.id.change_border)
+        tvChangeLayout = findViewById(R.id.tv_change_layout)
+        tvChangeLayout.setOnClickListener(onClickListener)
+        tvChangeBorder = findViewById(R.id.tv_change_border)
+        tvChangeBorder.setOnClickListener(onClickListener)
+        tvChangeRatio = findViewById(R.id.tv_change_ratio)
+        tvChangeRatio.setOnClickListener(onClickListener)
+        tvChangeBackgroundColor = findViewById(R.id.tv_color)
+        tvChangeBackgroundColor.setOnClickListener(onClickListener)
+        tvChangeBackgroundGradient = findViewById(R.id.tv_radian)
+        tvChangeBackgroundGradient.setOnClickListener(onClickListener)
+        tvChangeBackgroundBlur = findViewById(R.id.tv_blur)
+        tvChangeBackgroundBlur.setOnClickListener(onClickListener)
+        puzzleList = findViewById(R.id.puzzleList)
+        puzzleList.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        val puzzleAdapter = PuzzleAdapter()
+        puzzleAdapter.setOnItemClickListener(this)
+        puzzleList.adapter = puzzleAdapter
+        puzzleAdapter.refreshData(CollegeUtils.getPuzzleLayouts(lstPaths!!.size), null)
+        val previewAspectRatioAdapter = AspectRatioPreviewAdapter()
+        previewAspectRatioAdapter.setListener(this)
+        radiusLayout = findViewById(R.id.radioLayout)
+        radiusLayout.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
+        radiusLayout.adapter = previewAspectRatioAdapter
+        val saveBitmap: MaterialButton = findViewById(R.id.save)
+        saveBitmap.visibility = View.VISIBLE
+        saveBitmap.setOnClickListener { view: View? ->
+            saveImage()
         }
-        binding.toolbar.imgsave.visibility = View.VISIBLE
-        binding.toolbar.imgsave.setOnClickListener { view ->
-            isSaveDialog = true
-            saveDiscardDialog(isSaveDialog)
+        puzzleView.setConstrained(true)
+        changeBackgroundLayout = findViewById(R.id.changeBackgroundLayout)
+        mainActivity = findViewById(R.id.puzzle_layout)
+        changeLayoutLayout.alpha = 0.0f
+        changeBackgroundLayout.alpha = 0.0f
+        rvPieceControl.alpha = 0.0f
+        mainActivity.post {
+            slideDown(changeLayoutLayout)
+            slideDown(changeBackgroundLayout)
+            slideDown(rvPieceControl)
         }
-
-        binding.puzzleView.setBackgroundColor(-16777216)
-        binding.puzzleView.setLocked(false)
-        binding.puzzleView.setConstrained(true)
-        binding.changeLayoutLayout.alpha = 0.0f
-        binding.stickerLayout.alpha = 0.0f
-        binding.textControl.alpha = 0.0f
-        binding.filterLayout.alpha = 0.0f
-        binding.changeBackgroundLayout.alpha = 0.0f
-        binding.rvPieceControl.alpha = 0.0f
-        binding.puzzleLayout.post {
-            slideDown(binding.changeLayoutLayout)
-            slideDown(binding.stickerLayout)
-            slideDown(binding.textControl)
-            slideDown(binding.changeBackgroundLayout)
-            slideDown(binding.filterLayout)
-            slideDown(binding.rvPieceControl)
-        }
-        Handler().postDelayed({
-            binding.changeLayoutLayout.alpha = 1.0f
-            binding.stickerLayout.alpha = 1.0f
-            binding.textControl.alpha = 1.0f
-            binding.filterLayout.alpha = 1.0f
-            binding.changeBackgroundLayout.alpha = 1.0f
-            binding.rvPieceControl.alpha = 1.0f
+        Handler(Looper.getMainLooper()).postDelayed({
+            changeLayoutLayout.alpha = 1.0f
+            changeBackgroundLayout.alpha = 1.0f
+            rvPieceControl.alpha = 1.0f
         }, 1000)
-
         showLoading(false)
         currentBackgroundState = CollegeBGAdapter.SquareView(Color.parseColor("#ffffff"), "", true)
-        binding.colorList.layoutManager =
-            LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
-        binding.colorList.setHasFixedSize(true)
-        binding.colorList.adapter = CollegeBGAdapter(applicationContext, this)
-        binding.radianList.layoutManager =
-            LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
-        binding.radianList.setHasFixedSize(true)
-        binding.radianList.adapter = CollegeBGAdapter(applicationContext, this, true)
-        binding.backgroundList.layoutManager =
-            LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
-        binding.backgroundList.setHasFixedSize(true)
+        rvBackgroundColor = findViewById(R.id.colorList)
+        rvBackgroundColor.layoutManager = LinearLayoutManager(
+            applicationContext, RecyclerView.HORIZONTAL, false
+        )
+        rvBackgroundColor.setHasFixedSize(true)
+        rvBackgroundColor.adapter = CollegeBGAdapter(applicationContext, this)
+        rvBackgroundGradient = findViewById(R.id.gradientList)
+        rvBackgroundGradient.layoutManager = LinearLayoutManager(
+            applicationContext, RecyclerView.HORIZONTAL, false
+        )
+        rvBackgroundGradient.setHasFixedSize(true)
+        rvBackgroundGradient.adapter = CollegeBGAdapter(
+            applicationContext,
+            this as CollegeBGAdapter.BackgroundChangeListener,
+            true
+        )
+        rvBackgroundList = findViewById(R.id.rvBackgroundList)
+        rvBackgroundList.layoutManager = LinearLayoutManager(
+            applicationContext, RecyclerView.HORIZONTAL, false
+        )
+        rvBackgroundList.setHasFixedSize(true)
         val defaultDisplay = windowManager.defaultDisplay
         val point = Point()
         defaultDisplay.getSize(point)
-        val layoutParams = binding.puzzleView.layoutParams as ConstraintLayout.LayoutParams
+        val layoutParams = puzzleView.layoutParams as ConstraintLayout.LayoutParams
         layoutParams.height = point.x
         layoutParams.width = point.x
-        binding.puzzleView.layoutParams = layoutParams
+        puzzleView.layoutParams = layoutParams
         currentAspect = AspectRatio(1, 1)
-        binding.puzzleView.aspectRatio = AspectRatio(1, 1)
+        puzzleView.aspectRatio = AspectRatio(1, 1)
+        puzzle = this
         currentMode = NONE
-        CGENativeLibrary.setLoadImageCallback(mLoadImageCallback, null)
+        CGENativeLibrary.setLoadImageCallback(mLoadImageCallback, null as Any?)
+        instance = this
     }
 
-    private fun init() {
-        deviceWidth = resources.displayMetrics.widthPixels
-        binding.rvConstraintTools.adapter = mEditingToolsAdapter
-        binding.rvPieceControl.adapter = pieceToolsAdapter
-        view = LayoutInflater.from(this).inflate(R.layout.save_dialog, null)
+    private fun saveImage() {
+        puzzleView.setHandlingSticker(null)
+        slideUp(mRvTools)
+        slideDownSaveView()
+        puzzleView.setLocked(true)
+        puzzleView.setTouchEnable(true)
+        currentMode = NONE
+        val createBitmap = FileUtils.createBitmap(puzzleView, 1920)
+        val createBitmap2: Bitmap = puzzleView.createBitmap()
+        SavePuzzleAsFile().execute(createBitmap, createBitmap2)
     }
+
+    fun showLoading(z: Boolean) {
+        if (z) {
+            window.setFlags(16, 16)
+            loadingView.visibility = View.VISIBLE
+            return
+        }
+        window.clearFlags(16)
+        loadingView.visibility = View.GONE
+    }
+
+    fun selectBackgroundBlur() {
+        val arrayList: ArrayList<Drawable> = arrayListOf()
+        for (drawable in puzzleView.getPuzzlePieces()) {
+            arrayList.add(drawable.drawable)
+        }
+        val puzzleBackgroundAdapter = CollegeBGAdapter(
+            applicationContext, this, arrayList as List<Drawable?>
+        )
+        puzzleBackgroundAdapter.setSelectedSquareIndex(-1)
+        rvBackgroundList.adapter = puzzleBackgroundAdapter
+        rvBackgroundList.visibility = View.VISIBLE
+        tvChangeBackgroundBlur.setBackgroundResource(R.drawable.border_bottom)
+        tvChangeBackgroundBlur.setTextColor(ContextCompat.getColor(this, R.color.white))
+        rvBackgroundGradient.visibility = View.GONE
+        tvChangeBackgroundGradient.setBackgroundResource(0)
+        tvChangeBackgroundGradient.setTextColor(
+            ContextCompat.getColor(
+                this,
+                R.color.unselected_color
+            )
+        )
+        rvBackgroundColor.visibility = View.GONE
+        tvChangeBackgroundColor.setBackgroundResource(0)
+        tvChangeBackgroundColor.setTextColor(
+            ContextCompat.getColor(
+                this,
+                R.color.unselected_color
+            )
+        )
+    }
+
+    fun selectBackgroundColorTab() {
+        rvBackgroundColor.visibility = View.VISIBLE
+        tvChangeBackgroundColor.setBackgroundResource(R.drawable.border_bottom)
+        tvChangeBackgroundColor.setTextColor(ContextCompat.getColor(this, R.color.white))
+        rvBackgroundColor.scrollToPosition(0)
+        (rvBackgroundColor.adapter as CollegeBGAdapter?)?.setSelectedSquareIndex(-1)
+        rvBackgroundColor.adapter?.notifyDataSetChanged()
+        rvBackgroundGradient.visibility = View.GONE
+        tvChangeBackgroundGradient.setBackgroundResource(0)
+        tvChangeBackgroundGradient.setTextColor(
+            ContextCompat.getColor(
+                this,
+                R.color.unselected_color
+            )
+        )
+        rvBackgroundList.visibility = View.GONE
+        tvChangeBackgroundBlur.setBackgroundResource(0)
+        tvChangeBackgroundBlur.setTextColor(
+            ContextCompat.getColor(
+                this,
+                R.color.unselected_color
+            )
+        )
+    }
+
+    fun selectBackgroundGradientTab() {
+        rvBackgroundGradient.visibility = View.VISIBLE
+        tvChangeBackgroundGradient.setBackgroundResource(R.drawable.border_bottom)
+        tvChangeBackgroundGradient.setTextColor(ContextCompat.getColor(this, R.color.white))
+        rvBackgroundGradient.scrollToPosition(0)
+        (rvBackgroundGradient.adapter as CollegeBGAdapter?)?.setSelectedSquareIndex(-1)
+        rvBackgroundGradient.adapter?.notifyDataSetChanged()
+        rvBackgroundColor.visibility = View.GONE
+        tvChangeBackgroundColor.setBackgroundResource(0)
+        tvChangeBackgroundColor.setTextColor(
+            ContextCompat.getColor(
+                this,
+                R.color.unselected_color
+            )
+        )
+        rvBackgroundList.visibility = View.GONE
+        tvChangeBackgroundBlur.setBackgroundResource(0)
+        tvChangeBackgroundBlur.setTextColor(
+            ContextCompat.getColor(
+                this,
+                R.color.unselected_color
+            )
+        )
+    }
+
+
+    fun selectLayoutTool() {
+        puzzleList.visibility = View.VISIBLE
+        tvChangeLayout.visibility = View.VISIBLE
+        changeBorder.visibility = View.GONE
+        tvChangeBorder.visibility = View.GONE
+        radiusLayout.visibility = View.GONE
+        tvChangeRatio.visibility = View.GONE
+    }
+
+
+    fun selectRadiusTool() {
+        radiusLayout.visibility = View.VISIBLE
+        tvChangeRatio.visibility = View.VISIBLE
+        puzzleList.visibility = View.GONE
+        tvChangeLayout.visibility = View.GONE
+        changeBorder.visibility = View.GONE
+        tvChangeBorder.visibility = View.GONE
+    }
+
+
+    fun selectBorderTool() {
+        changeBorder.visibility = View.VISIBLE
+        tvChangeBorder.visibility = View.VISIBLE
+        rvBackgroundList.visibility = View.GONE
+        puzzleList.visibility = View.GONE
+        tvChangeLayout.visibility = View.GONE
+        radiusLayout.visibility = View.GONE
+        tvChangeRatio.visibility = View.GONE
+        sbChangeBorderRadius.progress = puzzleView.pieceRadian.toInt()
+        sbChangeBorderSize.progress = puzzleView.piecePadding.toInt()
+    }
+
+    private fun showUpFunction(view: View?) {
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(mainActivity)
+        constraintSet.connect(wrapPuzzleView.id, 1, mainActivity.id, 1, 0)
+        constraintSet.connect(wrapPuzzleView.id, 4, view!!.id, 3, 0)
+        constraintSet.connect(wrapPuzzleView.id, 2, mainActivity.id, 2, 0)
+        constraintSet.applyTo(mainActivity)
+    }
+
+
+    fun showDownFunction() {
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(mainActivity)
+        constraintSet.connect(wrapPuzzleView.id, 1, mainActivity.id, 1, 0)
+        constraintSet.connect(wrapPuzzleView.id, 4, mRvTools.id, 3, 0)
+        constraintSet.connect(wrapPuzzleView.id, 2, mainActivity.id, 2, 0)
+        constraintSet.applyTo(mainActivity)
+    }
+
+    override fun onToolSelected(editingToolType: EditingToolType?) {
+        currentMode = editingToolType
+        when (editingToolType) {
+            LAYOUT -> {
+                puzzleLayout = puzzleView.puzzleLayout
+                currentAspect = puzzleView.aspectRatio
+                pieceBorderRadius = puzzleView.pieceRadian
+                piecePadding = puzzleView.piecePadding
+                puzzleList.scrollToPosition(0)
+                (puzzleList.adapter as PuzzleAdapter?)?.setSelectedIndex(-1)
+                puzzleList.adapter?.notifyDataSetChanged()
+                radiusLayout.scrollToPosition(0)
+                (radiusLayout.adapter as AspectRatioPreviewAdapter?)?.setLastSelectedView(-1)
+                radiusLayout.adapter?.notifyDataSetChanged()
+                selectLayoutTool()
+                slideUpSaveView()
+                slideUp(changeLayoutLayout)
+                slideDown(mRvTools)
+                showUpFunction(changeLayoutLayout)
+                puzzleView.setLocked(false)
+                puzzleView.setTouchEnable(false)
+                return
+            }
+            BORDER -> {
+                puzzleLayout = puzzleView.puzzleLayout
+                currentAspect = puzzleView.aspectRatio
+                pieceBorderRadius = puzzleView.pieceRadian
+                piecePadding = puzzleView.piecePadding
+                puzzleList.scrollToPosition(0)
+                (puzzleList.adapter as PuzzleAdapter?)?.setSelectedIndex(-1)
+                puzzleList.adapter?.notifyDataSetChanged()
+                radiusLayout.scrollToPosition(0)
+                (radiusLayout.adapter as AspectRatioPreviewAdapter?)?.setLastSelectedView(-1)
+                radiusLayout.adapter?.notifyDataSetChanged()
+                selectBorderTool()
+                slideUpSaveView()
+                slideUp(changeLayoutLayout)
+                slideDown(mRvTools)
+                showUpFunction(changeLayoutLayout)
+                puzzleView.setLocked(false)
+                puzzleView.setTouchEnable(false)
+                return
+            }
+            RATIO -> {
+                puzzleLayout = puzzleView.puzzleLayout
+                currentAspect = puzzleView.aspectRatio
+                pieceBorderRadius = puzzleView.pieceRadian
+                piecePadding = puzzleView.piecePadding
+                puzzleList.scrollToPosition(0)
+                (puzzleList.adapter as PuzzleAdapter?)?.setSelectedIndex(-1)
+                puzzleList.adapter?.notifyDataSetChanged()
+                radiusLayout.scrollToPosition(0)
+                (radiusLayout.adapter as AspectRatioPreviewAdapter?)?.setLastSelectedView(-1)
+                radiusLayout.adapter?.notifyDataSetChanged()
+                selectRadiusTool()
+                slideUpSaveView()
+                slideUp(changeLayoutLayout)
+                slideDown(mRvTools)
+                showUpFunction(changeLayoutLayout)
+                puzzleView.setLocked(false)
+                puzzleView.setTouchEnable(false)
+                return
+            }
+            FILTER -> {
+                if (lstOriginalDrawable.isEmpty()) {
+                    for (drawable in puzzleView.getPuzzlePieces()) {
+                        lstOriginalDrawable.add(drawable.drawable)
+                    }
+                }
+                slideUpSaveView()
+                return
+            }
+            TEXT -> {
+                puzzleView.setTouchEnable(false)
+                slideUpSaveView()
+                puzzleView.setLocked(false)
+                slideDown(mRvTools)
+                return
+            }
+            BACKGROUND -> {
+                puzzleView.setLocked(false)
+                puzzleView.setTouchEnable(false)
+                slideUpSaveView()
+                selectBackgroundColorTab()
+                slideDown(mRvTools)
+                slideUp(changeBackgroundLayout)
+                showUpFunction(changeBackgroundLayout)
+                if (puzzleView.backgroundResourceMode == 0) {
+                    currentBackgroundState.isColor = true
+                    currentBackgroundState.isBitmap = false
+                    currentBackgroundState.drawableId =
+                        (puzzleView.background as ColorDrawable).color
+                    return
+                } else if (puzzleView.backgroundResourceMode == 2 || puzzleView.background is ColorDrawable) {
+                    currentBackgroundState.isBitmap = true
+                    currentBackgroundState.isColor = false
+                    currentBackgroundState.drawable = puzzleView.background
+                    return
+                } else if (puzzleView.background is GradientDrawable) {
+                    currentBackgroundState.isBitmap = false
+                    currentBackgroundState.isColor = false
+                    currentBackgroundState.drawable = puzzleView.background
+                    return
+                } else {
+                    return
+                }
+            }
+            else -> return
+        }
+    }
+
 
     fun loadPhoto() {
         val i: Int
-        val arrayList: ArrayList<Bitmap> = ArrayList()
-        i = if (lstPaths!!.size > collegeLayout!!.areaCount) {
-            collegeLayout!!.areaCount
+        val arrayList: MutableList<Bitmap> = mutableListOf()
+        Log.e("TAG", "loadPhoto: ${lstPaths?.size}")
+        i = if (lstPaths!!.size > puzzleLayout.areaCount) {
+            puzzleLayout.areaCount
         } else {
             lstPaths!!.size
         }
-        for (j in 0 until i) {
-            val r4: Target = object : Target {
-                override fun onBitmapFailed(exc: Exception?, drawable: Drawable?) {}
-                override fun onPrepareLoad(drawable: Drawable?) {}
-                override fun onBitmapLoaded(bitmap: Bitmap, loadedFrom: Picasso.LoadedFrom?) {
-                    var bitmap = bitmap
-                    val width = bitmap.width
+        for (i1 in 0 until i) {
+            val target: Target = object : Target {
+                override fun onBitmapFailed(exc: Exception, drawable: Drawable) {}
+                override fun onPrepareLoad(drawable: Drawable) {}
+                override fun onBitmapLoaded(bitmap: Bitmap, loadedFrom: LoadedFrom) {
+                    var bmp = bitmap
+                    val width = bmp.width
                     val f = width.toFloat()
-                    val height = bitmap.height.toFloat()
+                    val height = bmp.height.toFloat()
                     val max = Math.max(f / f, height / f)
                     if (max > 1.0f) {
-                        bitmap = Bitmap.createScaledBitmap(
-                            bitmap,
+                        bmp = Bitmap.createScaledBitmap(
+                            bmp,
                             (f / max).toInt(),
                             (height / max).toInt(),
                             false
                         )
                     }
-                    arrayList.add(bitmap)
+                    arrayList.add(bmp)
                     if (arrayList.size == i) {
-                        if (lstPaths!!.size < collegeLayout!!.areaCount) {
-                            for (i in 0 until collegeLayout!!.areaCount) {
+                        if (lstPaths!!.size < puzzleLayout.areaCount) {
+                            for (i2 in 0 until puzzleLayout.areaCount) {
                                 try {
-                                    binding.puzzleView.addPiece(arrayList[i % i] as Bitmap)
-                                } catch (e: java.lang.Exception) {
+                                    puzzleView.addPiece(arrayList[i2 % i2])
+                                } catch (e: Exception) {
                                     Toast.makeText(
                                         this@CollageViewActivity,
                                         "An error occurred while loading image",
@@ -644,119 +697,354 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
                                 }
                             }
                         } else {
-                            binding.puzzleView.addPieces(arrayList)
+                            puzzleView.addPieces(arrayList)
                         }
                     }
                     targets.remove(this)
                 }
             }
-            val picasso: Picasso = Picasso.get()
-            picasso.load(Uri.parse(lstPaths!![j]))
-                .resize(deviceWidth, deviceWidth).centerInside().config(Bitmap.Config.RGB_565)
-                .into(r4)
-            targets.add(r4)
+            Log.e("TAG", "loadPhoto1: ${Uri.parse(lstPaths?.get(i1))}")
+
+            try {
+                Picasso.get().load(Uri.parse(lstPaths?.get(i1))).resize(deviceWidth, deviceWidth)
+                    .centerInside()
+                    .config(
+                        Bitmap.Config.RGB_565
+                    ).into(
+                        target
+                    )
+                targets.add(target)
+            } catch (e: Exception) {
+                Log.e("TAG", "loadPhotoExc: ${e.message}")
+            }
         }
     }
 
-    fun replaceCurrentPic(uri: Uri) {
-        loadBitmapFromUri()
-            .execute(uri.toString())
+    fun slideUp(view: View?) {
+        ObjectAnimator.ofFloat(view, "translationY", view!!.height.toFloat(), 0.0f)
+            .start()
     }
 
-    fun showLoading(z: Boolean) {
-        if (z) {
-            window.setFlags(16, 16)
-            binding.loadingView.visibility = View.VISIBLE
+
+    override fun onDestroy() {
+        isActivityLeft = true
+        try {
+            puzzleView.reset()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        AdsUtils.destroyBanner()
+        super.onDestroy()
+    }
+
+    fun slideUpSaveView() {
+        toolbar.visibility = View.GONE
+    }
+
+    fun slideDownSaveView() {
+        toolbar.visibility = View.VISIBLE
+    }
+
+    fun slideDown(view: View?) {
+        ObjectAnimator.ofFloat(view, "translationY", 0.0f, view!!.height.toFloat()).start()
+    }
+
+    override fun onBackPressed() {
+        if (currentMode == null) {
+            super.onBackPressed()
             return
         }
-        window.clearFlags(16)
-        binding.loadingView.visibility = View.GONE
+        try {
+            when (currentMode) {
+                LAYOUT, BORDER, RATIO -> {
+                    slideDown(changeLayoutLayout)
+                    slideUp(mRvTools)
+                    slideDownSaveView()
+                    showDownFunction()
+                    puzzleView.updateLayout(puzzleLayout)
+                    puzzleView.piecePadding = piecePadding
+                    puzzleView.pieceRadian = pieceBorderRadius
+                    currentMode = NONE
+                    windowManager.defaultDisplay.getSize(Point())
+                    onNewAspectRatioSelected(currentAspect)
+                    puzzleView.aspectRatio = currentAspect
+                    puzzleView.setLocked(true)
+                    puzzleView.setTouchEnable(true)
+                    return
+                }
+                BACKGROUND -> {
+                    slideUp(mRvTools)
+                    slideDown(changeBackgroundLayout)
+                    puzzleView.setLocked(true)
+                    puzzleView.setTouchEnable(true)
+                    if (currentBackgroundState.isColor) {
+                        puzzleView.backgroundResourceMode = 0
+                        puzzleView.setBackgroundColor(currentBackgroundState.drawableId)
+                    } else if (currentBackgroundState.isBitmap) {
+                        puzzleView.backgroundResourceMode = 2
+                        puzzleView.background = currentBackgroundState.drawable
+                    } else {
+                        puzzleView.backgroundResourceMode = 1
+                        if (currentBackgroundState.drawable != null) {
+                            puzzleView.background = currentBackgroundState.drawable
+                        } else {
+                            puzzleView.setBackgroundResource(currentBackgroundState.drawableId)
+                        }
+                    }
+                    slideDownSaveView()
+                    showDownFunction()
+                    currentMode = NONE
+                    return
+                }
+                PIECE -> {
+                    slideDown(rvPieceControl)
+                    slideUp(mRvTools)
+                    slideDownSaveView()
+                    val layoutParams =
+                        rvPieceControl.layoutParams as ConstraintLayout.LayoutParams
+                    layoutParams.bottomMargin = 0
+                    rvPieceControl.layoutParams = layoutParams
+                    currentMode = NONE
+                    puzzleView.setHandlingPiece(null)
+                    puzzleView.setPreviousHandlingPiece(null)
+                    puzzleView.invalidate()
+                    currentMode = NONE
+                    return
+                }
+                NONE -> {
+                    if (!isSaved) showDiscardDialog() else finish()
+                    return
+                }
+                else -> {
+                    val intent = Intent(
+                        this@CollageViewActivity,
+                        MainActivity::class.java
+                    )
+                    setResult(RESULT_CANCELED, intent)
+                    super.onBackPressed()
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
-    private fun loadFilterBitmap() {
-        object : AsyncTaskRunner<Void?, MutableList<Bitmap>>(this) {
-            override fun onPreExecute() {
-                super.onPreExecute()
-                showLoading(true)
-            }
+    private fun showDiscardDialog() {
+        AlertDialog.Builder(this).setMessage(R.string.dialog_discard_title)
+            .setPositiveButton(R.string.discard) { dialogInterface, i ->
+                currentMode = null
+                finish()
+            }.setNegativeButton("Cancel",
+                { dialogInterface: DialogInterface, i: Int -> dialogInterface.dismiss() })
+            .create().show()
+    }
 
-            override fun doInBackground(params: Void?): MutableList<Bitmap> {
-                var lstBitmapWithFilter: MutableList<Bitmap>? = mutableListOf()
-                try {
-                    lstBitmapWithFilter = UtilsFilter.getLstBitmapWithFilter(
-                        ThumbnailUtils.extractThumbnail(
-                            (binding.puzzleView.getCollegePieces()[0]
-                                .drawable as BitmapDrawable).bitmap,
-                            100,
-                            100
-                        )
-                    )
-                } catch (e: Exception) {
-                    Log.e("TAG", "doInBackground: ${e.message}")
+    override fun onItemClick(puzzleLayout2: PuzzleLayout, i: Int) {
+        val parse: PuzzleLayout = PuzzleLayoutParser.parse(puzzleLayout2.generateInfo())
+        puzzleLayout2.radian = puzzleView.pieceRadian
+        puzzleLayout2.padding = puzzleView.piecePadding
+        puzzleView.updateLayout(parse)
+    }
+
+    override fun onNewAspectRatioSelected(aspectRatio: AspectRatio?) {
+        val defaultDisplay = windowManager.defaultDisplay
+        val point = Point()
+        defaultDisplay.getSize(point)
+        val calculateWidthAndHeight = calculateWidthAndHeight(aspectRatio, point)
+        puzzleView.layoutParams = ConstraintLayout.LayoutParams(
+            calculateWidthAndHeight[0], calculateWidthAndHeight[1]
+        )
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(wrapPuzzleView)
+        constraintSet.connect(puzzleView.id, 3, wrapPuzzleView.id, 3, 0)
+        constraintSet.connect(puzzleView.id, 1, wrapPuzzleView.id, 1, 0)
+        constraintSet.connect(puzzleView.id, 4, wrapPuzzleView.id, 4, 0)
+        constraintSet.connect(puzzleView.id, 2, wrapPuzzleView.id, 2, 0)
+        constraintSet.applyTo(wrapPuzzleView)
+        puzzleView.aspectRatio = aspectRatio
+    }
+
+    private fun calculateWidthAndHeight(aspectRatio: AspectRatio?, point: Point): IntArray {
+        val height = wrapPuzzleView.height
+        if (aspectRatio!!.height > aspectRatio.width) {
+            val ratio = (aspectRatio.ratio * height.toFloat()).toInt()
+            return if (ratio < point.x) {
+                intArrayOf(ratio, height)
+            } else intArrayOf(point.x, (point.x.toFloat() / aspectRatio.ratio).toInt())
+        }
+        val ratio2 = (point.x.toFloat() / aspectRatio.ratio).toInt()
+        return if (ratio2 > height) {
+            intArrayOf((height.toFloat() * aspectRatio.ratio).toInt(), height)
+        } else intArrayOf(point.x, ratio2)
+    }
+
+    override fun onPause() {
+        isActivityLeft = true
+        super.onPause()
+    }
+
+    override fun onResume() {
+        isActivityLeft = false
+        super.onResume()
+    }
+
+
+    @SuppressLint("StaticFieldLeak")
+    override fun onBackgroundSelected(squareView: CollegeBGAdapter.SquareView) {
+        if (squareView.isColor) {
+            puzzleView.setBackgroundColor(squareView.drawableId)
+            puzzleView.backgroundResourceMode = 0
+        } else if (squareView.drawable != null) {
+            puzzleView.backgroundResourceMode = 2
+
+            object : AsyncTask<Void?, Bitmap?, Bitmap?>() {
+                override fun onPreExecute() {
+                    showLoading(true)
                 }
-                Log.e("TAG", "doInBackground: ${binding.puzzleView.getCollegePieces().size}")
-                return lstBitmapWithFilter!!
-            }
 
-            override fun onPostExecute(result: MutableList<Bitmap>?) {
-                super.onPostExecute(result)
-
-                var configList = mutableListOf<UtilsFilter.FilterBean>()
-                for (config in UtilsFilter.EFFECT_CONFIGS) {
-                    configList.add(config)
-                }
-                Log.e("TAG", "onPostExecute: ${configList.size}")
-
-                result?.let { list ->
-                    lstBitmapWithFilter = list
-                    binding.rvFilterView.adapter = AdapterFilterView(
-                        lstBitmapWithFilter,
-                        this@CollageViewActivity,
-                        this@CollageViewActivity,
-                        configList
+                override fun doInBackground(vararg voidArr: Void?): Bitmap? {
+                    return UtilsFilter.getBlurImageFromBitmap(
+                        (squareView.drawable as BitmapDrawable).bitmap,
+                        5.0f
                     )
-                    slideDown(binding.rvConstraintTools)
-                    slideUp(binding.filterLayout)
+                }
+
+                override fun onPostExecute(bitmap: Bitmap?) {
                     showLoading(false)
-                    binding.puzzleView.setLocked(false)
-                    binding.puzzleView.setTouchEnable(false)
+                    puzzleView.background = BitmapDrawable(resources, bitmap)
                 }
+            }.execute(null)
+        } else {
+            puzzleView.setBackgroundResource(squareView.drawableId)
+            puzzleView.backgroundResourceMode = 1
+        }
+    }
+
+    override fun onFilterSelected(str: String) {
+        LoadBitmapWithFilter().execute(str)
+    }
+
+
+    override fun finishCrop(bitmap: Bitmap?) {
+        puzzleView.replace(bitmap, "")
+    }
+
+    override fun onSaveFilter(bitmap: Bitmap?) {
+        puzzleView.replace(bitmap, "")
+    }
+
+    override fun onPieceFuncSelected(editingToolType: EditingToolType?) {
+        when (editingToolType) {
+            REPLACE_IMG -> {
+                with(this)
+                    .showCameraTile(false)
+                    .dropDownAlbum()
+                    .imageCountTextFormat("%s images")
+                    .start { uri: Uri ->
+                        OnLoadBitmapFromUri().execute(
+                            uri.toString()
+                        )
+                    }
+                return
             }
-        }.execute(null, false)
+            H_FLIP -> {
+                puzzleView.flipHorizontally()
+                return
+            }
+            V_FLIP -> {
+                puzzleView.flipVertically()
+                return
+            }
+            ROTATE -> {
+                puzzleView.rotate(90.0f)
+                return
+            }
+            CROP -> {
+                PicsartCropDialogFragment.show(
+                    this,
+                    this,
+                    (puzzleView.getHandlingPiece().drawable as BitmapDrawable).bitmap
+                )
+                return
+            }
+            FILTER -> LoadFilterBitmapForCurrentPiece().execute()
+            else -> {}
+        }
+    }
+
+    inner class OnLoadBitmapFromUri : AsyncTask<String?, Bitmap?, Bitmap?>() {
+        public override fun onPreExecute() {
+            showLoading(true)
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        override fun doInBackground(vararg strArr: String?): Bitmap? {
+            return try {
+                val fromFile = Uri.parse(strArr[0])
+                var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, fromFile)
+                val width = bitmap.width.toFloat()
+                val height = bitmap.height.toFloat()
+                val max = (width / 1280.0f).coerceAtLeast(height / 1280.0f)
+                if (max > 1.0f) {
+                    bitmap = Bitmap.createScaledBitmap(
+                        bitmap,
+                        (width / max).toInt(),
+                        (height / max).toInt(),
+                        false
+                    )
+                }
+                val rotateBitmap: Bitmap = SystemUtils.rotateBitmap(
+                    bitmap,
+                    android.media.ExifInterface(contentResolver.openInputStream(fromFile)!!)
+                        .getAttributeInt(android.media.ExifInterface.TAG_ORIENTATION, 1)
+                )
+                if (rotateBitmap != bitmap) {
+                    bitmap.recycle()
+                }
+                rotateBitmap
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
+        }
+
+        override fun onPostExecute(bitmap: Bitmap?) {
+            showLoading(false)
+            puzzleView.replace(bitmap, "")
+        }
     }
 
     inner class LoadFilterBitmapForCurrentPiece :
-        AsyncTask<Void?, List<Bitmap?>?, List<Bitmap>>() {
+        AsyncTask<Void?, List<Bitmap?>?, List<Bitmap?>?>() {
         public override fun onPreExecute() {
             showLoading(true)
         }
 
         @SuppressLint("WrongThread")
-        override fun doInBackground(vararg voidArr: Void?): List<Bitmap> {
+        override fun doInBackground(vararg voidArr: Void?): List<Bitmap>? {
             return UtilsFilter.getLstBitmapWithFilter(
                 ThumbnailUtils.extractThumbnail(
-                    (binding.puzzleView.getHandlingPiece().drawable as BitmapDrawable).bitmap,
-                    100,
-                    100
+                    (puzzleView.getHandlingPiece().drawable as BitmapDrawable).bitmap, 100, 100
                 )
             )
         }
 
-        public override fun onPostExecute(list: List<Bitmap>) {
+        override fun onPostExecute(list: List<Bitmap?>?) {
             showLoading(false)
-            if (binding.puzzleView.getHandlingPiece() != null) {
+            if (puzzleView.getHandlingPiece() != null) {
                 FilterDialogFragment.show(
                     this@CollageViewActivity,
                     this@CollageViewActivity,
-                    (binding.puzzleView.getHandlingPiece().drawable as BitmapDrawable).bitmap,
+                    (puzzleView.getHandlingPiece().drawable as BitmapDrawable).bitmap,
                     list
                 )
+                showLoading(false)
             }
         }
     }
 
     inner class LoadBitmapWithFilter :
-        AsyncTask<String?, List<Bitmap?>?, List<Bitmap>>() {
+        AsyncTask<String?, List<Bitmap?>?, List<Bitmap?>?>() {
         public override fun onPreExecute() {
             showLoading(true)
         }
@@ -774,375 +1062,85 @@ class CollageViewActivity : BaseActivity(), EditingToolsAdapter.OnItemSelected,
             return arrayList
         }
 
-        public override fun onPostExecute(list: List<Bitmap>) {
-            for (i in list.indices) {
-                val bitmapDrawable = BitmapDrawable(resources, list[i])
-                bitmapDrawable.setAntiAlias(true)
-                bitmapDrawable.isFilterBitmap = true
-                binding.puzzleView.getCollegePieces().get(i).drawable = bitmapDrawable
+        override fun onPostExecute(list: List<Bitmap?>?) {
+            list?.let { lists ->
+                for (i in lists.indices) {
+                    val bitmapDrawable = BitmapDrawable(resources, lists[i])
+                    bitmapDrawable.setAntiAlias(true)
+                    bitmapDrawable.isFilterBitmap = true
+                    puzzleView.getPuzzlePieces()[i].drawable = bitmapDrawable
+                }
             }
-            binding.puzzleView.invalidate()
+            puzzleView.invalidate()
             showLoading(false)
         }
     }
 
-    inner class loadBitmapFromUri :
-        AsyncTask<String?, Bitmap?, Bitmap?>() {
+    inner class SavePuzzleAsFile :
+        AsyncTask<Bitmap?, String?, String?>() {
         public override fun onPreExecute() {
             showLoading(true)
         }
 
-        override fun doInBackground(vararg strArr: String?): Bitmap? {
+        override fun doInBackground(vararg bitmapArr: Bitmap?): String? {
+            val bitmap = bitmapArr[0]!!
+            val bitmap2 = bitmapArr[1]!!
+            val createBitmap =
+                Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(createBitmap)
+            canvas.drawBitmap(
+                bitmap,
+                null,
+                RectF(0.0f, 0.0f, bitmap.width.toFloat(), bitmap.height.toFloat()),
+                null as Paint?
+            )
+            canvas.drawBitmap(
+                bitmap2,
+                null,
+                RectF(0.0f, 0.0f, bitmap.width.toFloat(), bitmap.height.toFloat()),
+                null as Paint?
+            )
+            bitmap.recycle()
+            bitmap2.recycle()
+            val saveBitmapAsFile =
+                FileUtils.saveBitmapAsFile(createBitmap, "Collage Maker") ?: return null
             return try {
-                val fromFile = Uri.parse(strArr[0]!!)
-                val rotateBitmap = SystemUtils.rotateBitmap(
-                    MediaStore.Images.Media.getBitmap(contentResolver, fromFile),
-                    ExifInterface(contentResolver.openInputStream(fromFile)!!).getAttributeInt(
-                        ExifInterface.TAG_ORIENTATION,
-                        ExifInterface.ORIENTATION_NORMAL
-                    )
-                )
-                val width = rotateBitmap.width.toFloat()
-                val height = rotateBitmap.height.toFloat()
-                val max = (width / 1280.0f).coerceAtLeast(height / 1280.0f)
-                if (max > 1.0f) Bitmap.createScaledBitmap(
-                    rotateBitmap,
-                    (width / max).toInt(),
-                    (height / max).toInt(),
-                    false
-                ) else rotateBitmap
+                MediaScannerConnection.scanFile(
+                    applicationContext,
+                    arrayOf(saveBitmapAsFile.absolutePath),
+                    null as Array<String?>?
+                ) { str: String?, uri: Uri? -> }
+                createBitmap.recycle()
+                saveBitmapAsFile.absolutePath
             } catch (e: Exception) {
-                e.printStackTrace()
+                createBitmap.recycle()
                 null
+            } catch (th: Throwable) {
+                createBitmap.recycle()
+                throw th
             }
         }
 
-        public override fun onPostExecute(bitmap: Bitmap?) {
+        override fun onPostExecute(str: String?) {
             showLoading(false)
-            binding.puzzleView.replace(bitmap, "")
-        }
-    }
-
-    override fun onBackPressed() {
-        if (currentMode == null) {
-            super.onBackPressed()
-            return
-        }
-        try {
-            when (currentMode) {
-                LAYOUT, BORDER, RATIO -> {
-                    slideDown(binding.changeLayoutLayout)
-                    slideUp(binding.rvConstraintTools)
-                    slideDownSaveView()
-                    showDownFunction()
-                    binding.puzzleView.updateLayout(collegeLayout)
-                    binding.puzzleView.piecePadding = piecePadding
-                    binding.puzzleView.pieceRadian = pieceBorderRadius
-                    currentMode = NONE
-                    windowManager.defaultDisplay.getSize(Point())
-                    onNewAspectRatioSelected(currentAspect!!)
-                    binding.puzzleView.aspectRatio = currentAspect
-                    binding.puzzleView.setLocked(true)
-                    binding.puzzleView.setTouchEnable(true)
-                }
-                FILTER -> {
-                    slideUp(binding.rvConstraintTools)
-                    slideDown(binding.filterLayout)
-                    binding.puzzleView.setLocked(true)
-                    binding.puzzleView.setTouchEnable(true)
-                    var i = 0
-                    while (i < lstOriginalDrawable.size) {
-                        binding.puzzleView.getCollegePieces()[i].drawable = lstOriginalDrawable[i]
-                        i++
-                    }
-                    binding.puzzleView.invalidate()
-                    slideDownSaveView()
-                    currentMode = NONE
-                }
-                STICKER -> {
-                }
-                TEXT -> {
-                    if (!binding.puzzleView.stickers.isEmpty()) {
-                        binding.puzzleView.stickers.clear()
-                        binding.puzzleView.setHandlingSticker(null)
-                    }
-                    slideDown(binding.textControl)
-                    binding.addNewText.visibility = View.GONE
-                    binding.puzzleView.setHandlingSticker(null)
-                    slideUp(binding.rvConstraintTools)
-                    slideDownSaveView()
-                    binding.puzzleView.setLocked(true)
-                    currentMode = NONE
-                    binding.puzzleView.setTouchEnable(true)
-                }
-                BACKGROUND -> {
-                    slideUp(binding.rvConstraintTools)
-                    slideDown(binding.changeBackgroundLayout)
-                    binding.puzzleView.setLocked(true)
-                    binding.puzzleView.setTouchEnable(true)
-                    if (currentBackgroundState!!.isColor) {
-                        binding.puzzleView.backgroundResourceMode = 0
-                        binding.puzzleView.setBackgroundColor(currentBackgroundState!!.drawableId)
-                    } else if (currentBackgroundState!!.isBitmap) {
-                        binding.puzzleView.backgroundResourceMode = 2
-                        binding.puzzleView.background = currentBackgroundState!!.drawable
-                    } else {
-                        binding.puzzleView.backgroundResourceMode = 1
-                        if (currentBackgroundState!!.drawable != null) {
-                            binding.puzzleView.background = currentBackgroundState!!.drawable
-                        } else {
-                            binding.puzzleView.setBackgroundResource(currentBackgroundState!!.drawableId)
-                        }
-                    }
-                    slideDownSaveView()
-                    showDownFunction()
-                    currentMode = NONE
-                }
-                PIECE -> {
-                    slideDown(binding.rvPieceControl)
-                    slideUp(binding.rvConstraintTools)
-                    slideDownSaveView()
-                    val layoutParams =
-                        binding.rvPieceControl.layoutParams as ConstraintLayout.LayoutParams
-                    layoutParams.bottomMargin = 0
-                    binding.rvPieceControl.layoutParams = layoutParams
-                    currentMode = NONE
-                    binding.puzzleView.setHandlingPiece(null)
-                    binding.puzzleView.setPreviousHandlingPiece(null)
-                    binding.puzzleView.invalidate()
-                    currentMode = NONE
-                    return
-                }
-                NONE -> {
-                    isSaveDialog = false
-                    saveDiscardDialog(isSaveDialog)
-                }
-                else -> super.onBackPressed()
-            }
-        } catch (e: java.lang.Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    fun saveDiscardDialog(isSaveDialog: Boolean) {
-        val ok = view!!.findViewById<TextView>(R.id.btn_okay)
-        val cancel = view!!.findViewById<ImageView>(R.id.btn_cancel)
-        if (isSaveDialog) {
-            (view!!.findViewById<View>(R.id.txtTitle) as TextView).setText(R.string.dialog_save_text)
-        } else {
-            (view!!.findViewById<View>(R.id.txtTitle) as TextView).text =
-                resources.getString(R.string.dialog_discard_text)
-        }
-        builder = AlertDialog.Builder(this)
-            .setView(view)
-            .setCancelable(true)
-        val alertDialog = builder?.create()!!
-        alertDialog.show()
-        ok.setOnClickListener { arg0: View? ->
-            if (alertDialog.isShowing) alertDialog.dismiss()
-            if (isSaveDialog) {
-                binding.puzzleView.setHandlingSticker(null)
-                slideDown(binding.stickerLayout)
-                slideUp(binding.rvConstraintTools)
-                slideDownSaveView()
-                binding.puzzleView.setLocked(true)
-                binding.puzzleView.setTouchEnable(true)
-                currentMode = NONE
-                binding.stickerGridFragmentContainer.visibility = View.GONE
-                val createBitmap: Bitmap =
-                    FileUtils.createBitmap(binding.puzzleView, 1920)
-                val createBitmap2 = binding.puzzleView.createBitmap()
-
-                object : AsyncTaskRunner<Void?, String>(this) {
-                    override fun doInBackground(params: Void?): String? {
-                        val bitmap = createBitmap
-                        val bitmap2 = createBitmap2
-                        val createBitmap =
-                            Bitmap.createBitmap(
-                                bitmap.width,
-                                bitmap.height,
-                                Bitmap.Config.ARGB_8888
-                            )
-                        val canvas = Canvas(createBitmap)
-                        canvas.drawBitmap(
-                            bitmap,
-                            null,
-                            RectF(0.0f, 0.0f, bitmap.width.toFloat(), bitmap.height.toFloat()),
-                            null
+            isSaved = true
+            AdsUtils.loadInterstitialAd(this@CollageViewActivity,
+                getString(R.string.interstitial_id),
+                object : AdsUtils.Companion.FullScreenCallback() {
+                    override fun continueExecution() {
+                        val intent = Intent(
+                            this@CollageViewActivity,
+                            CollageSaveShareActivity::class.java
                         )
-                        canvas.drawBitmap(
-                            bitmap2,
-                            null,
-                            RectF(0.0f, 0.0f, bitmap.width.toFloat(), bitmap.height.toFloat()),
-                            null
-                        )
-                        bitmap.recycle()
-                        bitmap2.recycle()
-
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                            var path = ""
-                            FileUtilsss.saveBitmapAPI30(
-                                this@CollageViewActivity,
-                                createBitmap, "IMG_${System.currentTimeMillis()}.jpg",
-                                "image/jpeg",
-                                File(originalPath, "Collagemaker")
-                            ) {
-                                path = it.toString()
-                            }
-                            return path
-                        } else {
-                            val saveBitmapAsFile =
-                                FileUtilsss.saveBitmapAsFileDir(
-                                    this@CollageViewActivity,
-                                    createBitmap,
-                                    "Collagemaker"
-                                )
-                            MediaScannerConnection.scanFile(
-                                applicationContext, arrayOf(saveBitmapAsFile.absolutePath), null
-                            ) { str, uri -> }
-                            createBitmap.recycle()
-                            return saveBitmapAsFile.absolutePath
-                        }
+                        intent.putExtra("path", str)
+                        intent.putExtra("type", 1)
+                        startActivity(intent)
                     }
-
-                    override fun onPostExecute(result: String?) {
-                        super.onPostExecute(result)
-                        toastShort(this@CollageViewActivity, "Image saved.")
-                    }
-                }.execute(null, true)
-            } else {
-                currentMode = null
-                finish()
-            }
-        }
-        cancel.setOnClickListener { v: View? ->
-            if (alertDialog.isShowing) alertDialog.dismiss()
-            binding.puzzleView.setLocked(false)
-        }
-        alertDialog.setOnDismissListener { dialog1: DialogInterface? ->
-            if (view!!.findViewById<View>(R.id.container_main).parent != null) {
-                (view!!.findViewById<View>(R.id.container_main)
-                    .parent as ViewGroup).removeView(
-                    view!!.findViewById(R.id.container_main)
-                )
-            }
-        }
-    }
-
-    override fun onNewAspectRatioSelected(aspectRatio: AspectRatio) {
-        val defaultDisplay = windowManager.defaultDisplay
-        val point = Point()
-        defaultDisplay.getSize(point)
-        val calculateWidthAndHeight = calculateWidthAndHeight(aspectRatio, point)
-        binding.puzzleView.layoutParams =
-            ConstraintLayout.LayoutParams(calculateWidthAndHeight[0], calculateWidthAndHeight[1])
-        val constraintSet = ConstraintSet()
-        constraintSet.clone(binding.wrapPuzzleView)
-        constraintSet.connect(binding.puzzleView.id, 3, binding.wrapPuzzleView.id, 3, 0)
-        constraintSet.connect(binding.puzzleView.id, 1, binding.wrapPuzzleView.id, 1, 0)
-        constraintSet.connect(binding.puzzleView.id, 4, binding.wrapPuzzleView.id, 4, 0)
-        constraintSet.connect(binding.puzzleView.id, 2, binding.wrapPuzzleView.id, 2, 0)
-        constraintSet.applyTo(binding.wrapPuzzleView)
-        binding.puzzleView.aspectRatio = aspectRatio
-    }
-
-    private fun calculateWidthAndHeight(aspectRatio: AspectRatio, point: Point): IntArray {
-        val height = binding.wrapPuzzleView.height
-        if (aspectRatio.height > aspectRatio.width) {
-            val ratio = (aspectRatio.ratio * height.toFloat()).toInt()
-            return if (ratio < point.x) {
-                intArrayOf(ratio, height)
-            } else intArrayOf(point.x, (point.x.toFloat() / aspectRatio.ratio).toInt())
-        }
-        val ratio2 = (point.x.toFloat() / aspectRatio.ratio).toInt()
-        return if (ratio2 > height) {
-            intArrayOf((height.toFloat() * aspectRatio.ratio).toInt(), height)
-        } else intArrayOf(point.x, ratio2)
-    }
-
-    override fun onItemClick(collegeLayout: CollageLayout, i: Int) {
-        val parse: CollageLayout = CollegeLayoutParser.parse(collegeLayout!!.generateInfo())
-        collegeLayout.radian = binding.puzzleView.pieceRadian
-        collegeLayout.padding = binding.puzzleView.piecePadding
-        binding.puzzleView.updateLayout(parse)
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    override fun onBackgroundSelected(squareView: CollegeBGAdapter.SquareView) {
-        if (squareView.isColor) {
-            binding.puzzleView.setBackgroundColor(squareView.drawableId)
-            binding.puzzleView.backgroundResourceMode = 0
-        } else if (squareView.drawable != null) {
-            binding.puzzleView.backgroundResourceMode = 2
-            object : AsyncTask<Void?, Bitmap?, Bitmap?>() {
-                override fun onPreExecute() {
-                    showLoading(true)
-                }
-
-                override fun doInBackground(vararg voidArr: Void?): Bitmap? {
-                    return UtilsFilter.getBlurImageFromBitmap(
-                        (squareView.drawable as BitmapDrawable).bitmap,
-                        5.0f
-                    )
-                }
-
-                override fun onPostExecute(bitmap: Bitmap?) {
-                    showLoading(false)
-                    binding.puzzleView.background =
-                        BitmapDrawable(resources, bitmap)
-                }
-            }.execute()
-        } else {
-            binding.puzzleView.setBackgroundResource(squareView.drawableId)
-            binding.puzzleView.backgroundResourceMode = 1
-        }
-    }
-
-    override fun onFilterSelected(str: String) {
-        LoadBitmapWithFilter().execute(str)
-    }
-
-    override fun finishCrop(bitmap: Bitmap?) {
-        binding.puzzleView.replace(bitmap, "")
-    }
-
-    override fun onSaveFilter(bitmap: Bitmap?) {
-        binding.puzzleView.replace(bitmap, "")
-    }
-
-    override fun onPieceFuncSelected(toolType: ToolType?) {
-        when (toolType) {
-            REPLACE_IMG -> {
-                singleImagePicker.launch("image/*")
-                return
-            }
-            H_FLIP -> {
-                binding.puzzleView.flipHorizontally()
-                return
-            }
-            V_FLIP -> {
-                binding.puzzleView.flipVertically()
-                return
-            }
-            ROTATE -> {
-                binding.puzzleView.rotate(90.0f)
-                return
-            }
-            CROP -> {
-                PicsartCropDialogFragment.show(
-                    this,
-                    this,
-                    (binding.puzzleView.getHandlingPiece().drawable as BitmapDrawable).bitmap
-                )
-                return
-            }
-            FILTER -> LoadFilterBitmapForCurrentPiece().execute()
-            else -> {
-
-            }
+                })
         }
     }
 
     override fun getsticker() {
+
     }
 }

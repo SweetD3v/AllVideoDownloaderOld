@@ -85,6 +85,11 @@ public var RootDirectoryCartoonified = File(
             + File.separator + AllVidApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Cartoonified"
 )
+public var RootDirectoryCollageMaker = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Collage Maker"
+)
 
 public var RootDirectorySketchified = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
@@ -403,7 +408,13 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
                     } else {
                         MediaStore.Images.Media.DATA + " LIKE ? "
                     }
-                    val selectionArgs = arrayOf("%${ctx.getString(R.string.app_name)}%")
+                    val selectionArgs =
+                        if (fileName != ctx.getString(R.string.app_name)) arrayOf(
+                            "%${
+                                ctx.getString(R.string.app_name)
+                            }/${fileName}%"
+                        )
+                        else arrayOf("%${ctx.getString(R.string.app_name)}%")
                     val contentResolver = ctx.applicationContext.contentResolver
                     contentResolver.query(
                         MediaStore.Files.getContentUri("external"),

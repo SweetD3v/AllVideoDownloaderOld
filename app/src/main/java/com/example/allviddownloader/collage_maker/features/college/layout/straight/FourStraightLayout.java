@@ -1,9 +1,9 @@
 package com.example.allviddownloader.collage_maker.features.college.layout.straight;
 
 
-import com.example.allviddownloader.collage_maker.features.college.CollageLayout;
+import com.example.allviddownloader.collage_maker.features.college.PuzzleLayout;
 import com.example.allviddownloader.collage_maker.features.college.Line;
-import com.example.allviddownloader.collage_maker.features.college.straight.StraightCollageLayout;
+import com.example.allviddownloader.collage_maker.features.college.straight.StraightPuzzleLayout;
 
 public class FourStraightLayout extends NumberStraightLayout {
 
@@ -11,7 +11,7 @@ public class FourStraightLayout extends NumberStraightLayout {
         return 8;
     }
 
-    public FourStraightLayout(StraightCollageLayout straightPuzzleLayout, boolean z) {
+    public FourStraightLayout(StraightPuzzleLayout straightPuzzleLayout, boolean z) {
         super(straightPuzzleLayout, z);
     }
 
@@ -56,7 +56,7 @@ public class FourStraightLayout extends NumberStraightLayout {
         }
     }
 
-    public CollageLayout clone(CollageLayout CollageLayout) {
-        return new FourStraightLayout((StraightCollageLayout) CollageLayout, true);
+    public PuzzleLayout clone(PuzzleLayout PuzzleLayout) {
+        return new FourStraightLayout((StraightPuzzleLayout) PuzzleLayout, true);
     }
 }

@@ -26,37 +26,37 @@ public class MatrixUtils {
         return sMatrixValues[i];
     }
 
-    public static float getMinMatrixScale(CollegePiece collegePiece) {
-        if (collegePiece == null) {
+    public static float getMinMatrixScale(PuzzlePiece puzzlePiece) {
+        if (puzzlePiece == null) {
             return 1.0f;
         }
         sTempMatrix.reset();
-        sTempMatrix.setRotate(-collegePiece.getMatrixAngle());
-        float[] cornersFromRect = getCornersFromRect(collegePiece.getArea().getAreaRect());
+        sTempMatrix.setRotate(-puzzlePiece.getMatrixAngle());
+        float[] cornersFromRect = getCornersFromRect(puzzlePiece.getArea().getAreaRect());
         sTempMatrix.mapPoints(cornersFromRect);
         RectF trapToRect = trapToRect(cornersFromRect);
-        return Math.max(trapToRect.width() / ((float) collegePiece.getWidth()), trapToRect.height() / ((float) collegePiece.getHeight()));
+        return Math.max(trapToRect.width() / ((float) puzzlePiece.getWidth()), trapToRect.height() / ((float) puzzlePiece.getHeight()));
     }
 
-    static boolean judgeIsImageContainsBorder(CollegePiece collegePiece, float f) {
+    static boolean judgeIsImageContainsBorder(PuzzlePiece puzzlePiece, float f) {
         sTempMatrix.reset();
         sTempMatrix.setRotate(-f);
         float[] fArr = new float[8];
         float[] fArr2 = new float[8];
-        sTempMatrix.mapPoints(fArr, collegePiece.getCurrentDrawablePoints());
-        sTempMatrix.mapPoints(fArr2, getCornersFromRect(collegePiece.getArea().getAreaRect()));
+        sTempMatrix.mapPoints(fArr, puzzlePiece.getCurrentDrawablePoints());
+        sTempMatrix.mapPoints(fArr2, getCornersFromRect(puzzlePiece.getArea().getAreaRect()));
         return trapToRect(fArr).contains(trapToRect(fArr2));
     }
 
-    static float[] calculateImageIndents(CollegePiece collegePiece) {
-        if (collegePiece == null) {
+    static float[] calculateImageIndents(PuzzlePiece puzzlePiece) {
+        if (puzzlePiece == null) {
             return new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
         }
         sTempMatrix.reset();
-        sTempMatrix.setRotate(-collegePiece.getMatrixAngle());
-        float[] currentDrawablePoints = collegePiece.getCurrentDrawablePoints();
+        sTempMatrix.setRotate(-puzzlePiece.getMatrixAngle());
+        float[] currentDrawablePoints = puzzlePiece.getCurrentDrawablePoints();
         float[] copyOf = Arrays.copyOf(currentDrawablePoints, currentDrawablePoints.length);
-        float[] cornersFromRect = getCornersFromRect(collegePiece.getArea().getAreaRect());
+        float[] cornersFromRect = getCornersFromRect(puzzlePiece.getArea().getAreaRect());
         sTempMatrix.mapPoints(copyOf);
         sTempMatrix.mapPoints(cornersFromRect);
         RectF trapToRect = trapToRect(copyOf);
@@ -83,7 +83,7 @@ public class MatrixUtils {
         }
         fArr[3] = f4;
         sTempMatrix.reset();
-        sTempMatrix.setRotate(collegePiece.getMatrixAngle());
+        sTempMatrix.setRotate(puzzlePiece.getMatrixAngle());
         sTempMatrix.mapPoints(fArr);
         return fArr;
     }
@@ -112,8 +112,8 @@ public class MatrixUtils {
         return new float[]{rectF.left, rectF.top, rectF.right, rectF.top, rectF.right, rectF.bottom, rectF.left, rectF.bottom};
     }
 
-    public static Matrix generateMatrix(CollegePiece collegePiece, float f) {
-        return generateMatrix(collegePiece.getArea(), collegePiece.getDrawable(), f);
+    public static Matrix generateMatrix(PuzzlePiece puzzlePiece, float f) {
+        return generateMatrix(puzzlePiece.getArea(), puzzlePiece.getDrawable(), f);
     }
 
     public static Matrix generateMatrix(Area area, Drawable drawable, float f) {

@@ -16,7 +16,6 @@ import com.example.allviddownloader.databinding.ActivityMyCreationToolsBinding
 import com.example.allviddownloader.databinding.ItemMyCreationBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.ui.activities.BaseActivity
-import com.example.allviddownloader.ui.activities.MyCreationFullViewActivity
 import com.example.allviddownloader.utils.*
 import java.io.File
 
@@ -98,10 +97,10 @@ class MyCreationToolsActivity : BaseActivity() {
 //            file = RootDirectoryPhotoEditor
 //        } else if (type.equals("video_editor")) {
 //            file = RootDirectoryVideoEditor
-//        } else if (type.equals("collage_maker")) {
-//            file = RootDirectoryCollageMaker
 //        } else
-            if (type.equals("cartoonify")) {
+            if (type.equals("collage_maker")) {
+                file = RootDirectoryCollageMaker
+            } else if (type.equals("cartoonify")) {
                 file = RootDirectoryCartoonified
             } else if (type.equals("sketchify")) {
                 file = RootDirectorySketchified

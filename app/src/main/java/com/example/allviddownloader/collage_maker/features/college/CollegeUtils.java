@@ -10,8 +10,8 @@ public class CollegeUtils {
     private CollegeUtils() {
     }
 
-    public static List<CollageLayout> getPuzzleLayouts(int i) {
-        ArrayList arrayList = new ArrayList();
+    public static List<PuzzleLayout> getPuzzleLayouts(int i) {
+        ArrayList<PuzzleLayout> arrayList = new ArrayList<>();
         arrayList.addAll(SlantLayoutHelper.getAllThemeLayout(i));
         arrayList.addAll(StraightLayoutHelper.getAllThemeLayout(i));
         return arrayList;

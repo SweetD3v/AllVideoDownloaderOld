@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.allviddownloader.tools.photoeditor.BrushDrawingView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class DrawBitmapModel {
     private boolean isLoadBitmap;
     private List<Bitmap> lstBitmaps;
     private List<Integer> lstIconWhenDrawing;
-    private List<BrushDrawView.Vector2> mPositions = new ArrayList(100);
+    private List<BrushDrawingView.Vector2> mPositions = new ArrayList(100);
     private int mainIcon;
 
     public DrawBitmapModel(int i, List<Integer> list, Context context2) {
@@ -46,7 +48,7 @@ public class DrawBitmapModel {
     }
 
 
-    public List<BrushDrawView.Vector2> getmPositions() {
+    public List<BrushDrawingView.Vector2> getmPositions() {
         return this.mPositions;
     }
 

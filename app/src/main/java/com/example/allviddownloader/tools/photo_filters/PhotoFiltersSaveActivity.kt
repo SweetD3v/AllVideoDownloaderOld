@@ -1,7 +1,6 @@
 package com.example.allviddownloader.tools.photo_filters
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityPhotoFiltersSaveBinding
@@ -34,7 +33,7 @@ class PhotoFiltersSaveActivity : BaseActivity() {
             onBackPressed()
         }
 
-        binding.preview.setImageBitmap(Utils.photoFilterBmp)
+        binding.preview.setImageBitmap(PhotoFiltersUtils.photoFilterBmp)
 
         binding.btnMyCreation.setOnClickListener {
             if (intent.getStringExtra("type") == "filter") {

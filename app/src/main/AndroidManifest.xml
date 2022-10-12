@@ -31,7 +31,17 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme"
         tools:targetApi="30">
-
+        <activity
+            android:name=".PicEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".collage_maker.ui.activities.CollageMakerHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".collage_maker.ui.activities.CollageSaveShareActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tools.insta_grid.GridSaveActivity"
             android:exported="false"
@@ -108,7 +118,7 @@
             android:name=".ui.activities.FullViewWASavedActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.MyCreationFullViewActivity"
+            android:name=".ui.mycreation.MyCreationFullViewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

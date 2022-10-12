@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.allviddownloader.R;
-import com.example.allviddownloader.collage_maker.ui.ToolType;
+import com.example.allviddownloader.collage_maker.ui.EditingToolType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,28 +22,28 @@ public class PieceToolsAdapter extends RecyclerView.Adapter<PieceToolsAdapter.Vi
     public OnPieceFuncItemSelected onPieceFuncItemSelected;
 
     public interface OnPieceFuncItemSelected {
-        void onPieceFuncSelected(ToolType toolType);
+        void onPieceFuncSelected(EditingToolType editingToolType);
     }
 
     public PieceToolsAdapter(OnPieceFuncItemSelected onPieceFuncItemSelected2) {
         this.onPieceFuncItemSelected = onPieceFuncItemSelected2;
-        this.mToolList.add(new ToolModel("Change", R.drawable.background_icon_white, ToolType.REPLACE_IMG));
-        this.mToolList.add(new ToolModel("Crop", R.drawable.ic_crop_two_white, ToolType.CROP));
+        this.mToolList.add(new ToolModel("Change", R.drawable.background_icon_white, EditingToolType.REPLACE_IMG));
+        this.mToolList.add(new ToolModel("Crop", R.drawable.ic_crop_two_white, EditingToolType.CROP));
 //        this.mToolList.add(new ToolModel("Filter", R.drawable.ic_filter_two_white, ToolType.FILTER));
-        this.mToolList.add(new ToolModel("H Flip", R.drawable.h_flip_white, ToolType.H_FLIP));
-        this.mToolList.add(new ToolModel("V Flip", R.drawable.v_flip_white, ToolType.V_FLIP));
-        this.mToolList.add(new ToolModel("Rotate", R.drawable.ic_rotate_propic, ToolType.ROTATE));
+        this.mToolList.add(new ToolModel("H Flip", R.drawable.h_flip_white, EditingToolType.H_FLIP));
+        this.mToolList.add(new ToolModel("V Flip", R.drawable.v_flip_white, EditingToolType.V_FLIP));
+        this.mToolList.add(new ToolModel("Rotate", R.drawable.ic_rotate_propic, EditingToolType.ROTATE));
     }
 
     class ToolModel {
         public int mToolIcon;
         public String mToolName;
-        public ToolType mToolType;
+        public EditingToolType mEditingToolType;
 
-        ToolModel(String str, int i, ToolType toolType) {
+        ToolModel(String str, int i, EditingToolType editingToolType) {
             this.mToolName = str;
             this.mToolIcon = i;
-            this.mToolType = toolType;
+            this.mEditingToolType = editingToolType;
         }
     }
 
@@ -73,8 +73,8 @@ public class PieceToolsAdapter extends RecyclerView.Adapter<PieceToolsAdapter.Vi
             view.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     ToolModel toolModel = PieceToolsAdapter.this.mToolList.get(ViewHolder.this.getLayoutPosition());
-                    ToolType toolType = toolModel.mToolType;
-                    PieceToolsAdapter.this.onPieceFuncItemSelected.onPieceFuncSelected(toolType);
+                    EditingToolType editingToolType = toolModel.mEditingToolType;
+                    PieceToolsAdapter.this.onPieceFuncItemSelected.onPieceFuncSelected(editingToolType);
                 }
             });
         }

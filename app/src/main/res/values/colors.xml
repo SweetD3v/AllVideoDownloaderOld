@@ -51,4 +51,5 @@
     <color name="grey_800">#424242</color>
     <color name="colorAccentDark">#D68100</color>
     <color name="colorAccentLight1">#FFE1B3</color>
+    <color name="progress_bar_bg_light">#ff787878</color>
 </resources>

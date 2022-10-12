@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@android:id/background"
+        android:bottom="7.0dip"
+        android:drawable="@drawable/custom_progressbar_bg"
+        android:top="7.0dip" />
+    <item
+        android:id="@android:id/progress"
+        android:bottom="7.0dip"
+        android:top="7.0dip">
+        <clip android:drawable="@drawable/custom_progressbar_progress" />
+    </item>
+</layer-list>

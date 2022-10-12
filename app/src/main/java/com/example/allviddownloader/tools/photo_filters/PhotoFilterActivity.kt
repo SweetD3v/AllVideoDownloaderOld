@@ -96,7 +96,7 @@ class PhotoFilterActivity : AppCompatActivity() {
                                 getString(R.string.interstitial_id),
                                 object : AdsUtils.Companion.FullScreenCallback() {
                                     override fun continueExecution() {
-                                        Utils.photoFilterBmp = filterBmp
+                                        PhotoFiltersUtils.photoFilterBmp = filterBmp
                                         startActivity(
                                             Intent(
                                                 this@PhotoFilterActivity,
@@ -164,7 +164,7 @@ class PhotoFilterActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        Utils.photoFilterBmp = null
+        PhotoFiltersUtils.photoFilterBmp = null
         AdsUtils.destroyBanner()
         super.onDestroy()
     }

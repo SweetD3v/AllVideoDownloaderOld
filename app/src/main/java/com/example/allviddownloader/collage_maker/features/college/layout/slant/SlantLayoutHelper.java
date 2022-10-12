@@ -1,7 +1,7 @@
 package com.example.allviddownloader.collage_maker.features.college.layout.slant;
 
 
-import com.example.allviddownloader.collage_maker.features.college.CollageLayout;
+import com.example.allviddownloader.collage_maker.features.college.PuzzleLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class SlantLayoutHelper {
     private SlantLayoutHelper() {
     }
 
-    public static List<CollageLayout> getAllThemeLayout(int i) {
+    public static List<PuzzleLayout> getAllThemeLayout(int i) {
         ArrayList arrayList = new ArrayList();
         int i2 = 0;
         switch (i) {
