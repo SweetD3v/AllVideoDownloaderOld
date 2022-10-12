@@ -92,7 +92,7 @@ public class BottomToolsAdapter extends RecyclerView.Adapter<BottomToolsAdapter.
             this.imgToolIcon = view.findViewById(R.id.imgToolIcon);
             this.txtTool = view.findViewById(R.id.txtTool);
             this.wrapTool = view.findViewById(R.id.wrapTool);
-            this.wrapTool.setOnClickListener(view1 -> mOnItemSelected.onToolSelected((mToolList.get(getBindingAdapterPosition())).mEditingToolType));
+            this.wrapTool.setOnClickListener(view1 -> mOnItemSelected.onToolSelected((mToolList.get(getAdapterPosition())).mEditingToolType));
         }
     }
 }

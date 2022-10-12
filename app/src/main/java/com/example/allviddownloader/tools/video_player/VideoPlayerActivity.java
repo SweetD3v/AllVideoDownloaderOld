@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -75,16 +76,14 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
-import com.simplemobiletools.commons.activities.BaseSimpleActivity;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 import showcase.view.video.lib.GuideView;
 import showcase.view.video.lib.config.DismissType;
 import showcase.view.video.lib.config.Gravity;
 
-public class VideoPlayerActivity extends BaseSimpleActivity implements View.OnClickListener, ExoPlayer.EventListener, PlaybackControlView.VisibilityListener {
+public class VideoPlayerActivity extends AppCompatActivity implements View.OnClickListener, ExoPlayer.EventListener, PlaybackControlView.VisibilityListener {
 
     SimpleExoPlayerView exoPlayerView;
     SimpleExoPlayer exoPlayer;
@@ -394,18 +393,6 @@ public class VideoPlayerActivity extends BaseSimpleActivity implements View.OnCl
                                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                 }
             });
-    }
-
-    @NonNull
-    @Override
-    public ArrayList<Integer> getAppIconIDs() {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public String getAppLauncherName() {
-        return null;
     }
 
     class Query {

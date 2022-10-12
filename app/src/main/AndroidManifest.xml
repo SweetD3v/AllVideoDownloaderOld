@@ -32,8 +32,29 @@
         tools:replace="android:theme"
         tools:targetApi="30">
         <activity
-            android:name=".PicEditActivity"
-            android:exported="false" />
+            android:name=".ui.activities.SettingsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.compress.PhotoCmpHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.compress.CompressPhotoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.compress.CompressSavePhotoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tools.photoeditor.PicEditorHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.PicEditActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".collage_maker.ui.activities.CollageMakerHomeActivity"
             android:exported="false"

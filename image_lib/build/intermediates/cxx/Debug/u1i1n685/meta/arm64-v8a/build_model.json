@@ -25,10 +25,7 @@
     "variantName": "debug",
     "isDebuggableEnabled": true,
     "validAbiList": [
-      "ARMEABI_V7A",
-      "ARM64_V8A",
-      "X86",
-      "X86_64"
+      "ARM64_V8A"
     ],
     "buildTargetSet": [],
     "implicitBuildTargetSet": [],
@@ -128,6 +125,7 @@
         "rootBuildGradleFolder": "F:\\ClientProjects\\AllVideoDownloader",
         "sdkFolder": "E:\\android_sdk",
         "isBuildOnlyTargetAbiEnabled": true,
+        "ideBuildTargetAbi": "arm64-v8a,armeabi-v7a,armeabi",
         "isCmakeBuildCohabitationEnabled": false,
         "isPrefabEnabled": false
       },

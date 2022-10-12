@@ -3,17 +3,21 @@ package com.example.allviddownloader.ui.activities
 import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
-import android.security.NetworkSecurityPolicy
 import android.util.Log
 import android.view.View
 import android.webkit.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityFunnyVideosBinding
+import com.example.allviddownloader.utils.downloader.BasicImageDownloader
 import com.example.allviddownloader.utils.setDarkStatusBarColor
 
 class FunnyVideosActivity : AppCompatActivity() {
     val binding by lazy { ActivityFunnyVideosBinding.inflate(layoutInflater) }
+
+    var downloadUrl: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setDarkStatusBarColor(this, R.color.black)
@@ -49,18 +53,41 @@ class FunnyVideosActivity : AppCompatActivity() {
             webView.webViewClient = WVClient()
             webView.webChromeClient = ChromeClient()
             webView.loadUrl("https://myvideo.fun")
+
+            fabDownload.setOnClickListener {
+                startDownload(downloadUrl)
+            }
         }
     }
 
-    class ChromeClient : WebChromeClient() {
+    private fun startDownload(downloadUrl: String?) {
+        downloadUrl?.let { url->
+            Log.e("TAG", "startDownload: $url")
+            BasicImageDownloader(this@FunnyVideosActivity)
+                .saveVideoToExternalFunny(
+                    url
+                ) {
+                    Toast.makeText(
+                        this@FunnyVideosActivity,
+                        "Video Downloaded.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
+    }
+
+    inner class ChromeClient : WebChromeClient() {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {
             super.onProgressChanged(view, newProgress)
 
-            Log.e("TAG", "onProgressChanged: $newProgress")
+            if (view?.url.toString() != "https://myvideo.fun/") {
+                downloadUrl = view?.url.toString()
+            }
+            Log.e("TAG", "onProgressChanged: ${view?.url}")
         }
     }
 
-    class WVClient : WebViewClient() {
+    inner class WVClient : WebViewClient() {
         override fun shouldOverrideUrlLoading(
             view: WebView?,
             request: WebResourceRequest?
@@ -84,7 +111,9 @@ class FunnyVideosActivity : AppCompatActivity() {
             error: WebResourceError?
         ) {
             super.onReceivedError(view, request, error)
-            Log.e("TAG", "onReceivedError: ${error?.description}")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Log.e("TAG", "onReceivedError: ${error?.description}")
+            }
         }
     }
 }

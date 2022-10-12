@@ -36,10 +36,11 @@ import com.example.allviddownloader.models.*
 import com.example.allviddownloader.tools.age_calc.AgeCalculatorActivity
 import com.example.allviddownloader.tools.cartoonify.CartoonifyHomeActivity
 import com.example.allviddownloader.tools.cartoonify.SketchifyHomeActivity
-import com.example.allviddownloader.tools.compress.CompressVideoHomeActivity
+import com.example.allviddownloader.tools.compress.PhotoCmpHomeActivity
 import com.example.allviddownloader.tools.insta_grid.InstaGridActivity
 import com.example.allviddownloader.tools.photo_filters.PhotoFilterHomeActivity
 import com.example.allviddownloader.tools.photo_filters.deform.PhotoWarpHomeActivity
+import com.example.allviddownloader.tools.photoeditor.PicEditorHomeActivity
 import com.example.allviddownloader.tools.video_player.DemoUtil
 import com.example.allviddownloader.tools.video_player.VideoPlayerActivity
 import com.example.allviddownloader.ui.activities.*
@@ -65,8 +66,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
 
     companion object {
-        val KEY_DATA_RESULT = "KEY_DATA_RESULT"
-        val KEY_SELECTED_PHOTOS = "SELECTED_PHOTOS"
+        const val KEY_DATA_RESULT = "KEY_DATA_RESULT"
+        const val KEY_SELECTED_PHOTOS = "SELECTED_PHOTOS"
 
         open fun newInstance(): HomeFragment {
             return HomeFragment()
@@ -265,6 +266,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 )
             }
 
+            llPhotoEditor.setOnClickListener {
+                startActivity(
+                    Intent(
+                        ctx,
+                        PicEditorHomeActivity::class.java
+                    )
+                )
+            }
+
             llFunny.setOnClickListener {
                 startActivity(Intent(ctx, FunnyVideosActivity::class.java))
             }
@@ -277,8 +287,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 startActivity(Intent(ctx, InstaGridActivity::class.java))
             }
 
-            llVideoCompress.setOnClickListener {
-                startActivity(Intent(ctx, CompressVideoHomeActivity::class.java))
+            llPhotoCompress.setOnClickListener {
+                startActivity(Intent(ctx, PhotoCmpHomeActivity::class.java))
             }
 
             llCleaner.setOnClickListener {
@@ -310,7 +320,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     Intent(
                         ctx,
                         MyCreationToolsActivity::class.java
-                    )
+                    ).putExtra(MyCreationToolsActivity.CREATION_TYPE, "all")
                 )
             }
 

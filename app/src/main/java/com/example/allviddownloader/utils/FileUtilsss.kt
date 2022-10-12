@@ -337,7 +337,7 @@ class FileUtilsss {
                             File(
                                 Environment.DIRECTORY_DCIM
                                         + File.separator + context.getString(R.string.app_name) + File.separator + destinationFile,
-                                fileName
+                                fileName.toString()
                             ).absolutePath
                         )
                     }

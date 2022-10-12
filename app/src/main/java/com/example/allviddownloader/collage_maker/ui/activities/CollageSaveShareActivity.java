@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.example.allviddownloader.R;
 import com.example.allviddownloader.databinding.CollageSaveLayoutBinding;
+import com.example.allviddownloader.tools.photoeditor.PicEditorHomeActivity;
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity;
 import com.example.allviddownloader.utils.AdsUtils;
 import com.example.allviddownloader.utils.NetworkState;
@@ -94,7 +95,11 @@ public class CollageSaveShareActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent;
-        intent = new Intent(CollageSaveShareActivity.this, CollageMakerHomeActivity.class);
+        if (getIntent().getIntExtra("type", 0) == 0) {
+            intent = new Intent(CollageSaveShareActivity.this, PicEditorHomeActivity.class);
+        } else {
+            intent = new Intent(CollageSaveShareActivity.this, CollageMakerHomeActivity.class);
+        }
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

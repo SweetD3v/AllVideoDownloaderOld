@@ -52,6 +52,12 @@
     <string name="dialog_discard_title">Changes will not be saved. Do you want to proceed?</string>
     <string name="discard">Discard</string>
     <string name="photo_editor">Photo Editor</string>
+    <string name="brightness">Brightness</string>
+    <string name="contrast">Contrast</string>
+    <string name="saturation">Saturation</string>
+    <string name="sharpen">Sharpen</string>
+    <string name="photo_compress">Photo Compress</string>
+    <string name="settings">Settings</string>
 
     <string-array name="wallp_arr">
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fJjphUzRq64EoCViXztAyJXBE6kzAnIAf6sJKArZzASRmUaJESz2r1qWMzUZxuXHaAR3eJuOGxiQej_3hdFzaBkV_OQDwPhjtBt26EGoqOoy6LkvDNq65oes5QZk5Cv__RagBLcBDkvL-4riMOdFbbK5Dwnms_E628Mh6P1OfhwHn35r8yMR6poY/s1280/photo_2022-09-17_06-02-57.jpg</item>

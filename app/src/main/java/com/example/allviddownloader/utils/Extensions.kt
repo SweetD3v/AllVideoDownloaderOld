@@ -68,6 +68,12 @@ public var RootDirectoryInstaDownlaoder = File(
         .getString(R.string.app_name) + File.separator + "Insta Downloader"
 )
 
+public var RootDirectoryFunny = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Funny Videos"
+)
+
 public var RootDirectoryFBDownlaoder = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + AllVidApp.getInstance()
@@ -80,6 +86,12 @@ public var RootDirectoryCompressedVideo = File(
         .getString(R.string.app_name) + File.separator + "Compressed Video"
 )
 
+public var RootDirectoryCompressedPhoto = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Compressed Photo"
+)
+
 public var RootDirectoryCartoonified = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + AllVidApp.getInstance()
@@ -89,6 +101,12 @@ public var RootDirectoryCollageMaker = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + AllVidApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Collage Maker"
+)
+
+public var RootDirectoryPhotoEditor = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Photo Editor"
 )
 
 public var RootDirectorySketchified = File(
@@ -399,8 +417,8 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
 fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> Unit) {
     var mediaListFinal: MutableList<Media>
     object : AsyncTaskRunner<String, MutableList<Media>>(ctx) {
-        override fun doInBackground(fileName: String?): MutableList<Media> {
-            if (originalPath.exists()) {
+        override fun doInBackground(params: String?): MutableList<Media> {
+            if (dirName.exists()) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     val mediaList = mutableListOf<Media>()
                     val selection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -409,12 +427,14 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
                         MediaStore.Images.Media.DATA + " LIKE ? "
                     }
                     val selectionArgs =
-                        if (fileName != ctx.getString(R.string.app_name)) arrayOf(
-                            "%${
-                                ctx.getString(R.string.app_name)
-                            }/${fileName}%"
-                        )
-                        else arrayOf("%${ctx.getString(R.string.app_name)}%")
+                        if (params.toString() != ctx.getString(R.string.app_name)) {
+                            arrayOf(
+                                "%${
+                                    ctx.getString(R.string.app_name)
+                                }/${params}%"
+                            )
+                        } else arrayOf("%${ctx.getString(R.string.app_name)}%")
+
                     val contentResolver = ctx.applicationContext.contentResolver
                     contentResolver.query(
                         MediaStore.Files.getContentUri("external"),
@@ -470,7 +490,7 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
                 block(mediaListFinal)
             }
         }
-    }.execute("%${dirName.name}%", false)
+    }.execute(dirName.name, false)
 }
 
 fun getMediaQMinus(ctx: Context): MutableList<Media> {

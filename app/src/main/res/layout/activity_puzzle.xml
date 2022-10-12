@@ -45,6 +45,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/primary"
                     android:fontFamily="@font/karla_semibold"
                     android:gravity="center"
                     android:text="@string/save"
@@ -166,9 +167,9 @@
                         android:layout_toEndOf="@id/ic_border"
                         android:max="30"
                         android:progressBackgroundTint="@color/white"
-                        android:progressTint="@color/colorAccent"
+                        android:progressTint="@color/accent"
                         android:thumb="@drawable/seekbar_pointer1"
-                        android:thumbTint="@color/colorAccent" />
+                        android:thumbTint="@color/accent" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -190,9 +191,9 @@
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@id/ic_padding"
                         android:progressBackgroundTint="@color/white"
-                        android:progressTint="@color/colorAccent"
+                        android:progressTint="@color/accent"
                         android:thumb="@drawable/seekbar_pointer1"
-                        android:thumbTint="@color/colorAccent" />
+                        android:thumbTint="@color/accent" />
                 </RelativeLayout>
             </LinearLayout>
 

@@ -13,13 +13,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/facebookurlextractor" />
-            <option value="$PROJECT_DIR$/files_commons" />
             <option value="$PROJECT_DIR$/guide_view" />
             <option value="$PROJECT_DIR$/image_lib" />
             <option value="$PROJECT_DIR$/imagepicker" />
             <option value="$PROJECT_DIR$/opencv" />
             <option value="$PROJECT_DIR$/photofilterssdk" />
-            <option value="$PROJECT_DIR$/rxffmpeg" />
             <option value="$PROJECT_DIR$/shapeimageview" />
             <option value="$PROJECT_DIR$/ucrop" />
           </set>

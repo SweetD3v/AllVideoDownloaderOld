@@ -43,7 +43,7 @@ class InstaDownloaderHomeActivity : BaseActivity() {
                 onBackPressed()
             }
 
-            imgDownload.setOnClickListener {
+            imgDownloads.setOnClickListener {
                 startActivity(
                     Intent(
                         this@InstaDownloaderHomeActivity,

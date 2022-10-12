@@ -42,14 +42,14 @@ public class PuzzleAdapter extends RecyclerView.Adapter<PuzzleAdapter.PuzzleView
     }
 
     public void onBindViewHolder(PuzzleViewHolder puzzleViewHolder, int position) {
-        final PuzzleLayout collegeLayout = this.layoutData.get(puzzleViewHolder.getBindingAdapterPosition());
+        final PuzzleLayout collegeLayout = this.layoutData.get(puzzleViewHolder.getAdapterPosition());
         puzzleViewHolder.puzzleView.setNeedDrawLine(true);
         puzzleViewHolder.puzzleView.setNeedDrawOuterLine(true);
         puzzleViewHolder.puzzleView.setTouchEnable(false);
         puzzleViewHolder.puzzleView.setLineSize(6);
         puzzleViewHolder.puzzleView.setLineColor(ContextCompat.getColor(puzzleViewHolder.itemView.getContext(), R.color.textColorPrimary));
         puzzleViewHolder.puzzleView.setPuzzleLayout(collegeLayout);
-        if (this.selectedIndex == puzzleViewHolder.getBindingAdapterPosition()) {
+        if (this.selectedIndex == puzzleViewHolder.getAdapterPosition()) {
             puzzleViewHolder.puzzleView.setBackgroundColor(ContextCompat.getColor(puzzleViewHolder.itemView.getContext(), R.color.colorPrimary));
         } else {
             puzzleViewHolder.puzzleView.setBackgroundColor(0);
@@ -65,7 +65,7 @@ public class PuzzleAdapter extends RecyclerView.Adapter<PuzzleAdapter.PuzzleView
                     }
                     PuzzleAdapter.this.onItemClickListener.onItemClick(collegeLayout, i);
                 }
-                PuzzleAdapter.this.selectedIndex = puzzleViewHolder.getBindingAdapterPosition();
+                PuzzleAdapter.this.selectedIndex = puzzleViewHolder.getAdapterPosition();
                 PuzzleAdapter.this.notifyDataSetChanged();
             }
         });

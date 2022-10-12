@@ -22,9 +22,9 @@ import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewCompat;
 
 import com.example.allviddownloader.R;
-import com.example.allviddownloader.collage_maker.features.BrushDrawView;
 import com.example.allviddownloader.collage_maker.features.Sticker;
 import com.example.allviddownloader.collage_maker.utils.SystemUtils;
+import com.example.allviddownloader.tools.photoeditor.BrushDrawingView;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -41,11 +41,11 @@ public class ResizableSplashView extends AppCompatImageView {
     private float currentX;
     private float currentY;
     private final Matrix downMatrix = new Matrix();
-    private Stack<BrushDrawView.LinePath> lstPoints = new Stack<>();
+    private Stack<BrushDrawingView.LinePath> lstPoints = new Stack<>();
     private Paint mDrawPaint;
     private Path mPath;
-    private Stack<BrushDrawView.LinePath> mPoints = new Stack<>();
-    private Stack<BrushDrawView.LinePath> mRedoPaths = new Stack<>();
+    private Stack<BrushDrawingView.LinePath> mPoints = new Stack<>();
+    private Stack<BrushDrawingView.LinePath> mRedoPaths = new Stack<>();
     private float mTouchX;
     private float mTouchY;
     private PointF midPoint = new PointF();
@@ -178,7 +178,7 @@ public class ResizableSplashView extends AppCompatImageView {
             }
             Iterator it = this.mPoints.iterator();
             while (it.hasNext()) {
-                BrushDrawView.LinePath linePath = (BrushDrawView.LinePath) it.next();
+                BrushDrawingView.LinePath linePath = (BrushDrawingView.LinePath) it.next();
                 canvas.drawPath(linePath.getDrawPath(), linePath.getDrawPaint());
             }
             canvas.drawPath(this.mPath, this.mDrawPaint);
@@ -387,7 +387,7 @@ public class ResizableSplashView extends AppCompatImageView {
         if (this.currentSplashMode == 0) {
             this.currentMode = 0;
         } else {
-            BrushDrawView.LinePath linePath = new BrushDrawView.LinePath(this.mPath, this.mDrawPaint);
+            BrushDrawingView.LinePath linePath = new BrushDrawingView.LinePath(this.mPath, this.mDrawPaint);
             this.mPoints.push(linePath);
             this.lstPoints.push(linePath);
             this.mPath = new Path();
@@ -397,7 +397,7 @@ public class ResizableSplashView extends AppCompatImageView {
 
     public boolean undo() {
         if (!this.lstPoints.empty()) {
-            BrushDrawView.LinePath pop = this.lstPoints.pop();
+            BrushDrawingView.LinePath pop = this.lstPoints.pop();
             this.mRedoPaths.push(pop);
             this.mPoints.remove(pop);
             invalidate();
@@ -409,7 +409,7 @@ public class ResizableSplashView extends AppCompatImageView {
     /* renamed from: d */
     public boolean redo() {
         if (!this.mRedoPaths.empty()) {
-            BrushDrawView.LinePath pop = this.mRedoPaths.pop();
+            BrushDrawingView.LinePath pop = this.mRedoPaths.pop();
             this.mPoints.push(pop);
             this.lstPoints.push(pop);
             invalidate();
@@ -432,7 +432,7 @@ public class ResizableSplashView extends AppCompatImageView {
         } else {
             Iterator it = this.mPoints.iterator();
             while (it.hasNext()) {
-                BrushDrawView.LinePath linePath = (BrushDrawView.LinePath) it.next();
+                BrushDrawingView.LinePath linePath = (BrushDrawingView.LinePath) it.next();
                 canvas.drawPath(linePath.getDrawPath(), linePath.getDrawPaint());
             }
         }

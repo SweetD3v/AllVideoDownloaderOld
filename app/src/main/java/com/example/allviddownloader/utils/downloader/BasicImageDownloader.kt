@@ -431,6 +431,124 @@ class BasicImageDownloader(var ctx: Context) {
     }
 
     @Throws(IOException::class)
+    fun saveVideoToExternalFunny(imgUrl: String, action: () -> Unit) {
+        val dirName = AllVidApp.getInstance().getExternalFilesDir("funny")!!
+        if (!dirName.exists())
+            dirName.mkdirs()
+        val imgName = "VID_${System.currentTimeMillis()}"
+        val imageFile = File(dirName, "$imgName.mp4") // Imagename.png
+        if (!imageFile.exists())
+            imageFile.createNewFile()
+
+        pdBinding = ProgressDialogBinding.inflate(LayoutInflater.from(ctx))
+        object : AsyncTaskV2<String?, Int, String>() {
+            override fun onPreExecute() {
+                super.onPreExecute()
+
+                val builder = AlertDialog.Builder(ctx, R.style.MyProgressDialog)
+                    .setCancelable(false)
+                    .setView(pdBinding.root)
+
+                alertDialog = builder.create()
+                alertDialog?.show()
+
+                pdBinding.txtTitleCompress.text = "Downloading..."
+                pdBinding.btnCancel.setOnClickListener {
+                    cancel(true)
+                    toastShort(ctx, "Download cancelled.")
+                    alertDialog?.dismiss()
+                    imageFile.delete()
+                }
+            }
+
+            override fun onProgressUpdate(progress: Int) {
+                super.onProgressUpdate(progress)
+
+                Log.e("TAG", "onProgressUpdate: $progress")
+
+                pdBinding.progressBar.progress = progress
+                pdBinding.txtPerc.text = "$progress %"
+                pdBinding.txtPerc
+
+                if (progress == 100)
+                    onPostExecute(imageFile.absolutePath)
+            }
+
+            override fun doInBackground(params: String?): String? {
+                var count = 0
+
+                try {
+                    val url = URL(params)
+                    val connection: URLConnection = url.openConnection()
+                    connection.connect()
+
+                    // this will be useful so that you can show a tipical 0-100%
+                    // progress bar
+                    val lenghtOfFile: Int = connection.contentLength
+
+                    // download the file
+                    val input: InputStream = BufferedInputStream(
+                        url.openStream(),
+                        8192
+                    )
+
+                    // Output stream
+                    val output: OutputStream = FileOutputStream(imageFile)
+                    val data = ByteArray(1024)
+                    var total: Long = 0
+                    while ((input.read(data).also { count = it }) != -1) {
+                        total += count.toLong()
+                        // publishing the progress....
+                        // After this onProgressUpdate will be called
+                        publishProgress(((total * 100) / lenghtOfFile).toInt())
+
+                        // writing data to file
+                        output.write(data, 0, count)
+                    }
+
+                    // flushing output
+                    output.flush()
+
+                    // closing streams
+                    output.close()
+                    input.close()
+                } catch (e: Exception) {
+                    Log.e("Error: ", (e.message)!!)
+                }
+
+                return imageFile.absolutePath
+            }
+
+            override fun onPostExecute(result: String?) {
+                super.onPostExecute(result)
+                alertDialog?.dismiss()
+                result?.let { path ->
+                    Log.e("TAG", "onPostExecute: $path")
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        FileUtilsss.saveVideoAPI30(
+                            ctx, imageFile, imageFile.name,
+                            RootDirectoryFunny
+                        ) {
+                            Log.e("TAG", "onPostExecuteFinal: $it")
+                            MediaScannerConnection.scanFile(
+                                ctx,
+                                arrayOf(
+                                    it
+                                ),
+                                null
+                            ) { path1, uri ->
+                                Log.i("ExternalStorage", "Scanned $path1:")
+                                Log.i("ExternalStorage", "-> uri=$uri")
+                            }
+                        }
+                    }
+                }
+                action()
+            }
+        }.execute(imgUrl)
+    }
+
+    @Throws(IOException::class)
     fun saveVideoToExternalInsta(imgUrl: String, action: () -> Unit) {
         val dirName = AllVidApp.getInstance().getExternalFilesDir("insta")!!
         if (!dirName.exists())

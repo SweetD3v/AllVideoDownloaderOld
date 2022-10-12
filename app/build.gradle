@@ -102,6 +102,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
 
     //Other Deps
+    implementation 'id.zelory:compressor:2.1.1'
     implementation 'com.github.chathuralakmal:AndroidImagePopup:1.2.2'
     implementation "com.orhanobut:hawk:2.0.1"
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -129,8 +130,8 @@ dependencies {
     implementation project(path: ':image_lib')
     implementation project(path: ':imagepicker')
     implementation project(path: ':photofilterssdk')
-    implementation project(path: ':rxffmpeg')
-    implementation project(path: ':files_commons')
+//    implementation project(path: ':rxffmpeg')
+//    implementation project(path: ':files_commons')
     implementation project(path: ':guide_view')
     implementation project(path: ':ucrop')
 
