@@ -44,8 +44,8 @@ class SketchifyActivity : BaseActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@SketchifyActivity, bannerContainer,
-                    getString(R.string.banner_id_details)
+                    this@SketchifyActivity, getString(R.string.banner_id_details),
+                    bannerContainer
                 )
 
             imgBack.setOnClickListener {

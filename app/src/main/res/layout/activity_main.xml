@@ -89,7 +89,7 @@
         android:id="@+id/bottomCoordinate"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true">
+        android:layout_above="@id/bannerContainer">
 
         <!--        <com.google.android.material.bottomappbar.BottomAppBar-->
         <!--            android:id="@+id/bottomNavBar"-->
@@ -185,166 +185,11 @@
             app:srcCompat="@drawable/ic_fire"
             app:tint="@android:color/white" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:id="@+id/clBottomNavBar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_marginBottom="8dp"-->
-    <!--        android:visibility="gone">-->
 
-    <!--        <androidx.constraintlayout.motion.widget.MotionLayout-->
-    <!--            android:id="@+id/motionLayout"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            app:layoutDescription="@xml/activity_main_scene"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent">-->
-
-    <!--            <View-->
-    <!--                android:id="@+id/refView"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="3dp"-->
-    <!--                android:layout_marginBottom="56dp"-->
-    <!--                android:background="@drawable/top_shadow"-->
-    <!--                app:layout_constraintBottom_toBottomOf="parent" />-->
-
-    <!--            <ImageView-->
-    <!--                android:id="@+id/bgImage"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:background="@drawable/circle_bg_black"-->
-    <!--                android:elevation="2dp"-->
-    <!--                android:padding="30dp"-->
-    <!--                app:layout_constraintBottom_toBottomOf="@id/refView"-->
-    <!--                app:layout_constraintEnd_toEndOf="@id/txt1"-->
-    <!--                app:layout_constraintStart_toStartOf="@id/txt1"-->
-    <!--                app:layout_constraintTop_toTopOf="@id/refView" />-->
-
-    <!--            <View-->
-    <!--                android:id="@+id/view1"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_height="0dp"-->
-    <!--                android:background="?selectableItemBackgroundBorderless"-->
-    <!--                app:layout_constraintBottom_toBottomOf="@id/txt1"-->
-    <!--                app:layout_constraintEnd_toEndOf="@id/txt1"-->
-    <!--                app:layout_constraintStart_toStartOf="@id/txt1"-->
-    <!--                app:layout_constraintTop_toTopOf="@id/img1" />-->
-
-    <!--            <androidx.appcompat.widget.AppCompatImageView-->
-    <!--                android:id="@+id/img1"-->
-    <!--                android:layout_width="24dp"-->
-    <!--                android:layout_height="24dp"-->
-    <!--                android:elevation="2dp"-->
-    <!--                app:layout_constraintBottom_toBottomOf="@id/refView"-->
-    <!--                app:layout_constraintEnd_toEndOf="@id/txt1"-->
-    <!--                app:layout_constraintStart_toStartOf="@id/txt1"-->
-    <!--                app:layout_constraintTop_toTopOf="@id/refView"-->
-    <!--                app:srcCompat="@drawable/ic_home"-->
-    <!--                app:tint="@color/white" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/txt1"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:fontFamily="@font/montserrat_medium"-->
-    <!--                android:text="Home"-->
-    <!--                android:textColor="@color/accent"-->
-    <!--                android:textStyle="bold"-->
-    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                app:layout_constraintEnd_toStartOf="@id/txt2"-->
-    <!--                app:layout_constraintStart_toStartOf="parent" />-->
-
-    <!--            <View-->
-    <!--                android:id="@+id/view2"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_height="0dp"-->
-    <!--                android:background="?selectableItemBackgroundBorderless"-->
-    <!--                app:layout_constraintBottom_toBottomOf="@id/txt2"-->
-    <!--                app:layout_constraintEnd_toEndOf="@id/txt2"-->
-    <!--                app:layout_constraintStart_toStartOf="@id/txt2"-->
-    <!--                app:layout_constraintTop_toTopOf="@id/img2" />-->
-
-    <!--            <androidx.appcompat.widget.AppCompatImageView-->
-    <!--                android:id="@+id/img2"-->
-    <!--                android:layout_width="48dp"-->
-    <!--                android:layout_height="48dp"-->
-    <!--                app:layout_constraintBottom_toTopOf="@id/txt2"-->
-    <!--                app:layout_constraintEnd_toEndOf="@id/txt2"-->
-    <!--                app:layout_constraintStart_toStartOf="@id/txt2"-->
-    <!--                app:srcCompat="@drawable/ic_downloads1" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/txt2"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:fontFamily="@font/montserrat_medium"-->
-    <!--                android:text="Downloads"-->
-    <!--                android:textColor="@color/text_unselected"-->
-    <!--                android:textStyle="bold"-->
-    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                app:layout_constraintEnd_toStartOf="@id/txt3"-->
-    <!--                app:layout_constraintStart_toEndOf="@id/txt1" />-->
-
-    <!--            <View-->
-    <!--                android:id="@+id/view3"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_height="0dp"-->
-    <!--                android:background="?selectableItemBackgroundBorderless"-->
-    <!--                app:layout_constraintBottom_toBottomOf="@id/txt3"-->
-    <!--                app:layout_constraintEnd_toEndOf="@id/txt3"-->
-    <!--                app:layout_constraintStart_toStartOf="@id/txt3"-->
-    <!--                app:layout_constraintTop_toTopOf="@id/img3" />-->
-
-    <!--            <androidx.appcompat.widget.AppCompatImageView-->
-    <!--                android:id="@+id/img3"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                app:layout_constraintBottom_toTopOf="@id/txt3"-->
-    <!--                app:layout_constraintEnd_toEndOf="@id/txt3"-->
-    <!--                app:layout_constraintStart_toStartOf="@id/txt3"-->
-    <!--                app:srcCompat="@drawable/ic_tools" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/txt3"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:fontFamily="@font/montserrat_medium"-->
-    <!--                android:text="Tools"-->
-    <!--                android:textColor="@color/text_unselected"-->
-    <!--                android:textStyle="bold"-->
-    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                app:layout_constraintEnd_toStartOf="@id/txt4"-->
-    <!--                app:layout_constraintStart_toEndOf="@id/txt2" />-->
-
-    <!--            <View-->
-    <!--                android:id="@+id/view4"-->
-    <!--                android:layout_width="0dp"-->
-    <!--                android:layout_height="0dp"-->
-    <!--                android:background="?selectableItemBackgroundBorderless"-->
-    <!--                app:layout_constraintBottom_toBottomOf="@id/txt4"-->
-    <!--                app:layout_constraintEnd_toEndOf="@id/txt4"-->
-    <!--                app:layout_constraintStart_toStartOf="@id/txt4"-->
-    <!--                app:layout_constraintTop_toTopOf="@id/img4" />-->
-
-    <!--            <androidx.appcompat.widget.AppCompatImageView-->
-    <!--                android:id="@+id/img4"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                app:layout_constraintBottom_toTopOf="@id/txt4"-->
-    <!--                app:layout_constraintEnd_toEndOf="@id/txt4"-->
-    <!--                app:layout_constraintStart_toStartOf="@id/txt4"-->
-    <!--                app:srcCompat="@drawable/ic_settings" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/txt4"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:fontFamily="@font/montserrat_medium"-->
-    <!--                android:text="Settings"-->
-    <!--                android:textColor="@color/text_unselected"-->
-    <!--                android:textStyle="bold"-->
-    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                app:layout_constraintStart_toEndOf="@id/txt3" />-->
-    <!--        </androidx.constraintlayout.motion.widget.MotionLayout>-->
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <FrameLayout
+        android:id="@+id/bannerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="2dp" />
 </RelativeLayout>

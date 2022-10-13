@@ -46,8 +46,8 @@ class FullViewWhatsappActivity : AppCompatActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@FullViewWhatsappActivity, bannerContainer,
-                    getString(R.string.banner_id_details)
+                    this@FullViewWhatsappActivity, getString(R.string.banner_id_details),
+                    bannerContainer
                 )
 
             setSupportActionBar(toolbar)

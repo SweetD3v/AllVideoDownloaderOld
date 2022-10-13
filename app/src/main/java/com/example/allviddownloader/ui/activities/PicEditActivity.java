@@ -169,8 +169,8 @@ public class PicEditActivity extends AppCompatActivity implements OnPhotoEditorL
         binding = ActivityPicEditBinding.inflate(getLayoutInflater());
 
         if (NetworkState.Companion.isOnline())
-            AdsUtils.Companion.loadBanner(this, binding.bannerContainer,
-                    getString(R.string.banner_id_details));
+            AdsUtils.Companion.loadBanner(this, getString(R.string.banner_id_details),
+                    binding.bannerContainer);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(1024, 1024);

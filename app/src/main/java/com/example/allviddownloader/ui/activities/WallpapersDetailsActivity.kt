@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityWallpaperDetailsBinding
 import com.example.allviddownloader.utils.AdsUtils
+import com.example.allviddownloader.utils.NetworkState
 import com.example.allviddownloader.utils.downloader.BasicImageDownloader
 import com.example.allviddownloader.utils.originalPath
 import com.example.allviddownloader.utils.shareMediaUri
@@ -34,11 +35,11 @@ class WallpapersDetailsActivity : BaseActivity() {
 
         binding.run {
 
-//            if (NetworkState.isOnline())
-//                AdsUtils.loadBanner(
-//                    this@WallpapersDetailsActivity, binding.bannerContainer,
-//                    getString(R.string.banner_id_details)
-//                )
+            if (NetworkState.isOnline())
+                AdsUtils.loadBanner(
+                    this@WallpapersDetailsActivity, getString(R.string.banner_id_details),
+                    binding.bannerContainer
+                )
 
             appTitle.text = ""
             setSupportActionBar(binding.toolbar)

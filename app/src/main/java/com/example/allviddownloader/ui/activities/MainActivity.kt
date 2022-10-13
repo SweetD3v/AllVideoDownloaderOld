@@ -2,6 +2,8 @@ package com.example.allviddownloader.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -9,6 +11,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityMainBinding
 import com.example.allviddownloader.ui.fragments.HomeFragment
+import com.example.allviddownloader.utils.AdsUtils
+import com.example.allviddownloader.utils.NetworkState
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : BaseActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -18,6 +23,13 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.run {
+
+            if (NetworkState.isOnline())
+                AdsUtils.loadBanner(
+                    this@MainActivity, getString(R.string.banner_id_details),
+                    bannerContainer
+                )
+
             toolbar.imgBack.setImageResource(R.drawable.ic_drawer)
 
             fabEntertainment.setOnClickListener {
@@ -270,5 +282,19 @@ class MainActivity : BaseActivity() {
         override fun createFragment(position: Int): Fragment {
             return HomeFragment.newInstance()
         }
+    }
+
+    var doubleBackToExitPressedOnce = false
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            finish()
+            return
+        }
+        doubleBackToExitPressedOnce = true
+        Snackbar.make(binding.root, "Press BACK again to exit", Snackbar.LENGTH_SHORT).show()
+        Handler(Looper.getMainLooper()).postDelayed({
+            doubleBackToExitPressedOnce = false
+        }, 2000)
     }
 }

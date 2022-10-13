@@ -64,11 +64,11 @@ class WallpapersActivity : BaseActivity() {
 //                getString(R.string.banner_id_details)
 //            )
 
-//            AdsUtils.loadNative(
-//                this@WallpapersActivity,
-//                getString(R.string.admob_native_id),
-//                binding.adFrame
-//            )
+            AdsUtils.loadNative(
+                this@WallpapersActivity,
+                getString(R.string.admob_native_id),
+                binding.adFrame
+            )
 
             loadWallpapers()
         }

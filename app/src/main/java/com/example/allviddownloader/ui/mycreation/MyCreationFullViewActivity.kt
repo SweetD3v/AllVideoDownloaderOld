@@ -49,8 +49,8 @@ class MyCreationFullViewActivity : AppCompatActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@MyCreationFullViewActivity, bannerContainer,
-                    getString(R.string.banner_id_details)
+                    this@MyCreationFullViewActivity, getString(R.string.banner_id_details),
+                    bannerContainer
                 )
 
             fabDelete.hide()

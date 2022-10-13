@@ -58,6 +58,12 @@
     <string name="sharpen">Sharpen</string>
     <string name="photo_compress">Photo Compress</string>
     <string name="settings">Settings</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="share_app">Share App</string>
+    <string name="version">Version</string>
+    <string name="share_app_desc"><![CDATA[Watch videos, Listen your favourite music &amp; share them with your friends using this video music player!\nDownload here:\nhttps://play.google.com/store/apps/details?id=%s]]></string>
+    <string name="rating_desc">If %s makes you happy and satisfy. Please give us 5 stars</string>
 
     <string-array name="wallp_arr">
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fJjphUzRq64EoCViXztAyJXBE6kzAnIAf6sJKArZzASRmUaJESz2r1qWMzUZxuXHaAR3eJuOGxiQej_3hdFzaBkV_OQDwPhjtBt26EGoqOoy6LkvDNq65oes5QZk5Cv__RagBLcBDkvL-4riMOdFbbK5Dwnms_E628Mh6P1OfhwHn35r8yMR6poY/s1280/photo_2022-09-17_06-02-57.jpg</item>

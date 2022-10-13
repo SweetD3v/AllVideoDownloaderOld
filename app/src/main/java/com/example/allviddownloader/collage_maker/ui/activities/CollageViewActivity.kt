@@ -236,8 +236,8 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
         window.setFlags(1024, 1024)
         setContentView(binding.root)
         if (NetworkState.isOnline()) AdsUtils.loadBanner(
-            this, binding.bannerContainer,
-            getString(R.string.banner_id_details)
+            this, getString(R.string.banner_id_details),
+            binding.bannerContainer
         )
         toolbar = findViewById(R.id.toolbar)
         (toolbar.findViewById<View>(R.id.app_title) as TextView).text = ""

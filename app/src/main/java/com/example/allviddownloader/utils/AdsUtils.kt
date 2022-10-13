@@ -117,8 +117,8 @@ class AdsUtils {
 
         fun loadBanner(
             activity: AppCompatActivity,
-            bannerContainer: FrameLayout,
-            banner_id: String
+            banner_id: String,
+            bannerContainer: FrameLayout
         ) {
             adView = AdView(activity)
             adView?.adUnitId = banner_id

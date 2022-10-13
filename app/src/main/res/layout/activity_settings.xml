@@ -53,7 +53,7 @@
             android:layout_marginEnd="16dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgDownloads"
@@ -66,5 +66,156 @@
                 app:srcCompat="@drawable/ic_downloads1"
                 app:tint="@color/white" />
         </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llPrivacyPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/bg_rounded_right_ripple"
+            android:backgroundTint="@color/settings_item_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="96dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginVertical="16dp"
+                android:src="@drawable/ic_privacy_policy"
+                app:tint="@color/settings_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/karla_semibold"
+                android:gravity="center_vertical"
+                android:text="@string/privacy_policy"
+                android:textColor="@color/settings_text"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llRateUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llPrivacyPolicy"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_rounded_right_ripple"
+            android:backgroundTint="@color/settings_item_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="96dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginVertical="16dp"
+                android:src="@drawable/ic_star"
+                app:tint="@color/settings_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/karla_semibold"
+                android:gravity="center_vertical"
+                android:text="@string/rate_us"
+                android:textColor="@color/settings_text"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llShareApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llRateUs"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_rounded_right_ripple"
+            android:backgroundTint="@color/settings_item_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="96dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginVertical="16dp"
+                android:src="@drawable/ic_share"
+                app:tint="@color/settings_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/karla_semibold"
+                android:gravity="center_vertical"
+                android:text="@string/share_app"
+                android:textColor="@color/settings_text"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/llVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llShareApp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_right_ripple"
+                android:backgroundTint="@color/settings_item_bg"
+                android:orientation="horizontal"
+                android:paddingEnd="96dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginVertical="16dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_version"
+                    app:tint="@color/settings_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/karla_semibold"
+                    android:gravity="center_vertical"
+                    android:text="@string/version"
+                    android:textColor="@color/settings_text"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/karla_semibold"
+                android:gravity="center_vertical"
+                android:text="1.0"
+                android:textColor="#595959"
+                android:textSize="16sp" />
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

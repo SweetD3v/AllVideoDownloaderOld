@@ -43,7 +43,11 @@
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_compress_video.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_compress_video_home.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_fbdownloader_home.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_fullview_wa.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_fullview_wa_saved.xml" value="0.34444444444444444" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_funny_videos.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_grid_save.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_imageview.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_insta_downloader_home.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_insta_grid.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -67,6 +71,7 @@
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_wallpaper_details.xml" value="0.34444444444444444" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_wallpapers.xml" value="0.34444444444444444" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/collage_save_layout.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/dialog_smart_rate.xml" value="0.3609375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/exo_player_controls.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/filter_layout.xml" value="0.18958333333333333" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home.xml" value="0.34444444444444444" />
@@ -75,6 +80,7 @@
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/layout_upcoming_birthdays.xml" value="0.37395833333333334" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/list_thumbnail_item.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/mosaic_layout.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/rating_dialog.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/row_editing_tools.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/row_picspro_tools.xml" value="0.38697916666666665" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/track_selection_dialog.xml" value="0.37395833333333334" />

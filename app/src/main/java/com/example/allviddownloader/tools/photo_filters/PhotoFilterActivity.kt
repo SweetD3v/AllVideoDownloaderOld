@@ -37,8 +37,8 @@ class PhotoFilterActivity : AppCompatActivity() {
 
         if (NetworkState.isOnline())
             AdsUtils.loadBanner(
-                this, binding.bannerContainer,
-                getString(R.string.banner_id_details)
+                this, getString(R.string.banner_id_details),
+                binding.bannerContainer
             )
 
         val bmp = getBitmapFromUri(this, photoUri)

@@ -5,9 +5,9 @@
     <color name="primarydark">#174D8E</color>
     <color name="primarydark1">#051C59</color>
 
-    <color name="accentlight">#fa5788</color>
-    <color name="accent">#c2185b</color>
-    <color name="accentdark">#8c0032</color>
+    <color name="accentlight">#FF8B8B</color>
+    <color name="accent">#eb5757</color>
+    <color name="accentdark">#EA2929</color>
 
     <color name="primary_bg">#ECF4FD</color>
 
@@ -52,4 +52,6 @@
     <color name="colorAccentDark">#D68100</color>
     <color name="colorAccentLight1">#FFE1B3</color>
     <color name="progress_bar_bg_light">#ff787878</color>
+    <color name="settings_text">#082D5A</color>
+    <color name="settings_item_bg">#D8E9FF</color>
 </resources>

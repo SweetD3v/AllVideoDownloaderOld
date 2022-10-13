@@ -28,8 +28,8 @@ class FBDownloaderHomeActivity : BaseActivity() {
 
             if (NetworkState.isOnline()) {
 //                AdsUtils.loadBanner(
-//                    this@FBDownloaderHomeActivity, bannerContainer,
-//                    getString(R.string.banner_id_details)
+//                    this@FBDownloaderHomeActivity, getString(R.string.banner_id_details),
+//                    bannerContainer
 //                )
 
                 AdsUtils.loadNative(

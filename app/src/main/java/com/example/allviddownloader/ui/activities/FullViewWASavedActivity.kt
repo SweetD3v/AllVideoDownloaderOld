@@ -44,11 +44,11 @@ class FullViewWASavedActivity : AppCompatActivity() {
 
         binding.run {
 
-//            if (NetworkState.isOnline())
-//                AdsUtils.loadBanner(
-//                    this@FullViewWASavedActivity, bannerContainer,
-//                    getString(R.string.banner_id_details)
-//                )
+            if (NetworkState.isOnline())
+                AdsUtils.loadBanner(
+                    this@FullViewWASavedActivity, getString(R.string.banner_id_details),
+                    bannerContainer
+                )
 
             setSupportActionBar(toolbar)
             toolbar.setNavigationOnClickListener {

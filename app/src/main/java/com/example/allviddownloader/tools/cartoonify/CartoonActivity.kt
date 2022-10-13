@@ -53,8 +53,8 @@ class CartoonActivity : BaseActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@CartoonActivity, bannerContainer,
-                    getString(R.string.banner_id_details)
+                    this@CartoonActivity, getString(R.string.banner_id_details),
+                    bannerContainer
                 )
 
             imgBack.setOnClickListener {

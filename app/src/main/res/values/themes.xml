@@ -14,6 +14,11 @@
         <item name="android:windowMinWidthMinor">100%</item>
     </style>
 
+    <style name="RatingBar" parent="AppTheme">
+        <item name="colorControlActivated">#4361AA</item>
+        <item name="colorControlNormal">#799DF8</item>
+    </style>
+
     <style name="rtl_RecyclerTabLayout">
         <item name="rtl_tabBackground">?selectableItemBackground</item>
         <item name="rtl_tabIndicatorColor">?colorAccent</item>

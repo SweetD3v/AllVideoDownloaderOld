@@ -4,14 +4,10 @@ import android.animation.Animator
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.appcompat.app.AppCompatActivity
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityCacheCleanerBinding
-import com.example.allviddownloader.utils.AdsUtils
+import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.AdsUtils.Companion.loadInterstitialAd
-import com.example.allviddownloader.utils.AsyncTaskRunner
-import com.example.allviddownloader.utils.formatSize
-import com.example.allviddownloader.utils.getProperSize
 
 class CleanerActivity : BaseActivity() {
     val binding by lazy { ActivityCacheCleanerBinding.inflate(layoutInflater) }
@@ -170,12 +166,12 @@ class CleanerActivity : BaseActivity() {
 
         binding.run {
 
-//            if (NetworkState.isOnline()) {
-//                AdsUtils.loadNativeSmall(
-//                    this@CleanerActivity, getString(R.string.admob_native_id),
-//                    adFrame
-//                )
-//            }
+            if (NetworkState.isOnline()) {
+                AdsUtils.loadNativeSmall(
+                    this@CleanerActivity, getString(R.string.admob_native_id),
+                    adFrame
+                )
+            }
 
             imgBack.setOnClickListener {
                 onBackPressed()

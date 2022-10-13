@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityFunnyVideosBinding
+import com.example.allviddownloader.utils.AdsUtils
+import com.example.allviddownloader.utils.NetworkState
 import com.example.allviddownloader.utils.downloader.BasicImageDownloader
 import com.example.allviddownloader.utils.setDarkStatusBarColor
 
@@ -24,6 +26,14 @@ class FunnyVideosActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadVideos()
+
+        binding.run {
+            if (NetworkState.isOnline())
+                AdsUtils.loadBanner(
+                    this@FunnyVideosActivity, getString(R.string.banner_id_details),
+                    bannerContainer
+                )
+        }
     }
 
     private fun loadVideos() {
@@ -61,7 +71,7 @@ class FunnyVideosActivity : AppCompatActivity() {
     }
 
     private fun startDownload(downloadUrl: String?) {
-        downloadUrl?.let { url->
+        downloadUrl?.let { url ->
             Log.e("TAG", "startDownload: $url")
             BasicImageDownloader(this@FunnyVideosActivity)
                 .saveVideoToExternalFunny(
