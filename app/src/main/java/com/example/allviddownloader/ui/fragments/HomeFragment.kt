@@ -222,127 +222,375 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
 
             llInstagram.setOnClickListener {
-                val instaSheetBinding = BottomsheetInstaBinding.inflate(layoutInflater)
-//                instaSheetBuilder = BSFragmentBuilder().with(childFragmentManager)
-//                    .title("Instagram")
-//                    .setupLayout(ctx, R.layout.bottomsheet_insta)
-
-
-//                instaSheetBuilder?.show()
-//                val instaSheetView = instaSheetBuilder?.layout
-//                initInstaSheet(instaSheetBinding)
-                startActivity(Intent(ctx, InstaDownloaderHomeActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, InstaDownloaderHomeActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, InstaDownloaderHomeActivity::class.java))
+                }
             }
 
             llFacebook.setOnClickListener {
-//                val fbSheetBinding = BottomsheetFbBinding.inflate(layoutInflater)
-//                fbSheetBuilder = BSFragmentBuilder().with(childFragmentManager)
-//                    .title("Facebook")
-//                    .apply {
-//                        layout = fbSheetBinding.root
-//                    }s
-//
-//
-//                fbSheetBuilder?.show()
-//                initFBSheet(fbSheetBinding)
-                startActivity(Intent(ctx, FBDownloaderHomeActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, FBDownloaderHomeActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, FBDownloaderHomeActivity::class.java))
+                }
             }
 
             llWhatsappSide.setOnClickListener {
-                startActivity(Intent(ctx, WAStatusActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, WAStatusActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, WAStatusActivity::class.java))
+                }
             }
 
             llWallpaper.setOnClickListener {
-                startActivity(
-                    Intent(ctx, WallpapersActivity::class.java)
-                        .putExtra("walpType", "wallpapers")
-                )
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(
+                                    Intent(ctx, WallpapersActivity::class.java)
+                                        .putExtra("walpType", "wallpapers")
+                                )
+                            }
+                        })
+                } else {
+                    startActivity(
+                        Intent(ctx, WallpapersActivity::class.java)
+                            .putExtra("walpType", "wallpapers")
+                    )
+                }
             }
 
             llStatusMaker.setOnClickListener {
-                startActivity(
-                    Intent(ctx, WallpapersActivity::class.java)
-                        .putExtra("walpType", "status")
-                )
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(
+                                    Intent(ctx, WallpapersActivity::class.java)
+                                        .putExtra("walpType", "status")
+                                )
+                            }
+                        })
+                } else {
+                    startActivity(
+                        Intent(ctx, WallpapersActivity::class.java)
+                            .putExtra("walpType", "status")
+                    )
+                }
             }
 
             llPhotoEditor.setOnClickListener {
-                startActivity(
-                    Intent(
-                        ctx,
-                        PicEditorHomeActivity::class.java
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(
+                                    Intent(
+                                        ctx,
+                                        PicEditorHomeActivity::class.java
+                                    )
+                                )
+                            }
+                        })
+                } else {
+                    startActivity(
+                        Intent(
+                            ctx,
+                            PicEditorHomeActivity::class.java
+                        )
                     )
-                )
+                }
             }
 
             llFunny.setOnClickListener {
-                startActivity(Intent(ctx, FunnyVideosActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, FunnyVideosActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, FunnyVideosActivity::class.java))
+                }
             }
 
             llAgeCalc.setOnClickListener {
-                startActivity(Intent(ctx, AgeCalculatorActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, AgeCalculatorActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, AgeCalculatorActivity::class.java))
+                }
             }
 
             llInstaGrid.setOnClickListener {
-                startActivity(Intent(ctx, InstaGridActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, InstaGridActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, InstaGridActivity::class.java))
+                }
             }
 
             llPhotoCompress.setOnClickListener {
-                startActivity(Intent(ctx, PhotoCmpHomeActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, PhotoCmpHomeActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, PhotoCmpHomeActivity::class.java))
+                }
             }
 
             llCleaner.setOnClickListener {
-                startActivity(Intent(ctx, CleanerActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, CleanerActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, CleanerActivity::class.java))
+                }
             }
 
             llCollageMaker.setOnClickListener {
-                launchCollage()
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                launchCollage()
+                            }
+                        })
+                } else {
+                    launchCollage()
+                }
             }
 
             llCartoonify.setOnClickListener {
-                startActivity(Intent(ctx, CartoonifyHomeActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, CartoonifyHomeActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, CartoonifyHomeActivity::class.java))
+                }
             }
 
             llSketchify.setOnClickListener {
-                startActivity(Intent(ctx, SketchifyHomeActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, SketchifyHomeActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, SketchifyHomeActivity::class.java))
+                }
             }
 
             llPhotoFilter.setOnClickListener {
-                startActivity(Intent(ctx, PhotoFilterHomeActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, PhotoFilterHomeActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, PhotoFilterHomeActivity::class.java))
+                }
             }
 
             llPhotoWarp.setOnClickListener {
-                startActivity(Intent(ctx, PhotoWarpHomeActivity::class.java))
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, PhotoWarpHomeActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, PhotoWarpHomeActivity::class.java))
+                }
             }
 
             llDownloads.setOnClickListener {
-                startActivity(
-                    Intent(
-                        ctx,
-                        MyCreationToolsActivity::class.java
-                    ).putExtra(MyCreationToolsActivity.CREATION_TYPE, "all")
-                )
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(
+                                    Intent(
+                                        ctx,
+                                        MyCreationToolsActivity::class.java
+                                    ).putExtra(MyCreationToolsActivity.CREATION_TYPE, "all")
+                                )
+                            }
+                        })
+                } else {
+                    startActivity(
+                        Intent(
+                            ctx,
+                            MyCreationToolsActivity::class.java
+                        ).putExtra(MyCreationToolsActivity.CREATION_TYPE, "all")
+                    )
+                }
             }
 
             llVideoPlayer.setOnClickListener {
-                with(ctx)
-                    .dropDownAlbum()
-                    .video()
-                    .showVideoDuration(true)
-                    .imageCountTextFormat("%s videos")
-                    .start { uri: Uri? ->
-                        val videoPath: String =
-                            SystemUtils.getRealPathFromUri(context, uri)
-                        val intent =
-                            Intent(context, VideoPlayerActivity::class.java)
-                        intent.putExtra("selectedvideo", videoPath)
-                        intent.putExtra(
-                            DemoUtil.VID_ORIENTATION,
-                            DeviceUtils.rotateScreen(context, uri)
-                        )
-                        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                        startActivity(intent)
-                    }
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                with(ctx)
+                                    .dropDownAlbum()
+                                    .video()
+                                    .showVideoDuration(true)
+                                    .imageCountTextFormat("%s videos")
+                                    .start { uri: Uri? ->
+                                        val videoPath: String =
+                                            SystemUtils.getRealPathFromUri(context, uri)
+                                        val intent =
+                                            Intent(context, VideoPlayerActivity::class.java)
+                                        intent.putExtra("selectedvideo", videoPath)
+                                        intent.putExtra(
+                                            DemoUtil.VID_ORIENTATION,
+                                            DeviceUtils.rotateScreen(context, uri)
+                                        )
+                                        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                                        startActivity(intent)
+                                    }
+                            }
+                        })
+                } else {
+                    with(ctx)
+                        .dropDownAlbum()
+                        .video()
+                        .showVideoDuration(true)
+                        .imageCountTextFormat("%s videos")
+                        .start { uri: Uri? ->
+                            val videoPath: String =
+                                SystemUtils.getRealPathFromUri(context, uri)
+                            val intent =
+                                Intent(context, VideoPlayerActivity::class.java)
+                            intent.putExtra("selectedvideo", videoPath)
+                            intent.putExtra(
+                                DemoUtil.VID_ORIENTATION,
+                                DeviceUtils.rotateScreen(context, uri)
+                            )
+                            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                            startActivity(intent)
+                        }
+                }
             }
 
             btnDownload.setOnClickListener {
