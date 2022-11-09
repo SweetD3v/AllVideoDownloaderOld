@@ -206,11 +206,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:background="@drawable/rounded_bg_white_8"
-                                android:backgroundTint="@color/grey_800"
-                                android:padding="8dp"
-                                app:srcCompat="@drawable/ic_status_maker"
-                                app:tint="@color/white" />
+                                app:srcCompat="@drawable/ic_status_maker" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -236,11 +232,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:background="@drawable/rounded_bg_white_8"
-                                android:backgroundTint="#F6742E"
-                                android:padding="8dp"
-                                app:srcCompat="@drawable/ic_photo_compress"
-                                app:tint="@color/white" />
+                                app:srcCompat="@drawable/ic_photo_compress_new" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -266,11 +258,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:background="@drawable/rounded_bg_white_8"
-                                android:backgroundTint="@color/insta_primary"
-                                android:padding="8dp"
-                                app:srcCompat="@drawable/ic_age_calc"
-                                app:tint="@color/white" />
+                                app:srcCompat="@drawable/ic_age_calc" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -296,11 +284,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:background="@drawable/rounded_bg_white_8"
-                                android:backgroundTint="#0483D8"
-                                android:padding="8dp"
-                                app:srcCompat="@drawable/ic_download"
-                                app:tint="@color/white" />
+                                app:srcCompat="@drawable/ic_download_new" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -740,15 +724,14 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/rounded_bg_white_16"
-                                        android:backgroundTint="#53289A"
+                                        android:backgroundTint="#DEC9FF"
                                         android:padding="20dp">
 
                                         <androidx.appcompat.widget.AppCompatImageView
                                             android:layout_width="48dp"
                                             android:layout_height="48dp"
                                             android:layout_centerInParent="true"
-                                            app:srcCompat="@drawable/ic_cartoonify"
-                                            app:tint="#F9F5FF" />
+                                            app:srcCompat="@drawable/ic_cartoonify_new" />
                                     </RelativeLayout>
 
                                     <TextView
@@ -796,15 +779,14 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/rounded_bg_white_16"
-                                        android:backgroundTint="#FFC107"
+                                        android:backgroundTint="#FFEDB5"
                                         android:padding="20dp">
 
                                         <androidx.appcompat.widget.AppCompatImageView
                                             android:layout_width="48dp"
                                             android:layout_height="48dp"
                                             android:layout_centerInParent="true"
-                                            app:srcCompat="@drawable/ic_cartoonify"
-                                            app:tint="#FFF0E9" />
+                                            app:srcCompat="@drawable/ic_sketchify_new" />
                                     </RelativeLayout>
 
                                     <TextView
@@ -833,7 +815,6 @@
                             android:id="@+id/llTools2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/llTools1"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="48dp"
                             android:orientation="horizontal">
@@ -847,10 +828,10 @@
                                 android:layout_weight="1"
                                 android:clickable="true"
                                 android:focusable="true"
-                                app:cardBackgroundColor="#E9FFE6"
+                                app:cardBackgroundColor="#FFF0F6"
                                 app:cardCornerRadius="16dp"
                                 app:cardElevation="0dp"
-                                app:rippleColor="#33A89BBC">
+                                app:rippleColor="#33FFE0EB">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -862,15 +843,14 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/rounded_bg_white_16"
-                                        android:backgroundTint="#239816"
+                                        android:backgroundTint="#FFD5E3"
                                         android:padding="20dp">
 
                                         <androidx.appcompat.widget.AppCompatImageView
                                             android:layout_width="48dp"
                                             android:layout_height="48dp"
                                             android:layout_centerInParent="true"
-                                            app:srcCompat="@drawable/ic_cartoonify"
-                                            app:tint="#F9F5FF" />
+                                            app:srcCompat="@drawable/ic_filter_new" />
                                     </RelativeLayout>
 
                                     <TextView
@@ -903,10 +883,10 @@
                                 android:layout_weight="1"
                                 android:clickable="true"
                                 android:focusable="true"
-                                app:cardBackgroundColor="#FFF0E9"
+                                app:cardBackgroundColor="#E6F5FF"
                                 app:cardCornerRadius="16dp"
                                 app:cardElevation="0dp"
-                                app:rippleColor="#33CABAB0">
+                                app:rippleColor="#33E6F5FF">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -918,15 +898,14 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:background="@drawable/rounded_bg_white_16"
-                                        android:backgroundTint="#D64F10"
+                                        android:backgroundTint="#C2E6FF"
                                         android:padding="20dp">
 
                                         <androidx.appcompat.widget.AppCompatImageView
                                             android:layout_width="48dp"
                                             android:layout_height="48dp"
                                             android:layout_centerInParent="true"
-                                            app:srcCompat="@drawable/ic_cartoonify"
-                                            app:tint="#FFF0E9" />
+                                            app:srcCompat="@drawable/ic_warp_new" />
                                     </RelativeLayout>
 
                                     <TextView

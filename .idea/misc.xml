@@ -12,24 +12,42 @@
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/bg_rounded_right_ripple.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/boader_onclick_and_clickout.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/border_bottom.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/border_radius_accent_10.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/bottom_transparent_gradient_top.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/circle_2.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/circle_background.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/circle_bg_black.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/circle_bg_stroke.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/close.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/compare.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/custom_progressbar_bg.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/custom_progressbar_drawable.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/custom_progressbar_progress.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/dark_to_transparent_gradient.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/error_placeholder.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/et_bg_insta1.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_calendar.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_cartoonify.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_done.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_downloads.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_more_vert.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_seek_thumb.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_share.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_status_maker.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_undo.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_video_play.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ic_whatsapp_svg.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/layout_onclick_and_clickout.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/player_progessbar.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ratio_onclick_and_clickout.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/ripple.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/rotate.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/rounded_bg_bottom_4_1.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/rounded_bg_white_16.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/rounded_bg_white_8.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/tab_layout_bg.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/tab_selected_accent.xml" value="0.209" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/drawable/tab_selector_accent.xml" value="0.209" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_age_calc_details.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_age_calculator.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_all_downloads.xml" value="0.3609375" />
@@ -43,6 +61,7 @@
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_compress_video.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_compress_video_home.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_fbdownloader_home.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_fullview.xml" value="0.34444444444444444" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_fullview_wa.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_fullview_wa_saved.xml" value="0.34444444444444444" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_funny_videos.xml" value="0.375" />
@@ -68,21 +87,39 @@
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_sketchify_home.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_video_player.xml" value="0.34444444444444444" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_video_player_album.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_videoview.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_wallpaper_details.xml" value="0.34444444444444444" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_wallpapers.xml" value="0.34444444444444444" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/activity_wastatus.xml" value="0.34444444444444444" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/carousel_picker.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/collage_save_layout.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/crop_layout.xml" value="0.34444444444444444" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/dialog_smart_rate.xml" value="0.3609375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/exo_player_controls.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/filter_layout.xml" value="0.18958333333333333" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home.xml" value="0.34444444444444444" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/fragment_waimages.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/fragments_downloads.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/insta_layout.xml" value="0.34444444444444444" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/item_aspect_ratio.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/item_college.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/item_color.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/item_magic_brush.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/item_puzzle.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/item_status.xml" value="0.34444444444444444" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/layout_compress_pd.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/layout_upcoming_birthdays.xml" value="0.37395833333333334" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/list_thumbnail_item.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/mosaic_layout.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/progress_dialog.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/rating_dialog.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/row_adjust_view.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/row_editing_tools.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/row_filter_view.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/row_picspro_tools.xml" value="0.38697916666666665" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/splash_layout.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/splash_view.xml" value="0.375" />
+        <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/square_view_item.xml" value="0.375" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/app/src/main/res/layout/track_selection_dialog.xml" value="0.37395833333333334" />
         <entry key="..\:/ClientProjects/AllVideoDownloader/imagepicker/src/main/res/drawable/btn_done_button.xml" value="0.209" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/close.xml" value="0.236" />

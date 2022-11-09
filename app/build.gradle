@@ -104,7 +104,6 @@ dependencies {
     //Other Deps
     implementation 'com.github.YuganshT79:Smiley-Rating:1.0.2'
     implementation 'id.zelory:compressor:2.1.1'
-    implementation 'com.github.chathuralakmal:AndroidImagePopup:1.2.2'
     implementation "com.orhanobut:hawk:2.0.1"
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
@@ -124,6 +123,7 @@ dependencies {
     implementation 'com.nambimobile.widgets:expandable-fab:1.2.1'
     implementation 'androidx.browser:browser:1.4.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.github.chathuralakmal:AndroidImagePopup:1.2.2'
     implementation project(path: ':shapeimageview')
 //    implementation project(path: ':files_commons')
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
