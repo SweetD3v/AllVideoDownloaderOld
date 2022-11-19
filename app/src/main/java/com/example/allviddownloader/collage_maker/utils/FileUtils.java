@@ -3,6 +3,7 @@ package com.example.allviddownloader.collage_maker.utils;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Environment;
+import android.util.Log;
 
 import com.example.allviddownloader.AllVidApp;
 import com.example.allviddownloader.R;
@@ -31,26 +32,24 @@ public class FileUtils {
 
     public static File saveBitmapAsFile(Bitmap bitmap, String dirName) {
         FileOutputStream fileOutputStream;
-        String file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
-        File file2 = new File(file + "/" + AllVidApp.Companion.getInstance().getString(R.string.app_name) + "/" + dirName);
-        if (!file2.exists()) {
-            file2.mkdirs();
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                + "/" + AllVidApp.Companion.getInstance().getString(R.string.app_name) + "/" + dirName);
+        if (!file.exists()) {
+            file.mkdirs();
         }
         try {
-            File file3 = new File(file + "/" + AllVidApp.Companion.getInstance().getString(R.string.app_name) + "/" + dirName + "/" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(new Date()) + ".jpg");
-            file3.createNewFile();
-            fileOutputStream = new FileOutputStream(file3);
+            File file1 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                    + "/" + AllVidApp.Companion.getInstance().getString(R.string.app_name) + "/" + dirName + "/" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH).format(new Date()) + ".jpg");
+            file1.createNewFile();
+            fileOutputStream = new FileOutputStream(file1);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
             fileOutputStream.flush();
             fileOutputStream.close();
-            return file3;
-        } catch (Exception e2) {
-
-            fileOutputStream = null;
-            e2.printStackTrace();
-            if (fileOutputStream != null) {
-            }
-            return null;
+            return file1;
+        } catch (Exception e) {
+            Log.e("TAG", "saveBitmapAsFileExc: " + e.getMessage());
+            e.printStackTrace();
+            return new File("");
         }
     }
 

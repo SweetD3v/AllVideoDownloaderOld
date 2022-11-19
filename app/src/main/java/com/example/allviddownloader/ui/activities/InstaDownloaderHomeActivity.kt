@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityInstaDownloaderHomeBinding
+import com.example.allviddownloader.databinding.DialogServerDownBinding
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.apis.InstaModel
@@ -129,29 +131,36 @@ class InstaDownloaderHomeActivity : BaseActivity() {
                                 }
                         }
                     } ?: run {
-                        Toast.makeText(
-                            this@InstaDownloaderHomeActivity,
-                            "Unable to download. Please try again.",
-                            Toast.LENGTH_SHORT
-                        ).show()
                         MyProgressDialog.dismissDialog()
+                        showErrorDialog()
                     }
                 } else {
                     Log.e("TAG", "onResponseError: ${response.errorBody()}")
                     MyProgressDialog.dismissDialog()
-                    Toast.makeText(
-                        this@InstaDownloaderHomeActivity,
-                        "Unable to download. Please try again.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showErrorDialog()
                 }
             }
 
             override fun onFailure(call: Call<InstaModel>, t: Throwable) {
                 MyProgressDialog.dismissDialog()
-                toastShort(this@InstaDownloaderHomeActivity, "${t.message}")
+                showErrorDialog()
             }
         })
+    }
+
+    private fun showErrorDialog() {
+        val dialogServerDownBinding = DialogServerDownBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this, R.style.RoundedCornersDialog80).setCancelable(true)
+            .setView(dialogServerDownBinding.root)
+
+        val alertDialog = builder.create()
+        alertDialog.show()
+
+        dialogServerDownBinding.run {
+            btnOk.setOnClickListener {
+                alertDialog.dismiss()
+            }
+        }
     }
 
     fun getClipboardItemsSpecific(type: SMType): String {

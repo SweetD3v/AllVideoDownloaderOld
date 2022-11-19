@@ -113,16 +113,16 @@ class FullViewWASavedActivity : AppCompatActivity() {
 
             fabShare.setOnClickListener {
                 val image = imagesList[binding.viewPagerMedia.currentItem]
-                if (image.uri.toString().endsWith(".jpg")
-                    or image.uri.toString().endsWith(".png")
-                ) {
+                if (contentResolver.getType(image.uri)?.contains("image", true) == true) {
                     val bitmap =
                         if (image.uri.toString().endsWith(".jpg")
                             or image.uri.toString().endsWith(".png")
                         ) getBitmapFromUri(this@FullViewWASavedActivity, image.uri)
                         else getVideoThumbnail(this@FullViewWASavedActivity, image.uri)
 
-                    saveImageTemp(bitmap)
+                    Log.e("TAG", "onCreateimage: ${image.uri}")
+                    shareMediaUri(this@FullViewWASavedActivity, arrayListOf(image.uri))
+//                    saveImageTemp(bitmap)
                 } else {
                     saveVideoTemp(image.uri)
                 }

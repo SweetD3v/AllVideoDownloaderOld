@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.AllVidDownloader" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.AllVidDownloader" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primarydark</item>
         <item name="colorAccent">@color/accent</item>
@@ -14,7 +14,7 @@
         <item name="android:windowMinWidthMinor">100%</item>
     </style>
 
-    <style name="RatingBar" parent="AppTheme">
+    <style name="RatingBar" parent="Theme.AllVidDownloader">
         <item name="colorControlActivated">#4361AA</item>
         <item name="colorControlNormal">#799DF8</item>
     </style>
@@ -36,6 +36,17 @@
         <item name="android:background">@drawable/rounded_bg_white_8</item>
         <item name="android:windowMinWidthMajor">100%</item>
         <item name="android:windowMinWidthMinor">100%</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AllVidDownloader">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+    </style>
+
+    <style name="RoundedCornersDialog80" parent="@style/Theme.MaterialComponents.DayNight.Dialog">
+        <item name="dialogCornerRadius">8dp</item>
+        <item name="android:background">@drawable/rounded_bg_white_8</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
     </style>
 
     <style name="rtl_RecyclerTabLayout.Tab" parent="@style/rtl_RecyclerTabLayout">

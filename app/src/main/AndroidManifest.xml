@@ -39,15 +39,15 @@
     <application
         android:name=".AllVidApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:preserveLegacyExternalStorage="true"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.AllVidDownloader"
         android:usesCleartextTraffic="true"
-        tools:replace="android:theme"
+        tools:replace="android:theme, android:icon"
         tools:targetApi="30">
         <activity
             android:name=".ui.activities.SettingsActivity"
@@ -94,18 +94,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.activities.AllDownloadsActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".tools.compress.CompressSaveVideoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".tools.compress.CompressVideoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".tools.compress.CompressVideoHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -244,8 +232,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.SplashScreenActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -125,7 +125,8 @@ class MyCreationFullViewActivity : AppCompatActivity() {
                         ) getBitmapFromUri(this@MyCreationFullViewActivity, image.uri)
                         else getVideoThumbnail(this@MyCreationFullViewActivity, image.uri)
 
-                    saveImageTemp(bitmap)
+//                    saveImageTemp(bitmap)
+                    shareMediaUri(this@MyCreationFullViewActivity, arrayListOf(image.uri))
                 } else {
                     saveVideoTemp(image.uri)
                 }
@@ -205,6 +206,12 @@ class MyCreationFullViewActivity : AppCompatActivity() {
                 }
                 if (imagesList?.size != imageListNew.size) {
                     imagesList = imageListNew
+
+                    if (type.equals("all"))
+                        this.imagesList = ArrayList(this.imagesList?.filter { mediaItem ->
+                            !mediaItem.path.contains("Insta Grid", true)
+                        } ?: arrayListOf())
+
                     refreshAdapter()
                 }
             }

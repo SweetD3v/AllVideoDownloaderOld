@@ -116,14 +116,21 @@ class MyCreationToolsActivity : BaseActivity() {
         file?.let {
             getMediaByName(this, it) { mediaList ->
                 for (media in mediaList) {
-                    Log.e("TAG", "loadMedia: ${media.path}")
+                    Log.e("TAG", "mediaPath: ${media.path}")
                 }
                 if (this.mediaList?.size != mediaList.size) {
                     this.mediaList = mediaList
 
-                    val myCreationAdapter = MyCreationAdapter(this, mediaList)
+                    if (type.equals("all"))
+                        this.mediaList = ArrayList(this.mediaList?.filter { mediaItem ->
+                            !mediaItem.path.contains("Insta Grid", true)
+                        } ?: arrayListOf())
+
+                    this.mediaList?.sortByDescending { item -> item.date }
+                    val myCreationAdapter =
+                        MyCreationAdapter(this, this.mediaList ?: mutableListOf())
                     binding.rvMyCreation.adapter = myCreationAdapter
-                    myCreationAdapter.notifyItemRangeChanged(0, mediaList.size)
+                    myCreationAdapter.notifyItemRangeChanged(0, this.mediaList?.size ?: 0)
                 }
             }
         }

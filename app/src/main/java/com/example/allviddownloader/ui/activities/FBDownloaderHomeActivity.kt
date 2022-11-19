@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityFbdownloaderHomeBinding
+import com.example.allviddownloader.databinding.DialogServerDownBinding
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.apis.FBModel
@@ -135,29 +137,37 @@ class FBDownloaderHomeActivity : BaseActivity() {
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                         }
-                                } ?: toastShort(
-                                    this@FBDownloaderHomeActivity,
-                                    "Failed to download Video"
-                                )
+                                } ?: showErrorDialog()
                             }
                         }
                     }
                 } else {
-                    Toast.makeText(
-                        this@FBDownloaderHomeActivity,
-                        "Unable to download. Please try again.",
-                        Toast.LENGTH_SHORT
-                    ).show()
                     pd.dismissDialog()
+                    showErrorDialog()
                 }
             }
 
             override fun onFailure(call: Call<FBModel>, t: Throwable) {
                 Log.e("TAG", "onFailure: ${t.message}")
                 pd.dismissDialog()
-                toastShort(this@FBDownloaderHomeActivity, t.message.toString())
+                showErrorDialog()
             }
         })
+    }
+
+    private fun showErrorDialog() {
+        val dialogServerDownBinding = DialogServerDownBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this, R.style.RoundedCornersDialog80).setCancelable(true)
+            .setView(dialogServerDownBinding.root)
+
+        val alertDialog = builder.create()
+        alertDialog.show()
+
+        dialogServerDownBinding.run {
+            btnOk.setOnClickListener {
+                alertDialog.dismiss()
+            }
+        }
     }
 
     fun getClipboardItemsSpecific(type: SMType): String {
@@ -173,7 +183,7 @@ class FBDownloaderHomeActivity : BaseActivity() {
             val twitterList = mutableListOf<String>()
             val vimeoList = mutableListOf<String>()
             for (i in clipboardItems.indices) {
-                if (clipboardItems[i].contains("www.facebook.com")) {
+                if (clipboardItems[i].contains("fb.watch") || clipboardItems[i].contains("facebook.com")) {
                     fbList.add(clipboardItems[i])
                 }
             }

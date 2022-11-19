@@ -70,7 +70,7 @@ class GridSaveActivity : AppCompatActivity() {
                                                         bmp
                                                     )
                                                 }.jpg",
-                                                "Cropped"
+                                                "Insta Grid"
                                             )
                                         }
                                     }

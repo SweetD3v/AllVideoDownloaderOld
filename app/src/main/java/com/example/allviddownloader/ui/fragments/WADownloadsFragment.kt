@@ -84,9 +84,8 @@ class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>() {
             getMedia(ctx, RootDirectoryWhatsappShow) { list ->
                 for (media in list) {
                     imageListNew.add(media)
+                    Log.e("TAG", "loadImagesDS: ${media.path}")
                 }
-                Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
-                Log.e("TAG", "loadImages: ${imagesList.size}")
                 if (imageListNew.size != imagesList.size) {
                     imagesList = imageListNew
                     val waMediaAdapter = WAMediaSavedAdapter(ctx, imagesList)

@@ -1,0 +1,168 @@
+{
+  "abi": "X86_64",
+  "info": {
+    "abi": "X86_64",
+    "bitness": 64,
+    "deprecated": false,
+    "default": true
+  },
+  "cxxBuildFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\1n23g386\\x86_64",
+  "soFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx\\Debug\\1n23g386\\obj\\x86_64",
+  "soRepublishFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cmake\\debug\\obj\\x86_64",
+  "abiPlatformVersion": 21,
+  "cmake": {
+    "effectiveConfiguration": {
+      "inheritEnvironments": [],
+      "variables": []
+    }
+  },
+  "variant": {
+    "buildSystemArgumentList": [],
+    "cFlagsList": [],
+    "cppFlagsList": [
+      ""
+    ],
+    "variantName": "debug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": [],
+    "implicitBuildTargetSet": [],
+    "cmakeSettingsConfiguration": "android-gradle-plugin-predetermined-name",
+    "module": {
+      "cxxFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\.cxx",
+      "intermediatesBaseFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\build\\intermediates",
+      "intermediatesFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx",
+      "gradleModulePathName": ":image_lib",
+      "moduleRootFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib",
+      "moduleBuildFile": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\build.gradle",
+      "makeFile": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "ndkFolder": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888",
+      "ndkVersion": "24.0.8215888",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultStl": "LIBCXX_STATIC",
+      "ndkMetaPlatforms": {
+        "min": 19,
+        "max": 32,
+        "aliases": {
+          "20": 19,
+          "25": 24,
+          "J": 16,
+          "J-MR1": 17,
+          "J-MR2": 18,
+          "K": 19,
+          "L": 21,
+          "L-MR1": 22,
+          "M": 23,
+          "N": 24,
+          "N-MR1": 24,
+          "O": 26,
+          "O-MR1": 27,
+          "P": 28,
+          "Q": 29,
+          "R": 30,
+          "S": 31,
+          "Sv2": 32
+        }
+      },
+      "ndkMetaAbiList": [
+        {
+          "abi": "ARMEABI_V7A",
+          "bitness": 32,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "ARM64_V8A",
+          "bitness": 64,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "X86",
+          "bitness": 32,
+          "deprecated": false,
+          "default": true
+        },
+        {
+          "abi": "X86_64",
+          "bitness": 64,
+          "deprecated": false,
+          "default": true
+        }
+      ],
+      "cmakeToolchainFile": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake",
+      "cmake": {
+        "isValidCmakeAvailable": true,
+        "cmakeExe": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\cmake.exe",
+        "minimumCmakeVersion": "3.10.2"
+      },
+      "stlSharedObjectMap": {
+        "LIBCXX_SHARED": {
+          "ARMEABI_V7A": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\arm-linux-androideabi\\libc++_shared.so",
+          "ARM64_V8A": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\aarch64-linux-android\\libc++_shared.so",
+          "X86": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\i686-linux-android\\libc++_shared.so",
+          "X86_64": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888\\toolchains\\llvm\\prebuilt\\windows-x86_64\\sysroot\\usr\\lib\\x86_64-linux-android\\libc++_shared.so"
+        },
+        "LIBCXX_STATIC": {},
+        "NONE": {},
+        "SYSTEM": {}
+      },
+      "project": {
+        "rootBuildGradleFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader",
+        "sdkFolder": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk",
+        "isBuildOnlyTargetAbiEnabled": true,
+        "isCmakeBuildCohabitationEnabled": false,
+        "isPrefabEnabled": false
+      },
+      "outputOptions": [],
+      "ninjaExe": "C:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe"
+    },
+    "prefabClassPaths": [],
+    "prefabPackages": [],
+    "prefabPackageConfigurations": [],
+    "stlType": "c++_static",
+    "optimizationTag": "Debug"
+  },
+  "buildSettings": {
+    "environmentVariables": []
+  },
+  "prefabFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\1n23g386\\prefab\\x86_64",
+  "isActiveAbi": true,
+  "fullConfigurationHash": "1n23g38616yg6m3i1b19234l4y6i6hkpq3e6y415o142t5e5x3c4nq2s4w",
+  "configurationArguments": [
+    "-HE:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp",
+    "-DCMAKE_SYSTEM_NAME\u003dAndroid",
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON",
+    "-DCMAKE_SYSTEM_VERSION\u003d21",
+    "-DANDROID_PLATFORM\u003dandroid-21",
+    "-DANDROID_ABI\u003dx86_64",
+    "-DCMAKE_ANDROID_ARCH_ABI\u003dx86_64",
+    "-DANDROID_NDK\u003dC:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888",
+    "-DCMAKE_ANDROID_NDK\u003dC:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888",
+    "-DCMAKE_TOOLCHAIN_FILE\u003dC:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake",
+    "-DCMAKE_MAKE_PROGRAM\u003dC:\\Users\\pc\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+    "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dE:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx\\Debug\\1n23g386\\obj\\x86_64",
+    "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dE:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx\\Debug\\1n23g386\\obj\\x86_64",
+    "-DCMAKE_BUILD_TYPE\u003dDebug",
+    "-BE:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\1n23g386\\x86_64",
+    "-GNinja"
+  ],
+  "intermediatesParentFolder": "E:\\Vishrut\\AndroidProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx\\Debug\\1n23g386"
+}

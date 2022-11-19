@@ -43,6 +43,7 @@ import com.example.allviddownloader.collage_maker.ui.fragments.PicsartCropDialog
 import com.example.allviddownloader.collage_maker.ui.interfaces.FilterListener
 import com.example.allviddownloader.collage_maker.ui.interfaces.Sticker_interfce
 import com.example.allviddownloader.collage_maker.utils.FileUtils
+import com.example.allviddownloader.collage_maker.utils.FileUtils.saveBitmapAsFile
 import com.example.allviddownloader.collage_maker.utils.SystemUtils
 import com.example.allviddownloader.collage_maker.utils.UtilsFilter
 import com.example.allviddownloader.databinding.ActivityPuzzleBinding
@@ -1103,27 +1104,19 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
             bitmap.recycle()
             bitmap2.recycle()
             val saveBitmapAsFile =
-                FileUtils.saveBitmapAsFile(createBitmap, "Collage Maker") ?: return null
-            return try {
-                MediaScannerConnection.scanFile(
-                    applicationContext,
-                    arrayOf(saveBitmapAsFile.absolutePath),
-                    null as Array<String?>?
-                ) { str: String?, uri: Uri? -> }
-                createBitmap.recycle()
-                saveBitmapAsFile.absolutePath
-            } catch (e: Exception) {
-                createBitmap.recycle()
-                null
-            } catch (th: Throwable) {
-                createBitmap.recycle()
-                throw th
-            }
+                saveBitmapAsFile(createBitmap, "Collage Maker") ?: return null
+            createBitmap.recycle()
+            return saveBitmapAsFile.absolutePath
         }
 
         override fun onPostExecute(str: String?) {
             showLoading(false)
             isSaved = true
+            MediaScannerConnection.scanFile(
+                applicationContext,
+                arrayOf(str),
+                null as Array<String?>?
+            ) { str: String?, uri: Uri? -> }
             AdsUtils.loadInterstitialAd(this@CollageViewActivity,
                 getString(R.string.interstitial_id),
                 object : AdsUtils.Companion.FullScreenCallback() {
