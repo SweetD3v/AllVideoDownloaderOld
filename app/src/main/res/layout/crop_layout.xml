@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/black">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/confirmToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#85FD99"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/rotate"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:padding="10dp"
+            android:src="@drawable/ic_rotate"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgSave"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:padding="10dp"
+            android:src="@drawable/ic_done"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.example.allviddownloader.collage_maker.crop.CropImageView xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:id="@+id/crop_view"
@@ -16,7 +65,7 @@
         custom:layout_constraintBottom_toTopOf="@+id/guideline"
         custom:layout_constraintLeft_toLeftOf="parent"
         custom:layout_constraintRight_toRightOf="parent"
-        custom:layout_constraintTop_toTopOf="parent"
+        custom:layout_constraintTop_toBottomOf="@id/confirmToolbar"
         custom:scv_background_color="@color/black"
         custom:scv_crop_mode="fit_image"
         custom:scv_frame_color="@color/colorAccent"
@@ -61,60 +110,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="130.0dip" />
+        app:layout_constraintBottom_toTopOf="@id/fixed_ratio_list" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fixed_ratio_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/confirmToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/tool_bg_top"
-        app:layout_constraintBottom_toTopOf="@+id/fixed_ratio_list">
-
-        <ImageView
-            android:id="@+id/imgClose"
-            android:layout_width="24dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:clickable="true"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:src="@drawable/ic_close"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/rotate"
-            android:layout_width="24dp"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:gravity="center"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:src="@drawable/rotate"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgSave"
-            android:layout_width="24dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="8dp"
-            android:clickable="true"
-            android:foreground="?selectableItemBackgroundBorderless"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:src="@drawable/ic_done"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_aspect_ratio" />
 </androidx.constraintlayout.widget.ConstraintLayout>

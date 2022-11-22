@@ -27,7 +27,6 @@ class InstaDownloaderHomeActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.run {
-
             if (NetworkState.isOnline()) {
 //                AdsUtils.loadBanner(
 //                    this@InstaDownloaderHomeActivity, bannerContainer,

@@ -178,7 +178,7 @@ fun saveBitmapImage(
     val values = ContentValues()
     values.put(MediaStore.MediaColumns.DISPLAY_NAME, displayName)
     values.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
         values.put(
             MediaStore.MediaColumns.RELATIVE_PATH,
             Environment.DIRECTORY_DCIM + File.separator

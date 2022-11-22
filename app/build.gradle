@@ -127,8 +127,8 @@ dependencies {
     implementation project(path: ':shapeimageview')
 //    implementation project(path: ':files_commons')
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
-    implementation project(path: ':opencv')
-    implementation project(path: ':image_lib')
+//    implementation project(path: ':opencv')
+//    implementation project(path: ':image_lib')
     implementation project(path: ':imagepicker')
     implementation project(path: ':photofilterssdk')
 //    implementation project(path: ':rxffmpeg')

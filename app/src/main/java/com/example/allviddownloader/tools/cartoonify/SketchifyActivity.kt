@@ -1,40 +1,40 @@
 package com.example.allviddownloader.tools.cartoonify
 
-import android.content.Intent
+//import android.content.Intent
+//import android.util.Log
+//import androidx.core.net.toUri
+//import com.demo.bitmapops.JniBitmapHolder
+//import org.opencv.android.OpenCVLoader
+//import org.opencv.core.Mat
 import android.graphics.*
 import android.os.Bundle
 import android.util.Base64
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
-import com.demo.bitmapops.JniBitmapHolder
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivitySketchifyBinding
 import com.example.allviddownloader.ui.activities.BaseActivity
-import com.example.allviddownloader.utils.*
-import org.opencv.android.OpenCVLoader
-import org.opencv.core.Mat
+import com.example.allviddownloader.utils.AdsUtils
+import com.example.allviddownloader.utils.NetworkState
 import java.io.ByteArrayOutputStream
 import java.nio.IntBuffer
 
 class SketchifyActivity : BaseActivity() {
     companion object {
-        init {
-            if (OpenCVLoader.initDebug())
-                Log.e("TAG", ": OpenCV460 Loaded")
-            else Log.e("TAG", ": OpenCV460 Loading Error")
-        }
+//        init {
+//            if (OpenCVLoader.initDebug())
+//                Log.e("TAG", ": OpenCV460 Loaded")
+//            else Log.e("TAG", ": OpenCV460 Loading Error")
+//        }
     }
 
     val binding by lazy { ActivitySketchifyBinding.inflate(layoutInflater) }
 
-    var imgMat: Mat? = null
-    var tempMat1: Mat? = null
-    var tempMat2: Mat? = null
+    //    var imgMat: Mat? = null
+//    var tempMat1: Mat? = null
+//    var tempMat2: Mat? = null
     var finalBitmapImage: Bitmap? = null
-    var orgBitmap: Bitmap? = null
+//    var orgBitmap: Bitmap? = null
 
-    var instance: JniBitmapHolder? = null
+//    var instance: JniBitmapHolder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,87 +53,87 @@ class SketchifyActivity : BaseActivity() {
             }
         }
 
-        orgBitmap = getBitmapFromUri(
-            this@SketchifyActivity,
-            intent.getStringExtra(CartoonActivity.SELECTED_PHOTO)?.toUri()
-        )
-        orgBitmap?.let {
-            instance = JniBitmapHolder.getInstance(it)
-            object : AsyncTaskRunner<Bitmap, Bitmap?>(this) {
-                override fun doInBackground(params: Bitmap?): Bitmap? {
-                    instance?.storeBitmap()
-//                                instance?.rotateBitmapCw90()
-                    instance?.getBitmap()?.let { bmp ->
-                        return bmp
-                    }
-                    return null
-                }
-
-                override fun onPostExecute(result: Bitmap?) {
-                    result?.let { it1 ->
-                        val canvas = Canvas(result)
-                        instance?.drawBitmapOnCanvas(canvas)
-                        setImage(it1)
-                    }
-                    super.onPostExecute(result)
-                }
-            }.execute(it, true)
-        }
-
-        binding.btnSketchifyImage.setOnClickListener {
-            if (orgBitmap != null) {
-                if (!NetworkState.isOnline()) {
-                    toastShort(
-                        this@SketchifyActivity,
-                        "Please connect to the internet to sketchify an image."
-                    )
-                } else {
-                    orgBitmap?.let { bmp ->
-                        object : AsyncTaskRunner<Bitmap?, Void?>(this@SketchifyActivity) {
-                            override fun doInBackground(params: Bitmap?): Void? {
-                                sketchifyImage()
-                                return null
-                            }
-
-                            override fun onPostExecute(result: Void?) {
-                                super.onPostExecute(result)
-                                AdsUtils.loadInterstitialAd(this@SketchifyActivity,
-                                    getString(R.string.interstitial_id),
-                                    object : AdsUtils.Companion.FullScreenCallback() {
-                                        override fun continueExecution() {
-                                            SaveShareCartoonActivity.finalBitmapImage =
-                                                finalBitmapImage
-                                            startActivity(
-                                                Intent(
-                                                    this@SketchifyActivity,
-                                                    SaveShareCartoonActivity::class.java
-                                                ).apply {
-                                                    putExtra("type", 1)
-                                                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                                })
-                                        }
-                                    })
-                            }
-                        }.execute(bmp, true)
-                    }
-                }
-            } else {
-                toastShort(
-                    this@SketchifyActivity,
-                    "Select an image to sketchify"
-                )
-            }
-        }
+//        orgBitmap = getBitmapFromUri(
+//            this@SketchifyActivity,
+//            intent.getStringExtra(CartoonActivity.SELECTED_PHOTO)?.toUri()
+//        )
+//        orgBitmap?.let {
+//            instance = JniBitmapHolder.getInstance(it)
+//            object : AsyncTaskRunner<Bitmap, Bitmap?>(this) {
+//                override fun doInBackground(params: Bitmap?): Bitmap? {
+//                    instance?.storeBitmap()
+////                                instance?.rotateBitmapCw90()
+//                    instance?.getBitmap()?.let { bmp ->
+//                        return bmp
+//                    }
+//                    return null
+//                }
+//
+//                override fun onPostExecute(result: Bitmap?) {
+//                    result?.let { it1 ->
+//                        val canvas = Canvas(result)
+//                        instance?.drawBitmapOnCanvas(canvas)
+//                        setImage(it1)
+//                    }
+//                    super.onPostExecute(result)
+//                }
+//            }.execute(it, true)
+//        }
+//
+//        binding.btnSketchifyImage.setOnClickListener {
+//            if (orgBitmap != null) {
+//                if (!NetworkState.isOnline()) {
+//                    toastShort(
+//                        this@SketchifyActivity,
+//                        "Please connect to the internet to sketchify an image."
+//                    )
+//                } else {
+//                    orgBitmap?.let { bmp ->
+//                        object : AsyncTaskRunner<Bitmap?, Void?>(this@SketchifyActivity) {
+//                            override fun doInBackground(params: Bitmap?): Void? {
+//                                sketchifyImage()
+//                                return null
+//                            }
+//
+//                            override fun onPostExecute(result: Void?) {
+//                                super.onPostExecute(result)
+//                                AdsUtils.loadInterstitialAd(this@SketchifyActivity,
+//                                    getString(R.string.interstitial_id),
+//                                    object : AdsUtils.Companion.FullScreenCallback() {
+//                                        override fun continueExecution() {
+//                                            SaveShareCartoonActivity.finalBitmapImage =
+//                                                finalBitmapImage
+//                                            startActivity(
+//                                                Intent(
+//                                                    this@SketchifyActivity,
+//                                                    SaveShareCartoonActivity::class.java
+//                                                ).apply {
+//                                                    putExtra("type", 1)
+//                                                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                                                })
+//                                        }
+//                                    })
+//                            }
+//                        }.execute(bmp, true)
+//                    }
+//                }
+//            } else {
+//                toastShort(
+//                    this@SketchifyActivity,
+//                    "Select an image to sketchify"
+//                )
+//            }
+//        }
     }
 
-    private fun setImage(bmp: Bitmap) {
-        orgBitmap = bmp
-        binding.imgDisplay.setImageBitmap(bmp)
-    }
-
-    private fun sketchifyImage() {
-        finalBitmapImage = Changetosketch(orgBitmap)
-    }
+//    private fun setImage(bmp: Bitmap) {
+//        orgBitmap = bmp
+//        binding.imgDisplay.setImageBitmap(bmp)
+//    }
+//
+//    private fun sketchifyImage() {
+//        finalBitmapImage = Changetosketch(orgBitmap)
+//    }
 
     fun Changetosketch(bmp: Bitmap?): Bitmap? {
         var Copy: Bitmap?

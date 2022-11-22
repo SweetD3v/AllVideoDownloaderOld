@@ -642,7 +642,7 @@ class BasicImageDownloader(var ctx: Context) {
                 alertDialog?.dismiss()
                 result?.let { path ->
                     Log.e("TAG", "onPostExecute: $path")
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                         FileUtilsss.saveVideoAPI30(
                             ctx, imageFile, imageFile.name,
                             RootDirectoryInstaDownlaoder
@@ -658,6 +658,18 @@ class BasicImageDownloader(var ctx: Context) {
                                 Log.i("ExternalStorage", "Scanned $path1:")
                                 Log.i("ExternalStorage", "-> uri=$uri")
                             }
+                        }
+                    } else {
+                        imageFile.copyTo(File(RootDirectoryInstaDownlaoder, imageFile.name), true)
+                        MediaScannerConnection.scanFile(
+                            ctx,
+                            arrayOf(
+                                imageFile.absolutePath
+                            ),
+                            null
+                        ) { path1, uri ->
+                            Log.i("ExternalStorage", "Scanned $path1:")
+                            Log.i("ExternalStorage", "-> uri=$uri")
                         }
                     }
                 }

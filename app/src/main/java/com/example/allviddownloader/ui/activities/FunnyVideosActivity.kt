@@ -63,10 +63,6 @@ class FunnyVideosActivity : AppCompatActivity() {
             webView.webViewClient = WVClient()
             webView.webChromeClient = ChromeClient()
             webView.loadUrl("https://myvideo.fun")
-
-            fabDownload.setOnClickListener {
-                startDownload(downloadUrl)
-            }
         }
     }
 

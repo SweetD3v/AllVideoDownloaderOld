@@ -689,16 +689,132 @@
                             android:fontFamily="@font/agane_bold"
                             android:paddingStart="8dp"
                             android:paddingEnd="0dp"
-                            android:text="Extra"
+                            android:text="Popular videos"
                             android:textColor="#3C3C3C"
                             android:textSize="18sp" />
+
+                        <LinearLayout
+                            android:id="@+id/llFunVideoBottom"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="4dp"
+                                app:cardCornerRadius="16dp"
+                                app:cardElevation="4dp">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/imgFun1"
+                                        android:layout_width="72dp"
+                                        android:layout_height="72dp"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_centerInParent="true"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/img1" />
+
+                                    <TextView
+                                        android:id="@+id/txtFun1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_marginHorizontal="16dp"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_toEndOf="@id/imgFun1"
+                                        android:fontFamily="@font/agane_bold"
+                                        android:text="Funny video 1"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtFun11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/txtFun1"
+                                        android:layout_marginHorizontal="16dp"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_toEndOf="@id/imgFun1"
+                                        android:drawableStart="@drawable/ic_eye"
+                                        android:drawablePadding="8dp"
+                                        android:drawableTint="@color/unselected_color"
+                                        android:fontFamily="@font/agane_regular"
+                                        android:gravity="center_vertical"
+                                        android:text="1M views"
+                                        android:textColor="@color/unselected_color"
+                                        android:textSize="14sp" />
+                                </RelativeLayout>
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="4dp"
+                                android:layout_marginBottom="16dp"
+                                app:cardCornerRadius="16dp"
+                                app:cardElevation="4dp">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="4dp">
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/imgFun2"
+                                        android:layout_width="72dp"
+                                        android:layout_height="72dp"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_centerInParent="true"
+                                        android:scaleType="centerCrop"
+                                        app:srcCompat="@drawable/img2" />
+
+                                    <TextView
+                                        android:id="@+id/txtFun2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_marginHorizontal="16dp"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_toEndOf="@id/imgFun2"
+                                        android:fontFamily="@font/agane_bold"
+                                        android:text="Funny video 2"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp" />
+
+                                    <TextView
+                                        android:id="@+id/txtFun21"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/txtFun2"
+                                        android:layout_marginHorizontal="16dp"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_toEndOf="@id/imgFun2"
+                                        android:drawableStart="@drawable/ic_eye"
+                                        android:drawablePadding="8dp"
+                                        android:drawableTint="@color/unselected_color"
+                                        android:fontFamily="@font/agane_regular"
+                                        android:gravity="center_vertical"
+                                        android:text="1.5M views"
+                                        android:textColor="@color/unselected_color"
+                                        android:textSize="14sp" />
+                                </RelativeLayout>
+                            </com.google.android.material.card.MaterialCardView>
+                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/llTools1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
                             <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/llCartoonify"

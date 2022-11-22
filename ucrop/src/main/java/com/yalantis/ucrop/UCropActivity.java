@@ -3,6 +3,7 @@ package com.yalantis.ucrop;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
@@ -120,6 +121,10 @@ public class UCropActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+        getWindow().setStatusBarColor(Color.WHITE);
         setContentView(R.layout.ucrop_activity_photobox);
 
         final Intent intent = getIntent();
