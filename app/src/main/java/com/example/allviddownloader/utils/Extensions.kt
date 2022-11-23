@@ -447,7 +447,8 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
                     mediaList.sortByDescending { it.date }
                     return mediaList
                 } else {
-                    return getMediaQMinus(ctx).reversed().toMutableList()
+                    itemsFiles = mutableListOf()
+                    return getMediaQMinus(ctx, originalPath).reversed().toMutableList()
                 }
             }
             return mutableListOf()
@@ -695,6 +696,7 @@ fun getMediaWA(ctx: Context, block: (MutableList<Media>) -> Unit) {
                 }
             } else {
                 if (AppUtils.STATUS_DIRECTORY.exists()) {
+                    itemsFiles = mutableListOf()
                     val imagesListNew = getMediaQMinus(ctx, AppUtils.STATUS_DIRECTORY)
                     for (media in imagesListNew) {
                         if (!media.isVideo) {

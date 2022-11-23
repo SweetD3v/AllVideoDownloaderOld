@@ -135,6 +135,7 @@ dependencies {
 //    implementation project(path: ':files_commons')
     implementation project(path: ':guide_view')
     implementation project(path: ':ucrop')
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
