@@ -19,9 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.FragmentWastatusBinding
-import com.example.allviddownloader.utils.AppUtils
 
 class WAStatusFragment : BaseFragment<FragmentWastatusBinding>() {
     override val binding by lazy { FragmentWastatusBinding.inflate(layoutInflater) }

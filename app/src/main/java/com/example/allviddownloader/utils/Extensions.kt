@@ -352,7 +352,7 @@ fun getMedia(ctx: Context, file: File, block: (MutableList<Media>) -> Unit) {
                         val pathId = cursor.getString(imageCol)
                         val uri = Uri.parse(pathId)
                         var contentUri: Uri
-                        contentUri = if (uri.toString().endsWith(".mp4")) {
+                        contentUri = if (ctx.contentResolver.getType(uri)?.contains("video", true) == true) {
                             ContentUris.withAppendedId(
                                 MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                                 id
@@ -364,9 +364,10 @@ fun getMedia(ctx: Context, file: File, block: (MutableList<Media>) -> Unit) {
                             )
                         }
                         val media =
-                            Media(contentUri, path, uri.toString().endsWith(".mp4"), date)
+                            Media(contentUri, path, ctx.contentResolver.getType(uri)?.contains("video", true) == true, date)
 
-                        mediaList.add(media)
+                        if (!File(path).isDirectory)
+                            mediaList.add(media)
                     }
                 }
 
@@ -426,7 +427,7 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
                             val pathId = cursor.getString(imageCol)
                             val uri = Uri.parse(pathId)
                             var contentUri: Uri
-                            contentUri = if (uri.toString().endsWith(".mp4")) {
+                            contentUri = if (ctx.contentResolver.getType(uri)?.contains("video", true) == true) {
                                 ContentUris.withAppendedId(
                                     MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                                     id
@@ -438,9 +439,10 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
                                 )
                             }
                             val media =
-                                Media(contentUri, path, uri.toString().endsWith(".mp4"), date)
+                                Media(contentUri, path, ctx.contentResolver.getType(uri)?.contains("video", true) == true, date)
 
-                            mediaList.add(media)
+                            if (!File(path).isDirectory)
+                                mediaList.add(media)
                         }
                     }
 
@@ -503,24 +505,34 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
                                 cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
                             val date =
                                 cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED))
-                            val pathId = cursor.getString(imageCol)
-                            val uri = Uri.parse(pathId)
+                            val uri = FileProvider.getUriForFile(
+                                ctx,
+                                "${ctx.packageName}.provider",
+                                File(path)
+                            )
                             var contentUri: Uri
-                            contentUri = if (uri.toString().endsWith(".mp4")) {
-                                ContentUris.withAppendedId(
-                                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                                    id
-                                )
-                            } else {
-                                ContentUris.withAppendedId(
-                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                    id
-                                )
-                            }
+                            contentUri =
+                                if (ctx.contentResolver.getType(uri)?.contains("video", true) == true) {
+                                    ContentUris.withAppendedId(
+                                        MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                                        id
+                                    )
+                                } else {
+                                    ContentUris.withAppendedId(
+                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                                        id
+                                    )
+                                }
                             val media =
-                                Media(contentUri, path, uri.toString().endsWith(".mp4"), date)
+                                Media(
+                                    contentUri,
+                                    path,
+                                    ctx.contentResolver.getType(uri)?.contains("video", true) == true,
+                                    date
+                                )
 
-                            mediaList.add(media)
+                            if (!File(path).isDirectory)
+                                mediaList.add(media)
                         }
                     }
 

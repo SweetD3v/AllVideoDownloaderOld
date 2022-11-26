@@ -77,12 +77,12 @@ class InstagramActivity : AppCompatActivity(), Instagram_Story_Click {
     }
 
     private fun askForPermissions(permissionsList: MutableList<String>) {
-        val newPermissionStr = arrayOfNulls<String>(permissionsList.size)
+        val newPermissionStr = ArrayList<String>(permissionsList.size)
         for (i in newPermissionStr.indices) {
             newPermissionStr[i] = permissionsList[i]
         }
         if (newPermissionStr.isNotEmpty()) {
-            permissionsLauncher.launch(newPermissionStr)
+            permissionsLauncher.launch(newPermissionStr.toTypedArray())
         } else {
             /* User has pressed 'Deny & Don't ask again' so we have to show the enable permissions dialog
             which will lead them to app details page to enable permissions from there. */

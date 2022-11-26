@@ -12,6 +12,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDexApplication
 import com.example.allviddownloader.ui.activities.SplashScreenActivity
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.upstream.HttpDataSource
@@ -39,6 +40,7 @@ class AllVidApp : MultiDexApplication(), Application.ActivityLifecycleCallbacks,
         super.onCreate()
         mInstance = this
 
+        Fresco.initialize(this)
         registerActivityLifecycleCallbacks(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         MobileAds.initialize(this) {}

@@ -314,9 +314,9 @@ class FullViewWhatsappActivity : AppCompatActivity() {
         if (AppUtils.STATUS_DIRECTORY.exists()) {
             val imagesListNew = getMediaQMinus(this, AppUtils.STATUS_DIRECTORY)
             for (media in imagesListNew) {
-//                if (!media.isVideo) {
-                imagesList.add(media)
-//                }
+                if (!media.path.contains(".nomedia", true)) {
+                    imagesList.add(media)
+                }
             }
             Log.e("TAG", "executeOld: ${imagesList}")
             handler.post {
@@ -331,9 +331,9 @@ class FullViewWhatsappActivity : AppCompatActivity() {
         if (AppUtils.STATUS_DIRECTORY.exists()) {
             val imagesListNew = getMediaQMinus(this, AppUtils.STATUS_DIRECTORY)
             for (media in imagesListNew) {
-//                if (media.isVideo) {
-                imagesList.add(media)
-//                }
+                if (!media.path.contains(".nomedia", true)) {
+                    imagesList.add(media)
+                }
             }
             Log.e("TAG", "executeOld: ${imagesList}")
             handler.post {

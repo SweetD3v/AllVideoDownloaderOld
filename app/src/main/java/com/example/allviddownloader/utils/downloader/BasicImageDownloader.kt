@@ -130,6 +130,8 @@ class BasicImageDownloader(var ctx: Context) {
                 super.onPostExecute(result)
                 result?.let { bmp ->
 
+                    if (!RootDirectoryInstaDownlaoder.exists())
+                        RootDirectoryInstaDownlaoder.mkdirs()
                     saveBitmapImage(
                         ctx, bmp,
                         displayName,
@@ -664,7 +666,7 @@ class BasicImageDownloader(var ctx: Context) {
                         MediaScannerConnection.scanFile(
                             ctx,
                             arrayOf(
-                                imageFile.absolutePath
+                                File(RootDirectoryInstaDownlaoder, imageFile.name).absolutePath
                             ),
                             null
                         ) { path1, uri ->

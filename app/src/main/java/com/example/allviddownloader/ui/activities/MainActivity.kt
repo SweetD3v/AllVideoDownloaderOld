@@ -4,16 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityMainBinding
+import com.example.allviddownloader.phone_booster.app_utils.batteryPerms
+import com.example.allviddownloader.phone_booster.app_utils.getAllAppsPermissions
 import com.example.allviddownloader.ui.fragments.HomeFragment
 import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.NetworkState
 import com.google.android.material.snackbar.Snackbar
+import com.internet.speed_meter.SpeedMeterService
 
 class MainActivity : BaseActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -22,8 +26,23 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.run {
+        var permissions = getAllAppsPermissions(this)
+        permissions = ArrayList(permissions.filter {
+            it.permissions.contains(batteryPerms[0])
+                    || it.permissions.contains(batteryPerms[1])
+                    || it.permissions.contains(batteryPerms[2])
+                    || it.permissions.contains(batteryPerms[3])
+        })
+        for (permission in permissions) {
+            Log.e(
+                "TAGApp",
+                "App Name : ${permission.appName} -> Is Sensitive: ${permission.isSensitive}"
+            )
+        }
 
+        startService(Intent(this, SpeedMeterService::class.java))
+
+        binding.run {
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
                     this@MainActivity, getString(R.string.banner_id_details),

@@ -182,7 +182,7 @@ class FullViewActivity : AppCompatActivity() {
         if (AppUtils.STATUS_DIRECTORY.exists()) {
             val imagesListNew = getMediaQMinus(this, AppUtils.STATUS_DIRECTORY)
             for (media in imagesListNew) {
-                if (!media.isVideo) {
+                if (!media.isVideo && !media.path.contains(".nomedia", true)) {
                     imagesList.add(media)
                 }
             }
@@ -199,7 +199,7 @@ class FullViewActivity : AppCompatActivity() {
         if (AppUtils.STATUS_DIRECTORY.exists()) {
             val imagesListNew = getMediaQMinus(this, AppUtils.STATUS_DIRECTORY)
             for (media in imagesListNew) {
-                if (media.isVideo) {
+                if (media.isVideo && !media.path.contains(".nomedia", true)) {
                     imagesList.add(media)
                 }
             }

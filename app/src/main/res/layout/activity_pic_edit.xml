@@ -124,7 +124,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvConstraintTools"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:elevation="2dp"
@@ -382,8 +382,10 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvAdjustView"
                     android:layout_width="match_parent"
+                    tools:listitem="@layout/row_adjust_view"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:background="@color/black"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintBottom_toTopOf="@+id/adjustControl" />

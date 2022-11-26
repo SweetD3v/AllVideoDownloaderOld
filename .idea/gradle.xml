@@ -19,7 +19,9 @@
             <option value="$PROJECT_DIR$/opencv" />
             <option value="$PROJECT_DIR$/photofilterssdk" />
             <option value="$PROJECT_DIR$/shapeimageview" />
+            <option value="$PROJECT_DIR$/speed_meter" />
             <option value="$PROJECT_DIR$/ucrop" />
+            <option value="$PROJECT_DIR$/wa_stickers" />
           </set>
         </option>
       </GradleProjectSettings>

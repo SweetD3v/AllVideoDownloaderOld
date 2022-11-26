@@ -49,6 +49,12 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme, android:icon"
         tools:targetApi="30">
+
+        <activity
+            android:name=".speedtest.SpeedTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activities.SettingsActivity"
             android:exported="false"

@@ -142,6 +142,10 @@
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_insta_downloader_home.xml" value="0.33" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_my_creation_full_view.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_my_creation_tools.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_pic_edit.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_puzzle.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_ringtone.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_speed_test.xml" value="0.3536458333333333" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_splash.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_wallpapers.xml" value="0.19583333333333333" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_wastatus.xml" value="0.3546875" />
@@ -156,6 +160,9 @@
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_my_creation.xml" value="0.3536458333333333" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_status.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/progress_dialog.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/row_adjust_view.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/row_editing_tools.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/speed_meter/src/main/res/layout/net_speed_notification_view.xml" value="0.3546875" />
       </map>
     </option>
   </component>

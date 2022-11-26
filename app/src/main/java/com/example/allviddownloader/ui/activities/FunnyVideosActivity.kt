@@ -122,4 +122,8 @@ class FunnyVideosActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 }

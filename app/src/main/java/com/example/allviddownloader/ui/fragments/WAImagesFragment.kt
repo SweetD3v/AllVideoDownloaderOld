@@ -74,10 +74,10 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
             val imageListNew = mutableListOf<Media>()
             getMediaWA(ctx) { list ->
                 for (media in list) {
-//                    if (!media.isVideo and !media.uri.toString().contains(".nomedia", true)
-//                    ) {
-                    imageListNew.add(media)
-//                    }
+                    if (!media.path.contains(".nomedia", true)
+                    ) {
+                        imageListNew.add(media)
+                    }
                 }
                 Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
                 Log.e("TAG", "loadImages: ${imagesList.size}")

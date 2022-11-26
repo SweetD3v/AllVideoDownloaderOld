@@ -124,6 +124,7 @@ dependencies {
     implementation 'androidx.browser:browser:1.4.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.github.chathuralakmal:AndroidImagePopup:1.2.2'
+
     implementation project(path: ':shapeimageview')
 //    implementation project(path: ':files_commons')
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
@@ -136,8 +137,12 @@ dependencies {
     implementation project(path: ':guide_view')
     implementation project(path: ':ucrop')
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation project(path: ':speed_meter')
+    implementation project(path: ':wa_stickers')
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    def fresco_version = '2.5.0'
+    implementation "com.facebook.fresco:fresco:$fresco_version"
+    implementation "com.facebook.fresco:webpsupport:$fresco_version"
+    implementation "com.facebook.fresco:animated-webp:$fresco_version"
+    implementation "com.facebook.fresco:animated-base:$fresco_version"
 }
