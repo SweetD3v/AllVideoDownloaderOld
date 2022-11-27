@@ -23,3 +23,155 @@ create_cxx_tasks
   [gap of 10ms]
 create_cxx_tasks completed in 67ms
 
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model 48ms
+  [gap of 10ms]
+create_cxx_tasks completed in 58ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 13ms
+    [gap of 39ms]
+    create-variant-model 10ms
+    [gap of 21ms]
+  create-initial-cxx-model completed in 83ms
+  [gap of 10ms]
+create_cxx_tasks completed in 93ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model 54ms
+create_cxx_tasks completed in 63ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 13ms
+    create-variant-model 11ms
+    create-ARM64_V8A-model 10ms
+    create-X86_64-model 20ms
+    create-module-model 15ms
+    create-variant-model 16ms
+    create-ARMEABI_V7A-model 10ms
+    create-X86-model 51ms
+  create-initial-cxx-model completed in 178ms
+create_cxx_tasks completed in 180ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 61ms
+    create-variant-model 142ms
+    [gap of 26ms]
+    create-ARMEABI_V7A-model 40ms
+    [gap of 40ms]
+    create-ARM64_V8A-model 11ms
+    create-X86-model 64ms
+    create-X86_64-model 21ms
+    create-module-model
+      [gap of 13ms]
+      create-cmake-model 74ms
+    create-module-model completed in 89ms
+    [gap of 10ms]
+    create-ARMEABI_V7A-model 16ms
+    create-X86-model 17ms
+    create-X86_64-model 10ms
+    [gap of 10ms]
+  create-initial-cxx-model completed in 568ms
+  [gap of 53ms]
+create_cxx_tasks completed in 622ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model 65ms
+  [gap of 10ms]
+create_cxx_tasks completed in 75ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model
+      [gap of 31ms]
+      create-cmake-model 10ms
+      [gap of 10ms]
+    create-module-model completed in 51ms
+    create-variant-model 25ms
+    [gap of 26ms]
+    create-variant-model 13ms
+    create-ARMEABI_V7A-model 42ms
+    create-ARM64_V8A-model 37ms
+    [gap of 13ms]
+  create-initial-cxx-model completed in 224ms
+create_cxx_tasks completed in 226ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 21ms
+    create-ARMEABI_V7A-model 11ms
+    create-module-model
+      create-cmake-model 15ms
+    create-module-model completed in 21ms
+    [gap of 30ms]
+  create-initial-cxx-model completed in 114ms
+  [gap of 13ms]
+create_cxx_tasks completed in 128ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 10ms
+    [gap of 38ms]
+    create-module-model 25ms
+    create-variant-model 15ms
+    create-ARMEABI_V7A-model 10ms
+    create-ARM64_V8A-model 11ms
+    create-X86_64-model 10ms
+  create-initial-cxx-model completed in 129ms
+  [gap of 25ms]
+create_cxx_tasks completed in 154ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    [gap of 27ms]
+    create-X86-model 17ms
+    [gap of 50ms]
+  create-initial-cxx-model completed in 94ms
+  [gap of 17ms]
+create_cxx_tasks completed in 112ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    [gap of 16ms]
+    create-ARM64_V8A-model 24ms
+    [gap of 49ms]
+  create-initial-cxx-model completed in 89ms
+create_cxx_tasks completed in 93ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 25ms
+    [gap of 28ms]
+    create-X86_64-model 15ms
+    create-module-model 19ms
+    create-ARMEABI_V7A-model 17ms
+    [gap of 11ms]
+    create-X86-model 26ms
+  create-initial-cxx-model completed in 161ms
+  [gap of 16ms]
+create_cxx_tasks completed in 177ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 20ms
+    [gap of 74ms]
+  create-initial-cxx-model completed in 94ms
+  [gap of 11ms]
+create_cxx_tasks completed in 105ms
+

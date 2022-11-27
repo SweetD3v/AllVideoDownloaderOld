@@ -106,7 +106,7 @@ open class TedImagePickerBaseBuilder<out B : TedImagePickerBaseBuilder<B>>(
     }
 
     private fun checkPermission(context: Context): Single<TedPermissionResult> {
-        val permissions = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+        val permissions = if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
             arrayOf(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,

@@ -88,9 +88,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
 
             fabShare.setOnClickListener {
                 val image = imagesList[binding.viewPagerMedia.currentItem]
-                if (image.uri.toString().endsWith(".jpg")
-                    or image.uri.toString().endsWith(".png")
-                ) {
+                if (contentResolver.getType(image.uri)?.contains("image", true) == true) {
                     val bitmap =
                         if (image.uri.toString().endsWith(".jpg")
                             or image.uri.toString().endsWith(".png")
