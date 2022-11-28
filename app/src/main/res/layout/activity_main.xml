@@ -42,7 +42,8 @@
             android:id="@+id/rlTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="4dp">
+            android:paddingVertical="4dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/txtTitle"
@@ -180,6 +181,7 @@
             android:layout_height="56dp"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
+            android:visibility="gone"
             app:backgroundTint="@color/accent"
             app:maxImageSize="32dp"
             app:srcCompat="@drawable/ic_fire"
@@ -191,5 +193,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:elevation="2dp" />
+        android:elevation="2dp"
+        android:visibility="gone" />
 </RelativeLayout>

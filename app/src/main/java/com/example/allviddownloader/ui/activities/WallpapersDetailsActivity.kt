@@ -150,7 +150,7 @@ class WallpapersDetailsActivity : BaseActivity() {
         Log.e("TAG", "loadWallpaper: ${downloadUrl}")
 
         Glide.with(this).load(downloadUrl)
-            .placeholder(R.drawable.ic_wallpapers)
+            .placeholder(R.drawable.ic_wallpaper)
             .into(binding.imgWallpaper)
     }
 

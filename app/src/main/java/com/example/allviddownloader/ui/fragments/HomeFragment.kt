@@ -6,10 +6,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.AsyncTask
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,12 +28,10 @@ import com.example.allviddownloader.collage_maker.ui.activities.CollageViewActiv
 import com.example.allviddownloader.collage_maker.utils.SystemUtils
 import com.example.allviddownloader.databinding.BottomsheetFbBinding
 import com.example.allviddownloader.databinding.BottomsheetInstaBinding
-import com.example.allviddownloader.databinding.FragmentHomeBinding
+import com.example.allviddownloader.databinding.FragmentHomeNewBinding
 import com.example.allviddownloader.databinding.ViewDialogBinding
 import com.example.allviddownloader.models.*
 import com.example.allviddownloader.tools.age_calc.AgeCalculatorActivity
-import com.example.allviddownloader.tools.cartoonify.CartoonifyHomeActivity
-import com.example.allviddownloader.tools.cartoonify.SketchifyHomeActivity
 import com.example.allviddownloader.tools.compress.PhotoCmpHomeActivity
 import com.example.allviddownloader.tools.insta_grid.InstaGridActivity
 import com.example.allviddownloader.tools.photo_filters.PhotoFilterHomeActivity
@@ -50,11 +46,7 @@ import com.example.allviddownloader.utils.SMType.*
 import com.example.allviddownloader.utils.apis.CommonClassForAPI
 import com.example.allviddownloader.utils.downloader.BasicImageDownloader
 import com.example.allviddownloader.widgets.BSFragmentBuilder
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import com.google.gson.reflect.TypeToken
 import gun0912.tedimagepicker.builder.TedImagePicker.Companion.with
-import io.reactivex.observers.DisposableObserver
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.io.*
@@ -62,8 +54,8 @@ import java.net.*
 import java.util.regex.Pattern
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-    override val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
+class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
+    override val binding by lazy { FragmentHomeNewBinding.inflate(layoutInflater) }
 
     companion object {
         const val KEY_DATA_RESULT = "KEY_DATA_RESULT"
@@ -160,10 +152,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     callDownload(urlDownload!!)
                 } else if (urlDownload.toString().contains("facebook")) {
                     //                            GetFacebookData().execute(binding.etText.text.toString())
-                    var txtUrl = binding.etText.text.toString()
-                    if (txtUrl.contains("/?app=fbl"))
-                        txtUrl = txtUrl.split("/?app=fbl")[0]
-                    getFacebookData(txtUrl)
+//                    var txtUrl = binding.etText.text.toString()
+//                    if (txtUrl.contains("/?app=fbl"))
+//                        txtUrl = txtUrl.split("/?app=fbl")[0]
+//                    getFacebookData(txtUrl)
                 }
             }
         }
@@ -204,23 +196,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         commonClassForAPI = CommonClassForAPI()
 
         binding.run {
-            btnPasteInstagram.setOnClickListener {
-//                binding.etText.setText(getClipboardItemsSpecific(INSTA))
-                selectTab(INSTA)
-            }
-            btnPasteFacebook.setOnClickListener {
-//                binding.etText.setText(getClipboardItemsSpecific(FACEBOOK))
-                selectTab(FACEBOOK)
-            }
-            btnPasteTwitter.setOnClickListener {
-//                binding.etText.setText(getClipboardItemsSpecific(TWITTER))
-                selectTab(TWITTER)
-            }
-            btnPasteVimeo.setOnClickListener {
-//                binding.etText.setText(getClipboardItemsSpecific(VIMEO))
-                selectTab(VIMEO)
-            }
-
             llInstagram.setOnClickListener {
                 AdsUtils.clicksCountTools++
                 if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
@@ -255,7 +230,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
 
-            llWhatsappSide.setOnClickListener {
+            llStatusSaver.setOnClickListener {
                 AdsUtils.clicksCountTools++
                 if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
                     AdsUtils.clicksCountTools = 0
@@ -413,7 +388,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
 
-            llCleaner.setOnClickListener {
+            imgCleaner.setOnClickListener {
                 AdsUtils.clicksCountTools++
                 if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
                     AdsUtils.clicksCountTools = 0
@@ -447,39 +422,39 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
 
-            llCartoonify.setOnClickListener {
-                AdsUtils.clicksCountTools++
-                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
-                    AdsUtils.clicksCountTools = 0
-                    AdsUtils.loadInterstitialAd(
-                        requireActivity(),
-                        ctx.getString(R.string.interstitial_id),
-                        object : AdsUtils.Companion.FullScreenCallback() {
-                            override fun continueExecution() {
-                                startActivity(Intent(ctx, CartoonifyHomeActivity::class.java))
-                            }
-                        })
-                } else {
-                    startActivity(Intent(ctx, CartoonifyHomeActivity::class.java))
-                }
-            }
-
-            llSketchify.setOnClickListener {
-                AdsUtils.clicksCountTools++
-                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
-                    AdsUtils.clicksCountTools = 0
-                    AdsUtils.loadInterstitialAd(
-                        requireActivity(),
-                        ctx.getString(R.string.interstitial_id),
-                        object : AdsUtils.Companion.FullScreenCallback() {
-                            override fun continueExecution() {
-                                startActivity(Intent(ctx, SketchifyHomeActivity::class.java))
-                            }
-                        })
-                } else {
-                    startActivity(Intent(ctx, SketchifyHomeActivity::class.java))
-                }
-            }
+//            llCartoonify.setOnClickListener {
+//                AdsUtils.clicksCountTools++
+//                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+//                    AdsUtils.clicksCountTools = 0
+//                    AdsUtils.loadInterstitialAd(
+//                        requireActivity(),
+//                        ctx.getString(R.string.interstitial_id),
+//                        object : AdsUtils.Companion.FullScreenCallback() {
+//                            override fun continueExecution() {
+//                                startActivity(Intent(ctx, CartoonifyHomeActivity::class.java))
+//                            }
+//                        })
+//                } else {
+//                    startActivity(Intent(ctx, CartoonifyHomeActivity::class.java))
+//                }
+//            }
+//
+//            llSketchify.setOnClickListener {
+//                AdsUtils.clicksCountTools++
+//                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+//                    AdsUtils.clicksCountTools = 0
+//                    AdsUtils.loadInterstitialAd(
+//                        requireActivity(),
+//                        ctx.getString(R.string.interstitial_id),
+//                        object : AdsUtils.Companion.FullScreenCallback() {
+//                            override fun continueExecution() {
+//                                startActivity(Intent(ctx, SketchifyHomeActivity::class.java))
+//                            }
+//                        })
+//                } else {
+//                    startActivity(Intent(ctx, SketchifyHomeActivity::class.java))
+//                }
+//            }
 
             llPhotoFilter.setOnClickListener {
                 AdsUtils.clicksCountTools++
@@ -515,7 +490,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
 
-            llDownloads.setOnClickListener {
+            llMyCreation.setOnClickListener {
                 AdsUtils.clicksCountTools++
                 if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
                     AdsUtils.clicksCountTools = 0
@@ -593,44 +568,44 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
 
-            btnDownload.setOnClickListener {
-                urlDownload = etText.text.toString()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    if (!hasPermission(ctx, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                        permissionsList = mutableListOf()
-                        permissionsList.addAll(permissionsStr)
-                        askForPermissions(permissionsList)
-                    } else {
-                        if (urlDownload.toString().contains("instagram")) {
-                            callDownload(urlDownload!!)
-                        } else if (urlDownload.toString().contains("facebook")) {
-                            Log.e("TAG", "onPostExecute1: ${binding.etText.text}")
-                            var txtUrl = binding.etText.text.toString()
-                            if (txtUrl.contains("/?app=fbl"))
-                                txtUrl = txtUrl.split("/?app=fbl")[0]
-//                            GetFacebookData().execute(binding.etText.text.toString())
-                            Log.e("TAG", "onPostExecute1: ${txtUrl}")
-                            getFacebookData(txtUrl)
-                        }
-                    }
-                } else if (!hasPermission(ctx, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    and !hasPermission(ctx, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                ) {
-                    permissionsList = mutableListOf()
-                    permissionsList.addAll(permissionsStr)
-                    askForPermissions(permissionsList)
-                } else {
-                    if (urlDownload.toString().contains("instagram")) {
-                        callDownload(urlDownload!!)
-                    } else if (urlDownload.toString().contains("facebook")) {
-//                        GetFacebookData().execute(binding.etText.text.toString())
-                        var txtUrl = binding.etText.text.toString()
-                        if (txtUrl.contains("/?app=fbl"))
-                            txtUrl = txtUrl.split("/?app=fbl")[0]
-                        getFacebookData(txtUrl)
-                    }
-                }
-            }
+//            btnDownload.setOnClickListener {
+//                urlDownload = etText.text.toString()
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//                    if (!hasPermission(ctx, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+//                        permissionsList = mutableListOf()
+//                        permissionsList.addAll(permissionsStr)
+//                        askForPermissions(permissionsList)
+//                    } else {
+//                        if (urlDownload.toString().contains("instagram")) {
+//                            callDownload(urlDownload!!)
+//                        } else if (urlDownload.toString().contains("facebook")) {
+//                            Log.e("TAG", "onPostExecute1: ${binding.etText.text}")
+//                            var txtUrl = binding.etText.text.toString()
+//                            if (txtUrl.contains("/?app=fbl"))
+//                                txtUrl = txtUrl.split("/?app=fbl")[0]
+////                            GetFacebookData().execute(binding.etText.text.toString())
+//                            Log.e("TAG", "onPostExecute1: ${txtUrl}")
+//                            getFacebookData(txtUrl)
+//                        }
+//                    }
+//                } else if (!hasPermission(ctx, Manifest.permission.READ_EXTERNAL_STORAGE)
+//                    and !hasPermission(ctx, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                ) {
+//                    permissionsList = mutableListOf()
+//                    permissionsList.addAll(permissionsStr)
+//                    askForPermissions(permissionsList)
+//                } else {
+//                    if (urlDownload.toString().contains("instagram")) {
+//                        callDownload(urlDownload!!)
+//                    } else if (urlDownload.toString().contains("facebook")) {
+////                        GetFacebookData().execute(binding.etText.text.toString())
+//                        var txtUrl = binding.etText.text.toString()
+//                        if (txtUrl.contains("/?app=fbl"))
+//                            txtUrl = txtUrl.split("/?app=fbl")[0]
+//                        getFacebookData(txtUrl)
+//                    }
+//                }
+//            }
         }
     }
 
@@ -687,9 +662,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.onResume()
 
         Log.e("TAG", "onResume: Called ${getClipboardItemsSpecific()}")
-        binding.run {
-            etText.setText(getClipboardItemsSpecific())
-        }
     }
 
     fun getClipboardItemsSpecific(type: SMType): String {
@@ -838,135 +810,135 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun selectTab(type: SMType) {
-        when (type) {
-            INSTA -> {
-                binding.btnPasteInstagram.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.white
-                    )
-                )
-                binding.btnPasteInstagram.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
-                binding.btnPasteFacebook.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteFacebook.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteTwitter.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteTwitter.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteVimeo.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteVimeo.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-            }
-            FACEBOOK -> {
-                binding.btnPasteInstagram.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteInstagram.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteFacebook.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.white
-                    )
-                )
-                binding.btnPasteFacebook.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
-                binding.btnPasteTwitter.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteTwitter.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteVimeo.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteVimeo.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-            }
-            TWITTER -> {
-                binding.btnPasteInstagram.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteInstagram.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteFacebook.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteFacebook.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteTwitter.setTextColor(ContextCompat.getColor(ctx, R.color.white))
-                binding.btnPasteTwitter.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
-                binding.btnPasteVimeo.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteVimeo.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-            }
-            VIMEO -> {
-                binding.btnPasteInstagram.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteInstagram.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteFacebook.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteFacebook.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteTwitter.setTextColor(
-                    ContextCompat.getColor(
-                        ctx,
-                        R.color.primary
-                    )
-                )
-                binding.btnPasteTwitter.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
-                binding.btnPasteVimeo.setTextColor(ContextCompat.getColor(ctx, R.color.white))
-                binding.btnPasteVimeo.backgroundTintList =
-                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
-            }
-            else -> {}
-        }
+//        when (type) {
+//            INSTA -> {
+//                binding.btnPasteInstagram.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.white
+//                    )
+//                )
+//                binding.btnPasteInstagram.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
+//                binding.btnPasteFacebook.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteFacebook.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//                binding.btnPasteTwitter.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteTwitter.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//                binding.btnPasteVimeo.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteVimeo.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//            }
+//            FACEBOOK -> {
+//                binding.btnPasteInstagram.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteInstagram.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//                binding.btnPasteFacebook.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.white
+//                    )
+//                )
+//                binding.btnPasteFacebook.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
+//                binding.btnPasteTwitter.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteTwitter.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//                binding.btnPasteVimeo.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteVimeo.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//            }
+//            TWITTER -> {
+//                binding.btnPasteInstagram.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteInstagram.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//                binding.btnPasteFacebook.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteFacebook.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//                binding.btnPasteTwitter.setTextColor(ContextCompat.getColor(ctx, R.color.white))
+//                binding.btnPasteTwitter.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
+//                binding.btnPasteVimeo.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteVimeo.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//            }
+//            VIMEO -> {
+//                binding.btnPasteInstagram.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteInstagram.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//                binding.btnPasteFacebook.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteFacebook.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//                binding.btnPasteTwitter.setTextColor(
+//                    ContextCompat.getColor(
+//                        ctx,
+//                        R.color.primary
+//                    )
+//                )
+//                binding.btnPasteTwitter.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.transparent))
+//                binding.btnPasteVimeo.setTextColor(ContextCompat.getColor(ctx, R.color.white))
+//                binding.btnPasteVimeo.backgroundTintList =
+//                    ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.primarydark))
+//            }
+//            else -> {}
+//        }
     }
 
     private fun getUrlWithoutParameters(str: String): String? {
@@ -999,163 +971,163 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     var pd: AsyncTaskRunner.MyProgressDialog? = null
-    private val instaObserver: DisposableObserver<JsonObject> =
-        object : DisposableObserver<JsonObject>() {
-            override fun onNext(jsonObject: JsonObject) {
-                try {
-                    val responseModel: ResponseModel = Gson().fromJson(
-                        jsonObject.toString(),
-                        object : TypeToken<ResponseModel?>() {}.type
-                    )
-                    val edge_sidecar_to_children: EdgeSidecarToChildren? =
-                        responseModel.graphql!!.shortcode_media!!.edge_sidecar_to_children
-                    pd?.dismissDialog()
-
-                    if (edge_sidecar_to_children != null) {
-                        edge_sidecar_to_children.edges?.apply {
-                            val edges: List<Edge> = this
-                            for (i in edges.indices) {
-                                if (edges[i].node!!.is_video) {
-                                    videoUrl = edges[i].node!!.video_url.toString()
-                                    val download_data =
-                                        DownloadData(
-                                            videoUrl,
-                                            getVideoFilenameFromURL(videoUrl)!!,
-                                            ""
-                                        )
-                                    downloadDataArrayList.add(download_data)
-                                } else {
-                                    photoUrl = edges[i].node?.display_resources?.get(
-                                        edges[i].node?.display_resources!!.size - 1
-                                    )?.src!!
-                                    Log.e("TAG", "onNext: ${photoUrl}")
-                                    val download_data =
-                                        DownloadData(
-                                            photoUrl,
-                                            getImageFilenameFromURL(photoUrl)!!,
-                                            ""
-                                        )
-                                    downloadDataArrayList.add(download_data)
-                                }
-                            }
-                            pd?.dismissDialog()
-                            if (videoUrl != "") {
-                                val file: File = File(
-                                    RootDirectoryWhatsappShow,
-                                    getVideoFilenameFromURL(videoUrl)
-                                )
-                                if (!file.exists()) {
-                                    paths = java.util.ArrayList()
-                                    downloadDataArrayList = arrayListOf()
-                                    //                                DownloadImageMultiple().execute(
-                                    //                                    videoUrl,
-                                    //                                    getVideoFilenameFromURL(videoUrl)
-                                    //                                )
-                                    //                            downloadMultiple();
-                                } else {
-                                    Toast.makeText(
-                                        activity,
-                                        "Already Downloaded",
-                                        Toast.LENGTH_SHORT
-                                    )
-                                        .show()
-                                }
-                            } else {
-                                val file = File(
-                                    RootDirectoryWhatsappShow,
-                                    getImageFilenameFromURL(photoUrl)
-                                )
-                                if (!file.exists()) {
-                                    paths = mutableListOf()
-                                    //                                DownloadImageMultiple()
-                                    //                                    .execute(photoUrl, getImageFilenameFromURL(photoUrl))
-                                } else {
-                                    Toast.makeText(
-                                        activity,
-                                        "Already Downloaded",
-                                        Toast.LENGTH_SHORT
-                                    )
-                                        .show()
-                                }
-                            }
-                        }
-                    } else if (responseModel.graphql.shortcode_media!!.is_video) {
-                        videoUrl = responseModel.graphql.shortcode_media.video_url.toString()
-                        val download_data =
-                            DownloadData(videoUrl, getVideoFilenameFromURL(videoUrl)!!, "")
-                        downloadDataArrayList.add(download_data)
-                        val file = File(
-                            RootDirectoryWhatsappShow,
-                            getVideoFilenameFromURL(videoUrl)
-                        )
-                        if (!file.exists()) {
-                            callDownload(videoUrl)
-                        } else {
-                            Toast.makeText(activity, "Already Downloaded", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                        videoUrl = ""
-                        binding.etText.setText("")
-                    } else {
-                        photoUrl =
-                            responseModel.graphql.shortcode_media.display_resources!![responseModel.graphql.shortcode_media.display_resources.size - 1].src!!
-                        val download_data =
-                            DownloadData(photoUrl, getImageFilenameFromURL(photoUrl)!!, "")
-                        downloadDataArrayList.add(download_data)
-                        val file = File(
-                            RootDirectoryWhatsappShow,
-                            getImageFilenameFromURL(photoUrl)
-                        )
-                        Log.e("TAG", "onNext: ${photoUrl}")
-                        if (!file.exists()) {
-                            Log.e("TAG", "onNext1: ${photoUrl}")
-//                            callDownload(photoUrl)
-                            downloadSingleImage(photoUrl)
-                        } else {
-                            Toast.makeText(activity, "Already Downloaded", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                        photoUrl = ""
-                        binding.etText.setText("")
-                    }
-                } catch (e: Exception) {
-                    Log.e("TAG", "onNextCatch: ${e.localizedMessage}")
-                    e.printStackTrace()
-                }
-            }
-
-            override fun onError(th: Throwable) {
-                pd?.dismissDialog()
-                Log.e("TAG", "onError: ${th.localizedMessage}")
-                th.printStackTrace()
-            }
-
-            override fun onComplete() {
-                pd?.dismissDialog()
-            }
-        }
+//    private val instaObserver: DisposableObserver<JsonObject> =
+//        object : DisposableObserver<JsonObject>() {
+//            override fun onNext(jsonObject: JsonObject) {
+//                try {
+//                    val responseModel: ResponseModel = Gson().fromJson(
+//                        jsonObject.toString(),
+//                        object : TypeToken<ResponseModel?>() {}.type
+//                    )
+//                    val edge_sidecar_to_children: EdgeSidecarToChildren? =
+//                        responseModel.graphql!!.shortcode_media!!.edge_sidecar_to_children
+//                    pd?.dismissDialog()
+//
+//                    if (edge_sidecar_to_children != null) {
+//                        edge_sidecar_to_children.edges?.apply {
+//                            val edges: List<Edge> = this
+//                            for (i in edges.indices) {
+//                                if (edges[i].node!!.is_video) {
+//                                    videoUrl = edges[i].node!!.video_url.toString()
+//                                    val download_data =
+//                                        DownloadData(
+//                                            videoUrl,
+//                                            getVideoFilenameFromURL(videoUrl)!!,
+//                                            ""
+//                                        )
+//                                    downloadDataArrayList.add(download_data)
+//                                } else {
+//                                    photoUrl = edges[i].node?.display_resources?.get(
+//                                        edges[i].node?.display_resources!!.size - 1
+//                                    )?.src!!
+//                                    Log.e("TAG", "onNext: ${photoUrl}")
+//                                    val download_data =
+//                                        DownloadData(
+//                                            photoUrl,
+//                                            getImageFilenameFromURL(photoUrl)!!,
+//                                            ""
+//                                        )
+//                                    downloadDataArrayList.add(download_data)
+//                                }
+//                            }
+//                            pd?.dismissDialog()
+//                            if (videoUrl != "") {
+//                                val file: File = File(
+//                                    RootDirectoryWhatsappShow,
+//                                    getVideoFilenameFromURL(videoUrl)
+//                                )
+//                                if (!file.exists()) {
+//                                    paths = java.util.ArrayList()
+//                                    downloadDataArrayList = arrayListOf()
+//                                    //                                DownloadImageMultiple().execute(
+//                                    //                                    videoUrl,
+//                                    //                                    getVideoFilenameFromURL(videoUrl)
+//                                    //                                )
+//                                    //                            downloadMultiple();
+//                                } else {
+//                                    Toast.makeText(
+//                                        activity,
+//                                        "Already Downloaded",
+//                                        Toast.LENGTH_SHORT
+//                                    )
+//                                        .show()
+//                                }
+//                            } else {
+//                                val file = File(
+//                                    RootDirectoryWhatsappShow,
+//                                    getImageFilenameFromURL(photoUrl)
+//                                )
+//                                if (!file.exists()) {
+//                                    paths = mutableListOf()
+//                                    //                                DownloadImageMultiple()
+//                                    //                                    .execute(photoUrl, getImageFilenameFromURL(photoUrl))
+//                                } else {
+//                                    Toast.makeText(
+//                                        activity,
+//                                        "Already Downloaded",
+//                                        Toast.LENGTH_SHORT
+//                                    )
+//                                        .show()
+//                                }
+//                            }
+//                        }
+//                    } else if (responseModel.graphql.shortcode_media!!.is_video) {
+//                        videoUrl = responseModel.graphql.shortcode_media.video_url.toString()
+//                        val download_data =
+//                            DownloadData(videoUrl, getVideoFilenameFromURL(videoUrl)!!, "")
+//                        downloadDataArrayList.add(download_data)
+//                        val file = File(
+//                            RootDirectoryWhatsappShow,
+//                            getVideoFilenameFromURL(videoUrl)
+//                        )
+//                        if (!file.exists()) {
+//                            callDownload(videoUrl)
+//                        } else {
+//                            Toast.makeText(activity, "Already Downloaded", Toast.LENGTH_SHORT)
+//                                .show()
+//                        }
+//                        videoUrl = ""
+//                        binding.etText.setText("")
+//                    } else {
+//                        photoUrl =
+//                            responseModel.graphql.shortcode_media.display_resources!![responseModel.graphql.shortcode_media.display_resources.size - 1].src!!
+//                        val download_data =
+//                            DownloadData(photoUrl, getImageFilenameFromURL(photoUrl)!!, "")
+//                        downloadDataArrayList.add(download_data)
+//                        val file = File(
+//                            RootDirectoryWhatsappShow,
+//                            getImageFilenameFromURL(photoUrl)
+//                        )
+//                        Log.e("TAG", "onNext: ${photoUrl}")
+//                        if (!file.exists()) {
+//                            Log.e("TAG", "onNext1: ${photoUrl}")
+////                            callDownload(photoUrl)
+//                            downloadSingleImage(photoUrl)
+//                        } else {
+//                            Toast.makeText(activity, "Already Downloaded", Toast.LENGTH_SHORT)
+//                                .show()
+//                        }
+//                        photoUrl = ""
+//                        binding.etText.setText("")
+//                    }
+//                } catch (e: Exception) {
+//                    Log.e("TAG", "onNextCatch: ${e.localizedMessage}")
+//                    e.printStackTrace()
+//                }
+//            }
+//
+//            override fun onError(th: Throwable) {
+//                pd?.dismissDialog()
+//                Log.e("TAG", "onError: ${th.localizedMessage}")
+//                th.printStackTrace()
+//            }
+//
+//            override fun onComplete() {
+//                pd?.dismissDialog()
+//            }
+//        }
 
     private fun callDownload(str: String) {
         val str2 = "${getUrlWithoutParameters(str)}?__a=1"
         Log.e("TAG", "callDownload: $str2")
-        try {
-            if (!NetworkState.isOnline()) {
-
-            } else if (commonClassForAPI != null) {
-                pd = AsyncTaskRunner.MyProgressDialog(ctx)
-                pd?.showDialog("Downloading...", false)
-                commonClassForAPI!!.callResult(
-                    this.instaObserver,
-                    str2,
-                    "ds_user_id=" + PrefsManager.newInstance(ctx)
-                        .getString(PrefsManager.USERID, "")
-                        .toString() + "; sessionid=" + PrefsManager.newInstance(ctx)
-                        .getString(PrefsManager.SESSIONID, "")
-                )
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+//        try {
+//            if (!NetworkState.isOnline()) {
+//
+//            } else if (commonClassForAPI != null) {
+//                pd = AsyncTaskRunner.MyProgressDialog(ctx)
+//                pd?.showDialog("Downloading...", false)
+//                commonClassForAPI!!.callResult(
+//                    this.instaObserver,
+//                    str2,
+//                    "ds_user_id=" + PrefsManager.newInstance(ctx)
+//                        .getString(PrefsManager.USERID, "")
+//                        .toString() + "; sessionid=" + PrefsManager.newInstance(ctx)
+//                        .getString(PrefsManager.SESSIONID, "")
+//                )
+//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
     }
 
     private fun downloadSingleImage(urlSingle: String?) {
@@ -1249,7 +1221,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             getFilenameFromURL(videoUrl)!!
                         )
                         videoUrl = ""
-                        binding.etText.setText("")
+//                        binding.etText.setText("")
                     } catch (e: java.lang.Exception) {
                         e.printStackTrace()
                     }
@@ -1324,14 +1296,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     ctx,
                     facebookFile.author + ".mp4"
                 )
-                binding.etText.setText("")
+//                binding.etText.setText("")
             }
 
             override fun onExtractionFail(error: Exception?) {
                 pd1?.dismissDialog()
                 Log.e("myapp", "Error :  $error")
                 Toast.makeText(activity, "Not valid URL", Toast.LENGTH_SHORT).show()
-                binding.etText.setText("")
+//                binding.etText.setText("")
             }
         }
     }

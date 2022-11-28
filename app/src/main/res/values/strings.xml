@@ -64,6 +64,19 @@
     <string name="version">Version</string>
     <string name="share_app_desc"><![CDATA[Watch videos, Listen your favourite music &amp; share them with your friends using this video music player!\nDownload here:\nhttps://play.google.com/store/apps/details?id=%s]]></string>
     <string name="rating_desc">If %s makes you happy and satisfy. Please give us 5 stars</string>
+    <string name="social_downloader">Social Downloader</string>
+    <string name="status_saver">Status Saver</string>
+    <string name="my_downloads">My Downloads</string>
+    <string name="collage">Collage</string>
+    <string name="more_tools">More Tools</string>
+    <string name="funny">Funny</string>
+    <string name="compress">Compress</string>
+    <string name="filter">Filter</string>
+    <string name="warp">Warp</string>
+    <string name="popular_videos">Popular Videos</string>
+    <string name="more">More</string>
+    <string name="age_calc">Age Calc</string>
+    <string name="instagram_grid">Instagram Grid</string>
 
     <string-array name="wallp_arr">
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fJjphUzRq64EoCViXztAyJXBE6kzAnIAf6sJKArZzASRmUaJESz2r1qWMzUZxuXHaAR3eJuOGxiQej_3hdFzaBkV_OQDwPhjtBt26EGoqOoy6LkvDNq65oes5QZk5Cv__RagBLcBDkvL-4riMOdFbbK5Dwnms_E628Mh6P1OfhwHn35r8yMR6poY/s1280/photo_2022-09-17_06-02-57.jpg</item>

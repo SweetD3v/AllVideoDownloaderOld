@@ -55,4 +55,7 @@
     <color name="progress_bar_bg_light">#ff787878</color>
     <color name="settings_text">#082D5A</color>
     <color name="settings_item_bg">#D8E9FF</color>
+    <color name="bg_default">#f4f4f4</color>
+    <color name="dash_line">#d6d5d5</color>
+    <color name="_929292">#929292</color>
 </resources>
