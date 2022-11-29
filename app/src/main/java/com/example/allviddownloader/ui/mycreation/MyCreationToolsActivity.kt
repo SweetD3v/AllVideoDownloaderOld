@@ -15,11 +15,11 @@ import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityMyCreationToolsBinding
 import com.example.allviddownloader.databinding.ItemMyCreationBinding
 import com.example.allviddownloader.models.Media
-import com.example.allviddownloader.ui.activities.BaseActivity
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.*
 import java.io.File
 
-class MyCreationToolsActivity : BaseActivity() {
+class MyCreationToolsActivity : FullScreenActivity() {
     companion object {
         const val CREATION_TYPE = "creation_type"
     }
@@ -48,6 +48,8 @@ class MyCreationToolsActivity : BaseActivity() {
                     adFrame
                 )
             }
+
+            rlMain.adjustInsets(this@MyCreationToolsActivity)
 
             imgBack.setOnClickListener { onBackPressed() }
             rvMyCreation.isNestedScrollingEnabled = false

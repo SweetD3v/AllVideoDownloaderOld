@@ -5,85 +5,30 @@
     android:layout_height="match_parent"
     android:background="@color/primary_bg">
 
-    <RelativeLayout
-        android:id="@+id/rlTop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="4dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:layout_toStartOf="@id/llCategory"
-            android:background="@drawable/bg_rounded_right_ripple"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="4dp"
-                android:fontFamily="@font/neutra_regular"
-                android:gravity="center"
-                android:paddingVertical="10dp"
-                android:text="@string/whatsapp_status"
-                android:textColor="@color/white"
-                android:textSize="22sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgCategories"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/circle_bg_black"
-                android:backgroundTint="@color/primary"
-                android:elevation="4dp"
-                android:padding="8dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/ic_filter"
-                app:tint="@color/white" />
-        </LinearLayout>
-    </RelativeLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/topbar_common" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         style="@style/RoundedTabLayoutStyleAccent"
+        app:tabTextAppearance="@style/TxtStyleLarge"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rlTop"
+        android:layout_height="56dp"
+        android:layout_below="@id/toolbar"
         android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:tabRippleColor="@android:color/transparent">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Photos" />
+            android:text="Status" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Videos" />
+            android:text="Downloads" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2

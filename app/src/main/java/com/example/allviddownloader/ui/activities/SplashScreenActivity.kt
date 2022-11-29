@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivitySplashBinding
+import com.example.allviddownloader.utils.adjustInsets
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -15,7 +16,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
 
-class SplashScreenActivity : BaseActivity(), LifecycleObserver {
+class SplashScreenActivity : FullScreenActivity(), LifecycleObserver {
     val binding by lazy { ActivitySplashBinding.inflate(layoutInflater) }
     private val SPLASH_TIME_OUT: Long = 3000
     var isShowingAd = false
@@ -29,6 +30,8 @@ class SplashScreenActivity : BaseActivity(), LifecycleObserver {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.clMain.adjustInsets(this)
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
     }

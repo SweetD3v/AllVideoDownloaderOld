@@ -10,72 +10,15 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bannerContainer">
 
-        <RelativeLayout
-            android:id="@+id/rlTop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:layout_toStartOf="@id/llCategory"
-                android:background="@drawable/bg_rounded_right_ripple"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgBack"
-                    android:layout_width="48dp"
-                    android:layout_height="match_parent"
-                    android:background="?selectableItemBackground"
-                    android:padding="12dp"
-                    app:srcCompat="@drawable/ic_back" />
-
-                <TextView
-                    android:id="@+id/txtTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="4dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="0dp"
-                    android:text="@string/instagram"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgDownloads"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/circle_bg_black"
-                    android:backgroundTint="@color/primary"
-                    android:elevation="4dp"
-                    android:padding="8dp"
-                    app:srcCompat="@drawable/ic_downloads1"
-                    app:tint="@color/white" />
-            </LinearLayout>
-        </RelativeLayout>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/topbar_common" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardViewMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rlTop"
+            android:layout_below="@id/toolbar"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             app:cardBackgroundColor="@color/white"
@@ -126,19 +69,29 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="8dp"
+                            android:elevation="1dp"
+                            android:rotation="45"
+                            app:srcCompat="@drawable/ic_link" />
+
                         <EditText
                             android:id="@+id/etText"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:background="@drawable/et_bg_insta1"
-                            android:fontFamily="@font/poppins_regular"
+                            android:fontFamily="@font/gilroy_medium"
                             android:hint="@string/paste_instagram_link_here"
-                            android:paddingStart="10dp"
+                            android:paddingStart="42dp"
                             android:paddingEnd="36dp"
                             android:singleLine="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/textcolor_hint"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgClear"
@@ -146,7 +99,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginEnd="8dp"
+                            android:layout_marginEnd="16dp"
                             app:srcCompat="@drawable/close" />
 
                     </RelativeLayout>
@@ -158,41 +111,38 @@
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnPaste"
-                            style="?borderlessButtonStyle"
-                            android:layout_width="0dp"
-                            android:layout_height="56dp"
-                            android:layout_marginEnd="16dp"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center"
-                            android:text="@string/paste"
-                            android:textAllCaps="false"
-                            android:textColor="#EF1A5E"
-                            android:textSize="14sp"
-                            app:layout_constraintBottom_toBottomOf="@id/btnDownload"
-                            app:layout_constraintEnd_toStartOf="@id/btnDownload"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/btnDownload"
-                            app:rippleColor="#FFE1EC"
-                            app:strokeColor="#EF1A5E"
-                            app:strokeWidth="1dp" />
-
-                        <com.google.android.material.button.MaterialButton
+                        <TextView
                             android:id="@+id/btnDownload"
                             android:layout_width="0dp"
                             android:layout_height="56dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="2dp"
-                            android:backgroundTint="#EF1A5E"
-                            android:fontFamily="@font/poppins_regular"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/top_bar_gradient_pink1"
+                            android:fontFamily="@font/gilroy_bold"
                             android:gravity="center"
                             android:text="@string/download"
-                            android:textAllCaps="false"
-                            android:textSize="14sp"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            app:layout_constraintBottom_toBottomOf="@id/btnPaste"
+                            app:layout_constraintEnd_toStartOf="@id/btnPaste"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/btnPaste" />
+
+                        <TextView
+                            android:id="@+id/btnPaste"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="2dp"
+                            android:background="@drawable/top_bar_gradient_blue"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/gilroy_bold"
+                            android:gravity="center"
+                            android:text="@string/paste"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/btnPaste"
+                            app:layout_constraintStart_toEndOf="@id/btnDownload"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </RelativeLayout>
@@ -203,8 +153,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/cardViewMain"
-            app:cardCornerRadius="4dp"
             android:layout_marginHorizontal="8dp"
+            app:cardCornerRadius="4dp"
             app:cardElevation="4dp"
             app:cardUseCompatPadding="true">
 

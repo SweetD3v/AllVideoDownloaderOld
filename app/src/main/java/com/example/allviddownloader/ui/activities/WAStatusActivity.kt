@@ -13,21 +13,22 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityWastatusBinding
 import com.example.allviddownloader.ui.fragments.WADownloadsFragment
 import com.example.allviddownloader.ui.fragments.WAImagesFragment
 import com.example.allviddownloader.ui.fragments.WAVideoFragment
+import com.example.allviddownloader.utils.adjustInsets
 import com.google.android.material.tabs.TabLayoutMediator
 
 
-class WAStatusActivity : BaseActivity() {
+class WAStatusActivity : FullScreenActivity() {
     val binding by lazy { ActivityWastatusBinding.inflate(layoutInflater) }
     private val PERMISSIONS = mutableListOf(
         Manifest.permission.READ_EXTERNAL_STORAGE
@@ -83,7 +84,13 @@ class WAStatusActivity : BaseActivity() {
 //                getString(R.string.banner_id_details)
 //            )
 
-        binding.imgBack.setOnClickListener {
+        binding.toolbar.rlMain.adjustInsets(this)
+        binding.toolbar.root.background = ContextCompat.getDrawable(
+            this@WAStatusActivity,
+            R.drawable.top_bar_gradient_green
+        )
+        binding.toolbar.txtTitle.text = getString(R.string.whatsapp_status)
+        binding.toolbar.imgBack.setOnClickListener {
             onBackPressed()
         }
     }

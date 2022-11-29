@@ -2,16 +2,18 @@ package com.example.allviddownloader.collage_maker.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityCollageMakerHomeBinding
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.ui.fragments.HomeFragment
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
 import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.adjustInsets
 import gun0912.tedimagepicker.builder.TedImagePicker
 
-class CollageMakerHomeActivity : AppCompatActivity() {
+class CollageMakerHomeActivity : FullScreenActivity() {
 
     val binding by lazy { ActivityCollageMakerHomeBinding.inflate(layoutInflater) }
 
@@ -20,7 +22,16 @@ class CollageMakerHomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.run {
-            imgBack.setOnClickListener {
+
+            toolbar.txtTitle.text = getString(R.string.collage_maker)
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@CollageMakerHomeActivity,
+                R.drawable.top_bar_gradient_purple
+            )
+
+            toolbar.rlMain.adjustInsets(this@CollageMakerHomeActivity)
+
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 

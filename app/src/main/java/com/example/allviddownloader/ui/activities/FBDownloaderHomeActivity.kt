@@ -3,6 +3,7 @@ package com.example.allviddownloader.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FBDownloaderHomeActivity : BaseActivity() {
+class FBDownloaderHomeActivity : FullScreenActivity() {
 
     val binding by lazy { ActivityFbdownloaderHomeBinding.inflate(layoutInflater) }
 
@@ -27,6 +28,8 @@ class FBDownloaderHomeActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.run {
+
+            toolbar.rlMain.adjustInsets(this@FBDownloaderHomeActivity)
 
             if (NetworkState.isOnline()) {
 //                AdsUtils.loadBanner(
@@ -41,11 +44,14 @@ class FBDownloaderHomeActivity : BaseActivity() {
                 )
             }
 
-            imgBack.setOnClickListener {
+            toolbar.txtTitle.text = getString(R.string.facebook)
+
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 
-            imgDownloads.setOnClickListener {
+            toolbar.imgDownloads.visibility = View.VISIBLE
+            toolbar.imgDownloads.setOnClickListener {
                 startActivity(
                     Intent(
                         this@FBDownloaderHomeActivity,

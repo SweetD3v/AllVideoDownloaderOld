@@ -45,7 +45,7 @@ fun View.adjustInsets(activity: Activity) {
         val statusbarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
         Log.e("TAG", "adjustInsets: ${statusbarHeight}")
         (this.layoutParams as ViewGroup.MarginLayoutParams).topMargin = statusbarHeight
-        insets!!
+        insets
     }
 }
 

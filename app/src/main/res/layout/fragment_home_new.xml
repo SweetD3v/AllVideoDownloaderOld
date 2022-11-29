@@ -33,7 +33,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="?actionBarSize"
                         android:layout_marginStart="16dp"
-                        android:fontFamily="@font/poppins_bold"
+                        android:fontFamily="@font/gilroy_bold"
                         android:gravity="center_vertical"
                         android:text="@string/app_name"
                         android:textColor="@color/black"
@@ -44,8 +44,9 @@
                         android:layout_height="24dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:padding="4dp"
                         android:layout_marginEnd="16dp"
-                        app:srcCompat="@drawable/ic_drawer"
+                        app:srcCompat="@drawable/ic_settings"
                         app:tint="@color/black" />
                 </RelativeLayout>
 
@@ -53,12 +54,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="250dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/home_svg" />
+                    android:src="@drawable/home_svg"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
                     android:background="@color/white"
                     android:orientation="vertical">
 
@@ -66,7 +67,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
                         android:layout_marginStart="16dp"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/gilroy_semibold"
                         android:gravity="center_vertical"
                         android:text="@string/social_downloader"
                         android:textColor="@color/black"
@@ -89,8 +90,8 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="84dp"
-                                android:layout_height="84dp"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_instagram" />
 
@@ -102,7 +103,7 @@
                                 android:gravity="center_horizontal"
                                 android:text="@string/instagram"
                                 android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -116,8 +117,8 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="84dp"
-                                android:layout_height="84dp"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_facebook" />
 
@@ -129,7 +130,7 @@
                                 android:gravity="center_horizontal"
                                 android:text="@string/facebook"
                                 android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -143,8 +144,8 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="84dp"
-                                android:layout_height="84dp"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_whatsapp" />
 
@@ -156,7 +157,7 @@
                                 android:gravity="center_horizontal"
                                 android:text="@string/status_saver"
                                 android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -170,8 +171,8 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="84dp"
-                                android:layout_height="84dp"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_my_download" />
 
@@ -183,7 +184,7 @@
                                 android:gravity="center_horizontal"
                                 android:text="@string/my_downloads"
                                 android:textColor="@color/black"
-                                android:textSize="14sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
@@ -191,7 +192,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginTop="48dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -205,8 +206,8 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:layout_gravity="center_horizontal"
                             app:srcCompat="@drawable/ic_collage" />
 
@@ -219,7 +220,7 @@
                             android:gravity="center_horizontal"
                             android:text="@string/collage"
                             android:textColor="@color/black"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <View
@@ -243,8 +244,8 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:layout_gravity="center_horizontal"
                             app:srcCompat="@drawable/ic_editor" />
 
@@ -257,7 +258,7 @@
                             android:gravity="center_horizontal"
                             android:text="@string/instagram"
                             android:textColor="@color/black"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <View
@@ -281,8 +282,8 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:layout_gravity="center_horizontal"
                             app:srcCompat="@drawable/ic_video_player" />
 
@@ -295,7 +296,7 @@
                             android:gravity="center_horizontal"
                             android:text="@string/video_player"
                             android:textColor="@color/black"
-                            android:textSize="14sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -352,14 +353,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
                         android:layout_marginStart="16dp"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/gilroy_semibold"
                         android:gravity="center_vertical"
                         android:text="@string/more_tools"
                         android:textColor="@color/black"
@@ -495,7 +496,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
                         android:layout_marginStart="16dp"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/gilroy_semibold"
                         android:gravity="center_vertical"
                         android:text="@string/popular_videos"
                         android:textColor="@color/black"
@@ -506,7 +507,7 @@
                         android:layout_height="?actionBarSize"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="16dp"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/gilroy_semibold"
                         android:gravity="center_vertical"
                         android:text="@string/more"
                         android:textColor="@color/_929292"

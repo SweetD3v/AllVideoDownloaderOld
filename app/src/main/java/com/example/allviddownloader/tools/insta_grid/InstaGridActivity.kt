@@ -5,17 +5,20 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityInstaGridBinding
 import com.example.allviddownloader.ui.activities.BaseActivity
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.adjustInsets
 import com.example.allviddownloader.utils.getBitmapFromUri
 import com.yalantis.ucrop.UCrop
 import gun0912.tedimagepicker.builder.TedImagePicker
 import java.io.File
 
-class InstaGridActivity : BaseActivity() {
+class InstaGridActivity : FullScreenActivity() {
     val CROPPED_IMAGE_NAME = "CroppedImage"
 
     val binding by lazy { ActivityInstaGridBinding.inflate(layoutInflater) }
@@ -54,6 +57,15 @@ class InstaGridActivity : BaseActivity() {
 
         binding.run {
 
+            binding.toolbar.root.background = ContextCompat.getDrawable(
+                this@InstaGridActivity,
+                R.drawable.top_bar_gradient_pink1
+            )
+
+            toolbar.rlMain.adjustInsets(this@InstaGridActivity)
+
+            toolbar.txtTitle.text = getString(R.string.grid_maker)
+
             if (NetworkState.isOnline()) {
 //                AdsUtils.loadBanner(
 //                    this@InstaGridActivity, bannerContainer,
@@ -66,7 +78,7 @@ class InstaGridActivity : BaseActivity() {
                 )
             }
 
-            imgBack.setOnClickListener {
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 

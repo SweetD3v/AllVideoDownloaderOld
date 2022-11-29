@@ -19,6 +19,27 @@
         <item name="colorControlNormal">#799DF8</item>
     </style>
 
+    <style name="TxtStyleLarge" parent="@android:style/TextAppearance.Large">
+        <item name="android:fontFamily">@font/gilroy_semibold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TxtStyleMedium" parent="@android:style/TextAppearance.Large">
+        <item name="android:fontFamily">@font/gilroy_medium</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TxtStyleSmall" parent="@android:style/TextAppearance.Large">
+        <item name="android:fontFamily">@font/gilroy_medium</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
     <style name="rtl_RecyclerTabLayout">
         <item name="rtl_tabBackground">?selectableItemBackground</item>
         <item name="rtl_tabIndicatorColor">?colorAccent</item>
@@ -38,7 +59,10 @@
         <item name="android:windowMinWidthMinor">100%</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.AllVidDownloader">
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
 
@@ -72,9 +96,9 @@
     <style name="RoundedTabLayoutStyleAccent" parent="Widget.Design.TabLayout">
         <item name="tabBackground">@drawable/tab_selector_accent</item>
         <item name="tabIndicator">@null</item>
-        <item name="android:background">@drawable/tab_layout_bg</item>
+        <!--        <item name="android:background">@drawable/tab_layout_bg</item>-->
         <item name="tabSelectedTextColor">@color/white</item>
-        <item name="tabTextColor">@color/accent</item>
+        <item name="tabTextColor">@color/white</item>
     </style>
 
     <style name="RoundedCornersImageView" parent="">

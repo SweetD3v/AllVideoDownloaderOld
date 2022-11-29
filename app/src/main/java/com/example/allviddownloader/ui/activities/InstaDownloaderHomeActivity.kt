@@ -3,8 +3,10 @@ package com.example.allviddownloader.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityInstaDownloaderHomeBinding
 import com.example.allviddownloader.databinding.DialogServerDownBinding
@@ -18,7 +20,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class InstaDownloaderHomeActivity : BaseActivity() {
+class InstaDownloaderHomeActivity : FullScreenActivity() {
 
     val binding by lazy { ActivityInstaDownloaderHomeBinding.inflate(layoutInflater) }
 
@@ -27,6 +29,8 @@ class InstaDownloaderHomeActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.run {
+            toolbar.rlMain.adjustInsets(this@InstaDownloaderHomeActivity)
+
             if (NetworkState.isOnline()) {
 //                AdsUtils.loadBanner(
 //                    this@InstaDownloaderHomeActivity, bannerContainer,
@@ -40,11 +44,19 @@ class InstaDownloaderHomeActivity : BaseActivity() {
                 )
             }
 
-            imgBack.setOnClickListener {
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@InstaDownloaderHomeActivity,
+                R.drawable.top_bar_gradient_pink
+            )
+
+            toolbar.txtTitle.text = getString(R.string.instagram)
+
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 
-            imgDownloads.setOnClickListener {
+            toolbar.imgDownloads.visibility = View.VISIBLE
+            toolbar.imgDownloads.setOnClickListener {
                 startActivity(
                     Intent(
                         this@InstaDownloaderHomeActivity,

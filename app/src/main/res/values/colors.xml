@@ -58,4 +58,6 @@
     <color name="bg_default">#f4f4f4</color>
     <color name="dash_line">#d6d5d5</color>
     <color name="_929292">#929292</color>
+    <color name="wa_green">#09aa00</color>
+    <color name="_e5e5e5">#e5e5e5</color>
 </resources>

@@ -16,98 +16,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
+            <include
                 android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_toStartOf="@id/llCategory"
-                    android:background="@drawable/bg_rounded_right_ripple"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgBack"
-                        android:layout_width="48dp"
-                        android:layout_height="match_parent"
-                        android:background="?selectableItemBackground"
-                        android:padding="12dp"
-                        app:srcCompat="@drawable/ic_back" />
-
-                    <TextView
-                        android:id="@+id/txtTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:elevation="4dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:paddingVertical="10dp"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="0dp"
-                        android:text="Grid Maker"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="16dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:visibility="invisible">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgDownloads"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/circle_bg_black"
-                        android:backgroundTint="@color/primary"
-                        android:elevation="4dp"
-                        android:padding="8dp"
-                        app:srcCompat="@drawable/ic_downloads1"
-                        app:tint="@color/white" />
-                </LinearLayout>
-            </RelativeLayout>
+                layout="@layout/topbar_common" />
 
             <com.example.allviddownloader.widgets.SquareLinearLayout
-                android:id="@+id/rlMain"
+                android:id="@+id/rlTop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/toolbar">
 
-                <com.google.android.material.card.MaterialCardView
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgCropped"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    app:cardUseCompatPadding="true">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgCropped"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/black"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/grid_maker" />
-                </com.google.android.material.card.MaterialCardView>
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:background="@color/_e5e5e5"
+                    android:scaleType="centerCrop" />
             </com.example.allviddownloader.widgets.SquareLinearLayout>
 
             <LinearLayout
                 android:id="@+id/llBottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rlMain"
+                android:layout_below="@id/rlTop"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingBottom="8dp">
@@ -115,23 +47,29 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroy_semibold"
                     android:gravity="center"
                     android:text="Level up your profile with Beautiful grids"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="14sp" />
+                    android:textColor="@color/black_translucent3"
+                    android:textSize="16sp" />
 
-                <com.google.android.material.button.MaterialButton
+                <TextView
                     android:id="@+id/imgSelectImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16sp"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:fontFamily="@font/poppins_medium"
-                    android:paddingVertical="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/top_bar_gradient_pink1"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:paddingHorizontal="32dp"
                     android:text="Select Image"
-                    android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@id/btnPaste"
+                    app:layout_constraintEnd_toStartOf="@id/btnPaste"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/btnPaste" />
             </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView

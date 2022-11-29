@@ -5,16 +5,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityPicEditorHomeBinding
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.ui.activities.PicEditActivity
 import com.example.allviddownloader.ui.fragments.HomeFragment
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
 import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.adjustInsets
 import gun0912.tedimagepicker.builder.TedImagePicker
 
-class PicEditorHomeActivity : AppCompatActivity() {
+class PicEditorHomeActivity : FullScreenActivity() {
     val binding by lazy { ActivityPicEditorHomeBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +25,14 @@ class PicEditorHomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.run {
+
+            toolbar.txtTitle.text = getString(R.string.photo_editor)
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@PicEditorHomeActivity,
+                R.drawable.top_bar_gradient_yellow
+            )
+
+            toolbar.rlMain.adjustInsets(this@PicEditorHomeActivity)
 
             if (NetworkState.isOnline()) {
 //                AdsUtils.loadBanner(
@@ -36,7 +47,7 @@ class PicEditorHomeActivity : AppCompatActivity() {
                 )
             }
 
-            imgBack.setOnClickListener {
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 
