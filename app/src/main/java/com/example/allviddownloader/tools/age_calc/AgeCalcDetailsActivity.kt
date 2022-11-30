@@ -1,16 +1,17 @@
 package com.example.allviddownloader.tools.age_calc
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityAgeCalcDetailsBinding
-import com.example.allviddownloader.ui.activities.BaseActivity
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.adjustInsets
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AgeCalcDetailsActivity : BaseActivity() {
+class AgeCalcDetailsActivity : FullScreenActivity() {
     val binding by lazy { ActivityAgeCalcDetailsBinding.inflate(layoutInflater) }
 
     var years: String = ""
@@ -37,7 +38,16 @@ class AgeCalcDetailsActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.run {
-            imgBack.setOnClickListener {
+
+            toolbar.txtTitle.text = getString(R.string.age_calculator)
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@AgeCalcDetailsActivity,
+                R.drawable.top_bar_gradient_light_blue
+            )
+
+            toolbar.rlMain.adjustInsets(this@AgeCalcDetailsActivity)
+
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 

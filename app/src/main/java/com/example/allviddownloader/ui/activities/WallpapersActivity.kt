@@ -20,18 +20,15 @@ import com.example.allviddownloader.databinding.ItemWallCategoriesBinding
 import com.example.allviddownloader.databinding.ItemWallpapersBinding
 import com.example.allviddownloader.interfaces.CategorySelectionListener
 import com.example.allviddownloader.models.WallModelPixabay
-import com.example.allviddownloader.utils.AdsUtils
-import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.apis.RestApi
-import com.example.allviddownloader.utils.dpToPx
-import com.example.allviddownloader.utils.toTitleCase
 import com.example.allviddownloader.widgets.BSFragmentBuilder
 import com.example.allviddownloader.widgets.MarginItemDecoration
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class WallpapersActivity : BaseActivity() {
+class WallpapersActivity : FullScreenActivity() {
     val binding by lazy { ActivityWallpapersBinding.inflate(layoutInflater) }
     lateinit var wallpapersList: MutableList<WallModelPixabay.PhotoDetails>
     var lastVisiblesItems = 0
@@ -70,13 +67,15 @@ class WallpapersActivity : BaseActivity() {
                 binding.adFrame
             )
 
+            binding.toolbar.rlMain.adjustInsets(this@WallpapersActivity)
+
             loadWallpapers()
         }
     }
 
     private fun loadWallpapers() {
         binding.run {
-            imgBack.setOnClickListener {
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 
@@ -96,9 +95,21 @@ class WallpapersActivity : BaseActivity() {
             binding.rvWallpapers.adapter = wallpapersAdapter
 
             val arr: Array<String>
-            if (intent.getStringExtra("walpType") == "wallpapers")
+            if (intent.getStringExtra("walpType") == "wallpapers") {
+                binding.toolbar.txtTitle.text = getString(R.string.wallpapers)
+                binding.toolbar.root.background = ContextCompat.getDrawable(
+                    this@WallpapersActivity,
+                    R.drawable.top_bar_gradient_yellow
+                )
                 arr = resources.getStringArray(R.array.wallp_arr)
-            else arr = resources.getStringArray(R.array.status_arr)
+            } else {
+                binding.toolbar.txtTitle.text = getString(R.string.status_maker)
+                binding.toolbar.root.background = ContextCompat.getDrawable(
+                    this@WallpapersActivity,
+                    R.drawable.top_bar_gradient_green
+                )
+                arr = resources.getStringArray(R.array.status_arr)
+            }
 
             for (photo in arr) {
                 val photoDetails = WallModelPixabay.PhotoDetails()

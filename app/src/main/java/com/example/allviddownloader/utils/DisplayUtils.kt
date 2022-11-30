@@ -84,11 +84,9 @@ fun setDarkStatusBar(view: View, activity: AppCompatActivity) {
 }
 
 fun setDarkStatusBarColor(activity: AppCompatActivity, color: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        activity.window.statusBarColor = ResourcesCompat.getColor(
-            AllVidApp.getInstance().resources, color, null
-        )
-    }
+    activity.window.statusBarColor = ResourcesCompat.getColor(
+        AllVidApp.getInstance().resources, color, null
+    )
 }
 
 fun dpToPx(dp: Int): Int {

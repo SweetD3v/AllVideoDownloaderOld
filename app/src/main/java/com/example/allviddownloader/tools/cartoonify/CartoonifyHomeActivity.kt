@@ -3,16 +3,17 @@ package com.example.allviddownloader.tools.cartoonify
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityCartoonifyHomeBinding
-import com.example.allviddownloader.ui.activities.BaseActivity
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
 import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.adjustInsets
 import gun0912.tedimagepicker.builder.TedImagePicker
 
-class CartoonifyHomeActivity : BaseActivity() {
+class CartoonifyHomeActivity : FullScreenActivity() {
 
     val binding by lazy { ActivityCartoonifyHomeBinding.inflate(layoutInflater) }
 
@@ -35,7 +36,14 @@ class CartoonifyHomeActivity : BaseActivity() {
                 )
             }
 
-            imgBack.setOnClickListener {
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@CartoonifyHomeActivity,
+                R.drawable.top_bar_gradient_orange
+            )
+
+            toolbar.rlMain.adjustInsets(this@CartoonifyHomeActivity)
+
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 

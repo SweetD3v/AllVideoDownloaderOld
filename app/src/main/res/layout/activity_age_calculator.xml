@@ -11,168 +11,198 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bannerContainer">
 
-        <RelativeLayout
+        <include
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:layout_toStartOf="@id/llCategory"
-                android:background="@drawable/bg_rounded_right_ripple"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgBack"
-                    android:layout_width="48dp"
-                    android:layout_height="match_parent"
-                    android:background="?selectableItemBackground"
-                    android:padding="12dp"
-                    app:srcCompat="@drawable/ic_back" />
-
-                <TextView
-                    android:id="@+id/txtTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="4dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="0dp"
-                    android:text="My Creations"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="invisible">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgDownloads"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/circle_bg_black"
-                    android:backgroundTint="@color/primary"
-                    android:elevation="4dp"
-                    android:padding="8dp"
-                    app:srcCompat="@drawable/ic_downloads1"
-                    app:tint="@color/white" />
-            </LinearLayout>
-        </RelativeLayout>
+            layout="@layout/topbar_common" />
 
         <LinearLayout
             android:id="@+id/llEditText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/karla_semibold"
+                android:fontFamily="@font/gilroy_medium"
                 android:paddingHorizontal="16dp"
                 android:text="Date of Birth"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:cardBackgroundColor="#FBFCFF"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="16dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clDay1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/titleDate1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:paddingHorizontal="4dp"
+                        android:text="Date"
+                        android:textColor="@color/blue"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/v1"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        app:layout_constraintBottom_toBottomOf="@id/titleDate1"
+                        app:layout_constraintEnd_toEndOf="@id/titleDate1"
+                        app:layout_constraintStart_toStartOf="@id/titleDate1"
+                        app:layout_constraintTop_toTopOf="@id/titleDate1" />
 
                     <EditText
                         android:id="@+id/edtDay1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_bg_white_8"
-                        android:backgroundTint="#D7EBFB"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/rounded_bg_stroke_4"
+                        android:elevation="-1dp"
                         android:gravity="center"
                         android:hint="DD"
                         android:inputType="numberSigned"
                         android:maxLength="2"
                         android:minEms="2"
-                        android:padding="8dp"
-                        android:textColorHint="#688FB1"
-                        android:textSize="18sp" />
+                        android:textColorHint="@color/hint_color_age_calc"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/v1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clMonth1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/titleMonth1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:paddingHorizontal="4dp"
+                        android:text="Month"
+                        android:textColor="@color/blue"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/v2"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        app:layout_constraintBottom_toBottomOf="@id/titleMonth1"
+                        app:layout_constraintEnd_toEndOf="@id/titleMonth1"
+                        app:layout_constraintStart_toStartOf="@id/titleMonth1"
+                        app:layout_constraintTop_toTopOf="@id/titleMonth1" />
 
                     <EditText
                         android:id="@+id/edtMonth1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_bg_white_8"
-                        android:backgroundTint="#D7EBFB"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/rounded_bg_stroke_4"
+                        android:elevation="-1dp"
                         android:gravity="center"
                         android:hint="MM"
                         android:inputType="numberSigned"
                         android:maxLength="2"
                         android:minEms="2"
-                        android:padding="8dp"
-                        android:textColorHint="#688FB1" />
+                        android:textColorHint="@color/hint_color_age_calc"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/v2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clYear1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/titleYear1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:paddingHorizontal="4dp"
+                        android:text="Year"
+                        android:textColor="@color/blue"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/v3"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        app:layout_constraintBottom_toBottomOf="@id/titleYear1"
+                        app:layout_constraintEnd_toEndOf="@id/titleYear1"
+                        app:layout_constraintStart_toStartOf="@id/titleYear1"
+                        app:layout_constraintTop_toTopOf="@id/titleYear1" />
 
                     <EditText
                         android:id="@+id/edtYear1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_bg_white_8"
-                        android:backgroundTint="#D7EBFB"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/rounded_bg_stroke_4"
+                        android:elevation="-1dp"
                         android:gravity="center"
                         android:hint="YYYY"
                         android:inputType="numberSigned"
                         android:maxLength="4"
-                        android:minEms="4"
-                        android:padding="8dp"
-                        android:textColorHint="#688FB1" />
+                        android:minEms="2"
+                        android:textColorHint="@color/hint_color_age_calc"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/v3" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/imgCalendar1"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:background="@drawable/rounded_bg_white_8"
-                            android:backgroundTint="@color/colorPrimary"
-                            android:padding="10dp"
-                            app:srcCompat="@drawable/ic_calendar"
-                            app:tint="@color/white" />
-                    </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgCalendar1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:padding="4dp"
+                        app:srcCompat="@drawable/ic_calendar" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -186,93 +216,183 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/karla_semibold"
+                android:fontFamily="@font/gilroy_medium"
                 android:paddingHorizontal="16dp"
                 android:text="Today's Date"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:cardBackgroundColor="#FBFCFF"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="16dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clDay2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/titleDate2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:paddingHorizontal="4dp"
+                        android:text="Date"
+                        android:textColor="@color/blue"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/v4"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        app:layout_constraintBottom_toBottomOf="@id/titleDate2"
+                        app:layout_constraintEnd_toEndOf="@id/titleDate2"
+                        app:layout_constraintStart_toStartOf="@id/titleDate2"
+                        app:layout_constraintTop_toTopOf="@id/titleDate2" />
 
                     <EditText
                         android:id="@+id/edtDay2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_bg_white_8"
-                        android:backgroundTint="#D7EBFB"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/rounded_bg_stroke_4"
+                        android:elevation="-1dp"
                         android:gravity="center"
                         android:hint="DD"
                         android:inputType="numberSigned"
                         android:maxLength="2"
                         android:minEms="2"
-                        android:padding="8dp"
-                        android:textColorHint="#688FB1"
-                        android:textSize="18sp" />
+                        android:textColorHint="@color/hint_color_age_calc"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/v4" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clMonth2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/titleMonth2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:paddingHorizontal="4dp"
+                        android:text="Month"
+                        android:textColor="@color/blue"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/v5"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        app:layout_constraintBottom_toBottomOf="@id/titleMonth2"
+                        app:layout_constraintEnd_toEndOf="@id/titleMonth2"
+                        app:layout_constraintStart_toStartOf="@id/titleMonth2"
+                        app:layout_constraintTop_toTopOf="@id/titleMonth2" />
 
                     <EditText
                         android:id="@+id/edtMonth2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_bg_white_8"
-                        android:backgroundTint="#D7EBFB"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/rounded_bg_stroke_4"
+                        android:elevation="-1dp"
                         android:gravity="center"
                         android:hint="MM"
                         android:inputType="numberSigned"
                         android:maxLength="2"
                         android:minEms="2"
-                        android:padding="8dp"
-                        android:textColorHint="#688FB1" />
+                        android:textColorHint="@color/hint_color_age_calc"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/v5" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clYear2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/titleYear2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:paddingHorizontal="4dp"
+                        android:text="Year"
+                        android:textColor="@color/blue"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/v6"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        app:layout_constraintBottom_toBottomOf="@id/titleYear2"
+                        app:layout_constraintEnd_toEndOf="@id/titleYear2"
+                        app:layout_constraintStart_toStartOf="@id/titleYear2"
+                        app:layout_constraintTop_toTopOf="@id/titleYear2" />
 
                     <EditText
                         android:id="@+id/edtYear2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_bg_white_8"
-                        android:backgroundTint="#D7EBFB"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/rounded_bg_stroke_4"
+                        android:elevation="-1dp"
                         android:gravity="center"
                         android:hint="YYYY"
                         android:inputType="numberSigned"
                         android:maxLength="4"
-                        android:minEms="4"
-                        android:padding="8dp"
-                        android:textColorHint="#688FB1" />
+                        android:minEms="2"
+                        android:textColorHint="@color/hint_color_age_calc"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/v6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/imgCalendar2"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:background="@drawable/rounded_bg_white_8"
-                            android:backgroundTint="@color/colorPrimary"
-                            android:padding="10dp"
-                            app:srcCompat="@drawable/ic_calendar"
-                            app:tint="@color/white" />
-                    </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgCalendar2"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:padding="4dp"
+                        app:srcCompat="@drawable/ic_calendar" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -288,8 +408,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/rounded_bg_white_8"
-                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/top_bar_gradient_blue"
+                android:backgroundTint="@color/black"
                 android:elevation="4dp"
                 android:fontFamily="@font/karla_semibold"
                 android:gravity="center"
@@ -308,8 +428,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/rounded_bg_white_8"
-                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/top_bar_gradient_light_blue1"
                 android:elevation="4dp"
                 android:fontFamily="@font/karla_semibold"
                 android:gravity="center"

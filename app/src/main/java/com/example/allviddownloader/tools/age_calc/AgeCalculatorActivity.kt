@@ -1,21 +1,18 @@
 package com.example.allviddownloader.tools.age_calc
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityAgeCalculatorBinding
-import com.example.allviddownloader.ui.activities.BaseActivity
-import com.example.allviddownloader.utils.AdsUtils
-import com.example.allviddownloader.utils.NetworkState
-import com.example.allviddownloader.utils.toInt
-import com.example.allviddownloader.utils.toastShort
+import com.example.allviddownloader.ui.activities.FullScreenActivity
+import com.example.allviddownloader.utils.*
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
 
-class AgeCalculatorActivity : BaseActivity() {
+class AgeCalculatorActivity : FullScreenActivity() {
     val binding by lazy { ActivityAgeCalculatorBinding.inflate(layoutInflater) }
 
     var todayTimeMillis: Long = 0L
@@ -51,7 +48,15 @@ class AgeCalculatorActivity : BaseActivity() {
                 )
             }
 
-            imgBack.setOnClickListener {
+            toolbar.txtTitle.text = getString(R.string.age_calculator)
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@AgeCalculatorActivity,
+                R.drawable.top_bar_gradient_light_blue
+            )
+
+            toolbar.rlMain.adjustInsets(this@AgeCalculatorActivity)
+
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 

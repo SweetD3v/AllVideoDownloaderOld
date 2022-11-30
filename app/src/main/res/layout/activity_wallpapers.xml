@@ -6,65 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <include
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="4dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:layout_toStartOf="@id/llCategory"
-            android:background="@drawable/bg_rounded_right_ripple"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="4dp"
-                android:fontFamily="@font/neutra_regular"
-                android:gravity="center"
-                android:paddingVertical="10dp"
-                android:text="@string/wallpapers"
-                android:textColor="@color/white"
-                android:textSize="22sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgCategories"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/circle_bg_black"
-                android:backgroundTint="@color/primary"
-                android:elevation="4dp"
-                android:padding="8dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/ic_filter"
-                app:tint="@color/white" />
-        </LinearLayout>
-    </RelativeLayout>
+        layout="@layout/topbar_common" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

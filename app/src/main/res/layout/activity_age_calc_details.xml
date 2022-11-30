@@ -6,233 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".tools.age_calc.AgeCalcDetailsActivity">
 
-    <RelativeLayout
+    <include
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="4dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:layout_toStartOf="@id/llCategory"
-            android:background="@drawable/bg_rounded_right_ripple"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgBack"
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:background="?selectableItemBackground"
-                android:padding="12dp"
-                app:srcCompat="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="4dp"
-                android:fontFamily="@font/poppins_regular"
-                android:paddingVertical="10dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="0dp"
-                android:text="My Creations"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="16dp"
-            android:clickable="false"
-            android:focusable="false"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="invisible">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgDownloads"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/circle_bg_black"
-                android:backgroundTint="@color/primary"
-                android:elevation="4dp"
-                android:padding="8dp"
-                app:srcCompat="@drawable/ic_downloads1"
-                app:tint="@color/white" />
-        </LinearLayout>
-    </RelativeLayout>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/adCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginVertical="8dp"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
-
-        <FrameLayout
-            android:id="@+id/adFrame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.google.android.material.card.MaterialCardView>
+        layout="@layout/topbar_common" />
 
     <LinearLayout
         android:id="@+id/llAgeTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/bannerContainer"
-        android:layout_below="@id/adCard"
+        android:layout_below="@id/toolbar"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/karla_semibold"
-            android:paddingHorizontal="16dp"
-            android:text="@string/your_age"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/karla_regular"
-            android:paddingHorizontal="16dp"
-            android:text="@string/age_details_subtitle"
-            android:textColor="@color/text_unselected"
-            android:textSize="14sp" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="#FBFCFF"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="8dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp">
-
-                    <TextView
-                        android:id="@+id/txtYears"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/karla_semibold"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="Years"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/txtMonths"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/karla_semibold"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="Months"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/txtDays"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/karla_semibold"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:text="Days"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/age_calc_divider" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="8dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp">
-
-                    <TextView
-                        android:id="@+id/txtYearsVal"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/karla_regular"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:textColor="@color/textColorPrimary"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/txtMonthsVal"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/karla_regular"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:textColor="@color/textColorPrimary"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/txtDaysVal"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/karla_regular"
-                        android:gravity="center"
-                        android:padding="8dp"
-                        android:textColor="@color/textColorPrimary"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -244,103 +32,198 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/adCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:cardUseCompatPadding="true">
+
+                    <FrameLayout
+                        android:id="@+id/adFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.card.MaterialCardView>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/karla_semibold"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gilroy_semibold"
                     android:paddingHorizontal="16dp"
-                    android:text="Next Birthday"
-                    android:textColor="@color/textColorPrimary"
+                    android:text="@string/your_age"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/karla_regular"
+                    android:paddingHorizontal="16dp"
+                    android:text="@string/age_details_subtitle"
+                    android:textColor="@color/text_unselected"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginBottom="16dp"
                     app:cardBackgroundColor="@color/cardColorAge"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    app:cardElevation="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="16dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="8dp"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="8dp">
-
-                            <TextView
-                                android:id="@+id/txtNextMonths"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_semibold"
-                                android:gravity="center"
-                                android:padding="8dp"
-                                android:text="Months"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="18sp" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clYear1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="52dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/txtNextDays"
-                                android:layout_width="0dp"
+                                android:id="@+id/titleYear1"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_semibold"
-                                android:gravity="center"
-                                android:padding="8dp"
-                                android:text="Days"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="18sp" />
-                        </LinearLayout>
+                                android:background="@color/cardColorAge"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:paddingHorizontal="4dp"
+                                android:text="Year"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/age_calc_divider" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="8dp"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="8dp">
+                            <View
+                                android:id="@+id/v3"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleYear1"
+                                app:layout_constraintEnd_toEndOf="@id/titleYear1"
+                                app:layout_constraintStart_toStartOf="@id/titleYear1"
+                                app:layout_constraintTop_toTopOf="@id/titleYear1" />
 
                             <TextView
-                                android:id="@+id/txtMonthsValNext"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_regular"
+                                android:id="@+id/txtYearsVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:fontFamily="@font/gilroy_semibold"
                                 android:gravity="center"
-                                android:padding="8dp"
-                                android:textColor="@color/textColorPrimary"
-                                android:textSize="16sp" />
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v3" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clMonth1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
 
                             <TextView
-                                android:id="@+id/txtDaysValNext"
-                                android:layout_width="0dp"
+                                android:id="@+id/titleMonth1"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_regular"
+                                android:background="@color/cardColorAge"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:paddingHorizontal="4dp"
+                                android:text="Month"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/v2"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleMonth1"
+                                app:layout_constraintEnd_toEndOf="@id/titleMonth1"
+                                app:layout_constraintStart_toStartOf="@id/titleMonth1"
+                                app:layout_constraintTop_toTopOf="@id/titleMonth1" />
+
+                            <TextView
+                                android:id="@+id/txtMonthsVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:fontFamily="@font/gilroy_semibold"
                                 android:gravity="center"
-                                android:padding="8dp"
-                                android:textColor="@color/textColorPrimary"
-                                android:textSize="16sp" />
-                        </LinearLayout>
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v2" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clDay1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/titleDate1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/cardColorAge"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:paddingHorizontal="4dp"
+                                android:text="Date"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/v1"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleDate1"
+                                app:layout_constraintEnd_toEndOf="@id/titleDate1"
+                                app:layout_constraintStart_toStartOf="@id/titleDate1"
+                                app:layout_constraintTop_toTopOf="@id/titleDate1" />
+
+                            <TextView
+                                android:id="@+id/txtDaysVal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v1" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -349,10 +232,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/karla_semibold"
+                    android:fontFamily="@font/gilroy_semibold"
                     android:paddingHorizontal="16dp"
-                    android:text="Extra Information"
-                    android:textColor="@color/textColorPrimary"
+                    android:text="Your Next Birthday"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <com.google.android.material.card.MaterialCardView
@@ -363,7 +246,130 @@
                     android:layout_marginBottom="16dp"
                     app:cardBackgroundColor="@color/cardColorAge"
                     app:cardCornerRadius="8dp"
-                    app:cardElevation="4dp">
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="8dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clYearNext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="52dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/titleMonthsNext"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/cardColorAge"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:paddingHorizontal="4dp"
+                                android:text="Months"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/vNext"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleMonthsNext"
+                                app:layout_constraintEnd_toEndOf="@id/titleMonthsNext"
+                                app:layout_constraintStart_toStartOf="@id/titleMonthsNext"
+                                app:layout_constraintTop_toTopOf="@id/titleMonthsNext" />
+
+                            <TextView
+                                android:id="@+id/txtMonthsValNext"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/vNext" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clDayNext"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/titleDaysNext"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/cardColorAge"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:paddingHorizontal="4dp"
+                                android:text="Days"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/vNext1"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleDaysNext"
+                                app:layout_constraintEnd_toEndOf="@id/titleDaysNext"
+                                app:layout_constraintStart_toStartOf="@id/titleDaysNext"
+                                app:layout_constraintTop_toTopOf="@id/titleDaysNext" />
+
+                            <TextView
+                                android:id="@+id/txtDaysValNext"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:gravity="center"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/vNext1" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:paddingHorizontal="16dp"
+                    android:text="Extra Information"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="@color/cardColorAge"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -373,262 +379,408 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginTop="16dp"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="8dp"
+                            android:paddingHorizontal="16dp"
                             android:paddingVertical="8dp">
 
-                            <TextView
-                                android:id="@+id/txtYearsTotal"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/clYearsTotal"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_semibold"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:text="Years"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp" />
+                                android:layout_height="56dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_weight="1">
 
-                            <TextView
-                                android:id="@+id/txtYearsValTotal"
+                                <TextView
+                                    android:id="@+id/txtYearsTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/cardColorAge"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:paddingHorizontal="4dp"
+                                    android:text="Years"
+                                    android:textColor="@color/blue"
+                                    android:textSize="10sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.2"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <View
+                                    android:id="@+id/vYearsTotal"
+                                    android:layout_width="1dp"
+                                    android:layout_height="1dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/txtYearsTotal"
+                                    app:layout_constraintEnd_toEndOf="@id/txtYearsTotal"
+                                    app:layout_constraintStart_toStartOf="@id/txtYearsTotal"
+                                    app:layout_constraintTop_toTopOf="@id/txtYearsTotal" />
+
+                                <TextView
+                                    android:id="@+id/txtYearsValTotal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/rounded_bg_stroke_4"
+                                    android:elevation="-1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/vYearsTotal" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/clMonthsTotal"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_regular"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:textColor="@color/textColorPrimary"
-                                android:textSize="16sp" />
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="16dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/titleMonthsTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/cardColorAge"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:paddingHorizontal="4dp"
+                                    android:text="Months"
+                                    android:textColor="@color/blue"
+                                    android:textSize="10sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.2"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <View
+                                    android:id="@+id/vMonthsTotal"
+                                    android:layout_width="1dp"
+                                    android:layout_height="1dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/titleMonthsTotal"
+                                    app:layout_constraintEnd_toEndOf="@id/titleMonthsTotal"
+                                    app:layout_constraintStart_toStartOf="@id/titleMonthsTotal"
+                                    app:layout_constraintTop_toTopOf="@id/titleMonthsTotal" />
+
+                                <TextView
+                                    android:id="@+id/txtMonthsValTotal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/rounded_bg_stroke_4"
+                                    android:elevation="-1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/vMonthsTotal" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/age_calc_divider" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="8dp"
+                            android:paddingHorizontal="16dp"
                             android:paddingVertical="8dp">
 
-                            <TextView
-                                android:id="@+id/txtMonthsTotal"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/clWeeksTotal"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_semibold"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:text="Months"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="18sp" />
+                                android:layout_height="56dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_weight="1">
 
-                            <TextView
-                                android:id="@+id/txtMonthsValTotal"
+                                <TextView
+                                    android:id="@+id/txtWeeksTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/cardColorAge"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:paddingHorizontal="4dp"
+                                    android:text="Weeks"
+                                    android:textColor="@color/blue"
+                                    android:textSize="10sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.2"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <View
+                                    android:id="@+id/vWeeksTotal"
+                                    android:layout_width="1dp"
+                                    android:layout_height="1dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/txtWeeksTotal"
+                                    app:layout_constraintEnd_toEndOf="@id/txtWeeksTotal"
+                                    app:layout_constraintStart_toStartOf="@id/txtWeeksTotal"
+                                    app:layout_constraintTop_toTopOf="@id/txtWeeksTotal" />
+
+                                <TextView
+                                    android:id="@+id/txtWeeksValTotal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/rounded_bg_stroke_4"
+                                    android:elevation="-1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/vWeeksTotal" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/clDaysTotal"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_regular"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:textColor="@color/textColorPrimary"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="16dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/titleDaysTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/cardColorAge"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:paddingHorizontal="4dp"
+                                    android:text="Days"
+                                    android:textColor="@color/blue"
+                                    android:textSize="10sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.2"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <View
+                                    android:id="@+id/vDaysTotal"
+                                    android:layout_width="1dp"
+                                    android:layout_height="1dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/titleDaysTotal"
+                                    app:layout_constraintEnd_toEndOf="@id/titleDaysTotal"
+                                    app:layout_constraintStart_toStartOf="@id/titleDaysTotal"
+                                    app:layout_constraintTop_toTopOf="@id/titleDaysTotal" />
+
+                                <TextView
+                                    android:id="@+id/txtDaysValTotal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/rounded_bg_stroke_4"
+                                    android:elevation="-1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/vDaysTotal" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/age_calc_divider" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="8dp"
+                            android:paddingHorizontal="16dp"
                             android:paddingVertical="8dp">
 
-                            <TextView
-                                android:id="@+id/txtWeeksTotal"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/clHoursTotal"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_semibold"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:text="Weeks"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp" />
+                                android:layout_height="56dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_weight="1">
 
-                            <TextView
-                                android:id="@+id/txtWeeksValTotal"
+                                <TextView
+                                    android:id="@+id/txtHoursTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/cardColorAge"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:paddingHorizontal="4dp"
+                                    android:text="Hours"
+                                    android:textColor="@color/blue"
+                                    android:textSize="10sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.2"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <View
+                                    android:id="@+id/vHoursTotal"
+                                    android:layout_width="1dp"
+                                    android:layout_height="1dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/txtHoursTotal"
+                                    app:layout_constraintEnd_toEndOf="@id/txtHoursTotal"
+                                    app:layout_constraintStart_toStartOf="@id/txtHoursTotal"
+                                    app:layout_constraintTop_toTopOf="@id/txtHoursTotal" />
+
+                                <TextView
+                                    android:id="@+id/txtHoursValTotal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/rounded_bg_stroke_4"
+                                    android:elevation="-1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/vHoursTotal" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/clMinutesTotal"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_regular"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:textColor="@color/textColorPrimary"
-                                android:textSize="16sp" />
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="16dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:id="@+id/titleMinutesTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/cardColorAge"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:paddingHorizontal="4dp"
+                                    android:text="Minutes"
+                                    android:textColor="@color/blue"
+                                    android:textSize="10sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.2"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <View
+                                    android:id="@+id/vMinutesTotal"
+                                    android:layout_width="1dp"
+                                    android:layout_height="1dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/titleMinutesTotal"
+                                    app:layout_constraintEnd_toEndOf="@id/titleMinutesTotal"
+                                    app:layout_constraintStart_toStartOf="@id/titleMinutesTotal"
+                                    app:layout_constraintTop_toTopOf="@id/titleMinutesTotal" />
+
+                                <TextView
+                                    android:id="@+id/txtMinutesValTotal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/rounded_bg_stroke_4"
+                                    android:elevation="-1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/vMinutesTotal" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/age_calc_divider" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginBottom="16dp"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="8dp"
+                            android:paddingHorizontal="16dp"
                             android:paddingVertical="8dp">
 
-                            <TextView
-                                android:id="@+id/txtDaysTotal"
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/clSecondsTotal"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_semibold"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:text="Days"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp" />
+                                android:layout_height="56dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_weight="1">
 
-                            <TextView
-                                android:id="@+id/txtDaysValTotal"
+                                <TextView
+                                    android:id="@+id/txtSecondsTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/cardColorAge"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:paddingHorizontal="4dp"
+                                    android:text="Seconds"
+                                    android:textColor="@color/blue"
+                                    android:textSize="10sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.2"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <View
+                                    android:id="@+id/vSecondsTotal"
+                                    android:layout_width="1dp"
+                                    android:layout_height="1dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/txtSecondsTotal"
+                                    app:layout_constraintEnd_toEndOf="@id/txtSecondsTotal"
+                                    app:layout_constraintStart_toStartOf="@id/txtSecondsTotal"
+                                    app:layout_constraintTop_toTopOf="@id/txtSecondsTotal" />
+
+                                <TextView
+                                    android:id="@+id/txtSecondsValTotal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/rounded_bg_stroke_4"
+                                    android:elevation="-1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/vSecondsTotal" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/clPlaceHolder"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="16dp"
                                 android:layout_weight="1"
-                                android:fontFamily="@font/karla_regular"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:textColor="@color/textColorPrimary"
-                                android:textSize="16sp" />
-                        </LinearLayout>
+                                android:visibility="invisible">
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/age_calc_divider" />
+                                <TextView
+                                    android:id="@+id/titlePlaceHolder"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/cardColorAge"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:paddingHorizontal="4dp"
+                                    android:text="Minutes"
+                                    android:textColor="@color/blue"
+                                    android:textSize="10sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.2"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="8dp">
+                                <View
+                                    android:id="@+id/vPlaceHolder"
+                                    android:layout_width="1dp"
+                                    android:layout_height="1dp"
+                                    app:layout_constraintBottom_toBottomOf="@id/titlePlaceHolder"
+                                    app:layout_constraintEnd_toEndOf="@id/titlePlaceHolder"
+                                    app:layout_constraintStart_toStartOf="@id/titlePlaceHolder"
+                                    app:layout_constraintTop_toTopOf="@id/titlePlaceHolder" />
 
-                            <TextView
-                                android:id="@+id/txtHoursTotal"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_semibold"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:text="Hours"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/txtHoursValTotal"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_regular"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:textColor="@color/textColorPrimary"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/age_calc_divider" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="8dp">
-
-                            <TextView
-                                android:id="@+id/txtMinutesTotal"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_semibold"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:text="Minutes"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/txtMinutesValTotal"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_regular"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:textColor="@color/textColorPrimary"
-                                android:textSize="16sp" />
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/age_calc_divider" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="8dp">
-
-                            <TextView
-                                android:id="@+id/txtSecondsTotal"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_semibold"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:text="Seconds"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/txtSecondsValTotal"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/karla_regular"
-                                android:gravity="center_vertical"
-                                android:padding="8dp"
-                                android:textColor="@color/textColorPrimary"
-                                android:textSize="16sp" />
+                                <TextView
+                                    android:id="@+id/txtPlaceHolder"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/rounded_bg_stroke_4"
+                                    android:elevation="-1dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:gravity="center"
+                                    android:textSize="16sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/vPlaceHolder" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
                         </LinearLayout>
                     </LinearLayout>
 
