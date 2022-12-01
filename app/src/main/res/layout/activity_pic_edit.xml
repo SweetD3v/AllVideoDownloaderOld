@@ -5,7 +5,7 @@
     android:id="@+id/activitylayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -27,7 +27,7 @@
                 android:layout_marginStart="8dp"
                 android:padding="4dp"
                 app:srcCompat="@drawable/ic_back"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
 
             <TextView
                 android:id="@+id/app_title"
@@ -38,7 +38,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@string/photo_editor"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/primary"
                 android:fontFamily="@font/karla_semibold"
                 android:text="Save"
@@ -97,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/black"
+                android:background="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -116,7 +116,7 @@
                 android:id="@+id/llTools"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -129,6 +129,7 @@
                     android:layout_gravity="center_horizontal"
                     android:elevation="2dp"
                     android:orientation="horizontal"
+                    android:overScrollMode="never"
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -153,7 +154,7 @@
                 android:id="@+id/filterLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingTop="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -188,7 +189,7 @@
                     android:id="@+id/filterControl"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/black"
+                    android:background="@color/white"
                     android:elevation="50dp"
                     app:layout_constraintBottom_toBottomOf="parent">
 
@@ -212,7 +213,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="Filter"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -236,15 +237,12 @@
 
             <ImageView
                 android:id="@+id/compareOverlay"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/circle_2"
-                android:backgroundTint="#80FF9900"
                 android:clickable="true"
                 android:foreground="@drawable/ripple"
-                android:padding="8dp"
                 android:src="@drawable/compare"
                 app:layout_constraintBottom_toTopOf="@+id/overlayLayout"
                 app:layout_constraintRight_toRightOf="parent" />
@@ -253,7 +251,7 @@
                 android:id="@+id/overlayLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingTop="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -291,7 +289,7 @@
                     android:id="@+id/overlayControl"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/black"
+                    android:background="@color/white"
                     android:elevation="50dp"
                     app:layout_constraintBottom_toBottomOf="parent">
 
@@ -318,7 +316,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="Overlay"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -361,7 +359,7 @@
                 android:id="@+id/adjustLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:elevation="100dp"
                 android:orientation="vertical"
                 android:paddingTop="20dp"
@@ -382,19 +380,19 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvAdjustView"
                     android:layout_width="match_parent"
-                    tools:listitem="@layout/row_adjust_view"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/black"
+                    android:background="@color/white"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintBottom_toTopOf="@+id/adjustControl" />
+                    app:layout_constraintBottom_toTopOf="@+id/adjustControl"
+                    tools:listitem="@layout/row_adjust_view" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/adjustControl"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/black"
+                    android:background="@color/white"
                     android:elevation="50dp"
                     app:layout_constraintBottom_toBottomOf="parent">
 
@@ -419,7 +417,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:singleLine="true"
                         android:text="Adjust"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -498,7 +496,7 @@
                 android:id="@+id/brushLayout"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:elevation="100dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent">
@@ -556,7 +554,7 @@
                     android:id="@+id/brushMenu"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@color/black"
+                    android:background="@color/white"
                     android:elevation="50dp"
                     app:layout_constraintBottom_toBottomOf="parent">
 
@@ -589,7 +587,7 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:text="Pencil"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/brush_magic"
                         app:layout_constraintHorizontal_bias="0.5"

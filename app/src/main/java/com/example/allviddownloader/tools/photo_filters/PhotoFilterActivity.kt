@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,10 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityPhotoFilterBinding
 import com.example.allviddownloader.tools.cartoonify.CartoonActivity
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.*
 import com.zomato.photofilters.SampleFilters
 
-class PhotoFilterActivity : AppCompatActivity() {
+class PhotoFilterActivity : FullScreenActivity() {
     init {
         System.loadLibrary("NativeImageProcessor")
     }
@@ -34,6 +34,12 @@ class PhotoFilterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.rlMain.adjustInsets(this)
+
+        binding.imgBack.setOnClickListener {
+            onBackPressed()
+        }
 
         if (NetworkState.isOnline())
             AdsUtils.loadBanner(
@@ -151,7 +157,7 @@ class PhotoFilterActivity : AppCompatActivity() {
             ThumbnailsManager.addThumb(f6)
 
             val thumbs: MutableList<ThumbnailItem> = ThumbnailsManager.processThumbs(this)
-            val thumbnailsAdapter = ThumbnailsAdapter(thumbs) { filter ->
+            val thumbnailsAdapter = ThumbnailsAdapter(this@PhotoFilterActivity, thumbs) { filter ->
                 val bmp = filter.processFilter(orgBitmap)
                 binding.imgPhoto.setImageBitmap(bmp)
                 filterBmp = bmp
@@ -167,5 +173,9 @@ class PhotoFilterActivity : AppCompatActivity() {
         PhotoFiltersUtils.photoFilterBmp = null
         AdsUtils.destroyBanner()
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }

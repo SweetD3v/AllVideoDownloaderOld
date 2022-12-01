@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/thumb_background_color">
+    android:layout_margin="4dp">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/thumbnail"
         android:layout_width="@dimen/thumbnail_size"
         android:layout_height="@dimen/thumbnail_size"
-        android:paddingLeft="@dimen/thumbnail_horizontal_padding"
-        android:paddingRight="@dimen/thumbnail_horizontal_padding"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/main_font"
+        app:riv_corner_radius="4dp" />
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/llRoot"
+        android:layout_width="@dimen/thumbnail_size"
+        android:layout_height="@dimen/thumbnail_size"
+        android:background="@drawable/bg_rounded_stroke_4"
+        android:elevation="2dp"
+        android:orientation="vertical" />
+</FrameLayout>

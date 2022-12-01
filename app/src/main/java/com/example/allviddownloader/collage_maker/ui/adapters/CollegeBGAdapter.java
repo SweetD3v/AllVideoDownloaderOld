@@ -101,11 +101,8 @@ public class CollegeBGAdapter extends RecyclerView.Adapter<CollegeBGAdapter.View
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         public ImageView imageView;
-
         public View squareView;
-
         public ConstraintLayout wrapSquareView;
 
         public ViewHolder(View view) {

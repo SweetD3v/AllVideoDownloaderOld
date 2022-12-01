@@ -16,6 +16,8 @@ import android.os.*
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -231,17 +233,14 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
             }
         }
 
-    override fun onCreate(bundle: Bundle?) {
-        super.onCreate(bundle)
-        requestWindowFeature(1)
-        window.setFlags(1024, 1024)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
         if (NetworkState.isOnline()) AdsUtils.loadBanner(
             this, getString(R.string.banner_id_details),
             binding.bannerContainer
         )
         toolbar = findViewById(R.id.toolbar)
-        (toolbar.findViewById<View>(R.id.app_title) as TextView).text = ""
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener({ v: View? -> onBackPressed() })
         PhotoFiltersUtils.string = "XYZ"
@@ -299,8 +298,12 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
             rvPieceControl.layoutParams = layoutParams
             currentMode = NONE
         }
-        puzzleView.post { PhotoFiltersUtils.loadPhoto(this,
-        lstPaths, puzzleLayout, puzzleView, targets, deviceWidth) }
+        puzzleView.post {
+            PhotoFiltersUtils.loadPhoto(
+                this,
+                lstPaths, puzzleLayout, puzzleView, targets, deviceWidth
+            )
+        }
         findViewById<ImageView>(R.id.imgCloseLayout).setOnClickListener(onClickListener)
         findViewById<ImageView>(R.id.imgSaveLayout).setOnClickListener(onClickListener)
         findViewById<ImageView>(R.id.imgCloseBackground).setOnClickListener(onClickListener)
@@ -330,7 +333,7 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
         radiusLayout = findViewById(R.id.radioLayout)
         radiusLayout.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         radiusLayout.adapter = previewAspectRatioAdapter
-        val saveBitmap: MaterialButton = findViewById(R.id.save)
+        val saveBitmap = findViewById<TextView>(R.id.save)
         saveBitmap.visibility = View.VISIBLE
         saveBitmap.setOnClickListener { view: View? ->
             saveImage()

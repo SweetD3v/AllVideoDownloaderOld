@@ -6,10 +6,10 @@ class CustomAspectRatio extends AspectRatio {
     private int selectedIem;
     private int unselectItem;
 
-    CustomAspectRatio(int from, int to, int drawable1, int drawable2) {
+    CustomAspectRatio(int from, int to, int unselectItem, int selectedIem) {
         super(from, to);
-        this.selectedIem = drawable2;
-        this.unselectItem = drawable1;
+        this.selectedIem = selectedIem;
+        this.unselectItem = unselectItem;
     }
 
     public int getSelectedIem() {

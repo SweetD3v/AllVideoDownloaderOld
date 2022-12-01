@@ -1,5 +1,7 @@
 package com.example.allviddownloader.tools.photo_filters;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,24 +9,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.allviddownloader.R;
 import com.example.allviddownloader.databinding.ListThumbnailItemBinding;
 
 import java.util.List;
 
 public class ThumbnailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = "THUMBNAILS_ADAPTER";
-    private static int lastPosition = -1;
+    private int lastPosition = 0;
     private ThumbnailCallback thumbnailCallback;
     private List<ThumbnailItem> dataSet;
+    Context context;
 
-    public ThumbnailsAdapter(List<ThumbnailItem> dataSet, ThumbnailCallback thumbnailCallback) {
-        Log.v(TAG, "Thumbnails Adapter has " + dataSet.size() + " items");
+    public ThumbnailsAdapter(Context context, List<ThumbnailItem> dataSet, ThumbnailCallback thumbnailCallback) {
+        this.context = context;
         this.dataSet = dataSet;
         this.thumbnailCallback = thumbnailCallback;
     }
-
 
     @NonNull
     @Override
@@ -35,23 +39,27 @@ public class ThumbnailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        final ThumbnailItem thumbnailItem = dataSet.get(holder.getAdapterPosition());
-        Log.v(TAG, "On Bind View Called");
+        final ThumbnailItem thumbnailItem = dataSet.get(holder.getBindingAdapterPosition());
+
         ThumbnailsViewHolder thumbnailsViewHolder = (ThumbnailsViewHolder) holder;
         ListThumbnailItemBinding binding = thumbnailsViewHolder.binding;
         binding.thumbnail.setImageBitmap(thumbnailItem.getImage());
         binding.thumbnail.setScaleType(ImageView.ScaleType.FIT_START);
-        setAnimation(holder.getAdapterPosition());
+
+        if (lastPosition == holder.getBindingAdapterPosition()) {
+            binding.llRoot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.blue)));
+        } else {
+            binding.llRoot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.black)));
+        }
+
         binding.getRoot().setOnClickListener((View.OnClickListener) v -> {
-            if (lastPosition != holder.getAdapterPosition()) {
+            if (lastPosition != holder.getBindingAdapterPosition()) {
+                binding.llRoot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.blue)));
+                notifyItemChanged(lastPosition, new Object());
                 thumbnailCallback.onThumbnailClick(thumbnailItem.getFilter());
-                lastPosition = holder.getAdapterPosition();
+                lastPosition = holder.getBindingAdapterPosition();
             }
         });
-    }
-
-    private void setAnimation(int position) {
-        lastPosition = position;
     }
 
     @Override

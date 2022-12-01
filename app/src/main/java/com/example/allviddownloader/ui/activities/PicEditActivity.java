@@ -24,7 +24,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -34,7 +33,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
@@ -90,7 +88,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressLint("StaticFieldLeak")
-public class PicEditActivity extends AppCompatActivity implements OnPhotoEditorListener, View.OnClickListener,
+public class PicEditActivity extends BaseActivity implements OnPhotoEditorListener, View.OnClickListener,
         PicsartCropDialogFragment.OnCropPhoto, BrushColorListener, BrushMagicListener,
         InstaDialog.InstaSaveListener, SplashDialog.SplashDialogListener, MosaicDialog.MosaicDialogListener,
         BottomToolsAdapter.OnItemSelected, FilterListener, AdjustListener {
@@ -172,8 +170,6 @@ public class PicEditActivity extends AppCompatActivity implements OnPhotoEditorL
             AdsUtils.Companion.loadBanner(this, getString(R.string.banner_id_details),
                     binding.bannerContainer);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(1024, 1024);
         setContentView(binding.getRoot());
         initViews();
         refreshAddialog();

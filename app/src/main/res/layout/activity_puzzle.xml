@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/puzzle_layout"
@@ -19,7 +19,7 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back">
+            app:navigationIcon="@drawable/ic_back_black">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -27,29 +27,32 @@
 
                 <TextView
                     android:id="@+id/app_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
-                    android:gravity="center_vertical"
+                    android:layout_toStartOf="@id/save"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="@string/collage_maker"
-                    android:textColor="@color/white"
+                    android:text="@string/collage"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <com.google.android.material.button.MaterialButton
+                <TextView
                     android:id="@+id/save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/primary"
-                    android:fontFamily="@font/karla_semibold"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/blue"
+                    android:fontFamily="@font/gilroy_medium"
                     android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
                     android:text="@string/save"
-                    android:textAllCaps="false"
+                    android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:rippleColor="#939292" />
@@ -109,7 +112,7 @@
             android:id="@+id/changeLayoutLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/black"
+            android:background="@color/white"
             android:elevation="6dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -158,7 +161,7 @@
                         android:layout_height="25.0dip"
                         android:layout_centerVertical="true"
                         android:src="@drawable/border_1"
-                        app:tint="@color/white" />
+                        app:tint="@color/black" />
 
                     <SeekBar
                         android:id="@+id/sk_border"
@@ -166,10 +169,10 @@
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@id/ic_border"
                         android:max="30"
-                        android:progressBackgroundTint="@color/white"
-                        android:progressTint="@color/accent"
-                        android:thumb="@drawable/seekbar_pointer1"
-                        android:thumbTint="@color/accent" />
+                        android:progressBackgroundTint="@color/progress_bg_tint"
+                        android:progressTint="@color/black"
+                        android:thumb="@drawable/circle_bg_black"
+                        android:thumbTint="@color/blue" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -183,17 +186,17 @@
                         android:layout_height="25.0dip"
                         android:layout_centerVertical="true"
                         android:src="@drawable/b_2"
-                        app:tint="@color/white" />
+                        app:tint="@color/black" />
 
                     <SeekBar
                         android:id="@+id/sk_border_radius"
                         style="@style/SeekBaStyle"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@id/ic_padding"
-                        android:progressBackgroundTint="@color/white"
-                        android:progressTint="@color/accent"
-                        android:thumb="@drawable/seekbar_pointer1"
-                        android:thumbTint="@color/accent" />
+                        android:progressBackgroundTint="@color/progress_bg_tint"
+                        android:progressTint="@color/black"
+                        android:thumb="@drawable/circle_bg_black"
+                        android:thumbTint="@color/blue" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -201,7 +204,7 @@
                 android:id="@+id/layoutControl"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:elevation="8dp"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -215,7 +218,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_change_layout"
@@ -225,7 +228,7 @@
                     android:paddingLeft="8.0dip"
                     android:paddingRight="8.0dip"
                     android:text="Layout"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/imgSaveLayout"
@@ -240,7 +243,7 @@
                     android:paddingLeft="8.0dip"
                     android:paddingRight="8.0dip"
                     android:text="Border"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -256,7 +259,7 @@
                     android:paddingLeft="8.0dip"
                     android:paddingRight="8.0dip"
                     android:text="Ratio"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -274,7 +277,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/black" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -282,7 +285,7 @@
             android:id="@+id/changeBackgroundLayout"
             android:layout_width="0.0dip"
             android:layout_height="150.0dip"
-            android:background="@color/black"
+            android:background="@color/white"
             android:elevation="6dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -328,7 +331,7 @@
                 android:id="@+id/layoutBackground"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                android:background="@color/black"
+                android:background="@color/white"
                 android:elevation="4dp"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -353,7 +356,7 @@
                     android:paddingLeft="8.0dip"
                     android:paddingRight="8.0dip"
                     android:text="Color"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tv_radian"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -369,7 +372,7 @@
                     android:paddingLeft="8.0dip"
                     android:paddingRight="8.0dip"
                     android:text="Gradient"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -384,7 +387,7 @@
                     android:paddingLeft="8.0dip"
                     android:paddingRight="8.0dip"
                     android:text="Blur"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/imgSaveBackground"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -401,7 +404,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/black" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -409,9 +412,10 @@
             android:id="@+id/rvConstraintTools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
+            android:background="@color/white"
             android:elevation="4dp"
             android:orientation="vertical"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

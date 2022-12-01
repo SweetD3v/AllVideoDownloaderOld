@@ -256,7 +256,7 @@
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="center_horizontal"
-                            android:text="@string/instagram"
+                            android:text="@string/photo_editor"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>

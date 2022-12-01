@@ -1,13 +1,11 @@
 package com.example.allviddownloader.collage_maker.features.crop.adapter;
 
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.allviddownloader.R;
@@ -27,18 +25,16 @@ public class AspectRatioPreviewAdapter extends RecyclerView.Adapter<AspectRatioP
     }
 
     public AspectRatioPreviewAdapter() {
-        this.ratios = Arrays.asList(new CustomAspectRatio[]{
-                new CustomAspectRatio(10, 10, R.drawable.crop_free, R.drawable.crop_free_click),
-                new CustomAspectRatio(1, 1, R.drawable.ratio_1_1, R.drawable.ratio_1_1),
-                new CustomAspectRatio(4, 3, R.drawable.ratio_4_3, R.drawable.ratio_4_3),
-                new CustomAspectRatio(3, 4, R.drawable.ratio_3_4, R.drawable.ratio_3_4),
-                new CustomAspectRatio(5, 4, R.drawable.ratio_5_4, R.drawable.ratio_5_4),
-                new CustomAspectRatio(4, 5, R.drawable.ratio_4_5, R.drawable.ratio_4_5),
-                new CustomAspectRatio(3, 2, R.drawable.ratio_3_2, R.drawable.ratio_3_2),
-                new CustomAspectRatio(2, 3, R.drawable.ratio_2_3, R.drawable.ratio_2_3),
-                new CustomAspectRatio(9, 16, R.drawable.ratio_9_16, R.drawable.ratio_9_16),
-                new CustomAspectRatio(16, 9, R.drawable.ratio_16_9, R.drawable.ratio_16_9)
-        });
+        this.ratios = Arrays.asList(new CustomAspectRatio(10, 10, R.drawable.crop_free, R.drawable.crop_free_click),
+                new CustomAspectRatio(1, 1, R.drawable.ratio_1_1, R.drawable.ratio_1_1_click),
+                new CustomAspectRatio(4, 3, R.drawable.ratio_4_3, R.drawable.ratio_4_3_click),
+                new CustomAspectRatio(3, 4, R.drawable.ratio_3_4, R.drawable.ratio_3_4_click),
+                new CustomAspectRatio(5, 4, R.drawable.ratio_5_4, R.drawable.ratio_5_4_click),
+                new CustomAspectRatio(4, 5, R.drawable.ratio_4_5, R.drawable.ratio_4_5_click),
+                new CustomAspectRatio(3, 2, R.drawable.ratio_3_2, R.drawable.ratio_3_2_click),
+                new CustomAspectRatio(2, 3, R.drawable.ratio_2_3, R.drawable.ratio_2_3_click),
+                new CustomAspectRatio(9, 16, R.drawable.ratio_9_16, R.drawable.ratio_9_16_click),
+                new CustomAspectRatio(16, 9, R.drawable.ratio_3_2, R.drawable.ratio_3_2_click));
         this.selectedRatio = this.ratios.get(0);
     }
 
@@ -50,10 +46,10 @@ public class AspectRatioPreviewAdapter extends RecyclerView.Adapter<AspectRatioP
         CustomAspectRatio customAspectRatio = this.ratios.get(position);
         if (position == lastSelectedView) {
             viewHolder.ratioView.setImageResource(customAspectRatio.getSelectedIem());
-            viewHolder.ratioView.setColorFilter(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.colorAccentLight), PorterDuff.Mode.MULTIPLY);
+//            viewHolder.ratioView.setColorFilter(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.colorAccentLight), PorterDuff.Mode.MULTIPLY);
         } else {
             viewHolder.ratioView.setImageResource(customAspectRatio.getUnselectItem());
-            viewHolder.ratioView.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.MULTIPLY);
+//            viewHolder.ratioView.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.MULTIPLY);
         }
     }
 

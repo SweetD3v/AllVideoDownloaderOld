@@ -63,4 +63,6 @@
     <color name="hint_color_age_calc">#7f7f7f</color>
     <color name="blue">#00a5f7</color>
     <color name="_818181">#818181</color>
+    <color name="progress_bg_tint">#d1d1d1</color>
+    <color name="textcolor_tools">#d1d1d1</color>
 </resources>
