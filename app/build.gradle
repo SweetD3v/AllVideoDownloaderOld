@@ -35,6 +35,8 @@ android {
             resValue("string", "banner_id_details", "ca-app-pub-3940256099942544/6300978111")
             resValue("string", "interstitial_id", "ca-app-pub-3940256099942544/1033173712-")
             resValue("string", "admob_native_id", "ca-app-pub-3940256099942544/2247696110")
+
+            resValue("string", "playstore_url", "\"https://play.google.com/store/apps/details?id=%s\"")
         }
         release {
             resValue("string", "rapid_api_key", "3fe1bd0f0amshee4af0f8309384ap1c0032jsn137ef742b00d")
@@ -48,6 +50,8 @@ android {
             resValue("string", "banner_id_details", "ca-app-pub-3940256099942544/6300978111")
             resValue("string", "interstitial_id", "ca-app-pub-3940256099942544/1033173712-")
             resValue("string", "admob_native_id", "ca-app-pub-3940256099942544/2247696110")
+
+            resValue("string", "playstore_url", "\"https://play.google.com/store/apps/details?id=%s\"")
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

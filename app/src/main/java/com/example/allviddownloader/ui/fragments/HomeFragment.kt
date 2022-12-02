@@ -16,11 +16,13 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import com.ashudevs.facebookurlextractor.FacebookExtractor
 import com.ashudevs.facebookurlextractor.FacebookFile
 import com.downloader.Error
 import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
+import com.example.allviddownloader.BuildConfig
 import com.example.allviddownloader.R
 import com.example.allviddownloader.adapters.StoriesListAdapter
 import com.example.allviddownloader.collage_maker.ui.activities.CollageMakerHomeActivity
@@ -51,6 +53,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.io.*
 import java.net.*
+import java.util.*
 import java.util.regex.Pattern
 
 
@@ -196,6 +199,26 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
         commonClassForAPI = CommonClassForAPI()
 
         binding.run {
+            navigationView.run {
+                txtVersion.text = BuildConfig.VERSION_NAME
+
+                llRate.setOnClickListener {
+                    openPlayStore()
+                }
+
+                llShare.setOnClickListener {
+
+                }
+
+                llPrivacyPolicy.setOnClickListener {
+
+                }
+
+                imgBackDrawer.setOnClickListener {
+                    drawerLayout.closeDrawer(GravityCompat.END)
+                }
+            }
+
             llInstagram.setOnClickListener {
                 AdsUtils.clicksCountTools++
                 if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
@@ -211,6 +234,10 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                 } else {
                     startActivity(Intent(ctx, InstaDownloaderHomeActivity::class.java))
                 }
+            }
+
+            imgDrawer.setOnClickListener {
+                binding.drawerLayout.openDrawer(GravityCompat.END)
             }
 
             llFacebook.setOnClickListener {
@@ -607,6 +634,20 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
 //                }
 //            }
         }
+    }
+
+    private fun openPlayStore() {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(
+                    getString(
+                        R.string.playstore_url,
+                        ctx.packageName
+                    )
+                )
+            )
+        )
     }
 
     private fun initInstaSheet(instaSheetBinding: BottomsheetInstaBinding) {

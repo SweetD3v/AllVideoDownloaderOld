@@ -65,4 +65,8 @@
     <color name="_818181">#818181</color>
     <color name="progress_bg_tint">#d1d1d1</color>
     <color name="textcolor_tools">#d1d1d1</color>
+    <color name="white_home">#99FFFFFF</color>
+    <color name="blue_dark">#0d81ff</color>
+    <color name="green_tint">#1cbc00</color>
+    <color name="text_color_drawer">#626262</color>
 </resources>

@@ -43,128 +43,99 @@
         android:layout_marginBottom="48dp"
         android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:id="@+id/llEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="#F9F5FF"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:rippleColor="#33A89BBC">
+            android:background="@drawable/bg_rounded_edit_home"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="84dp"
+                    android:layout_height="72dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_edit_home" />
+            </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp">
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_bg_white_16"
-                    android:backgroundTint="#53289A">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="108dp"
-                        android:layout_height="108dp"
-                        android:layout_centerInParent="true"
-                        android:padding="16dp"
-                        app:srcCompat="@drawable/ic_cartoonify"
-                        app:tint="#F9F5FF" />
-                </RelativeLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="16dp"
-                    android:orientation="vertical">
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:text="Edit"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="Edit"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/karla_semibold"
-                        android:text="Make amazing photos"
-                        android:textColor="@color/text_unselected"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="Make amazing photos"
+                    android:textColor="@color/white_home"
+                    android:textSize="14sp" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:id="@+id/llMyCreation"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="#FFF9E6"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:rippleColor="#33CABAB0">
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_rounded_edit_home"
+            android:backgroundTint="@color/green_tint"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="84dp"
+                    android:layout_height="72dp"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_creation_home" />
+            </RelativeLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp">
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_bg_white_16"
-                    android:backgroundTint="#FFC107">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="108dp"
-                        android:layout_height="108dp"
-                        android:layout_centerInParent="true"
-                        android:padding="16dp"
-                        app:srcCompat="@drawable/ic_cartoonify"
-                        app:tint="#FFF0E9" />
-                </RelativeLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="16dp"
-                    android:orientation="vertical">
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="My Creation"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="My Creation"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/karla_semibold"
-                        android:text="See your creations &amp; share with your friends"
-                        android:textColor="@color/text_unselected"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/karla_semibold"
+                    android:text="See your creations &amp; share with your friends"
+                    android:textColor="@color/white_home"
+                    android:textSize="14sp" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
     </LinearLayout>
 
     <FrameLayout
