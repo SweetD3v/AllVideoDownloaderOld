@@ -8,4 +8,5 @@
     <dimen name="rv_margin">16dp</dimen>
     <dimen name="thumbnail_size">56dp</dimen>
     <dimen name="thumbnail_horizontal_padding">8dp</dimen>
+    <dimen name="toolbar_height">64dp</dimen>
 </resources>

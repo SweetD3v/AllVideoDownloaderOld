@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/rlMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/imgDownloads"
+                android:fontFamily="@font/gilroy_semibold"
+                android:gravity="center"
+                android:text="@string/cleaner"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDownloads"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:padding="10dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_download_top" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rlMain"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llAppCleaner"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:background="#e5f1fd"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_app_cleaner" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="36dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center_vertical"
+                    android:text="@string/app_cleaner"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llJunkCleaner"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:layout_marginTop="16dp"
+                android:background="#e3f3de"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_junk_file" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="36dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center_vertical"
+                    android:text="@string/junk_file"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPhoneBooster"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:layout_marginTop="16dp"
+                android:background="#f9eccc"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_phone_boost" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="36dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center_vertical"
+                    android:text="@string/phone_boost"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llBatterySaver"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:layout_marginTop="16dp"
+                android:background="#fae3ff"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_battery_saver_new" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="36dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center_vertical"
+                    android:text="@string/battery_saver"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

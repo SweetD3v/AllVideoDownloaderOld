@@ -103,13 +103,44 @@
         </LinearLayout>
     </ScrollView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAppsThreats"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/bannerContainer"
         android:layout_below="@id/toolbar"
-        android:layout_marginTop="8dp"
-        tools:listitem="@layout/item_junk_files" />
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAppsThreats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="72dp"
+                tools:listitem="@layout/item_junk_files" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/btnCleanJunk"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_above="@+id/bannerContainer"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="24dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/top_bar_gradient_pink1"
+        android:elevation="8dp"
+        android:fontFamily="@font/gilroy_bold"
+        android:gravity="center"
+        android:text="@string/clean"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
     <FrameLayout
         android:id="@+id/bannerContainer"

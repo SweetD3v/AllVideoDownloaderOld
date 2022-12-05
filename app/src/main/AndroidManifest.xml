@@ -51,6 +51,11 @@
         tools:targetApi="30">
 
         <activity
+            android:name=".tools.cleaner.CleanerHomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".speedtest.SpeedTestActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

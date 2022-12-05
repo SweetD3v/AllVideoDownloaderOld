@@ -34,6 +34,7 @@ import com.example.allviddownloader.databinding.FragmentHomeNewBinding
 import com.example.allviddownloader.databinding.ViewDialogBinding
 import com.example.allviddownloader.models.*
 import com.example.allviddownloader.tools.age_calc.AgeCalculatorActivity
+import com.example.allviddownloader.tools.cleaner.CleanerHomeActivity
 import com.example.allviddownloader.tools.compress.PhotoCmpHomeActivity
 import com.example.allviddownloader.tools.insta_grid.InstaGridActivity
 import com.example.allviddownloader.tools.photo_filters.PhotoFilterHomeActivity
@@ -424,11 +425,11 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                         ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
-                                startActivity(Intent(ctx, CleanerActivity::class.java))
+                                startActivity(Intent(ctx, CleanerHomeActivity::class.java))
                             }
                         })
                 } else {
-                    startActivity(Intent(ctx, CleanerActivity::class.java))
+                    startActivity(Intent(ctx, CleanerHomeActivity::class.java))
                 }
             }
 

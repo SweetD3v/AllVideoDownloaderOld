@@ -18,6 +18,7 @@ import com.example.allviddownloader.phone_booster.app_utils.getAllAppsPermission
 import com.example.allviddownloader.phone_booster.models.AppModel
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.AdsUtils.Companion.loadInterstitialAd
+import com.example.allviddownloader.widgets.MarginItemDecoration
 
 class CleanerActivity : FullScreenActivity() {
     val binding by lazy { ActivityCacheCleanerBinding.inflate(layoutInflater) }
@@ -220,6 +221,7 @@ class CleanerActivity : FullScreenActivity() {
 
                 }
             }
+            rvAppsThreats.addItemDecoration(MarginItemDecoration(dpToPx(8)))
             rvAppsThreats.adapter = junkAdapter
             junkAdapter.updateList(junkAppsList)
 
@@ -290,6 +292,7 @@ class CleanerActivity : FullScreenActivity() {
             val appModel = junkAppsList[holder.bindingAdapterPosition]
 
             holder.binding.run {
+                imgAppIcon.setImageDrawable(appModel.icon)
                 txtAppName.text = appModel.appName
                 txtCacheVal.text = appModel.appSize
             }

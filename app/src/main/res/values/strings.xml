@@ -85,6 +85,11 @@
     <string name="delete">Delete</string>
     <string name="ignore">Ignore</string>
     <string name="permissions">Permissions:</string>
+    <string name="clean">Clean</string>
+    <string name="app_cleaner">App Cleaner</string>
+    <string name="junk_file">Junk File</string>
+    <string name="phone_boost">Phone Boost</string>
+    <string name="battery_saver">Battery Saver</string>
 
     <string-array name="wallp_arr">
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fJjphUzRq64EoCViXztAyJXBE6kzAnIAf6sJKArZzASRmUaJESz2r1qWMzUZxuXHaAR3eJuOGxiQej_3hdFzaBkV_OQDwPhjtBt26EGoqOoy6LkvDNq65oes5QZk5Cv__RagBLcBDkvL-4riMOdFbbK5Dwnms_E628Mh6P1OfhwHn35r8yMR6poY/s1280/photo_2022-09-17_06-02-57.jpg</item>
@@ -123,9 +128,21 @@
     </string-array>
 
     <string-array name="status_arr">
-        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjG4e8YfrYiqux6I6tAELI7h8gbwNkL0P5pYzFSLRxhF51q5NILgNeuiuwe8B3qqJ0ituNo4tgW16XGkuiSLSyCn5Ld8GH-zg9jA-VB8AOn8-9IZzrOZJOUsixNeYG4Y-4Z4xEOC6nYX47mrPump4-EMaxw00PVPFuU3sXnG-7bHJbbhkvyzg6M0XLw/s320/5%20(1).png</item>
-        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg7F7EbmyeUXwgxlUiJmi_43uNvz1r2rWf746FdWGi8yoalMT8M8hyJ15xj032_VFSJtsQwqm6emg8VLFeeMSiUaiIFUDYLXdSHOX73VWvwAiKM31HQWEjhlEj3Ph8N0dLYZ9FkoK21SMZ_WXvXw1TTr470x4vLh5EUobv4HfJP3JMuoccGG4SE5Fzy/s320/3.png</item>
-        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikPbxRyrLX261Px0p6UQ1XwU_o6suN8r2d9HhkQWpNGkSxOorXe0UlCZYce81mhI4RVmHAH8GB3RULXik2jhEutWnZqpoLzUetKacXObZ7M2m7ZYJEVWA2C0EfZ0Fe8lgksjsMQce9dCuW__8R7UFNVtWQK-EgrMAoO_j3RrGKa6S4uq8-04VXjWcQ/s320/2.png</item>
-        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEXHuvdM-gMZvjmtpf0fRXewEz5XfXqyrGk5_oi1Wj-fSDNC8IZ9gSvdfRFCGf7TSF6IC6o9QiW6K2mf9z_MdXpz1WprR-Ll52P3BMOxH3RidamT5y3WIM8o1lgfF_BG3A0-Otlg5GidVHswS9g9PNUoJdPGDdCjuW1A3Zyu0uU_FN2vqWUEjvagiu/s320/1.png</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj3qhD3FuM75CJWzh-I4y7LeSu-HPvPm3oIY7bvhtiZjQQNh21uHYkSI_6Baj57ymJgPPTfBOcxvhXRP-js9Seqi9yLKIN6-ri5DCsFtNbOQg3saf4ffCW9XqKW174l17bfycXwNs6s_RicvBlHKzlx8A4JkM60m--V_3RuVIDvIk9LRXNJ7MfIyeSX/s1920/1.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgIHcql1_UJlXY9PU1z9Mu9eIViSnVf5m0LxRyT-o7z2BZAX8Nyj8Xue08SGWifCOgN26--P8S2uPBIMNJIGH5Z-4WOlGocCsBGGrxxFM4d1h_FM8s58rvyEkQBmLw0LOc8PBgiUmFy3Di2CAjspiOabQDgsvNl9raRbl6Z_A56DPKtW0rUAaSO2IU/s1920/2.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0ae0jUYASFYIZQQG9N9hZQEcAuQm5z-Pz26H7CJ71MXynWf408gXm5MAA85O-i6G3YfqpV9Pdn3N4ACAJVIC8yMnJzO5tT9oHGzmJSdLXJEdI0oEiBfUE0d_Ci-UCiBjcEd6M2vf5gpPL_TXa9_SOhNrfu4Sn7yGvNMbMZYmGG3n0MZu0HnwLg9Pv/s1920/3.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivBu8ooRG4dGNXdXcdNnV2jeJp_0AWXMdOZPRimSmv9l6LA6NVyVeDTaGPlMgJy3ZrsNHlfGTnAP55KEe2snhSPUglcp_e_m-xx7hKSPyJpajRerU4xlXL7XGUUP_akCZWvH_SCaJ6WBr51ukbUHyTpswf_3wIRQpd9vM0k3mrvK40rS7sgxnv0dfy/s1920/4.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivBu8ooRG4dGNXdXcdNnV2jeJp_0AWXMdOZPRimSmv9l6LA6NVyVeDTaGPlMgJy3ZrsNHlfGTnAP55KEe2snhSPUglcp_e_m-xx7hKSPyJpajRerU4xlXL7XGUUP_akCZWvH_SCaJ6WBr51ukbUHyTpswf_3wIRQpd9vM0k3mrvK40rS7sgxnv0dfy/s1920/4.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgbLCrXTuSfwdk-PS1xr_Uu6PyTn_g8PQThbP-GNwm_JSdnXisJ-7MRY7rsXncdTG8SRjgSisM0gIAhNWk-BVPEiVh_4KycwRpzNpEzKNh1u_GCz4-VfhPDeEgFpmQtCrF6sPzyKMVOax_-PyAsUdpDeo8oGNCXA09ThWnqKmrfZSj9gcO3WOXK1GdD/s1920/5.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgCwpU5bgtvovhPuI8YjY9D-uKVxnkd27h3ABSwOttSqoKU2lbeqm-y4BXe3wFnzJuqlvjz363eOOK5jwzxPAayF7pohAQcvU2Qx8YJPOQtvuK54Eq-SY5AVvJhaZFP0gmQ33aJjg76Z5Mh04jKy9TKgWIxQTA7Gb3XJrMY1I5l_uMgSUrJC1GOm2OS/s1920/6.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgF-pEoS1UftliXRk6Xod0AXpvbIjqvfkAoLzzQfQ9TwiBf0GD3Hf2Wt_iGV7fz2wCv0Eab6iQ9noQOi03b1lNeK9Wup-RWWXI8Mo627HV7DQRinES7yLXOBT0_CT0Ph-ZnK93qE9F2DAAFgxI9wKFIu_kRK_IGFQ8ztpKh81foFh62a4gmHuq5E4xR/s1920/7.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvib97Ze9VoPlLw9feHLGycMFGCYt5J9Ks8IQsIj7cunPPV1MFXJ0fKYQF2vPFYrjUezmC--LaRZdriV1JcwNfaPJRxCLLRyG8vCvcAoKR0xIvIPrntb8lNuOlthdRYOkDFNqms9JDkikgDR5hBWps5C-R96r5EX2ZyNoO88PrX9wShMRh-od43N9G/s1920/8.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIvqHVvn6r90vpck_xpOgqYDNXz0MWi1w9dm3ryKv2hBhpC03PKQJ0-C3W7mKIoHSXo-9ra-ekl2-3AWRzvz41f9DQWP2uRZM0LdoCsV3qKbiM-_d0okbB5fIh9PAcSimvVn2zmSJHg0xwc-E5yjSMLRR6h06xxApTad658-UwhOtu3TrayfxfKPX-/s1920/9.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuUF7LRNaDY7Yy-iTKl5sIkG1mAAR2P2EbLm1nnW9GN9Bs019f34D-d8Ig1AzntH2QVfNStMqpNgdLwXhl-1rK-X_mQDTdyybgQDO0zA0HuiAo8gnEqU9aRvogVktVBWbeZcauEKTgS3lHT7sRY80oOVUeNdQWFBddaIt5KW4z5UNhIj6BgCEWP3hj/s1920/10.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj6IuwWYjcfUeyaxYXvRMJMbx5jShx5tCS3b3rRB5mPKPWJZ2Xm09ECd37RKrfC-DG8dZsemZXpA9lEcA0Rlq-9TGO40TdtxwafCUIlCtAHQKekBCVUPklFRhBVttPheX8Apny-6CdpRdvJMLesRvVHJMSMPKq-_hIPrlBEa9APL9dooHLLI2DtNafH/s1920/11.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhXUdAloiM4L5y2JOtYJbJfp8uuWHRC8VBSRqCyIt7KOlNq9aIdqQGFulfsLtgwEdvUBScFJWpuTPotnth_9iBoxFUoQs4kTee5pAlgP8R_qxSif0MEWWkrRFJcZtFlzqPdS-fCzxy4XFhB1_TO5fifqJzdRS2SlKfnv_sVameReNTbPCOrrHiGJJlm/s1920/12.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgV_Q6PNb2xC5JjVeyJlfpe2hzYxj7BVrQBGES7yAxCKY7TWh4YLVbtXFETGSsv_nvwb6hb28-kzsnGFURNwv_0rWM81KT2yL-nS3SHt4hm3EDlzLWsXBoPCXDm8TL0EYkLYFmJiS1wJfiqTnlTpXb42CSwo4cIBHd7cX4SocZU73JMO6v3ZiSEc4VS/s1920/13.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgf0iZLFZBjSzuEAo3RyOP85z1pVoxsyUYNClsds0wuVPB8QjOC5gtaBAqPxWCdBFWgfwXTtviunQB7_neDivpL4B5MrleHh14yamnccTat19js2Q24_S2CgdhOwAuIXWaI4urBRyx9G5i-b0LkrEzENDZe3IpoGKSmhaHCWF5oCn8KFUSj5srKo2KT/s1920/14.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFFgaSq3UIEgKUWKgQpKN9yTuXjg6M9MtcePylMbTxUh38H99BzUgyHKfj36vLldi3U99fxNjrjKSB6FSzkVarFylw12zLUW7x2b-KBO_tbnAyt3lwibiWI_HMSKpmWfpBzyDpKt43Ds9c1NYjvNT2vAKYg0OscX2s5cAuaB1W1819IVxEJxZc2UZf/s1920/15.jpg</item>
     </string-array>
 </resources>
