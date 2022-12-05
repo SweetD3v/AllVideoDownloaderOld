@@ -32,7 +32,7 @@ import java.io.File
 
 class FullViewWhatsappActivity : AppCompatActivity() {
     val binding by lazy { ActivityFullviewWaBinding.inflate(layoutInflater) }
-    val imagesList = mutableListOf<Media>()
+    var imagesList = mutableListOf<Media>()
     var position = 0
     val extFile by lazy { File(getExternalFilesDir("Videos"), "video.mp4") }
     var isVideo = false
@@ -162,24 +162,45 @@ class FullViewWhatsappActivity : AppCompatActivity() {
             isVideo = intent.getStringExtra("type").equals("video")
         }
 
-        if (!isVideo) {
-            binding.fabSetWP.visibility = View.GONE
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                loadImages()
-            } else {
-                executeImageOld()
-            }
-        } else {
-            binding.fabSetWP.visibility = View.VISIBLE
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                loadVideo()
-            } else {
-                executeVideoOld()
-            }
-        }
+//        if (!isVideo) {
+//            binding.fabSetWP.visibility = View.GONE
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//                loadImages()
+//            } else {
+//                executeImageOld()
+//            }
+//        } else {
+//            binding.fabSetWP.visibility = View.VISIBLE
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//                loadVideo()
+//            } else {
+//                executeVideoOld()
+//            }
+//        }
+        loadStatus()
 
         if (extFile.exists())
             extFile.delete()
+    }
+
+    private fun loadStatus() {
+        binding.apply {
+            val imageListNew = mutableListOf<Media>()
+            getMediaWAAll(this@FullViewWhatsappActivity) { list ->
+                for (media in list) {
+                    if (!media.path.contains(".nomedia", true)
+                    ) {
+                        imageListNew.add(media)
+                    }
+                }
+                Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
+                Log.e("TAG", "loadImages: ${imagesList.size}")
+                if (imageListNew.size != imagesList.size) {
+                    imagesList = imageListNew
+                    refreshAdapter()
+                }
+            }
+        }
     }
 
     private fun saveVideo(uri: Uri) {

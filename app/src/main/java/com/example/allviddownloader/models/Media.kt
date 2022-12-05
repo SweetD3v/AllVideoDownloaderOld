@@ -1,11 +1,12 @@
 package com.example.allviddownloader.models
 
+import android.content.Context
 import android.net.Uri
 
 data class Media(
     val uri: Uri,
     val path: String,
-    val isVideo: Boolean,
+    var isVideo: Boolean,
     val date: Long,
 ) {
     var selected: Boolean = false
@@ -24,7 +25,8 @@ data class Media(
         return path
     }
 
-    fun isVideoFile(): Boolean {
-        return path.endsWith(".mp4")
+    fun isVideoFile(ctx: Context): Boolean {
+        isVideo = ctx.contentResolver.getType(uri).toString().contains("video")
+        return isVideo
     }
 }

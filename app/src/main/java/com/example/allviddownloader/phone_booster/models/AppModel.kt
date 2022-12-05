@@ -10,4 +10,5 @@ class AppModel {
     var versionCode = 1
     var permissions: Array<String> = arrayOf()
     var isSensitive = false
+    var appSize = ""
 }

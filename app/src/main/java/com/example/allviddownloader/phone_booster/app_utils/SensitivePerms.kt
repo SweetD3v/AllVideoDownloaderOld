@@ -4,7 +4,11 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.util.Log
 import com.example.allviddownloader.phone_booster.models.AppModel
+import com.example.allviddownloader.utils.FileUtilsss
+import com.example.allviddownloader.utils.formatSize
+import java.io.File
 
 val sensitivePerms = arrayListOf(
     Manifest.permission.RECORD_AUDIO,
@@ -61,8 +65,15 @@ fun getInstalledApps(ctx: Context, showSystem: Boolean): List<AppModel> {
                         if (versionName.isNotEmpty()) {
                             appModel.versionName = versionName
                         }
-                        appModel.versionCode = packageInfo.versionCode
                         appModel.icon = packageInfo.applicationInfo.loadIcon(packageManager)
+
+                        val file = File(applicationInfo.sourceDir)
+                        val size: Long = file.length()
+
+                        Log.e("TAG", "getInstalledAppsSize: $size")
+
+                        appModel.appSize = size.formatSize()
+
                         val permInfo: PackageInfo = packageManager.getPackageInfo(
                             applicationInfo.packageName,
                             PackageManager.GET_PERMISSIONS

@@ -352,19 +352,25 @@ fun getMedia(ctx: Context, file: File, block: (MutableList<Media>) -> Unit) {
                         val pathId = cursor.getString(imageCol)
                         val uri = Uri.parse(pathId)
                         var contentUri: Uri
-                        contentUri = if (ctx.contentResolver.getType(uri)?.contains("video", true) == true) {
-                            ContentUris.withAppendedId(
-                                MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                                id
-                            )
-                        } else {
-                            ContentUris.withAppendedId(
-                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                id
-                            )
-                        }
+                        contentUri =
+                            if (ctx.contentResolver.getType(uri)?.contains("video", true) == true) {
+                                ContentUris.withAppendedId(
+                                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                                    id
+                                )
+                            } else {
+                                ContentUris.withAppendedId(
+                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                                    id
+                                )
+                            }
                         val media =
-                            Media(contentUri, path, ctx.contentResolver.getType(uri)?.contains("video", true) == true, date)
+                            Media(
+                                contentUri,
+                                path,
+                                ctx.contentResolver.getType(uri)?.contains("video", true) == true,
+                                date
+                            )
 
                         if (!File(path).isDirectory)
                             mediaList.add(media)
@@ -427,7 +433,9 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
                             val pathId = cursor.getString(imageCol)
                             val uri = Uri.parse(pathId)
                             var contentUri: Uri
-                            contentUri = if (ctx.contentResolver.getType(uri)?.contains("video", true) == true) {
+                            contentUri = if (ctx.contentResolver.getType(uri)
+                                    ?.contains("video", true) == true
+                            ) {
                                 ContentUris.withAppendedId(
                                     MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                                     id
@@ -439,7 +447,13 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
                                 )
                             }
                             val media =
-                                Media(contentUri, path, ctx.contentResolver.getType(uri)?.contains("video", true) == true, date)
+                                Media(
+                                    contentUri,
+                                    path,
+                                    ctx.contentResolver.getType(uri)
+                                        ?.contains("video", true) == true,
+                                    date
+                                )
 
                             if (!File(path).isDirectory)
                                 mediaList.add(media)
@@ -512,7 +526,9 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
                             )
                             var contentUri: Uri
                             contentUri =
-                                if (ctx.contentResolver.getType(uri)?.contains("video", true) == true) {
+                                if (ctx.contentResolver.getType(uri)
+                                        ?.contains("video", true) == true
+                                ) {
                                     ContentUris.withAppendedId(
                                         MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                                         id
@@ -527,7 +543,8 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
                                 Media(
                                     contentUri,
                                     path,
-                                    ctx.contentResolver.getType(uri)?.contains("video", true) == true,
+                                    ctx.contentResolver.getType(uri)
+                                        ?.contains("video", true) == true,
                                     date
                                 )
 
@@ -712,6 +729,72 @@ fun getMediaWA(ctx: Context, block: (MutableList<Media>) -> Unit) {
                     val imagesListNew = getMediaQMinus(ctx, AppUtils.STATUS_DIRECTORY)
                     for (media in imagesListNew) {
                         if (!media.isVideo) {
+                            mediaListFinal.add(media)
+                        }
+                    }
+                }
+            }
+
+            Log.e("TAG", "mediaListFinal: ${mediaListFinal.size}")
+            return mediaListFinal
+        }
+
+        override fun onPostExecute(result: MutableList<Media>?) {
+            super.onPostExecute(result)
+
+            result?.let { list ->
+                block(list)
+            }
+        }
+
+    }.execute(null, false)
+}
+
+fun getMediaWAAll(ctx: Context, block: (MutableList<Media>) -> Unit) {
+    val mediaListFinal: MutableList<Media> = mutableListOf()
+
+    object : AsyncTaskRunner<Void?, MutableList<Media>>(ctx) {
+        override fun doInBackground(params: Void?): MutableList<Media> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val persistedUri = ctx.contentResolver.persistedUriPermissions[0]
+                persistedUri?.let {
+                    val fromTreeUri = DocumentFile.fromTreeUri(
+                        ctx,
+                        it.uri
+                    )
+
+                    val listFiles = fromTreeUri?.listFiles()
+                    if (listFiles != null) {
+                        for (documentFile in listFiles) {
+                            val uri = documentFile.uri
+                            Log.e(
+                                "TAG",
+                                "loadImagesA30: ${
+                                    ctx.contentResolver.getType(documentFile.uri)!!
+                                        .contains("video")
+                                }"
+                            )
+                            val status = Media(
+                                uri,
+                                uri.toString(),
+                                ctx.contentResolver.getType(documentFile.uri)!!.contains("video"),
+                                documentFile.lastModified()
+                            )
+                            if (!status.uri.toString().contains(".nomedia", true)) {
+                                mediaListFinal.add(status)
+                                Log.e("TAG", "doInBackground: ${mediaListFinal.size}")
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (AppUtils.STATUS_DIRECTORY.exists()) {
+                    itemsFiles = mutableListOf()
+                    val imagesListNew = getMediaQMinus(ctx, AppUtils.STATUS_DIRECTORY)
+                    for (media in imagesListNew) {
+                        if (ctx.contentResolver.getType(media.uri)?.contains("image") == true
+                            || ctx.contentResolver.getType(media.uri)?.contains("video") == true
+                        ) {
                             mediaListFinal.add(media)
                         }
                     }

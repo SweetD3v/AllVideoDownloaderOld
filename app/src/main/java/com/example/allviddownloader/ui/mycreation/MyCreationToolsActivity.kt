@@ -154,7 +154,7 @@ class MyCreationToolsActivity : FullScreenActivity() {
                 .load(mediaItem.uri)
                 .into(holder.binding.ivThumbnail)
 
-            if (mediaItem.isVideoFile()) {
+            if (mediaItem.isVideoFile(ctx)) {
                 holder.binding.imgPlay.visibility = View.VISIBLE
             } else {
                 holder.binding.imgPlay.visibility = View.GONE
