@@ -13,6 +13,7 @@ import com.example.allviddownloader.databinding.ItemStatusBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.ui.activities.FullViewWASavedActivity
 import com.example.allviddownloader.utils.toastShort
+import com.squareup.picasso.Picasso
 import java.io.File
 
 class WAMediaSavedAdapter(
@@ -29,11 +30,13 @@ class WAMediaSavedAdapter(
     override fun onBindViewHolder(holder: VH, position: Int) {
         val media = mediaList[holder.adapterPosition]
         if (media.isVideo) {
-            Glide.with(ctx).load(media.uri)
-                .into(holder.binding.ivThumbnail)
+//            Glide.with(ctx).load(media.uri)
+//                .into(holder.binding.ivThumbnail)
+            Picasso.get().load(media.uri).into(holder.binding.ivThumbnail)
             holder.binding.imgPlay.visibility = View.VISIBLE
         } else {
-            Glide.with(ctx).load(media.uri).into(holder.binding.ivThumbnail)
+//            Glide.with(ctx).load(media.uri).into(holder.binding.ivThumbnail)
+            Picasso.get().load(media.uri).into(holder.binding.ivThumbnail)
             holder.binding.imgPlay.visibility = View.GONE
         }
         holder.binding.imgDelete.visibility = View.VISIBLE

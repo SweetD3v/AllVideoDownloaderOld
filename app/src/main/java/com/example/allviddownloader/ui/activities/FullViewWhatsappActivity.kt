@@ -27,12 +27,13 @@ import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityFullviewWaBinding
 import com.example.allviddownloader.databinding.ItemFullViewBinding
 import com.example.allviddownloader.models.Media
+import com.example.allviddownloader.ui.fragments.WAImagesFragment.Companion.imagesList
 import com.example.allviddownloader.utils.*
 import java.io.File
 
 class FullViewWhatsappActivity : AppCompatActivity() {
     val binding by lazy { ActivityFullviewWaBinding.inflate(layoutInflater) }
-    var imagesList = mutableListOf<Media>()
+//    var imagesList = mutableListOf<Media>()
     var position = 0
     val extFile by lazy { File(getExternalFilesDir("Videos"), "video.mp4") }
     var isVideo = false
@@ -184,23 +185,24 @@ class FullViewWhatsappActivity : AppCompatActivity() {
     }
 
     private fun loadStatus() {
-        binding.apply {
-            val imageListNew = mutableListOf<Media>()
-            getMediaWAAll(this@FullViewWhatsappActivity) { list ->
-                for (media in list) {
-                    if (!media.path.contains(".nomedia", true)
-                    ) {
-                        imageListNew.add(media)
-                    }
-                }
-                Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
-                Log.e("TAG", "loadImages: ${imagesList.size}")
-                if (imageListNew.size != imagesList.size) {
-                    imagesList = imageListNew
-                    refreshAdapter()
-                }
-            }
-        }
+//        binding.apply {
+//            val imageListNew = mutableListOf<Media>()
+//            getMediaWAAll(this@FullViewWhatsappActivity) { list ->
+//                for (media in list) {
+//                    if (!media.path.contains(".nomedia", true)
+//                    ) {
+//                        imageListNew.add(media)
+//                    }
+//                }
+//                Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
+//                Log.e("TAG", "loadImages: ${imagesList.size}")
+//                if (imageListNew.size != imagesList.size) {
+//                    imagesList = imageListNew
+//                    refreshAdapter()
+//                }
+//            }
+//        }
+        refreshAdapter()
     }
 
     private fun saveVideo(uri: Uri) {
@@ -275,7 +277,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
                 ).show()
             }
         } else {
-            val file1 = FileUtilsss.saveBitmapAsFile(
+            val file1 = FileUtilsss.saveBitmapAsFileWA(
                 this@FullViewWhatsappActivity,
                 bitmap,
                 "IMG_${System.currentTimeMillis()}.jpg"

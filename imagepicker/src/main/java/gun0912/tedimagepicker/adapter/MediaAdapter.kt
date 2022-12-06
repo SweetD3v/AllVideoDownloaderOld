@@ -125,14 +125,18 @@ internal class MediaAdapter(
         }
 
         private fun Uri.getVideoDuration(): Long? {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                return getDuration(context, this)
-            } else {
-                val retriever = MediaMetadataRetriever()
-                retriever.setDataSource(context, this)
-                val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
-                retriever.release()
-                return time?.toLongOrNull()
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    return getDuration(context, this)
+                } else {
+                    val retriever = MediaMetadataRetriever()
+                    retriever.setDataSource(context, this)
+                    val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+                    retriever.release()
+                    return time?.toLongOrNull()
+                }
+            } catch (e: Exception) {
+                return 0L
             }
         }
 

@@ -15,450 +15,471 @@
             android:id="@+id/toolbar"
             layout="@layout/topbar_common" />
 
-        <LinearLayout
-            android:id="@+id/llEditText1"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
-            android:layout_marginTop="24dp"
-            android:orientation="vertical">
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gilroy_medium"
-                android:paddingHorizontal="16dp"
-                android:text="Date of Birth"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clDay1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/titleDate1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:fontFamily="@font/gilroy_medium"
-                        android:paddingHorizontal="4dp"
-                        android:text="Date"
-                        android:textColor="@color/blue"
-                        android:textSize="10sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/v1"
-                        android:layout_width="1dp"
-                        android:layout_height="1dp"
-                        app:layout_constraintBottom_toBottomOf="@id/titleDate1"
-                        app:layout_constraintEnd_toEndOf="@id/titleDate1"
-                        app:layout_constraintStart_toStartOf="@id/titleDate1"
-                        app:layout_constraintTop_toTopOf="@id/titleDate1" />
-
-                    <EditText
-                        android:id="@+id/edtDay1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="6dp"
-                        android:background="@drawable/rounded_bg_stroke_4"
-                        android:elevation="-1dp"
-                        android:gravity="center"
-                        android:hint="DD"
-                        android:inputType="numberSigned"
-                        android:maxLength="2"
-                        android:minEms="2"
-                        android:textColorHint="@color/hint_color_age_calc"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/v1" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clMonth1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="16dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/titleMonth1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:fontFamily="@font/gilroy_medium"
-                        android:paddingHorizontal="4dp"
-                        android:text="Month"
-                        android:textColor="@color/blue"
-                        android:textSize="10sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/v2"
-                        android:layout_width="1dp"
-                        android:layout_height="1dp"
-                        app:layout_constraintBottom_toBottomOf="@id/titleMonth1"
-                        app:layout_constraintEnd_toEndOf="@id/titleMonth1"
-                        app:layout_constraintStart_toStartOf="@id/titleMonth1"
-                        app:layout_constraintTop_toTopOf="@id/titleMonth1" />
-
-                    <EditText
-                        android:id="@+id/edtMonth1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="6dp"
-                        android:background="@drawable/rounded_bg_stroke_4"
-                        android:elevation="-1dp"
-                        android:gravity="center"
-                        android:hint="MM"
-                        android:inputType="numberSigned"
-                        android:maxLength="2"
-                        android:minEms="2"
-                        android:textColorHint="@color/hint_color_age_calc"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/v2" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clYear1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="16dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/titleYear1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:fontFamily="@font/gilroy_medium"
-                        android:paddingHorizontal="4dp"
-                        android:text="Year"
-                        android:textColor="@color/blue"
-                        android:textSize="10sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/v3"
-                        android:layout_width="1dp"
-                        android:layout_height="1dp"
-                        app:layout_constraintBottom_toBottomOf="@id/titleYear1"
-                        app:layout_constraintEnd_toEndOf="@id/titleYear1"
-                        app:layout_constraintStart_toStartOf="@id/titleYear1"
-                        app:layout_constraintTop_toTopOf="@id/titleYear1" />
-
-                    <EditText
-                        android:id="@+id/edtYear1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="6dp"
-                        android:background="@drawable/rounded_bg_stroke_4"
-                        android:elevation="-1dp"
-                        android:gravity="center"
-                        android:hint="YYYY"
-                        android:inputType="numberSigned"
-                        android:maxLength="4"
-                        android:minEms="2"
-                        android:textColorHint="@color/hint_color_age_calc"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/v3" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/llEditText1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="24dp"
+                    android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgCalendar1"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        app:srcCompat="@drawable/ic_calendar" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:paddingHorizontal="16dp"
+                        android:text="Date of Birth"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="16dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clDay1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/titleDate1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:paddingHorizontal="4dp"
+                                android:text="Date"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/v1"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleDate1"
+                                app:layout_constraintEnd_toEndOf="@id/titleDate1"
+                                app:layout_constraintStart_toStartOf="@id/titleDate1"
+                                app:layout_constraintTop_toTopOf="@id/titleDate1" />
+
+                            <EditText
+                                android:id="@+id/edtDay1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:gravity="center"
+                                android:hint="DD"
+                                android:inputType="numberSigned"
+                                android:maxLength="2"
+                                android:minEms="2"
+                                android:textColorHint="@color/hint_color_age_calc"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v1" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clMonth1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/titleMonth1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:paddingHorizontal="4dp"
+                                android:text="Month"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/v2"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleMonth1"
+                                app:layout_constraintEnd_toEndOf="@id/titleMonth1"
+                                app:layout_constraintStart_toStartOf="@id/titleMonth1"
+                                app:layout_constraintTop_toTopOf="@id/titleMonth1" />
+
+                            <EditText
+                                android:id="@+id/edtMonth1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:gravity="center"
+                                android:hint="MM"
+                                android:inputType="numberSigned"
+                                android:maxLength="2"
+                                android:minEms="2"
+                                android:textColorHint="@color/hint_color_age_calc"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v2" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clYear1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/titleYear1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:paddingHorizontal="4dp"
+                                android:text="Year"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/v3"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleYear1"
+                                app:layout_constraintEnd_toEndOf="@id/titleYear1"
+                                app:layout_constraintStart_toStartOf="@id/titleYear1"
+                                app:layout_constraintTop_toTopOf="@id/titleYear1" />
+
+                            <EditText
+                                android:id="@+id/edtYear1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:gravity="center"
+                                android:hint="YYYY"
+                                android:inputType="numberSigned"
+                                android:maxLength="4"
+                                android:minEms="2"
+                                android:textColorHint="@color/hint_color_age_calc"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v3" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imgCalendar1"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                app:srcCompat="@drawable/ic_calendar" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llEditText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/llEditText1"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gilroy_medium"
-                android:paddingHorizontal="16dp"
-                android:text="Today's Date"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="horizontal"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clDay2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/titleDate2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:fontFamily="@font/gilroy_medium"
-                        android:paddingHorizontal="4dp"
-                        android:text="Date"
-                        android:textColor="@color/blue"
-                        android:textSize="10sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/v4"
-                        android:layout_width="1dp"
-                        android:layout_height="1dp"
-                        app:layout_constraintBottom_toBottomOf="@id/titleDate2"
-                        app:layout_constraintEnd_toEndOf="@id/titleDate2"
-                        app:layout_constraintStart_toStartOf="@id/titleDate2"
-                        app:layout_constraintTop_toTopOf="@id/titleDate2" />
-
-                    <EditText
-                        android:id="@+id/edtDay2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="6dp"
-                        android:background="@drawable/rounded_bg_stroke_4"
-                        android:elevation="-1dp"
-                        android:gravity="center"
-                        android:hint="DD"
-                        android:inputType="numberSigned"
-                        android:maxLength="2"
-                        android:minEms="2"
-                        android:textColorHint="@color/hint_color_age_calc"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/v4" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clMonth2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="16dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/titleMonth2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:fontFamily="@font/gilroy_medium"
-                        android:paddingHorizontal="4dp"
-                        android:text="Month"
-                        android:textColor="@color/blue"
-                        android:textSize="10sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/v5"
-                        android:layout_width="1dp"
-                        android:layout_height="1dp"
-                        app:layout_constraintBottom_toBottomOf="@id/titleMonth2"
-                        app:layout_constraintEnd_toEndOf="@id/titleMonth2"
-                        app:layout_constraintStart_toStartOf="@id/titleMonth2"
-                        app:layout_constraintTop_toTopOf="@id/titleMonth2" />
-
-                    <EditText
-                        android:id="@+id/edtMonth2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="6dp"
-                        android:background="@drawable/rounded_bg_stroke_4"
-                        android:elevation="-1dp"
-                        android:gravity="center"
-                        android:hint="MM"
-                        android:inputType="numberSigned"
-                        android:maxLength="2"
-                        android:minEms="2"
-                        android:textColorHint="@color/hint_color_age_calc"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/v5" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/clYear2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="16dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/titleYear2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:fontFamily="@font/gilroy_medium"
-                        android:paddingHorizontal="4dp"
-                        android:text="Year"
-                        android:textColor="@color/blue"
-                        android:textSize="10sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <View
-                        android:id="@+id/v6"
-                        android:layout_width="1dp"
-                        android:layout_height="1dp"
-                        app:layout_constraintBottom_toBottomOf="@id/titleYear2"
-                        app:layout_constraintEnd_toEndOf="@id/titleYear2"
-                        app:layout_constraintStart_toStartOf="@id/titleYear2"
-                        app:layout_constraintTop_toTopOf="@id/titleYear2" />
-
-                    <EditText
-                        android:id="@+id/edtYear2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="6dp"
-                        android:background="@drawable/rounded_bg_stroke_4"
-                        android:elevation="-1dp"
-                        android:gravity="center"
-                        android:hint="YYYY"
-                        android:inputType="numberSigned"
-                        android:maxLength="4"
-                        android:minEms="2"
-                        android:textColorHint="@color/hint_color_age_calc"
-                        android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/v6" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/llEditText2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_below="@id/llEditText1"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgCalendar2"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        app:srcCompat="@drawable/ic_calendar" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:paddingHorizontal="16dp"
+                        android:text="Today's Date"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="16dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clDay2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/titleDate2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:paddingHorizontal="4dp"
+                                android:text="Date"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/v4"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleDate2"
+                                app:layout_constraintEnd_toEndOf="@id/titleDate2"
+                                app:layout_constraintStart_toStartOf="@id/titleDate2"
+                                app:layout_constraintTop_toTopOf="@id/titleDate2" />
+
+                            <EditText
+                                android:id="@+id/edtDay2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:gravity="center"
+                                android:hint="DD"
+                                android:inputType="numberSigned"
+                                android:maxLength="2"
+                                android:minEms="2"
+                                android:textColorHint="@color/hint_color_age_calc"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v4" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clMonth2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/titleMonth2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:paddingHorizontal="4dp"
+                                android:text="Month"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/v5"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleMonth2"
+                                app:layout_constraintEnd_toEndOf="@id/titleMonth2"
+                                app:layout_constraintStart_toStartOf="@id/titleMonth2"
+                                app:layout_constraintTop_toTopOf="@id/titleMonth2" />
+
+                            <EditText
+                                android:id="@+id/edtMonth2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:gravity="center"
+                                android:hint="MM"
+                                android:inputType="numberSigned"
+                                android:maxLength="2"
+                                android:minEms="2"
+                                android:textColorHint="@color/hint_color_age_calc"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v5" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clYear2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/titleYear2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:paddingHorizontal="4dp"
+                                android:text="Year"
+                                android:textColor="@color/blue"
+                                android:textSize="10sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.2"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/v6"
+                                android:layout_width="1dp"
+                                android:layout_height="1dp"
+                                app:layout_constraintBottom_toBottomOf="@id/titleYear2"
+                                app:layout_constraintEnd_toEndOf="@id/titleYear2"
+                                app:layout_constraintStart_toStartOf="@id/titleYear2"
+                                app:layout_constraintTop_toTopOf="@id/titleYear2" />
+
+                            <EditText
+                                android:id="@+id/edtYear2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/rounded_bg_stroke_4"
+                                android:elevation="-1dp"
+                                android:gravity="center"
+                                android:hint="YYYY"
+                                android:inputType="numberSigned"
+                                android:maxLength="4"
+                                android:minEms="2"
+                                android:textColorHint="@color/hint_color_age_calc"
+                                android:textSize="18sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/v6" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imgCalendar2"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                app:srcCompat="@drawable/ic_calendar" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clCalculate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/llEditText2"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="24dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clCalculate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/llEditText2"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp">
 
-            <TextView
-                android:id="@+id/btnReset"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/top_bar_gradient_blue"
-                android:backgroundTint="@color/black"
-                android:elevation="4dp"
-                android:fontFamily="@font/karla_semibold"
-                android:gravity="center"
-                android:paddingHorizontal="36dp"
-                android:paddingVertical="16dp"
-                android:text="Reset"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btnCalculate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/btnReset"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_gradient_rounded_2"
+                        android:backgroundTint="@color/black"
+                        android:elevation="4dp"
+                        android:fontFamily="@font/karla_semibold"
+                        android:gravity="center"
+                        android:paddingHorizontal="36dp"
+                        android:paddingVertical="16dp"
+                        android:text="Reset"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/viewRef"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/btnCalculate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/top_bar_gradient_light_blue1"
-                android:elevation="4dp"
-                android:fontFamily="@font/karla_semibold"
-                android:gravity="center"
-                android:paddingHorizontal="36dp"
-                android:paddingVertical="16dp"
-                android:text="Calculate"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnReset"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <View
+                        android:id="@+id/viewRef"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.45"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/adCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/clCalculate"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp"
-            app:cardUseCompatPadding="true">
+                    <TextView
+                        android:id="@+id/btnCalculate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_gradient_rounded_2"
+                        android:elevation="4dp"
+                        android:fontFamily="@font/karla_semibold"
+                        android:gravity="center"
+                        android:paddingHorizontal="36dp"
+                        android:paddingVertical="16dp"
+                        android:text="Calculate"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/viewRef"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <FrameLayout
-                android:id="@+id/adFrame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/adCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/clCalculate"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:cardUseCompatPadding="true">
+
+                    <FrameLayout
+                        android:id="@+id/adFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 

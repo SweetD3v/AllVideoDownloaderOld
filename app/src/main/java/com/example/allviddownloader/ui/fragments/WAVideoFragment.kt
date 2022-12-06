@@ -53,7 +53,7 @@ class WAVideoFragment : BaseFragment<FragmentWaimagesBinding>() {
                 Log.e("TAG", "loadVideos: ${videosList.size}")
                 if (imageListNew.size != videosList.size) {
                     videosList = imageListNew
-                    val waMediaAdapter = WAMediaAdapter(ctx, videosList, binding.rlMain)
+                    val waMediaAdapter = WAMediaAdapter(ctx, videosList)
                     binding.rvWAImages.adapter = waMediaAdapter
                     waMediaAdapter.notifyItemRangeChanged(0, videosList.size)
                 }

@@ -54,7 +54,7 @@ public abstract class AsyncTaskV2<Params, Progress, Result> {
         onCancelled();
     }
 
-    protected boolean isShutdown(){
+    protected boolean isShutdown() {
         return executor.isShutdown();
     }
 

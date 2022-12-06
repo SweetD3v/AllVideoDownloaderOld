@@ -11,15 +11,15 @@ import com.example.allviddownloader.adapters.WAMediaAdapter
 import com.example.allviddownloader.databinding.FragmentWaimagesBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.utils.addOuterGridSpacing
-import com.example.allviddownloader.utils.getMediaWA
+import com.example.allviddownloader.utils.getMediaWAAll
 
 
 class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
     override val binding by lazy { FragmentWaimagesBinding.inflate(layoutInflater) }
-    var imagesList: MutableList<Media> = mutableListOf()
     var decorationAdded: Boolean? = false
 
     companion object {
+        var imagesList: MutableList<Media> = mutableListOf()
         open fun newInstance(): WAImagesFragment {
             return WAImagesFragment()
         }
@@ -72,18 +72,18 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
     private fun loadImages() {
         binding.apply {
             val imageListNew = mutableListOf<Media>()
-            getMediaWA(ctx) { list ->
+            getMediaWAAll(ctx) { list ->
                 for (media in list) {
                     if (!media.path.contains(".nomedia", true)
                     ) {
                         imageListNew.add(media)
                     }
                 }
-                Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
-                Log.e("TAG", "loadImages: ${imagesList.size}")
                 if (imageListNew.size != imagesList.size) {
+                    Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
+                    Log.e("TAG", "loadImages: ${imagesList.size}")
                     imagesList = imageListNew
-                    val waMediaAdapter = WAMediaAdapter(ctx, imagesList, binding.rlMain)
+                    val waMediaAdapter = WAMediaAdapter(ctx, imagesList)
                     binding.rvWAImages.adapter = waMediaAdapter
                     waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
                 }
@@ -92,6 +92,7 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
     }
 
     override fun onBackPressed() {
+        imagesList.clear()
         requireActivity().finish()
     }
 }

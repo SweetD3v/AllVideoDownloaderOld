@@ -46,7 +46,7 @@ class AllVideosFragment : BaseFragment<FragmentWaimagesBinding>() {
                             rvWAImages.adapter = allMediaAdapter
                         }
                     }
-                    val waMediaAdapter = WAMediaAdapter(ctx, imagesList, binding.rlMain)
+                    val waMediaAdapter = WAMediaAdapter(ctx, imagesList)
                     rvWAImages.adapter = waMediaAdapter
                 }
             }

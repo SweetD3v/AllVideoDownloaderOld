@@ -19,20 +19,21 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityMyCreationFullViewBinding
 import com.example.allviddownloader.databinding.ItemFullViewBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.ui.activities.VideoViewActivity
+import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity.Companion.mediaList
 import com.example.allviddownloader.utils.*
+import com.squareup.picasso.Picasso
 import java.io.File
 
 class MyCreationFullViewActivity : AppCompatActivity() {
 
     val binding by lazy { ActivityMyCreationFullViewBinding.inflate(layoutInflater) }
 
-    var imagesList: MutableList<Media>? = mutableListOf()
+    //    var imagesList: MutableList<Media>? = mutableListOf()
     var type: String? = "photo_cmp"
     var position = 0
     val extFile by lazy { File(getExternalFilesDir("Videos"), "video.mp4") }
@@ -68,7 +69,7 @@ class MyCreationFullViewActivity : AppCompatActivity() {
                 isAllVisible = if (!isAllVisible) {
                     fabDelete.show()
                     fabShare.show()
-                    if (imagesList?.get(viewPagerMedia.currentItem)?.isVideo == false) {
+                    if (mediaList?.get(viewPagerMedia.currentItem)?.isVideo == false) {
                         fabSetWP.show()
                         txtSetWp.visibility = View.VISIBLE
                     }
@@ -97,14 +98,14 @@ class MyCreationFullViewActivity : AppCompatActivity() {
                     .setCancelable(true)
                     .setPositiveButton("Delete") { dialog, _ ->
                         dialog.dismiss()
-                        val image = imagesList!![binding.viewPagerMedia.currentItem]
+                        val image = mediaList!![binding.viewPagerMedia.currentItem]
                         val file = File(image.path)
 
                         StorageHelper.deleteFile(this@MyCreationFullViewActivity, file)
                         toastShort(this@MyCreationFullViewActivity, "File deleted.")
-                        imagesList!!.remove(image)
+                        mediaList!!.remove(image)
                         refreshAdapter()
-                        if (imagesList!!.size == 0)
+                        if (mediaList!!.size == 0)
                             finish()
                     }.setNegativeButton("Cancel") { dialog, _ ->
                         dialog.dismiss()
@@ -115,7 +116,7 @@ class MyCreationFullViewActivity : AppCompatActivity() {
             }
 
             fabShare.setOnClickListener {
-                val image = imagesList!![binding.viewPagerMedia.currentItem]
+                val image = mediaList!![binding.viewPagerMedia.currentItem]
                 if (contentResolver.getType(image.uri)?.contains("image", true) == true) {
                     val bitmap =
                         if (image.uri.toString().endsWith(".jpg")
@@ -133,7 +134,7 @@ class MyCreationFullViewActivity : AppCompatActivity() {
 
 
             fabSetWP.setOnClickListener {
-                val image = imagesList!![binding.viewPagerMedia.currentItem]
+                val image = mediaList!![binding.viewPagerMedia.currentItem]
                 val wallpaperManager = WallpaperManager.getInstance(applicationContext)
                 val uri = image.uri
                 Log.e("TAG", "uriWP: ${uri}")
@@ -200,26 +201,27 @@ class MyCreationFullViewActivity : AppCompatActivity() {
         Log.e("TAG", "loadMedia: ${file?.absolutePath}")
 
         file?.let {
-            getMediaByName(this, it) { imageListNew ->
-                for (media in imageListNew) {
-                    Log.e("TAG", "loadMedia: ${media.path}")
-                }
-                if (imagesList?.size != imageListNew.size) {
-                    imagesList = imageListNew
-
-                    if (type.equals("all"))
-                        this.imagesList = ArrayList(this.imagesList?.filter { mediaItem ->
-                            !mediaItem.path.contains("Insta Grid", true)
-                        } ?: arrayListOf())
-
-                    refreshAdapter()
-                }
-            }
+//            getMediaByName(this, it) { imageListNew ->
+//                for (media in imageListNew) {
+//                    Log.e("TAG", "loadMedia: ${media.path}")
+//                }
+//                if (mediaList?.size != imageListNew.size) {
+//                    mediaList = imageListNew
+//
+//                    if (type.equals("all"))
+//                        mediaList = ArrayList(mediaList?.filter { mediaItem ->
+//                            !mediaItem.path.contains("Insta Grid", true)
+//                        } ?: arrayListOf())
+//
+//                    refreshAdapter()
+//                }
+//            }
+            refreshAdapter()
         }
     }
 
     private fun refreshAdapter() {
-        imagesList.let {
+        mediaList.let {
             binding.run {
                 viewPagerMedia.orientation = ViewPager2.ORIENTATION_HORIZONTAL
                 viewPagerMedia.offscreenPageLimit = 2
@@ -289,12 +291,13 @@ class MyCreationFullViewActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: VH, position: Int) {
-            val item = itemList[holder.adapterPosition]
+            val item = itemList[holder.bindingAdapterPosition]
 
             Log.e("TAG", "onBindViewHolder: ${item.path}")
 
-            Glide.with(ctx).load(item.uri)
-                .placeholder(R.drawable.error_placeholder).into(holder.binding.imgView)
+//            Glide.with(ctx).load(item.uri)
+//                .placeholder(R.drawable.error_placeholder).into(holder.binding.imgView)
+            Picasso.get().load(item.uri).into(holder.binding.imgView)
 
             holder.binding.imgPlay.visibility = if (item.isVideo) View.VISIBLE else View.GONE
             holder.binding.rlRoot.setBackgroundColor(

@@ -6,7 +6,6 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.util.Log
 import com.example.allviddownloader.phone_booster.models.AppModel
-import com.example.allviddownloader.utils.FileUtilsss
 import com.example.allviddownloader.utils.formatSize
 import java.io.File
 

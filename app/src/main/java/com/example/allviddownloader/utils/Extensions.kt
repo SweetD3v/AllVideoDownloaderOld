@@ -406,7 +406,7 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
     object : AsyncTaskRunner<String, MutableList<Media>>(ctx) {
         override fun doInBackground(fileName: String?): MutableList<Media> {
             if (originalPath.exists()) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                     val mediaList = mutableListOf<Media>()
                     val selection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         MediaStore.MediaColumns.RELATIVE_PATH + " LIKE ? "
@@ -487,7 +487,7 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
     object : AsyncTaskRunner<String, MutableList<Media>>(ctx) {
         override fun doInBackground(params: String?): MutableList<Media> {
             if (dirName.exists()) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                     val mediaList = mutableListOf<Media>()
                     val selection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         MediaStore.MediaColumns.RELATIVE_PATH + " LIKE ? "
@@ -556,6 +556,7 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
                     mediaList.sortByDescending { it.date }
                     return mediaList
                 } else {
+                    itemsFiles = mutableListOf()
                     return getMediaQMinus(ctx, dirName).reversed().toMutableList()
                 }
             }

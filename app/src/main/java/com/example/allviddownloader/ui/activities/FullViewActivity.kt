@@ -103,7 +103,7 @@ class FullViewActivity : AppCompatActivity() {
                             ).show()
                         }
                     } else {
-                        val file1 = FileUtilsss.saveBitmapAsFile(
+                        val file1 = FileUtilsss.saveBitmapAsFileWA(
                             this, bitmap, "IMG_${System.currentTimeMillis()}.jpg"
                         )
 

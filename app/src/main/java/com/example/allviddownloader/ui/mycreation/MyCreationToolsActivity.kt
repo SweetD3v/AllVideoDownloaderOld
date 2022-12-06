@@ -22,9 +22,9 @@ import java.io.File
 class MyCreationToolsActivity : FullScreenActivity() {
     companion object {
         const val CREATION_TYPE = "creation_type"
+        var mediaList: MutableList<Media>? = mutableListOf()
     }
 
-    var mediaList: MutableList<Media>? = mutableListOf()
     var type: String? = "photo_cmp"
     var decorationAdded: Boolean? = false
 
@@ -120,19 +120,19 @@ class MyCreationToolsActivity : FullScreenActivity() {
                 for (media in mediaList) {
                     Log.e("TAG", "mediaPath: ${media.path}")
                 }
-                if (this.mediaList?.size != mediaList.size) {
-                    this.mediaList = mediaList
+                if (MyCreationToolsActivity.mediaList?.size != mediaList.size) {
+                    MyCreationToolsActivity.mediaList = mediaList
 
                     if (type.equals("all"))
-                        this.mediaList = ArrayList(this.mediaList?.filter { mediaItem ->
+                        MyCreationToolsActivity.mediaList = ArrayList(MyCreationToolsActivity.mediaList?.filter { mediaItem ->
                             !mediaItem.path.contains("Insta Grid", true)
                         } ?: arrayListOf())
 
-                    this.mediaList?.sortByDescending { item -> item.date }
+                    MyCreationToolsActivity.mediaList?.sortByDescending { item -> item.date }
                     val myCreationAdapter =
-                        MyCreationAdapter(this, this.mediaList ?: mutableListOf())
+                        MyCreationAdapter(this, MyCreationToolsActivity.mediaList ?: mutableListOf())
                     binding.rvMyCreation.adapter = myCreationAdapter
-                    myCreationAdapter.notifyItemRangeChanged(0, this.mediaList?.size ?: 0)
+                    myCreationAdapter.notifyItemRangeChanged(0, MyCreationToolsActivity.mediaList?.size ?: 0)
                 }
             }
         }
@@ -175,6 +175,7 @@ class MyCreationToolsActivity : FullScreenActivity() {
     }
 
     override fun onBackPressed() {
+        mediaList?.clear()
         AdsUtils.loadInterstitialAd(
             this,
             getString(R.string.interstitial_id),
