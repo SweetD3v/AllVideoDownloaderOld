@@ -2,6 +2,7 @@ package com.example.allviddownloader.tools.photo_filters
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,8 +39,18 @@ class PhotoFilterActivity : FullScreenActivity() {
 
         binding.rlMain.adjustInsets(this)
 
-        binding.imgBack.setOnClickListener {
-            onBackPressed()
+        binding.run {
+            toolbar.txtTitle.text = getString(R.string.photo_filters)
+            toolbar.imgSave.visible()
+            toolbar.imgSave.setTextColor(Color.parseColor("#37E8FF"))
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@PhotoFilterActivity,
+                R.drawable.top_bar_gradient_light_blue1
+            )
+            toolbar.rlMain.adjustInsets(this@PhotoFilterActivity)
+            toolbar.imgBack.setOnClickListener {
+                onBackPressed()
+            }
         }
 
         if (NetworkState.isOnline())
@@ -57,7 +69,7 @@ class PhotoFilterActivity : FullScreenActivity() {
             orientation = RecyclerView.HORIZONTAL
         }
 
-        binding.btnSave.setOnClickListener {
+        binding.toolbar.imgSave.setOnClickListener {
             filterBmp?.let { filterBmp ->
                 object : AsyncTaskRunner<Bitmap, String?>(this@PhotoFilterActivity) {
                     var pathStr: String = ""

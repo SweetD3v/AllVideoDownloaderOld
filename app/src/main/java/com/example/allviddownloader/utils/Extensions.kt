@@ -12,6 +12,7 @@ import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.Size
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
@@ -248,6 +249,18 @@ fun getScreenWidth(activity: Activity): Int {
 fun dpToPx(context: Context, dp: Int): Int {
     val displayMetrics = context.resources.displayMetrics
     return (dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT)).roundToInt()
+}
+
+fun View.visible() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.invisible() {
+    this.visibility = View.INVISIBLE
+}
+
+fun View.gone() {
+    this.visibility = View.GONE
 }
 
 fun saveBitmap(

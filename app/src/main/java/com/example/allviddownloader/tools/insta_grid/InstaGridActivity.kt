@@ -64,7 +64,7 @@ class InstaGridActivity : FullScreenActivity() {
 
             toolbar.rlMain.adjustInsets(this@InstaGridActivity)
 
-            toolbar.txtTitle.text = getString(R.string.grid_maker)
+            toolbar.txtTitle.text = getString(R.string.insta_grid)
 
             if (NetworkState.isOnline()) {
 //                AdsUtils.loadBanner(

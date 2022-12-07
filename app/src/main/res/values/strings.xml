@@ -66,7 +66,7 @@
     <string name="rating_desc">If %s makes you happy and satisfy. Please give us 5 stars</string>
     <string name="social_downloader">Social Downloader</string>
     <string name="status_saver">Status Saver</string>
-    <string name="my_downloads">My Downloads</string>
+    <string name="my_downloads">Downloads</string>
     <string name="collage">Collage</string>
     <string name="more_tools">More Tools</string>
     <string name="funny">Funny</string>
@@ -90,6 +90,17 @@
     <string name="junk_file">Junk File</string>
     <string name="phone_boost">Phone Boost</string>
     <string name="battery_saver">Battery Saver</string>
+    <string name="can_be_deleted">Can Be Deleted</string>
+    <string name="apps_data">Apps Data</string>
+    <string name="clean_cache">Clean Cache</string>
+    <string name="clean_trash">Clean Trash</string>
+    <string name="battery_boost">Battery Boost</string>
+    <string name="cleanup_suggested">Cleanup suggested</string>
+    <string name="upload">Upload</string>
+    <string name="internet_speed_test">Internet Speed Test</string>
+    <string name="sketchify">Sketchify</string>
+    <string name="cartoonify">Cartoonify</string>
+    <string name="my_creations">My Creations</string>
 
     <string-array name="wallp_arr">
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fJjphUzRq64EoCViXztAyJXBE6kzAnIAf6sJKArZzASRmUaJESz2r1qWMzUZxuXHaAR3eJuOGxiQej_3hdFzaBkV_OQDwPhjtBt26EGoqOoy6LkvDNq65oes5QZk5Cv__RagBLcBDkvL-4riMOdFbbK5Dwnms_E628Mh6P1OfhwHn35r8yMR6poY/s1280/photo_2022-09-17_06-02-57.jpg</item>

@@ -1,6 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/topbar_common" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:id="@+id/llSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_4"
+                android:backgroundTint="#e5f3e9"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgDownload"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/ic_download_speed" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:text="@string/download"
+                        android:textColor="#008923"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txtDownloadSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:text="- mbps"
+                        android:textColor="#008923"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_4"
+                android:backgroundTint="#fde5ec"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgUpload"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/ic_upload_speed" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:text="@string/upload"
+                        android:textColor="#ea0043"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/txtUploadSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/gilroy_medium"
+                        android:text="- mbps"
+                        android:textColor="#ea0043"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llPing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llSpeed">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/ic_mobile_data" />
+
+            <TextView
+                android:id="@+id/txtPing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/gilroy_semibold"
+                android:text="Ping 0.0 ms"
+                android:textColor="#9a9a9a"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/startSpeedTest"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llPing"
+            app:layout_constraintVertical_bias="0.25"
+            app:srcCompat="@drawable/ic_start_speed" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

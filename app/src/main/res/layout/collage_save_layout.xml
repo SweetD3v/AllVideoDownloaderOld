@@ -4,182 +4,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/topbar_common" />
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bannerContainer"
-        android:orientation="vertical">
+        android:layout_below="@id/toolbar"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingVertical="4dp">
+            <com.example.allviddownloader.widgets.SquareLinearLayout
+                android:id="@+id/llSaveView"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_toStartOf="@id/llCategory"
-                    android:background="@drawable/bg_rounded_right_ripple"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgBack"
-                        android:layout_width="48dp"
-                        android:layout_height="match_parent"
-                        android:background="?selectableItemBackground"
-                        android:padding="12dp"
-                        app:srcCompat="@drawable/ic_back" />
-
-                    <TextView
-                        android:id="@+id/txtTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:elevation="4dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:paddingVertical="10dp"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="0dp"
-                        android:text="@string/save_and_share"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="16dp"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:visibility="invisible">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgDownloads"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/circle_bg_black"
-                        android:backgroundTint="@color/primary"
-                        android:elevation="4dp"
-                        android:padding="8dp"
-                        app:srcCompat="@drawable/ic_downloads1"
-                        app:tint="@color/white" />
-                </LinearLayout>
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:scrollbars="none">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.example.allviddownloader.widgets.SquareLinearLayout
-                    android:id="@+id/llSaveView"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/imgsaveView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="8dp"
-                        app:cardBackgroundColor="@color/textColorPrimaryInverse"
-                        app:cardCornerRadius="4dp"
-                        app:cardElevation="4dp">
-
-                        <ImageView
-                            android:id="@+id/preview"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center" />
-
-                    </com.google.android.material.card.MaterialCardView>
-                </com.example.allviddownloader.widgets.SquareLinearLayout>
-
-                <TextView
-                    android:id="@+id/txtSaved"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:text="@string/image_saved_text"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="@id/txtSaved"
-                    app:layout_constraintStart_toStartOf="@id/txtSaved"
-                    app:layout_constraintTop_toBottomOf="@id/llSaveView" />
-
-                <RelativeLayout
-                    android:id="@+id/btnMyCreation"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/imgsaveView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/share_rect"
-                    android:backgroundTint="@color/colorPrimary"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtSaved">
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/textColorPrimaryInverse"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp">
 
-                    <TextView
+                    <ImageView
+                        android:id="@+id/preview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:drawablePadding="10dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:paddingVertical="8dp"
-                        android:text="My creation"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-                </RelativeLayout>
+                        android:layout_gravity="center" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/adCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginTop="16dp"
-                    app:cardCornerRadius="4dp"
-                    app:cardElevation="4dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintTop_toBottomOf="@id/btnMyCreation">
-
-                    <FrameLayout
-                        android:id="@+id/adFrame"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
                 </com.google.android.material.card.MaterialCardView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.example.allviddownloader.widgets.SquareLinearLayout>
 
-        </ScrollView>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txtSaved"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/gilroy_medium"
+                android:gravity="center"
+                android:text="@string/image_saved_text"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@id/txtSaved"
+                app:layout_constraintStart_toStartOf="@id/txtSaved"
+                app:layout_constraintTop_toBottomOf="@id/llSaveView" />
+
+            <TextView
+                android:id="@+id/btnMyCreation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/gilroy_semibold"
+                android:paddingHorizontal="48dp"
+                android:paddingVertical="16dp"
+                android:text="My Creation"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtSaved" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/adCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/btnMyCreation">
+
+                <FrameLayout
+                    android:id="@+id/adFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
     <FrameLayout
         android:id="@+id/bannerContainer"

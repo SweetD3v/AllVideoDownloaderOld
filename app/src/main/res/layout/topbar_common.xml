@@ -24,12 +24,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/imgDownloads"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
             android:fontFamily="@font/gilroy_semibold"
             android:gravity="center"
+            android:maxLines="1"
             android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/imgSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_rounded_4"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/gilroy_semibold"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:text="@string/save"
+            android:textColor="#00bbed"
+            android:textSize="16sp"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgDownloads"

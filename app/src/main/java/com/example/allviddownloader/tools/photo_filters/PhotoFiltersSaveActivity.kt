@@ -2,14 +2,16 @@ package com.example.allviddownloader.tools.photo_filters
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityPhotoFiltersSaveBinding
-import com.example.allviddownloader.ui.activities.BaseActivity
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
 import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.adjustInsets
 
-class PhotoFiltersSaveActivity : BaseActivity() {
+class PhotoFiltersSaveActivity : FullScreenActivity() {
     val binding by lazy { ActivityPhotoFiltersSaveBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +31,16 @@ class PhotoFiltersSaveActivity : BaseActivity() {
             )
         }
 
-        binding.imgBack.setOnClickListener {
-            onBackPressed()
+        binding.run {
+            toolbar.txtTitle.text = getString(R.string.photo_warp)
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@PhotoFiltersSaveActivity,
+                R.drawable.top_bar_gradient_orange
+            )
+            toolbar.rlMain.adjustInsets(this@PhotoFiltersSaveActivity)
+            toolbar.imgBack.setOnClickListener {
+                onBackPressed()
+            }
         }
 
         binding.preview.setImageBitmap(PhotoFiltersUtils.photoFilterBmp)

@@ -8,67 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <include
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:layout_toStartOf="@id/llCategory"
-                android:background="@drawable/bg_rounded_right_ripple"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgBack"
-                    android:layout_width="48dp"
-                    android:layout_height="match_parent"
-                    android:background="?selectableItemBackground"
-                    android:padding="12dp"
-                    app:srcCompat="@drawable/ic_back" />
-
-                <TextView
-                    android:id="@+id/txtTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="4dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="0dp"
-                    android:text="@string/photo_compress"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="invisible">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgDownloads"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/circle_bg_black"
-                    android:backgroundTint="@color/primary"
-                    android:elevation="4dp"
-                    android:padding="8dp"
-                    app:srcCompat="@drawable/ic_downloads1"
-                    app:tint="@color/white" />
-            </LinearLayout>
-        </RelativeLayout>
+            layout="@layout/topbar_common" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -130,10 +72,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/llCompressTop"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="@font/karla_semibold"
                     android:gravity="center_horizontal"
                     android:text="Photo size: 100 KB"
-                    android:textColor="@color/textColorPrimary"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <LinearLayout
@@ -177,21 +120,25 @@
                     android:layout_below="@id/llSlider"
                     android:gravity="center_horizontal"
                     android:text="Change the slider to change the compress value"
-                    android:textColor="@color/textColorPrimary"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
-                <Button
+                <TextView
                     android:id="@+id/btnCompress"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtCompressHint"
+                    android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="8dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_gradient_rounded_blue"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:paddingHorizontal="48dp"
                     android:paddingVertical="12dp"
                     android:text="Compress"
                     android:textAllCaps="false"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <com.google.android.material.card.MaterialCardView

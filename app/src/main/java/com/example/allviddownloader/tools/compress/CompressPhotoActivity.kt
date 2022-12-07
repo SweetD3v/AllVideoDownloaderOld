@@ -7,21 +7,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.allviddownloader.R
 import com.example.allviddownloader.collage_maker.utils.SystemUtils
 import com.example.allviddownloader.databinding.ActivityCompressPhotoBinding
-import com.example.allviddownloader.utils.AdsUtils
-import com.example.allviddownloader.utils.AsyncTaskRunner
-import com.example.allviddownloader.utils.FileUtilsss
-import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.ui.activities.FullScreenActivity
+import com.example.allviddownloader.utils.*
 import id.zelory.compressor.Compressor
 import io.reactivex.disposables.Disposable
 import java.io.File
 import java.io.IOException
 
-class CompressPhotoActivity : AppCompatActivity() {
+class CompressPhotoActivity : FullScreenActivity() {
     val binding by lazy { ActivityCompressPhotoBinding.inflate(layoutInflater) }
 
     var originalImgUri: Uri? = null
@@ -50,7 +48,15 @@ class CompressPhotoActivity : AppCompatActivity() {
             )
         }
 
-        binding.imgBack.setOnClickListener { onBackPressed() }
+        binding.run {
+            toolbar.txtTitle.text = getString(R.string.photo_compress)
+            toolbar.rlMain.adjustInsets(this@CompressPhotoActivity)
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@CompressPhotoActivity,
+                R.drawable.top_bar_gradient_light_blue
+            )
+            toolbar.imgBack.setOnClickListener { onBackPressed() }
+        }
 
         if (intent.hasExtra(PhotoCmpHomeActivity.SELECTED_PHOTO)) {
             originalImgUri = Uri.parse(intent.getStringExtra(PhotoCmpHomeActivity.SELECTED_PHOTO))

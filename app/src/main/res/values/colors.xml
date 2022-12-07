@@ -69,4 +69,5 @@
     <color name="blue_dark">#0d81ff</color>
     <color name="green_tint">#1cbc00</color>
     <color name="text_color_drawer">#626262</color>
+    <color name="text_color_cleaner">#6e7f83</color>
 </resources>

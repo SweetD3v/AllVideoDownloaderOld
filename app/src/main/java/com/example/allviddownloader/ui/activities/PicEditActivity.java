@@ -1,5 +1,7 @@
 package com.example.allviddownloader.ui.activities;
 
+import static com.example.allviddownloader.utils.DisplayUtilsKt.adjustInsets;
+
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -88,7 +90,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressLint("StaticFieldLeak")
-public class PicEditActivity extends BaseActivity implements OnPhotoEditorListener, View.OnClickListener,
+public class PicEditActivity extends FullScreenActivity implements OnPhotoEditorListener, View.OnClickListener,
         PicsartCropDialogFragment.OnCropPhoto, BrushColorListener, BrushMagicListener,
         InstaDialog.InstaSaveListener, SplashDialog.SplashDialogListener, MosaicDialog.MosaicDialogListener,
         BottomToolsAdapter.OnItemSelected, FilterListener, AdjustListener {
@@ -165,6 +167,15 @@ public class PicEditActivity extends BaseActivity implements OnPhotoEditorListen
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         binding = ActivityPicEditBinding.inflate(getLayoutInflater());
+
+        binding.toolbar.txtTitle.setText(getString(R.string.photo_editor));
+        binding.toolbar.imgSave.setTextColor(Color.parseColor("#efc67a"));
+        ExtensionsKt.visible(binding.toolbar.imgSave);
+        adjustInsets(binding.toolbar.rlMain, PicEditActivity.this);
+        binding.toolbar.getRoot().setBackground(ContextCompat.getDrawable(
+                PicEditActivity.this,
+                R.drawable.top_bar_gradient_yellow
+        ));
 
         if (NetworkState.Companion.isOnline())
             AdsUtils.Companion.loadBanner(this, getString(R.string.banner_id_details),
@@ -377,11 +388,11 @@ public class PicEditActivity extends BaseActivity implements OnPhotoEditorListen
         eraseSize = findViewById(R.id.eraseSize);
         loadingView = findViewById(R.id.loadingView);
         loadingView.setVisibility(View.VISIBLE);
-        binding.imgSave.setVisibility(View.VISIBLE);
+        binding.toolbar.imgSave.setVisibility(View.VISIBLE);
 
-        binding.imgBack.setOnClickListener(v -> onBackPressed());
+        binding.toolbar.imgBack.setOnClickListener(v -> onBackPressed());
 
-        binding.imgSave.setOnClickListener(view -> {
+        binding.toolbar.imgSave.setOnClickListener(view -> {
             mImagePicEditorView.setLocked(true);
             savePhoto();
         });
@@ -657,19 +668,19 @@ public class PicEditActivity extends BaseActivity implements OnPhotoEditorListen
     }
 
     public void slideUpSaveView() {
-        binding.toolbar.setVisibility(View.GONE);
+        binding.toolbar.getRoot().setVisibility(View.GONE);
     }
 
     public void slideUpSaveControl() {
-        binding.toolbar.setVisibility(View.GONE);
+        binding.toolbar.getRoot().setVisibility(View.GONE);
     }
 
     public void slideDownSaveControl() {
-        binding.toolbar.setVisibility(View.VISIBLE);
+        binding.toolbar.getRoot().setVisibility(View.VISIBLE);
     }
 
     public void slideDownSaveView() {
-        binding.toolbar.setVisibility(View.VISIBLE);
+        binding.toolbar.getRoot().setVisibility(View.VISIBLE);
     }
 
     public void slideDown(View view) {

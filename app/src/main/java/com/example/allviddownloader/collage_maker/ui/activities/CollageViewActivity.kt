@@ -16,12 +16,9 @@ import android.os.*
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
@@ -51,12 +48,10 @@ import com.example.allviddownloader.collage_maker.utils.UtilsFilter
 import com.example.allviddownloader.databinding.ActivityPuzzleBinding
 import com.example.allviddownloader.tools.photo_filters.PhotoFiltersUtils
 import com.example.allviddownloader.ui.activities.BaseActivity
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.ui.activities.MainActivity
 import com.example.allviddownloader.ui.fragments.HomeFragment
-import com.example.allviddownloader.utils.AdsUtils
-import com.example.allviddownloader.utils.NetworkState
-import com.example.allviddownloader.utils.dpToPx
-import com.google.android.material.button.MaterialButton
+import com.example.allviddownloader.utils.*
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Picasso.LoadedFrom
 import com.squareup.picasso.Target
@@ -66,7 +61,7 @@ import org.wysaid.nativePort.CGENativeLibrary
 import org.wysaid.nativePort.CGENativeLibrary.LoadImageCallback
 import java.io.IOException
 
-class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
+class CollageViewActivity : FullScreenActivity(), BottomToolsAdapter.OnItemSelected,
     AspectRatioPreviewAdapter.OnNewSelectedListener,
     CollegeBGAdapter.BackgroundChangeListener, FilterListener,
     PicsartCropDialogFragment.OnCropPhoto,
@@ -108,7 +103,6 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
     lateinit var rvPieceControl: RecyclerView
     lateinit var sbChangeBorderRadius: SeekBar
     lateinit var sbChangeBorderSize: SeekBar
-    lateinit var toolbar: Toolbar
 
     var targets: MutableList<Target> = arrayListOf()
     lateinit var tvChangeBackgroundBlur: TextView
@@ -240,9 +234,20 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
             this, getString(R.string.banner_id_details),
             binding.bannerContainer
         )
-        toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener({ v: View? -> onBackPressed() })
+
+        binding.run {
+            toolbar.txtTitle.text = getString(R.string.collage_maker)
+            toolbar.imgSave.setTextColor(Color.parseColor("#b5a4ee"))
+            toolbar.imgSave.visible()
+            toolbar.rlMain.adjustInsets(this@CollageViewActivity)
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@CollageViewActivity,
+                R.drawable.top_bar_gradient_purple
+            )
+
+            toolbar.imgBack.setOnClickListener { onBackPressed() }
+        }
+
         PhotoFiltersUtils.string = "XYZ"
         puzzleViewActivity = this
         deviceWidth = resources.displayMetrics.widthPixels
@@ -333,9 +338,8 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
         radiusLayout = findViewById(R.id.radioLayout)
         radiusLayout.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         radiusLayout.adapter = previewAspectRatioAdapter
-        val saveBitmap = findViewById<TextView>(R.id.save)
-        saveBitmap.visibility = View.VISIBLE
-        saveBitmap.setOnClickListener { view: View? ->
+
+        binding.toolbar.imgSave.setOnClickListener { view: View? ->
             saveImage()
         }
         puzzleView.setConstrained(true)
@@ -742,11 +746,11 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
     }
 
     fun slideUpSaveView() {
-        toolbar.visibility = View.GONE
+        binding.toolbar.root.gone()
     }
 
     fun slideDownSaveView() {
-        toolbar.visibility = View.VISIBLE
+        binding.toolbar.root.visible()
     }
 
     fun slideDown(view: View?) {

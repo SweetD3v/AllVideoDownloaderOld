@@ -8,15 +8,18 @@ import android.os.Environment
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityCompressSaveShareBinding
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.FileUtilsss
 import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.adjustInsets
 import java.io.File
 
-class CompressSavePhotoActivity : AppCompatActivity() {
+class CompressSavePhotoActivity : FullScreenActivity() {
 
     companion object {
         const val IMAGE_URI_ORG = "original_uri"
@@ -61,7 +64,14 @@ class CompressSavePhotoActivity : AppCompatActivity() {
 
         binding.run {
 
-            imgBack.setOnClickListener { onBackPressed() }
+            binding.toolbar.txtTitle.text = getString(R.string.photo_compress)
+            binding.toolbar.rlMain.adjustInsets(this@CompressSavePhotoActivity)
+            binding.toolbar.root.background = ContextCompat.getDrawable(
+                this@CompressSavePhotoActivity,
+                R.drawable.top_bar_gradient_purple
+            )
+
+            toolbar.imgBack.setOnClickListener { onBackPressed() }
 
             originalImgUri?.let { uri ->
 //            Glide.with(this)

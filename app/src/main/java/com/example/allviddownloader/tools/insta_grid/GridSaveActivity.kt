@@ -1,15 +1,17 @@
 package com.example.allviddownloader.tools.insta_grid
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityGridSaveBinding
 import com.example.allviddownloader.tools.insta_grid.GridUtils.Companion.saveImageTemp
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.*
 
-class GridSaveActivity : AppCompatActivity() {
+class GridSaveActivity : FullScreenActivity() {
     val binding by lazy { ActivityGridSaveBinding.inflate(layoutInflater) }
     var bmps: Array<Bitmap?>? = null
 
@@ -17,12 +19,23 @@ class GridSaveActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (NetworkState.isOnline()) {
+        binding.run {
+
+            toolbar.txtTitle.text = getString(R.string.insta_grid)
+            toolbar.imgSave.setTextColor(Color.parseColor("#f6c71e"))
+            toolbar.imgSave.visible()
+            toolbar.rlMain.adjustInsets(this@GridSaveActivity)
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@GridSaveActivity,
+                R.drawable.top_bar_gradient_pink1
+            )
+
+            if (NetworkState.isOnline()) {
 //            AdsUtils.loadBanner(
 //                this, binding.bannerContainer,
 //                getString(R.string.banner_id_details)
 //            )
-            binding.run {
+
                 AdsUtils.loadNativeSmall(
                     this@GridSaveActivity,
                     getString(R.string.admob_native_id),
@@ -49,11 +62,15 @@ class GridSaveActivity : AppCompatActivity() {
         }
 
         binding.run {
-            imgBack.setOnClickListener {
+            toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }
 
-            imgSave.setOnClickListener {
+            toolbar.imgSave.setOnClickListener {
+                onBackPressed()
+            }
+
+            toolbar.imgSave.setOnClickListener {
                 AdsUtils.loadInterstitialAd(this@GridSaveActivity,
                     getString(R.string.interstitial_id),
                     object : AdsUtils.Companion.FullScreenCallback() {

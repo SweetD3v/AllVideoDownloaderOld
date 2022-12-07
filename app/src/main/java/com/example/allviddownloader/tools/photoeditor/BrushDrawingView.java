@@ -13,6 +13,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -23,7 +24,6 @@ import com.example.allviddownloader.collage_maker.features.DrawBitmapModel;
 import com.example.allviddownloader.collage_maker.features.draw.AdapterMagicBrush;
 import com.example.allviddownloader.collage_maker.ui.interfaces.BrushViewChangeListener;
 import com.example.allviddownloader.collage_maker.utils.UtilsColor;
-import com.example.allviddownloader.utils.ExtensionsKt;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -70,8 +70,8 @@ public class BrushDrawingView extends View {
         this.mPoints = new Stack<>();
         this.lstPoints = new Stack<>();
         this.mRedoPaths = new Stack<>();
-        this.brushBitmapSize = ExtensionsKt.dpToPx(getContext(), 25);
-        this.distance = ExtensionsKt.dpToPx(getContext(), 3);
+        this.brushBitmapSize = dpToPx(getContext(), 25);
+        this.distance = dpToPx(getContext(), 3);
         this.currentBitmapPoint = new ArrayList();
         this.tempRect = new Rect();
         setupBrushDrawing();
@@ -85,8 +85,8 @@ public class BrushDrawingView extends View {
         this.mPoints = new Stack<>();
         this.lstPoints = new Stack<>();
         this.mRedoPaths = new Stack<>();
-        this.brushBitmapSize = ExtensionsKt.dpToPx(getContext(), 25);
-        this.distance = ExtensionsKt.dpToPx(getContext(), 3);
+        this.brushBitmapSize = dpToPx(getContext(), 25);
+        this.distance = dpToPx(getContext(), 3);
         this.currentBitmapPoint = new ArrayList();
         this.tempRect = new Rect();
         setupBrushDrawing();
@@ -188,13 +188,17 @@ public class BrushDrawingView extends View {
 
     public void setBrushSize(float f) {
         if (this.drawMode == 3) {
-            this.brushBitmapSize = ExtensionsKt.dpToPx(getContext(), (int) f);
+            this.brushBitmapSize = dpToPx(getContext(), (int) f);
             return;
         }
         this.mBrushSize = f;
         setBrushDrawingMode(true);
     }
 
+    int dpToPx(Context context, int dp) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
 
     public void setBrushColor(@ColorInt int i) {
         if (this.drawMode == 1) {

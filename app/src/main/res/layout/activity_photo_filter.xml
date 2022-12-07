@@ -17,52 +17,9 @@
             android:layout_height="match_parent"
             android:layout_above="@id/bannerContainer">
 
-            <RelativeLayout
+            <include
                 android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgBack"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="8dp"
-                    android:padding="4dp"
-                    app:srcCompat="@drawable/ic_back_black" />
-
-                <TextView
-                    android:id="@+id/app_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_toEndOf="@id/imgBack"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:text="@string/photo_filters"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/btnSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@color/blue"
-                    android:fontFamily="@font/gilroy_medium"
-                    android:gravity="center"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="@string/save"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    app:rippleColor="#939292" />
-            </RelativeLayout>
+                layout="@layout/topbar_common" />
 
             <ImageView
                 android:id="@+id/imgPhoto"

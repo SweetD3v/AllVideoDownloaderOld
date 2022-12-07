@@ -1,6 +1,7 @@
 package com.example.allviddownloader.collage_maker.ui.activities;
 
 import static com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity.CREATION_TYPE;
+import static com.example.allviddownloader.utils.DisplayUtilsKt.adjustInsets;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,20 +10,21 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.example.allviddownloader.R;
 import com.example.allviddownloader.databinding.CollageSaveLayoutBinding;
 import com.example.allviddownloader.tools.photoeditor.PicEditorHomeActivity;
+import com.example.allviddownloader.ui.activities.FullScreenActivity;
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity;
 import com.example.allviddownloader.utils.AdsUtils;
 import com.example.allviddownloader.utils.NetworkState;
 
 import java.io.File;
 
-public class CollageSaveShareActivity extends AppCompatActivity {
+public class CollageSaveShareActivity extends FullScreenActivity {
     CollageSaveLayoutBinding binding;
 
     ImageView preview;
@@ -42,9 +44,32 @@ public class CollageSaveShareActivity extends AppCompatActivity {
             );
         }
 
+        binding.toolbar.txtTitle.setText(getString(R.string.photo_editor));
+        adjustInsets(binding.toolbar.rlMain, CollageSaveShareActivity.this);
+
+        if (getIntent().getIntExtra("type", 0) == 0) {
+            binding.toolbar.getRoot().setBackground(ContextCompat.getDrawable(
+                    CollageSaveShareActivity.this,
+                    R.drawable.top_bar_gradient_yellow
+            ));
+            binding.btnMyCreation.setBackground(ContextCompat.getDrawable(
+                    CollageSaveShareActivity.this,
+                    R.drawable.bg_gradient_rounded_yellow
+            ));
+        } else {
+            binding.toolbar.getRoot().setBackground(ContextCompat.getDrawable(
+                    CollageSaveShareActivity.this,
+                    R.drawable.top_bar_gradient_purple
+            ));
+            binding.btnMyCreation.setBackground(ContextCompat.getDrawable(
+                    CollageSaveShareActivity.this,
+                    R.drawable.bg_gradient_rounded_purple
+            ));
+        }
+
         preview = findViewById(R.id.preview);
 
-        binding.imgBack.setOnClickListener(v -> onBackPressed());
+        binding.toolbar.imgBack.setOnClickListener(v -> onBackPressed());
 
         binding.btnMyCreation.setOnClickListener(v -> {
             Intent intent = new Intent(CollageSaveShareActivity.this, MyCreationToolsActivity.class);

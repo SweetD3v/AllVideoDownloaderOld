@@ -5,51 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <include
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black">
-
-        <RelativeLayout
-            android:id="@+id/rlMain"
-            android:layout_width="match_parent"
-            android:layout_height="64dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:padding="10dp"
-                app:srcCompat="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/imgDownloads"
-                android:fontFamily="@font/gilroy_semibold"
-                android:gravity="center"
-                android:text="@string/my_downloads"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgDownloads"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="8dp"
-                android:padding="10dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_download_top" />
-        </RelativeLayout>
-
-    </RelativeLayout>
+        layout="@layout/topbar_common" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

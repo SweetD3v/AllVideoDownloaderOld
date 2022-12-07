@@ -11,74 +11,14 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bannerContainer">
 
-        <RelativeLayout
-            android:id="@+id/rlTop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:layout_toStartOf="@id/llCategory"
-                android:background="@drawable/bg_rounded_right_ripple"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgBack"
-                    android:layout_width="48dp"
-                    android:layout_height="match_parent"
-                    android:background="?selectableItemBackground"
-                    android:padding="12dp"
-                    app:srcCompat="@drawable/ic_back" />
-
-                <TextView
-                    android:id="@+id/txtTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:elevation="4dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="0dp"
-                    android:text="Grid maker"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/imgSave"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#2872CD"
-                    android:fontFamily="@font/karla_semibold"
-                    android:text="Save"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    app:cornerRadius="24dp" />
-            </LinearLayout>
-        </RelativeLayout>
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/topbar_common" />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rlTop"
+            android:layout_below="@id/toolbar"
             android:fillViewport="true"
             android:scrollbars="none">
 
@@ -378,7 +318,7 @@
                         android:gravity="center"
                         android:paddingHorizontal="16dp"
                         android:text="Click on the image numbers to share it on Instagram"
-                        android:textColor="@color/textColorPrimary"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <LinearLayout
@@ -387,14 +327,15 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <com.google.android.material.button.MaterialButton
+                        <TextView
                             android:id="@+id/imgShare"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
-                            android:backgroundTint="@color/colorPrimary"
-                            android:fontFamily="@font/poppins_medium"
-                            android:paddingVertical="8dp"
+                            android:background="@drawable/top_bar_gradient_pink1_rounded"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:paddingHorizontal="24dp"
+                            android:paddingVertical="16dp"
                             android:text="Share to Instagram"
                             android:textAllCaps="false"
                             android:textColor="@color/white"

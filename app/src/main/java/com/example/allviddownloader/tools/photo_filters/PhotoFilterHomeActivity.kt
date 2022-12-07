@@ -40,7 +40,6 @@ class PhotoFilterHomeActivity : FullScreenActivity() {
                 this@PhotoFilterHomeActivity,
                 R.drawable.top_bar_gradient_light_blue1
             )
-
             toolbar.rlMain.adjustInsets(this@PhotoFilterHomeActivity)
 
             llPhotoFilters.setOnClickListener {

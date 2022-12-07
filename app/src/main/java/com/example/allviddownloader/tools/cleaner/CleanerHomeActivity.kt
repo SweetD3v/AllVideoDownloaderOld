@@ -2,9 +2,9 @@ package com.example.allviddownloader.tools.cleaner
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityCleanerHomeBinding
+import com.example.allviddownloader.speedtest.SpeedTestActivity
 import com.example.allviddownloader.ui.activities.CleanerActivity
 import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.adjustInsets
@@ -23,8 +23,12 @@ class CleanerHomeActivity : FullScreenActivity() {
                 onBackPressed()
             }
 
-            llAppCleaner.setOnClickListener {
+            rlAppCleaner.setOnClickListener {
                 startActivity(Intent(this@CleanerHomeActivity, CleanerActivity::class.java))
+            }
+
+            rlBatteryBoost.setOnClickListener {
+                startActivity(Intent(this@CleanerHomeActivity, SpeedTestActivity::class.java))
             }
         }
     }

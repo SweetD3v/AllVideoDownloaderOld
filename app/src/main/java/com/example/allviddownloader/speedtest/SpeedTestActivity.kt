@@ -3,20 +3,22 @@ package com.example.allviddownloader.speedtest
 import android.content.SharedPreferences
 import android.location.Location
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivitySpeedTestBinding
 import com.example.allviddownloader.speedtest.test.HttpDownloadTest
 import com.example.allviddownloader.speedtest.test.HttpUploadTest
 import com.example.allviddownloader.speedtest.test.PingTest
 import com.example.allviddownloader.ui.activities.BaseActivity
+import com.example.allviddownloader.ui.activities.FullScreenActivity
+import com.example.allviddownloader.utils.adjustBottomInsets
+import com.example.allviddownloader.utils.adjustInsets
 import java.text.DecimalFormat
 
-class SpeedTestActivity : BaseActivity() {
+class SpeedTestActivity : FullScreenActivity() {
     val binding by lazy { ActivitySpeedTestBinding.inflate(layoutInflater) }
 
     private val dec = DecimalFormat("#.##")
@@ -84,14 +86,20 @@ class SpeedTestActivity : BaseActivity() {
             "SPEED_TEST_PREFS", MODE_PRIVATE
         )
 
+        binding.run {
+            toolbar.rlMain.adjustInsets(this@SpeedTestActivity)
+            toolbar.txtTitle.text = getString(R.string.internet_speed_test)
+
+            toolbar.imgBack.setOnClickListener { onBackPressed() }
+        }
+
         tempBlackList = HashSet()
         getSpeedTestHostsHandler = GetSpeedTestHostsHandler()
         getSpeedTestHostsHandler?.start()
 
-        Handler(Looper.getMainLooper())
-            .postDelayed({
-                testSpeed()
-            }, 1000)
+        binding.startSpeedTest.setOnClickListener {
+            testSpeed()
+        }
     }
 
     private fun testSpeed() {
@@ -238,6 +246,8 @@ class SpeedTestActivity : BaseActivity() {
                                                 dec.format(pingTest.avgRtt)
                                             }"
                                         )
+
+                                        binding.txtPing.text = "${dec.format(pingTest.avgRtt)} ms"
                                     })
                                 } catch (e: Exception) {
                                     e.printStackTrace()
@@ -475,6 +485,8 @@ class SpeedTestActivity : BaseActivity() {
 //                                            }
 //                                        }
                                         j++
+
+                                        binding.txtDownloadSpeed.text = "$downloadSpeedInstant Mbps"
                                     }
                                     lastPosition = position
                                 } catch (e: Exception) {
@@ -658,6 +670,8 @@ class SpeedTestActivity : BaseActivity() {
 //                                            }
 //                                        }
                                         k++
+
+                                        binding.txtUploadSpeed.text = "$uploadSpeedInstant Mbps"
                                     }
                                 } catch (e: Exception) {
                                     e.printStackTrace()

@@ -43,8 +43,20 @@ fun View.adjustInsets(activity: Activity) {
         activity.window.decorView
     ) { _, insets ->
         val statusbarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+        val navbarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
         Log.e("TAG", "adjustInsets: ${statusbarHeight}")
         (this.layoutParams as ViewGroup.MarginLayoutParams).topMargin = statusbarHeight
+        insets
+    }
+}
+
+fun View.adjustBottomInsets(activity: Activity) {
+    ViewCompat.setOnApplyWindowInsetsListener(
+        activity.window.decorView
+    ) { _, insets ->
+        val navbarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
+        Log.e("TAG", "adjustInsets: ${navbarHeight}")
+        (this.layoutParams as ViewGroup.MarginLayoutParams).bottomMargin = navbarHeight
         insets
     }
 }

@@ -2,6 +2,7 @@ package com.example.allviddownloader.tools.photo_filters.deform
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
@@ -10,13 +11,14 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityPhotoWarpBinding
 import com.example.allviddownloader.tools.cartoonify.CartoonActivity
 import com.example.allviddownloader.tools.photo_filters.PhotoFiltersSaveActivity
 import com.example.allviddownloader.tools.photo_filters.PhotoFiltersUtils
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.*
 import org.wysaid.common.Common
 import org.wysaid.nativePort.CGEDeformFilterWrapper
@@ -25,7 +27,7 @@ import org.wysaid.texUtils.TextureRenderer
 import org.wysaid.view.ImageGLSurfaceView
 import kotlin.math.min
 
-class PhotoWarpActivity : AppCompatActivity() {
+class PhotoWarpActivity : FullScreenActivity() {
     val binding by lazy { ActivityPhotoWarpBinding.inflate(layoutInflater) }
     val photoUri by lazy {
         intent.getStringExtra(CartoonActivity.SELECTED_PHOTO).toString().toUri()
@@ -135,11 +137,20 @@ class PhotoWarpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.imgBack.setOnClickListener {
-            onBackPressed()
-        }
+        binding.run {
 
-        binding.rlMain.adjustInsets(this)
+            toolbar.txtTitle.text = getString(R.string.photo_warp)
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@PhotoWarpActivity,
+                R.drawable.top_bar_gradient_orange
+            )
+            toolbar.imgSave.visible()
+            toolbar.imgSave.setTextColor(Color.parseColor("#FFA23F"))
+            toolbar.rlMain.adjustInsets(this@PhotoWarpActivity)
+            toolbar.imgBack.setOnClickListener {
+                onBackPressed()
+            }
+        }
 
         if (NetworkState.isOnline())
             AdsUtils.loadBanner(
@@ -176,7 +187,7 @@ class PhotoWarpActivity : AppCompatActivity() {
             imgPhoto.displayMode = ImageGLSurfaceView.DisplayMode.DISPLAY_ASPECT_FIT
             imgPhoto.setOnTouchListener(mTouchListener)
 
-            btnSave.setOnClickListener {
+            binding.toolbar.imgSave.setOnClickListener {
                 imgPhoto.getResultBitmap {
                     object : AsyncTaskRunner<Bitmap, String?>(this@PhotoWarpActivity) {
                         var pathStr: String = ""

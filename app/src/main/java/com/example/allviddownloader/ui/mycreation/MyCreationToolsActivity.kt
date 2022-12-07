@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -36,6 +37,68 @@ class MyCreationToolsActivity : FullScreenActivity() {
         type = intent.getStringExtra(CREATION_TYPE)
 
         binding.run {
+
+            toolbar.rlMain.adjustInsets(this@MyCreationToolsActivity)
+
+            toolbar.txtTitle.text = getString(R.string.my_creations)
+            if (type.equals("photo_cmp")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_purple
+                )
+            } else if (type.equals("video_cmp")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_yellow
+                )
+            } else if (type.equals("photo_editor")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_yellow
+                )
+            } else if (type.equals("collage_maker")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_purple
+                )
+            } else if (type.equals("cartoonify")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_yellow
+                )
+            } else if (type.equals("sketchify")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_yellow
+                )
+            } else if (type.equals("photo_filter")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_light_blue1
+                )
+            } else if (type.equals("photo_warp")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_orange
+                )
+            } else if (type.equals("insta_downloader")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_pink
+                )
+            } else if (type.equals("fb_downloader")) {
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_blue
+                )
+            } else if (type.equals("all")) {
+                toolbar.txtTitle.text = getString(R.string.downloads)
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_yellow
+                )
+            }
+
             if (NetworkState.isOnline()) {
 //                AdsUtils.loadBanner(
 //                    this@MyCreationToolsActivity, bannerContainer,
@@ -49,9 +112,9 @@ class MyCreationToolsActivity : FullScreenActivity() {
                 )
             }
 
-            rlMain.adjustInsets(this@MyCreationToolsActivity)
+            toolbar.rlMain.adjustInsets(this@MyCreationToolsActivity)
 
-            imgBack.setOnClickListener { onBackPressed() }
+            toolbar.imgBack.setOnClickListener { onBackPressed() }
             rvMyCreation.isNestedScrollingEnabled = false
             rvMyCreation.layoutManager = GridLayoutManager(this@MyCreationToolsActivity, 2)
 //            rvWAImages.addItemDecoration(MarginItemDecoration(dpToPx(8)))

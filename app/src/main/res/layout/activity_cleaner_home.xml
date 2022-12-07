@@ -50,12 +50,279 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/cleaner_main_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4">
+
+                <TextView
+                    android:id="@+id/txtFreeStorage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/txtCleanSize"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:letterSpacing="0.1"
+                    android:text="80%"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtCleanSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:letterSpacing="0.1"
+                    android:text="1.31 GB"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtCleanSize"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:text="@string/cleanup_suggested"
+                    android:textColor="#99FFFFFF"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/bg_top_rounded_right"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="16dp"
+                    android:text="@string/can_be_deleted"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/cleaner_rect" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/rlAppCleaner"
+                        android:layout_width="match_parent"
+                        android:layout_height="84dp"
+                        android:layout_marginTop="36dp"
+                        android:background="?selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgApps"
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="16dp"
+                            app:srcCompat="@drawable/ic_app_cleaner" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_toEndOf="@id/imgApps"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="@string/apps_data"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="@string/apps_data"
+                                android:textColor="@color/text_color_cleaner"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlCleanCache"
+                        android:layout_width="match_parent"
+                        android:layout_height="84dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgCache"
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="16dp"
+                            app:srcCompat="@drawable/ic_cache_clean" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_toEndOf="@id/imgCache"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="@string/clean_cache"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="@string/clean_cache"
+                                android:textColor="@color/text_color_cleaner"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlCleanTrash"
+                        android:layout_width="match_parent"
+                        android:layout_height="84dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgTrash"
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="16dp"
+                            app:srcCompat="@drawable/ic_cache_trash" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_toEndOf="@id/imgTrash"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="@string/clean_trash"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="@string/clean_trash"
+                                android:textColor="@color/text_color_cleaner"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlBatteryBoost"
+                        android:layout_width="match_parent"
+                        android:layout_height="84dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgBoost"
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="16dp"
+                            app:srcCompat="@drawable/ic_battery_saver" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_toEndOf="@id/imgBoost"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="@string/battery_boost"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="@string/battery_boost"
+                                android:textColor="@color/text_color_cleaner"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rlMain"
         android:overScrollMode="never"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
