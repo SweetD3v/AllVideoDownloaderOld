@@ -1,5 +1,6 @@
 package com.example.allviddownloader.utils
 
+import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
@@ -7,11 +8,13 @@ import android.net.Uri
 import android.os.*
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.allviddownloader.R
 import java.io.*
 import java.text.DecimalFormat
 import java.util.concurrent.Executors
+
 
 class FileUtilsss {
 
@@ -308,6 +311,41 @@ class FileUtilsss {
             }
         }
 
+//        fun saveVideoAPI30(
+//            context: Context, bitmap: Bitmap?,
+//            displayName: String,
+//            mimeType: String,
+//            directory: File,
+//            action: (Uri) -> Unit
+//        ) {
+//            val executor =
+//                Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
+//            val handler = Handler(Looper.getMainLooper())
+//            executor.execute {
+//                val values = ContentValues()
+//                values.put(MediaStore.MediaColumns.DISPLAY_NAME, displayName)
+//                values.put(MediaStore.MediaColumns.MIME_TYPE, mimeType)
+//                values.put(
+//                    MediaStore.MediaColumns.RELATIVE_PATH,
+//                    Environment.DIRECTORY_DCIM + File.separator
+//                            + context.getString(R.string.app_name) + File.separator + directory.name
+//                )
+//                val uri = context.contentResolver
+//                    .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+//                try {
+//                    val stream =
+//                        context.contentResolver.openOutputStream(uri!!)
+//                    bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+//                } catch (e: Exception) {
+//                    Log.e("TAG", "saveBitmapExc: ${e.message}")
+//                    e.printStackTrace()
+//                }
+//                handler.post {
+//                    action(uri!!)
+//                }
+//            }
+//        }
+
         @RequiresApi(api = Build.VERSION_CODES.Q)
         @Throws(FileNotFoundException::class)
         fun saveVideoAPI30(
@@ -320,18 +358,18 @@ class FileUtilsss {
             val valuesvideos: ContentValues
             valuesvideos = ContentValues()
             valuesvideos.put(
-                MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_DCIM
+                MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DCIM
                         + File.separator + context.getString(R.string.app_name) + File.separator + destinationFile?.name
             )
-            valuesvideos.put(MediaStore.Video.Media.TITLE, "${fileName}.mp4")
-            valuesvideos.put(MediaStore.Video.Media.DISPLAY_NAME, "${fileName}.mp4")
-            valuesvideos.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
+            valuesvideos.put(MediaStore.MediaColumns.TITLE, "${fileName}")
+            valuesvideos.put(MediaStore.MediaColumns.DISPLAY_NAME, "${fileName}")
+            valuesvideos.put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4")
             valuesvideos.put(
-                MediaStore.Video.Media.DATE_ADDED,
+                MediaStore.MediaColumns.DATE_ADDED,
                 System.currentTimeMillis() / 1000
             )
-            valuesvideos.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis())
-            valuesvideos.put(MediaStore.Video.Media.IS_PENDING, 1)
+            valuesvideos.put(MediaStore.MediaColumns.DATE_TAKEN, System.currentTimeMillis())
+            valuesvideos.put(MediaStore.MediaColumns.IS_PENDING, 1)
             val resolver = context.contentResolver
             val collection =
                 MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
@@ -340,6 +378,7 @@ class FileUtilsss {
             val executor =
                 Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors())
             val handler = Handler(Looper.getMainLooper())
+
             executor.execute {
                 if (pfd != null) {
                     try {
@@ -355,7 +394,7 @@ class FileUtilsss {
                         inputStream.close()
                         pfd.close()
                         valuesvideos.clear()
-                        valuesvideos.put(MediaStore.Video.Media.IS_PENDING, 0)
+                        valuesvideos.put(MediaStore.MediaColumns.IS_PENDING, 0)
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
@@ -370,6 +409,68 @@ class FileUtilsss {
                         )
                     }
                 }
+            }
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.R)
+        fun saveVideoQ(
+            context: Context,
+            uri3: Uri,
+            displayName: String,
+            directory: File,
+            action: (File) -> Unit
+        ) {
+            val videoFileName = "$displayName.mp4"
+            val valuesvideos = ContentValues()
+            valuesvideos.put(
+                MediaStore.Video.Media.RELATIVE_PATH, Environment.DIRECTORY_DCIM + File.separator
+                        + context.getString(R.string.app_name) + File.separator + directory.name
+            )
+            valuesvideos.put(MediaStore.Video.Media.TITLE, videoFileName)
+            valuesvideos.put(MediaStore.Video.Media.DISPLAY_NAME, videoFileName)
+            valuesvideos.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
+            valuesvideos.put(MediaStore.Video.Media.DATE_ADDED, System.currentTimeMillis() / 1000)
+            valuesvideos.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis())
+            valuesvideos.put(MediaStore.Video.Media.IS_PENDING, 1)
+            val resolver: ContentResolver = context.contentResolver
+            val collection =
+                MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY) //all video files on primary external storage
+            val uriSavedVideo: Uri = resolver.insert(collection, valuesvideos)!!
+            val pfd: ParcelFileDescriptor?
+            try {
+                pfd = context.contentResolver.openFileDescriptor(uriSavedVideo, "w")
+                assert(pfd != null)
+                val out = FileOutputStream(pfd!!.fileDescriptor)
+
+                // Get the already saved video as fileinputstream from here
+                val ins: InputStream = context.contentResolver.openInputStream(uri3)!!
+                val buf = ByteArray(8192)
+                var len: Int
+                var progress = 0
+                while (ins.read(buf).also { len = it } > 0) {
+                    progress = progress + len
+                    out.write(buf, 0, len)
+                }
+                out.close()
+                ins.close()
+                pfd.close()
+                valuesvideos.clear()
+                valuesvideos.put(MediaStore.Video.Media.IS_PENDING, 0)
+                valuesvideos.put(
+                    MediaStore.Video.Media.IS_PENDING,
+                    0
+                ) //only your app can see the files until pending is turned into 0
+                context.contentResolver.update(uriSavedVideo, valuesvideos, null, null)
+                action(
+                    File(
+                        Environment.DIRECTORY_DCIM + File.separator
+                                + context.getString(R.string.app_name) + File.separator + directory.name,
+                        videoFileName
+                    )
+                )
+            } catch (e: Exception) {
+                Toast.makeText(context, "error: " + e.message, Toast.LENGTH_SHORT).show()
+                e.printStackTrace()
             }
         }
 

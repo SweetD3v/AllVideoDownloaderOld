@@ -33,7 +33,8 @@ import java.io.File
 
 class FullViewWhatsappActivity : AppCompatActivity() {
     val binding by lazy { ActivityFullviewWaBinding.inflate(layoutInflater) }
-//    var imagesList = mutableListOf<Media>()
+
+    //    var imagesList = mutableListOf<Media>()
     var position = 0
     val extFile by lazy { File(getExternalFilesDir("Videos"), "video.mp4") }
     var isVideo = false
@@ -44,6 +45,8 @@ class FullViewWhatsappActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.run {
+
+            Log.e("TAG", "imagesList: ${imagesList.size}")
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
@@ -216,11 +219,23 @@ class FullViewWhatsappActivity : AppCompatActivity() {
                 File(getExternalFilesDir("Videos"), "video.mp4")
             ) { file ->
                 Log.e("TAG", "filePath: ${file.absolutePath}")
-                FileUtilsss.saveVideoAPI30(
-                    this@FullViewWhatsappActivity, file,
+
+                FileUtilsss.saveVideoQ(
+                    this@FullViewWhatsappActivity, uri,
                     "VID_${System.currentTimeMillis()}",
                     RootDirectoryWhatsappShow
                 ) {
+                    MediaScannerConnection.scanFile(
+                        this@FullViewWhatsappActivity, arrayOf(
+                            it.absolutePath
+                        ), null
+                    ) { _: String?, uri: Uri? ->
+                        Toast.makeText(
+                            this@FullViewWhatsappActivity,
+                            getString(R.string.saved),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                     Toast.makeText(
                         this@FullViewWhatsappActivity,
                         getString(R.string.saved),

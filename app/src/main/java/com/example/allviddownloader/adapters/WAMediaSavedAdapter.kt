@@ -2,6 +2,8 @@ package com.example.allviddownloader.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +14,9 @@ import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ItemStatusBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.ui.activities.FullViewWASavedActivity
+import com.example.allviddownloader.utils.getBitmapFromUri
+import com.example.allviddownloader.utils.getVideoThumbnail
 import com.example.allviddownloader.utils.toastShort
-import com.squareup.picasso.Picasso
 import java.io.File
 
 class WAMediaSavedAdapter(
@@ -28,15 +31,25 @@ class WAMediaSavedAdapter(
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val media = mediaList[holder.adapterPosition]
+        val media = mediaList[holder.bindingAdapterPosition]
+        if (media.path.endsWith(".mp4")) {
+            val bmp = getVideoThumbnail(ctx, media.uri)
+            Log.e("TAG", "onVid: ${bmp?.width} || ${bmp?.height}")
+        }
+
+        Log.e("TAG", "onVid: ${media.uri}")
+
+        if (media.isVideo && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Glide.with(ctx).load(media.uri)
+                .into(holder.binding.ivThumbnail)
+        } else {
+            Glide.with(ctx).load(media.uri)
+                .into(holder.binding.ivThumbnail)
+        }
+
         if (media.isVideo) {
-//            Glide.with(ctx).load(media.uri)
-//                .into(holder.binding.ivThumbnail)
-            Picasso.get().load(media.uri).into(holder.binding.ivThumbnail)
             holder.binding.imgPlay.visibility = View.VISIBLE
         } else {
-//            Glide.with(ctx).load(media.uri).into(holder.binding.ivThumbnail)
-            Picasso.get().load(media.uri).into(holder.binding.ivThumbnail)
             holder.binding.imgPlay.visibility = View.GONE
         }
         holder.binding.imgDelete.visibility = View.VISIBLE
@@ -48,10 +61,10 @@ class WAMediaSavedAdapter(
                 .setCancelable(true)
                 .setPositiveButton("Delete") { dialog, _ ->
                     dialog.dismiss()
-                    val image = mediaList[holder.adapterPosition]
+                    val image = mediaList[holder.bindingAdapterPosition]
                     val file = File(image.path)
                     mediaList.remove(image)
-                    notifyItemRemoved(holder.adapterPosition)
+                    notifyItemRemoved(holder.bindingAdapterPosition)
                     file.delete()
                     toastShort(ctx, "File deleted.")
                 }.setNegativeButton("Cancel") { dialog, _ ->
@@ -65,10 +78,10 @@ class WAMediaSavedAdapter(
         holder.itemView.setOnClickListener {
             ctx.startActivity(
                 Intent(ctx, FullViewWASavedActivity::class.java)
-                    .putExtra("position", holder.adapterPosition)
+                    .putExtra("position", holder.bindingAdapterPosition)
                     .putExtra(
                         "type",
-                        if (mediaList[holder.adapterPosition].isVideo) "video"
+                        if (mediaList[holder.bindingAdapterPosition].isVideo) "video"
                         else "photo"
                     )
             )

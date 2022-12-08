@@ -149,5 +149,15 @@
             app:layout_constraintVertical_bias="0.25"
             app:srcCompat="@drawable/ic_start_speed" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/startSpeedTest"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

@@ -13,12 +13,21 @@ import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.utils.RootDirectoryWhatsappShow
 import com.example.allviddownloader.utils.addOuterGridSpacing
 import com.example.allviddownloader.utils.getMedia
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>() {
     override val binding by lazy { FragmentWaimagesBinding.inflate(layoutInflater) }
 
     var imagesList: MutableList<Media> = mutableListOf()
+    var waMediaAdapter: WAMediaSavedAdapter? = null
     var decorationAdded: Boolean? = false
+
+    var job = Job()
+    var ioScope = CoroutineScope(Dispatchers.IO + job)
+    var uiScope = CoroutineScope(Dispatchers.Main + job)
 
     companion object {
         open fun newInstance(): WADownloadsFragment {
@@ -46,6 +55,9 @@ class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>() {
                 rvWAImages.addOuterGridSpacing((albumGridSpacing).toInt())
                 rvWAImages.addItemDecoration(GridMarginDecoration(albumGridSpacing.toInt()))
             }
+
+            waMediaAdapter = WAMediaSavedAdapter(ctx, imagesList)
+            binding.rvWAImages.adapter = waMediaAdapter
         }
     }
 
@@ -80,17 +92,25 @@ class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>() {
 
     private fun loadImages() {
         binding.apply {
+            job = Job()
+            ioScope = CoroutineScope(Dispatchers.IO + job)
+            uiScope = CoroutineScope(Dispatchers.Main + job)
+
             val imageListNew = mutableListOf<Media>()
-            getMedia(ctx, RootDirectoryWhatsappShow) { list ->
-                for (media in list) {
-                    imageListNew.add(media)
-                    Log.e("TAG", "loadImagesDS: ${media.path}")
-                }
-                if (imageListNew.size != imagesList.size) {
-                    imagesList = imageListNew
-                    val waMediaAdapter = WAMediaSavedAdapter(ctx, imagesList)
-                    binding.rvWAImages.adapter = waMediaAdapter
-                    waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+            ioScope.launch {
+                getMedia(ctx, RootDirectoryWhatsappShow) { list ->
+                    for (media in list) {
+                        if (!media.path.contains(".nomedia", true)
+                        ) {
+                            imageListNew.add(media)
+                        }
+                        Log.e("TAG", "loadImagesWA: ${media.path}")
+                    }
+                    uiScope.launch {
+                        imagesList = imageListNew
+                        waMediaAdapter?.mediaList = imagesList
+                        waMediaAdapter?.notifyDataSetChanged()
+                    }
                 }
             }
         }
