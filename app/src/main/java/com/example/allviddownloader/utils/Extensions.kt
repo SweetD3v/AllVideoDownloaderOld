@@ -335,89 +335,77 @@ fun getVideoThumbnail(context: Context, videoUri: Uri): Bitmap? {
 }
 
 fun getMedia(ctx: Context, file: File, block: (MutableList<Media>) -> Unit) {
-    var mediaListFinal: MutableList<Media>
-    object : AsyncTaskRunner<String, MutableList<Media>>(ctx) {
-        override fun doInBackground(params: String?): MutableList<Media> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                val mediaList = mutableListOf<Media>()
-                val selection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    MediaStore.MediaColumns.RELATIVE_PATH + " LIKE ? "
-                } else {
-                    MediaStore.Images.Media.DATA + " LIKE ? "
-                }
-                val selectionArgs = arrayOf("%${ctx.getString(R.string.app_name)}/${file.name}%")
-                val contentResolver = ctx.applicationContext.contentResolver
-                contentResolver.query(
-                    MediaStore.Files.getContentUri("external"),
-                    null,
-                    selection,
-                    selectionArgs,
-                    "${MediaStore.Video.Media.DATE_TAKEN} DESC"
-                )?.use { cursor ->
-                    while (cursor.moveToNext()) {
-                        val imageCol =
-                            cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                        val id = cursor.getLong(cursor.getColumnIndexOrThrow(BaseColumns._ID))
-                        val path =
-                            cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
-                        val date =
-                            cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED))
-                        val pathId = cursor.getString(imageCol)
-                        val uri = Uri.parse(pathId)
-                        var contentUri: Uri
-                        contentUri =
-                            if (ctx.contentResolver.getType(uri)?.contains("video", true) == true) {
-                                ContentUris.withAppendedId(
-                                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                                    id
-                                )
-                            } else {
-                                ContentUris.withAppendedId(
-                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                    id
-                                )
-                            }
-                        val media =
-                            Media(
-                                contentUri,
-                                path,
-                                ctx.contentResolver.getType(uri)?.contains("video", true) == true,
-                                date
-                            )
+    var mediaListFinal: MutableList<Media> = mutableListOf()
 
-                        if (!File(path).isDirectory)
-                            mediaList.add(media)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        val selection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            MediaStore.MediaColumns.RELATIVE_PATH + " LIKE ? "
+        } else {
+            MediaStore.Images.Media.DATA + " LIKE ? "
+        }
+        val selectionArgs = arrayOf("%${ctx.getString(R.string.app_name)}/${file.name}%")
+        val contentResolver = ctx.applicationContext.contentResolver
+        contentResolver.query(
+            MediaStore.Files.getContentUri("external"),
+            null,
+            selection,
+            selectionArgs,
+            "${MediaStore.Video.Media.DATE_TAKEN} DESC"
+        )?.use { cursor ->
+            while (cursor.moveToNext()) {
+                val imageCol =
+                    cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                val id = cursor.getLong(cursor.getColumnIndexOrThrow(BaseColumns._ID))
+                val path =
+                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
+                val date =
+                    cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED))
+                val pathId = cursor.getString(imageCol)
+                val uri = Uri.parse(pathId)
+                var contentUri: Uri
+                contentUri =
+                    if (ctx.contentResolver.getType(uri)?.contains("video", true) == true) {
+                        ContentUris.withAppendedId(
+                            MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                            id
+                        )
+                    } else {
+                        ContentUris.withAppendedId(
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                            id
+                        )
                     }
-                }
+                val media =
+                    Media(
+                        contentUri,
+                        path,
+                        ctx.contentResolver.getType(uri)?.contains("video", true) == true,
+                        date
+                    )
 
-                mediaList.sortByDescending { it.date }
-                return mediaList
-            } else {
-                if (file.exists()) {
-                    itemsFiles = mutableListOf()
-                    return getMediaQMinus(ctx, file).reversed().toMutableList()
-                }
-            }
-            return mutableListOf()
-        }
+                Log.e("TAG", "loadinBG: ${media.path}")
 
-        override fun onPostExecute(result: MutableList<Media>?) {
-            super.onPostExecute(result)
-
-            result?.let { list ->
-                mediaListFinal = list
-                mediaListFinal.sortByDescending { it.date }
-                Log.e("TAG", "doInBackground: ${mediaListFinal}")
-                block(mediaListFinal)
+                if (!File(path).isDirectory && File(path).exists())
+                    mediaListFinal.add(media)
             }
         }
-    }.execute("%${file.name}%", false)
+
+        mediaListFinal.sortByDescending { it.date }
+        block(mediaListFinal)
+    } else {
+        if (file.exists()) {
+            itemsFiles = mutableListOf()
+            mediaListFinal = getMediaQMinus(ctx, file).reversed().toMutableList()
+            block(mediaListFinal)
+        }
+    }
+
 }
 
 fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
     var mediaListFinal: MutableList<Media>
     object : AsyncTaskRunner<String, MutableList<Media>>(ctx) {
-        override fun doInBackground(fileName: String?): MutableList<Media> {
+        override fun doInBackground(params: String?): MutableList<Media> {
             if (originalPath.exists()) {
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                     val mediaList = mutableListOf<Media>()
@@ -654,22 +642,32 @@ fun getMediaQMinus(ctx: Context, file: File): MutableList<Media> {
 }
 
 fun getMediaQMinusWA(ctx: Context, file: File): MutableList<Media> {
-    itemsFiles = mutableListOf()
+    val files = file.listFiles()
 
-    file.listFiles()?.forEach {
+    if (files != null) {
         val authority = ctx.packageName + ".provider"
-        val mediaUri = FileProvider.getUriForFile(ctx, authority, it)
-        if (it.exists() && !it.path.contains(".noMedia", true))
-            itemsFiles.add(
-                Media(
-                    mediaUri,
-                    it.absolutePath,
-                    ctx.contentResolver.getType(mediaUri)?.contains("video", true) == true,
-                    it.lastModified()
-                )
-            )
-    }
+        for (fileItem in files) {
+            val mediaUri = FileProvider.getUriForFile(ctx, authority, fileItem)
+            if (fileItem.isFile && fileItem.exists()) {
+                val mid = fileItem.name.lastIndexOf(".")
+                val ext = fileItem.name.substring(mid + 1, fileItem.name.length)
 
+                if (!ext.equals(".noMedia", true)
+                ) {
+                    itemsFiles.add(
+                        Media(
+                            mediaUri,
+                            fileItem.absolutePath,
+                            ctx.contentResolver.getType(mediaUri)?.contains("video", true) == true,
+                            fileItem.lastModified()
+                        )
+                    )
+                }
+            } else {
+                getMediaQMinus(ctx, fileItem)
+            }
+        }
+    }
     return itemsFiles
 }
 
@@ -762,6 +760,53 @@ fun getMediaWA(ctx: Context, block: (MutableList<Media>) -> Unit) {
         }
 
     }.execute(null, false)
+}
+
+fun getMediaWACoroutine(
+    ctx: Context,
+    mediaList: (MutableList<Media>) -> Unit
+) {
+    val mediaListFinal: MutableList<Media> = mutableListOf()
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        var persistedUri: Uri? = null
+        ctx.contentResolver.persistedUriPermissions.forEach { uriPermission ->
+            if (!uriPermission.uri.toString().contains(".w4b")) {
+                persistedUri = uriPermission.uri
+            }
+        }
+        if (persistedUri.toString() == "")
+            mediaList(mutableListOf())
+        persistedUri?.let {
+            val fromTreeUri = DocumentFile.fromTreeUri(
+                ctx,
+                it
+            )
+
+            val listFiles = fromTreeUri?.listFiles()
+            if (listFiles != null) {
+                for (documentFile in listFiles) {
+                    val uri = documentFile.uri
+                    val status = Media(
+                        uri,
+                        uri.toString(),
+                        ctx.contentResolver.getType(documentFile.uri)?.contains("video") == true,
+                        documentFile.lastModified()
+                    )
+                    if (!status.uri.toString().contains(".nomedia", true)) {
+                        mediaListFinal.add(status)
+                    }
+                }
+                Log.e("TAG", "getMediaWACoroutine: ${mediaListFinal.size}")
+            }
+            mediaList(mediaListFinal)
+        } ?: mediaList(mutableListOf())
+    } else {
+        if (AppUtils.STATUS_DIRECTORY.exists()) {
+            itemsFiles = mutableListOf()
+            val imagesListNew = getMediaQMinusWA(ctx, AppUtils.STATUS_DIRECTORY)
+            mediaList(imagesListNew)
+        } else mediaList(mutableListOf())
+    }
 }
 
 fun getMediaWAAll(ctx: Context, block: (MutableList<Media>) -> Unit) {
