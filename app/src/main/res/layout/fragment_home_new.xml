@@ -487,6 +487,29 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="16dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgSpeedTest"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/internet_speed" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgWAStickers"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/wa_stickers" />
+                </LinearLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

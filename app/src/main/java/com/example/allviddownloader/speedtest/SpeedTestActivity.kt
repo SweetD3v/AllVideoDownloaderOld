@@ -3,19 +3,22 @@ package com.example.allviddownloader.speedtest
 import android.content.SharedPreferences
 import android.location.Location
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
+import androidx.core.widget.addTextChangedListener
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivitySpeedTestBinding
 import com.example.allviddownloader.speedtest.test.HttpDownloadTest
 import com.example.allviddownloader.speedtest.test.HttpUploadTest
 import com.example.allviddownloader.speedtest.test.PingTest
-import com.example.allviddownloader.ui.activities.BaseActivity
 import com.example.allviddownloader.ui.activities.FullScreenActivity
-import com.example.allviddownloader.utils.adjustBottomInsets
 import com.example.allviddownloader.utils.adjustInsets
+import com.example.allviddownloader.utils.visible
 import java.text.DecimalFormat
 
 class SpeedTestActivity : FullScreenActivity() {
@@ -91,18 +94,22 @@ class SpeedTestActivity : FullScreenActivity() {
             toolbar.txtTitle.text = getString(R.string.internet_speed_test)
 
             toolbar.imgBack.setOnClickListener { onBackPressed() }
+
+            startSpeedTest.setOnClickListener {
+                imgSpeedMeter.visible()
+                imgSpeedMeterHande.visible()
+                testSpeed()
+            }
         }
 
         tempBlackList = HashSet()
         getSpeedTestHostsHandler = GetSpeedTestHostsHandler()
         getSpeedTestHostsHandler?.start()
 
-        binding.startSpeedTest.setOnClickListener {
-            testSpeed()
-        }
     }
 
     private fun testSpeed() {
+        var rotate: RotateAnimation? = null
 //        tvBegin.setImageResource(R.drawable.ic_stop)
 //        tvBlink!!.visibility = View.VISIBLE
         val anim: Animation = AlphaAnimation(0.0f, 1.0f)
@@ -247,7 +254,8 @@ class SpeedTestActivity : FullScreenActivity() {
                                             }"
                                         )
 
-                                        binding.txtPing.text = "${dec.format(pingTest.avgRtt)} ms"
+                                        binding.txtPing.text =
+                                            "${dec.format(pingTest.avgRtt)} ms"
                                     })
                                 } catch (e: Exception) {
                                     e.printStackTrace()
@@ -365,7 +373,10 @@ class SpeedTestActivity : FullScreenActivity() {
                                                 else -> {}
                                             }
 
-                                            Log.e("TAG", "testSpeedDownloadSpeed: $downloadSpeed")
+                                            Log.e(
+                                                "TAG",
+                                                "testSpeedDownloadSpeed: $downloadSpeed"
+                                            )
                                         }
                                     } catch (e: Exception) {
                                         e.printStackTrace()
@@ -374,7 +385,7 @@ class SpeedTestActivity : FullScreenActivity() {
                             } else {
                                 val downloadRate: Double = downloadTest.instantDownloadRate
                                 downloadRateList.add(downloadRate)
-                                position = getPositionByRate(downloadRate)
+                                position = getPositionByRateNew(downloadRate)
                                 try {
                                     runOnUiThread {
                                         Log.i("TAG", "j = $j")
@@ -486,9 +497,24 @@ class SpeedTestActivity : FullScreenActivity() {
 //                                        }
                                         j++
 
-                                        binding.txtDownloadSpeed.text = "$downloadSpeedInstant Mbps"
+                                        binding.txtDownloadSpeed.text =
+                                            "$downloadSpeedInstant Mbps"
                                     }
                                     lastPosition = position
+
+                                    rotate = RotateAnimation(
+                                        lastPosition.toFloat(),
+                                        position.toFloat(),
+                                        Animation.RELATIVE_TO_SELF,
+                                        0.5f,
+                                        Animation.RELATIVE_TO_SELF,
+                                        0.5f
+                                    ).apply {
+                                        interpolator = LinearInterpolator()
+                                        duration = 100
+                                    }
+                                    binding.imgSpeedMeterHande.startAnimation(rotate)
+
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }
@@ -564,7 +590,7 @@ class SpeedTestActivity : FullScreenActivity() {
                             } else {
                                 val uploadRate: Double = uploadTest.instantUploadRate
                                 uploadRateList.add(uploadRate)
-                                position = getPositionByRate(uploadRate)
+                                position = getPositionByRateNew(uploadRate)
                                 try {
                                     runOnUiThread {
 //                                        tickProgressMeasure.setmPUnit(
@@ -618,7 +644,10 @@ class SpeedTestActivity : FullScreenActivity() {
                                             else -> Log.e("TAG", "ERROR")
                                         }
 
-                                        Log.e("TAG", "testSpeedUploadInstant: $uploadSpeedInstant")
+                                        Log.e(
+                                            "TAG",
+                                            "testSpeedUploadInstant: $uploadSpeedInstant"
+                                        )
 
                                         Log.e("TAG", "k = $k")
                                         Log.e("UPLOAD", "" + uploadTest.instantUploadRate)
@@ -677,6 +706,19 @@ class SpeedTestActivity : FullScreenActivity() {
                                     e.printStackTrace()
                                 }
                                 lastPosition = position
+
+                                rotate = RotateAnimation(
+                                    lastPosition.toFloat(),
+                                    position.toFloat(),
+                                    Animation.RELATIVE_TO_SELF,
+                                    0.5f,
+                                    Animation.RELATIVE_TO_SELF,
+                                    0.5f
+                                ).apply {
+                                    interpolator = LinearInterpolator()
+                                    duration = 100
+                                }
+                                binding.imgSpeedMeterHande.startAnimation(rotate)
                             }
                         }
                         if (pingTestFinished && downloadTestFinished && uploadTest.isFinished) {
@@ -794,6 +836,26 @@ class SpeedTestActivity : FullScreenActivity() {
         } else if (rate <= 100) {
             return ((rate - 50) * 0.6).toInt() + 180
         }
+        return 0
+    }
+
+    fun getPositionByRateNew(rate: Double): Int {
+        if (rate <= 1) {
+            return (rate * 30).toInt()
+
+        } else if (rate <= 10) {
+            return ((rate * 6) + 30).toInt()
+
+        } else if (rate <= 30) {
+            return (((rate - 10) * 3) + 90).toInt()
+
+        } else if (rate <= 50) {
+            return (((rate - 30) * 1.5) + 150).toInt()
+
+        } else if (rate <= 100) {
+            return (((rate - 50) * 1.2) + 180).toInt()
+        }
+
         return 0
     }
 }

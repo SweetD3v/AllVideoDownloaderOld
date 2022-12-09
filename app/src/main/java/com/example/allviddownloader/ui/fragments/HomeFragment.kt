@@ -33,6 +33,7 @@ import com.example.allviddownloader.databinding.BottomsheetInstaBinding
 import com.example.allviddownloader.databinding.FragmentHomeNewBinding
 import com.example.allviddownloader.databinding.ViewDialogBinding
 import com.example.allviddownloader.models.*
+import com.example.allviddownloader.speedtest.SpeedTestActivity
 import com.example.allviddownloader.tools.age_calc.AgeCalculatorActivity
 import com.example.allviddownloader.tools.cleaner.CleanerHomeActivity
 import com.example.allviddownloader.tools.compress.PhotoCmpHomeActivity
@@ -49,6 +50,7 @@ import com.example.allviddownloader.utils.SMType.*
 import com.example.allviddownloader.utils.apis.CommonClassForAPI
 import com.example.allviddownloader.utils.downloader.BasicImageDownloader
 import com.example.allviddownloader.widgets.BSFragmentBuilder
+import com.whats.stickers.WAStickersActivity
 import gun0912.tedimagepicker.builder.TedImagePicker.Companion.with
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -346,6 +348,24 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                         )
                     )
                 }
+            }
+
+            imgSpeedTest.setOnClickListener {
+                startActivity(
+                    Intent(
+                        ctx,
+                        SpeedTestActivity::class.java
+                    )
+                )
+            }
+
+            imgWAStickers.setOnClickListener {
+                startActivity(
+                    Intent(
+                        ctx,
+                        WAStickersActivity::class.java
+                    )
+                )
             }
 
             llFunny.setOnClickListener {
