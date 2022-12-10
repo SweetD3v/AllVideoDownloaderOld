@@ -17,4 +17,39 @@
         <item>backgrounds</item>
         <item>transportation</item>
     </array>
+
+    <string-array name="myfun_array">
+        <item>https://myvideo.fun/?name=bcd4bdd8-26d8-4931-bf9d-91c7ec2c2c15.mp4</item>
+        <item>https://myvideo.fun/?name=075d2d9f-94f4-473d-b826-1137cf047246.mp4</item>
+        <item>https://myvideo.fun/?name=b4ef4815-b156-40ab-9da2-661b0b7125d5.mp4</item>
+        <item>https://myvideo.fun/?name=msvcPIfYKCrMA8grqWh5.mp4</item>
+        <item>https://myvideo.fun/?name=fbe5f486-d554-4ec0-aa94-dd002a550c96.mp4</item>
+        <item>https://myvideo.fun/?name=448c4e0c-4505-4341-9b16-7682cde55a77.mp4</item>
+        <item>https://myvideo.fun/?name=fe01f765-6cc0-44d1-9be3-b000074e682c.mp4</item>
+        <item>https://myvideo.fun/?name=c75556b0-2701-448f-962c-4591aa4afb7e.mp4</item>
+        <item>https://myvideo.fun/?name=ffef02ba-45eb-4f6b-8cd0-f47976b5b3d7.mp4</item>
+        <item>https://myvideo.fun/?name=9c894872-62bf-45e1-9a42-7191407b0055.mp4</item>
+    </string-array>
+
+    <string-array name="myfun_thumbs_array">
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiewskgjuNd6Fn71rW97vK9XKxwX8tFVFpP0vMFZSzkk0KFAjKbGNQcgUq5d09mUgAyxG3DNgcuIWypDD5FSfQyJ95vBnNsY_dRY4gauwov33ObczhK2kEcgtwL6giPk2RskfZBjO70W0426Aol-jKXtxUPmis-PulIUBKy2YvaHT1epg02FMsyV64J/s320/13.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSbE7E7gDfVgUZLGoL3PsYLdoiZ5vqM4RcNCGfF4tmWEal_Dd8Toh21iP-bYug4hZMJReUgVwKVogUPYXkvTJd0Xyud83oLYnsDMsV4RWS-cufu0aeLR5liQBFNhZeSplNQqWMPxm5v3GQyMgfooNDW5kWx7GPBx9XY_Eq02RXTQ2Wqookrdh6yAhB/s1280/12.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcBWWkQQVbZa0KP4zQEv-xW8z4RZt2-Yg2spxZpNqfQfFam4MkIvSbZFxe3ptA_rVaLXghQYa3Y30FeQEbDfpcg1Ze5hF3NgpuiC5FqI_r4MJ-qfuV0Q-QWJgsaE_hzEl5174P_rjqIzH0Jx8O0HlooE3XHHUDn5mSiV3kQ3hUfB-LtW1lM26YHqXB/s320/11.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyT_2hdQEx81ohKnWuhlVXTdrbucw76ZVJUCBOFi7b7OM3RNlwMyMh5Q4Q-lxksdOXlvX9RqYHjIup2bZroWhxjBBJjBO1nn7MeOPkFdCvXwbFV-D1hetE55tslfVDzV0BmEI_Ss2MsUDGqr2dX2Tf2Ov5MacL3ePk77ty9JcCY1O1_IuRd-ImWizM/s320/10.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXEBonsXhAblQuROTD4hXWSGNM-bRm8n836H2C47fjDxI68tpxugBdvNMekZUdu9wrDx5pWl35lXsIymOaMGUjriqz98_8UeJtS66qf-tK0TS2fH3MJWK07NCgTOEGD314bYTid8lyyUXjEZxyQj9Ktz-2Bx8w0D06vEwL2Sz-wrpa9yJnx58_0JT7/s320/9.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpRqPk4AVN1aUV5eYLA32kdibIMeJ4I6juKJyHrOxwfUlmKCoHIDhwQQq1dohdZdqnmD1Rho-tnevA7Dl3LrRilqY7dNK6pcsPVBq-BcVTucN8fkIhYrg-qFWr3Etwl3Fdh9-rTO9L_KwmHinIQbPl2zt0dD8TyU-scqbrKiEkQdtWQMUxbJM_Gedx/s320/8.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEibpazfP_H3PCiSwkrdpsdMYP61q_ud_oy3INOW7zxg-pKFmMlL4rjj7lg9jShGTdnZWQn7LYIZaOb73qJoZU1TKFmp2Qj6sLR8boPj0nESxfpA_xEifo2T9ltR2jZ2CJ8HT2UqQ3Ps1-c6vREd5RqZPvXFcWkMe_YOlM0mVzMKUso4bnV-ArMkegnp/s1280/7.jpg</item>
+        <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiAqnqiD6n6IYte1T2_284gJRUp7xeG8xXCsvPgp6WO9ZGzBFWMMpml5bw4aWnWeomTG1eMPhskYrUZOIXpzoQa_dZlpZ33HnMPTOq5fDvGkGuDdO2fStyJIH00yyYvtzopQFjeIRS_or0IaiiC-ks9O0LF9m_CKP_HoUK2jLWkgvdcWvo_NVkQDFhL/s320/5.jpg</item>
+    </string-array>
+
+    <string-array name="myfun_titles_array">
+        <item>Helping Elephant</item>
+        <item>Weee...</item>
+        <item>Funny guy prank...</item>
+        <item>Confused cat!</item>
+        <item>Tough man</item>
+        <item>OMG!</item>
+        <item>Iphone prank...</item>
+        <item>Spiderman!</item>
+    </string-array>
 </resources>

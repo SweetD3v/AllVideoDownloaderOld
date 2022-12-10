@@ -4,10 +4,19 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.os.Environment
+import android.os.StatFs
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.allviddownloader.phone_booster.models.AppModel
 import com.example.allviddownloader.utils.formatSize
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
+import kotlin.math.ceil
+import kotlin.math.floor
 
 val sensitivePerms = arrayListOf(
     Manifest.permission.RECORD_AUDIO,
@@ -25,19 +34,27 @@ val batteryPerms = arrayListOf(
     Manifest.permission.ACCESS_COARSE_LOCATION
 )
 
-fun getAllAppsPermissions(ctx: Context): MutableList<AppModel> {
-    val permissionsList = getInstalledApps(ctx, false).toMutableList()
-    permissionsList.forEach { appModel ->
-        var isSensitive = false
-        for (permission in appModel.permissions) {
-            if (sensitivePerms.contains(permission)) {
-                isSensitive = true
-                break
+fun getAllAppsPermissions(
+    activity: AppCompatActivity,
+    appsList: (MutableList<AppModel>) -> Unit
+) {
+    activity.lifecycleScope.launch(Dispatchers.Main) {
+        var permissionsList: MutableList<AppModel>
+        withContext(Dispatchers.IO) {
+            permissionsList = getInstalledApps(activity, false).toMutableList()
+            permissionsList.forEach { appModel ->
+                var isSensitive = false
+                for (permission in appModel.permissions) {
+                    if (sensitivePerms.contains(permission)) {
+                        isSensitive = true
+                        break
+                    }
+                }
+                appModel.isSensitive = isSensitive
             }
         }
-        appModel.isSensitive = isSensitive
+        appsList(permissionsList)
     }
-    return permissionsList
 }
 
 fun getInstalledApps(ctx: Context, showSystem: Boolean): List<AppModel> {
@@ -72,6 +89,7 @@ fun getInstalledApps(ctx: Context, showSystem: Boolean): List<AppModel> {
                         Log.e("TAG", "getInstalledAppsSize: $size")
 
                         appModel.appSize = size.formatSize()
+                        appModel.sizeLong = size
 
                         val permInfo: PackageInfo = packageManager.getPackageInfo(
                             applicationInfo.packageName,
@@ -89,4 +107,44 @@ fun getInstalledApps(ctx: Context, showSystem: Boolean): List<AppModel> {
     }
     arrayList.sortedBy { it.appName }
     return arrayList
+}
+
+fun getCleanableSize(activity: AppCompatActivity, size: (Long) -> Unit) {
+    var totalSize = 0L
+    activity.lifecycleScope.launch(Dispatchers.Main) {
+        withContext(Dispatchers.IO) {
+            val permissionsList = getInstalledApps(activity, false).toMutableList()
+            permissionsList.forEach { appModel ->
+                totalSize = permissionsList.sumOf { it.sizeLong }
+            }
+        }
+        size(totalSize)
+    }
+}
+
+fun getStorageOccupiedSize(): Long {
+    val stat = StatFs(Environment.getExternalStorageDirectory().path)
+    val totalSize = stat.blockCountLong * stat.blockSizeLong
+    val freeSize = stat.availableBytes
+    return totalSize - freeSize
+}
+
+fun getStorageFreeSize(): Long {
+    val stat = StatFs(Environment.getExternalStorageDirectory().path)
+    val freeSize = stat.availableBytes
+    return freeSize
+}
+
+fun getStorageOccupiedSizePercent(): String {
+    val stat = StatFs(Environment.getExternalStorageDirectory().path)
+    val totalSize = stat.blockCountLong * stat.blockSizeLong
+    val freeSize = stat.availableBytes
+    return "${floor(((totalSize - freeSize) * 100.0 / totalSize)).toInt()} %"
+}
+
+fun getStorageFreeSizePercent(): String {
+    val stat = StatFs(Environment.getExternalStorageDirectory().path)
+    val totalSize = stat.blockCountLong * stat.blockSizeLong
+    val freeSize = stat.availableBytes
+    return "${ceil((freeSize * 100.0 / totalSize)).toInt()} %"
 }

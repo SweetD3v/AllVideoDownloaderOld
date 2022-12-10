@@ -4,9 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityCleanerHomeBinding
+import com.example.allviddownloader.phone_booster.app_utils.getCleanableSize
+import com.example.allviddownloader.phone_booster.app_utils.getStorageFreeSizePercent
 import com.example.allviddownloader.ui.activities.CleanerActivity
 import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.adjustInsets
+import com.example.allviddownloader.utils.formatSize
 
 class CleanerHomeActivity : FullScreenActivity() {
     val binding by lazy { ActivityCleanerHomeBinding.inflate(layoutInflater) }
@@ -28,6 +31,11 @@ class CleanerHomeActivity : FullScreenActivity() {
 
             rlBatteryBoost.setOnClickListener {
             }
+
+            getCleanableSize(this@CleanerHomeActivity) { size ->
+                txtCleanSize.text = size.formatSize()
+            }
+            txtFreeStorage.text = getStorageFreeSizePercent()
         }
     }
 

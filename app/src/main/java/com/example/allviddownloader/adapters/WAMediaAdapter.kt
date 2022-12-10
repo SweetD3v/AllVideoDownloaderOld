@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.allviddownloader.databinding.ItemStatusBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.ui.activities.FullViewWhatsappActivity
+import com.example.allviddownloader.utils.*
 
 class WAMediaAdapter(
     var ctx: Context,
@@ -33,14 +34,16 @@ class WAMediaAdapter(
 //            Picasso.get().load(media.uri).into(holder.binding.ivThumbnail)
 //        }
 
-        if (media.isVideo) {
+        if (media.isVideoFile(ctx)) {
             Glide.with(ctx).load(media.uri)
+                .override(holder.binding.root.width, dpToPx(250))
                 .into(holder.binding.ivThumbnail)
 //            val uri = FileProvider.getUriForFile(ctx, "${ctx.packageName}.provider", File(media.path))
 //            Picasso.get().load(media.uri).into(holder.binding.ivThumbnail)
             holder.binding.imgPlay.visibility = View.VISIBLE
         } else {
             Glide.with(ctx).load(media.uri)
+                .override(holder.binding.root.width, dpToPx(250))
                 .into(holder.binding.ivThumbnail)
 //            Picasso.get().load(media.uri).into(holder.binding.ivThumbnail)
             holder.binding.imgPlay.visibility = View.GONE

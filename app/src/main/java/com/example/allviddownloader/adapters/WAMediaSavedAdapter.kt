@@ -14,8 +14,8 @@ import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ItemStatusBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.ui.activities.FullViewWASavedActivity
-import com.example.allviddownloader.utils.getBitmapFromUri
-import com.example.allviddownloader.utils.getVideoThumbnail
+import com.example.allviddownloader.utils.dpToPx
+import com.example.allviddownloader.utils.getVideoThumbUri
 import com.example.allviddownloader.utils.toastShort
 import java.io.File
 
@@ -32,18 +32,16 @@ class WAMediaSavedAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val media = mediaList[holder.bindingAdapterPosition]
-        if (media.path.endsWith(".mp4")) {
-            val bmp = getVideoThumbnail(ctx, media.uri)
+
+        if (media.isVideoFile(ctx) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val bmp = getVideoThumbUri(ctx, media.path)
             Log.e("TAG", "onVid: ${bmp?.width} || ${bmp?.height}")
-        }
-
-        Log.e("TAG", "onVid: ${media.uri}")
-
-        if (media.isVideo && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            Glide.with(ctx).load(media.uri)
+            Glide.with(ctx).load(bmp)
+                .override(holder.binding.root.width, dpToPx(250))
                 .into(holder.binding.ivThumbnail)
         } else {
             Glide.with(ctx).load(media.uri)
+                .override(holder.binding.root.width, dpToPx(250))
                 .into(holder.binding.ivThumbnail)
         }
 

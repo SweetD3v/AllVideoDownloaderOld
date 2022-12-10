@@ -2,7 +2,6 @@ package com.example.allviddownloader.ui.fragments
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -96,20 +95,17 @@ class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>() {
             ioScope = CoroutineScope(Dispatchers.IO + job)
             uiScope = CoroutineScope(Dispatchers.Main + job)
 
-            val imageListNew = mutableListOf<Media>()
+            var imageListNew: MutableList<Media>
             ioScope.launch {
                 getMedia(ctx, RootDirectoryWhatsappShow) { list ->
-                    for (media in list) {
-                        if (!media.path.contains(".nomedia", true)
-                        ) {
-                            imageListNew.add(media)
+                    imageListNew =
+                        list.filter { !it.path.contains(".noMedia", true) }.toMutableList()
+                    if (imagesList.size != imageListNew.size) {
+                        uiScope.launch {
+                            imagesList = imageListNew
+                            waMediaAdapter?.mediaList = imagesList
+                            waMediaAdapter?.notifyDataSetChanged()
                         }
-                        Log.e("TAG", "loadImagesWA: ${media.path}")
-                    }
-                    uiScope.launch {
-                        imagesList = imageListNew
-                        waMediaAdapter?.mediaList = imagesList
-                        waMediaAdapter?.notifyDataSetChanged()
                     }
                 }
             }

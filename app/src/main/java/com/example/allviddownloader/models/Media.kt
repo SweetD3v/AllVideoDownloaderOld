@@ -27,6 +27,7 @@ data class Media(
 
     fun isVideoFile(ctx: Context): Boolean {
         isVideo = ctx.contentResolver.getType(uri).toString().contains("video")
+                || path.endsWith(".mp4")
         return isVideo
     }
 }

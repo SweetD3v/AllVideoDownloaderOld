@@ -1,16 +1,17 @@
 package com.example.allviddownloader.utils
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
+import android.content.res.Resources
+import android.graphics.Color
 import android.os.Handler
 import android.os.Looper
 import android.util.DisplayMetrics
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
+import android.util.TypedValue
+import android.view.*
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.allviddownloader.R
 import com.google.android.gms.ads.*
@@ -46,19 +47,20 @@ class AdsUtils {
             adId: String,
             fullScreenCallback: FullScreenCallback?
         ) {
+            val pd = ProgressDialogMine()
             if (!NetworkState.isOnline()) {
                 fullScreenCallback?.continueExecution()
                 return
             }
             var handler: Handler? = Handler(Looper.getMainLooper())
             var runnable: Runnable? = Runnable {
-                MyProgressDialog.dismissDialog()
+                pd.dismissDialog()
                 interstitialAd?.show(activity)
             }
             try {
-                MyProgressDialog.showDialog(activity, "Please wait...", false)
+                pd.showDialog(activity, "Please wait...", false)
             } catch (e: Exception) {
-                MyProgressDialog.dismissDialog()
+                pd.dismissDialog()
             }
             runnable?.let { handler?.postDelayed(it, 3000) }
 
@@ -93,7 +95,7 @@ class AdsUtils {
                             }
                         }
 
-                        MyProgressDialog.dismissDialog()
+                        pd.dismissDialog()
                         interstitialAd?.show(activity)
                         runnable?.let { handler?.removeCallbacks(it) }
                         handler = null
@@ -101,10 +103,11 @@ class AdsUtils {
                     }
 
                     override fun onAdFailedToLoad(ad: LoadAdError) {
+                        Log.e("TAG", "adException: ${ad.responseInfo}")
                         runnable?.let { handler?.removeCallbacks(it) }
                         handler = null
                         runnable = null
-                        MyProgressDialog.dismissDialog()
+                        pd.dismissDialog()
                         fullScreenCallback?.onAdFailed()
                         fullScreenCallback?.continueExecution()
                     }
@@ -230,6 +233,66 @@ class AdsUtils {
                 unifiedNativeAdView.advertiserView?.visibility = View.VISIBLE
             }
             unifiedNativeAdView.setNativeAd(unifiedNativeAd)
+        }
+    }
+
+    class ProgressDialogMine {
+        var dialog: Dialog? = null
+        fun showDialog(context: Context?, text: String, cancelable: Boolean) {
+            dialog = Dialog(context!!, R.style.RoundedCornersDialog)
+            dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
+            dialog!!.setCancelable(false)
+            val linearLayout = LinearLayout(context)
+            linearLayout.orientation = LinearLayout.HORIZONTAL
+            val layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            linearLayout.layoutParams = layoutParams
+            val progressBar = ProgressBar(context)
+            progressBar.indeterminateDrawable.setTint(context.resources.getColor(R.color.colorPrimary))
+            val layoutParams_progress = LinearLayout.LayoutParams(dpToPx(48), dpToPx(48))
+            layoutParams_progress.gravity = Gravity.CENTER_VERTICAL
+            val linearlayoutParams_progress = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            linearLayout.setPadding(40, 48, 24, 48)
+            linearlayoutParams_progress.gravity = Gravity.CENTER
+            progressBar.layoutParams = layoutParams_progress
+            linearLayout.addView(progressBar)
+            val textView = TextView(context)
+            textView.textSize = 15f
+            textView.text = text
+            textView.setTextColor(Color.GRAY)
+            textView.gravity = Gravity.CENTER_VERTICAL
+            textView.setPadding(40, 0, 0, 0)
+            val linearlayoutParams_text = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            textView.layoutParams = linearlayoutParams_text
+            linearLayout.addView(textView)
+            dialog!!.window!!.setContentView(linearLayout, layoutParams)
+            dialog!!.setCancelable(cancelable)
+            if (dialog != null && !dialog!!.isShowing) {
+                dialog!!.show()
+            }
+        }
+
+        fun dismissDialog() {
+            if (dialog != null && dialog!!.isShowing) {
+                dialog!!.dismiss()
+            }
+        }
+
+        private fun dpToPx(dp: Int): Int {
+            return Math.round(
+                TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    dp.toFloat(), Resources.getSystem().displayMetrics
+                )
+            )
         }
     }
 }

@@ -11,4 +11,5 @@ class AppModel {
     var permissions: Array<String> = arrayOf()
     var isSensitive = false
     var appSize = ""
+    var sizeLong = 0L
 }

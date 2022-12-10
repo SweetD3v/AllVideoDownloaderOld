@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.*
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
+import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -26,6 +27,8 @@ import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.OutputStream
 import java.text.DecimalFormat
+import kotlin.math.log10
+import kotlin.math.pow
 import kotlin.math.roundToInt
 
 var RECEIVER_ADDRESS = "andro.ops151@gmail.com"
@@ -159,13 +162,10 @@ fun Long.formatSize(): String {
     }
 
     val units = arrayOf("B", "kB", "MB", "GB", "TB")
-    val digitGroups = (Math.log10(toDouble()) / Math.log10(1024.0)).toInt()
+    val digitGroups = (log10(toDouble()) / log10(1024.0)).toInt()
     return "${
-        DecimalFormat("#,##0.#").format(
-            this / Math.pow(
-                1024.0,
-                digitGroups.toDouble()
-            )
+        DecimalFormat("#,##0.##").format(
+            this / 1024.0.pow(digitGroups.toDouble())
         )
     } ${units[digitGroups]}"
 }
@@ -317,6 +317,28 @@ fun getVideoThumbnailA11(context: Context, uri: Uri?): Bitmap? {
     } else null
 }
 
+fun getVideoThumbUri(ctx: Context, path: String): Bitmap? {
+    val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+    val cursor = ctx.contentResolver.query(
+        MediaStore.Files.getContentUri("external"),
+        filePathColumn,
+        null,
+        null,
+        null
+    )
+    cursor?.use {
+        it.moveToFirst()
+//        val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+//        val picturePath = cursor.getString(columnIndex)
+        it.close()
+
+        return ThumbnailUtils.createVideoThumbnail(
+            path,
+            MediaStore.Video.Thumbnails.MICRO_KIND
+        )
+    }
+    return null
+}
 
 fun getVideoThumbnail(context: Context, videoUri: Uri): Bitmap? {
     var bitmap: Bitmap? = null

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1096652331258",
+    "project_id": "all-video-downloader-ab71e",
+    "storage_bucket": "all-video-downloader-ab71e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096652331258:android:d094fbda5d59ce773c9143",
+        "android_client_info": {
+          "package_name": "com.tools.videodownloader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096652331258-jjmhmgkuu96s6gavrkhludf9kpt01cu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZtPWpauxk-yEv8fGx5fNuc_1CpZVXlGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096652331258-jjmhmgkuu96s6gavrkhludf9kpt01cu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

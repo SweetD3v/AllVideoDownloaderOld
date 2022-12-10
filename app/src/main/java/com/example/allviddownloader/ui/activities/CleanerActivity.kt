@@ -5,9 +5,9 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +15,13 @@ import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityCacheCleanerBinding
 import com.example.allviddownloader.databinding.ItemJunkFilesBinding
 import com.example.allviddownloader.phone_booster.app_utils.getAllAppsPermissions
+import com.example.allviddownloader.phone_booster.app_utils.getCleanableSize
 import com.example.allviddownloader.phone_booster.models.AppModel
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.AdsUtils.Companion.loadInterstitialAd
 import com.example.allviddownloader.widgets.MarginItemDecoration
+import java.util.*
+
 
 class CleanerActivity : FullScreenActivity() {
     val binding by lazy { ActivityCacheCleanerBinding.inflate(layoutInflater) }
@@ -29,6 +32,8 @@ class CleanerActivity : FullScreenActivity() {
     var cachePercentage: Int = 0
     var showedAd: Boolean = false
     var junkAppsList: MutableList<AppModel> = mutableListOf()
+
+    lateinit var junkAdapter: JunkAdapter
 
     val runnableReverse = object : Runnable {
         override fun run() {
@@ -197,33 +202,47 @@ class CleanerActivity : FullScreenActivity() {
                 onBackPressed()
             }
 
-            var permissions = getAllAppsPermissions(this@CleanerActivity)
+            rvAppsThreats.layoutManager = LinearLayoutManager(this@CleanerActivity).apply {
+                orientation = RecyclerView.VERTICAL
+            }
+            rvAppsThreats.addItemDecoration(MarginItemDecoration(dpToPx(8)))
+
+            var permissions: MutableList<AppModel>
+            junkAdapter = JunkAdapter(this@CleanerActivity)
+            junkAdapter.appItemClickListener = object : AppItemClickListener {
+                override fun onAppClicked(appModel: AppModel, position: Int) {
+
+                }
+            }
+            rvAppsThreats.adapter = junkAdapter
+            getAllAppsPermissions(this@CleanerActivity) { list ->
+                junkAppsList = list
+
+                junkAdapter.updateList(junkAppsList)
+                getCleanableSize(this@CleanerActivity) { size ->
+                    txtCleanableSize.text =
+                        String.format(
+                            Locale.ENGLISH,
+                            getString(R.string.junk_files_found, size.formatSize())
+                        )
+                }
+            }
+
+            btnCleanJunk.setOnClickListener {
+                junkAdapter.clearItems()
+                txtCleanableSize.text =
+                    String.format(
+                        Locale.ENGLISH,
+                        getString(R.string.junk_files_found, "0 B")
+                    )
+            }
+
 //            permissions = ArrayList(permissions.filter {
 //                it.permissions.contains(batteryPerms[0])
 //                        || it.permissions.contains(batteryPerms[1])
 //                        || it.permissions.contains(batteryPerms[2])
 //                        || it.permissions.contains(batteryPerms[3])
 //            })
-            for (permission in permissions) {
-                Log.e(
-                    "TAGApp",
-                    "App Name : ${permission.appName} -> CacheSize: ${permission.appSize}"
-                )
-                junkAppsList.add(permission)
-            }
-
-            rvAppsThreats.layoutManager = LinearLayoutManager(this@CleanerActivity).apply {
-                orientation = RecyclerView.VERTICAL
-            }
-            val junkAdapter = JunkAdapter(this@CleanerActivity)
-            junkAdapter.appItemClickListener = object : AppItemClickListener {
-                override fun onAppClicked(appModel: AppModel, position: Int) {
-
-                }
-            }
-            rvAppsThreats.addItemDecoration(MarginItemDecoration(dpToPx(8)))
-            rvAppsThreats.adapter = junkAdapter
-            junkAdapter.updateList(junkAppsList)
 
 //            btnCleanCache.setOnClickListener {
 //                if (btnCleanCache.text.equals("Done")) {
@@ -277,9 +296,21 @@ class CleanerActivity : FullScreenActivity() {
         var junkAppsList: MutableList<AppModel> = mutableListOf()
         var appItemClickListener: AppItemClickListener? = null
 
-        fun updateList(junkAppsList: MutableList<AppModel>) {
-            this.junkAppsList = junkAppsList
-            notifyDataSetChanged()
+        fun updateList(pdfList: MutableList<AppModel>) {
+            setItems(pdfList)
+        }
+
+        fun setItems(items: MutableList<AppModel>) {
+            clearItems()
+            val newSize = items.size
+            this.junkAppsList.addAll(items)
+            notifyItemRangeInserted(0, newSize)
+        }
+
+        fun clearItems() {
+            val oldSize = this.junkAppsList.size
+            this.junkAppsList.clear()
+            notifyItemRangeRemoved(0, oldSize)
         }
 
         inner class VH(var binding: ItemJunkFilesBinding) : RecyclerView.ViewHolder(binding.root)
@@ -289,9 +320,10 @@ class CleanerActivity : FullScreenActivity() {
         }
 
         override fun onBindViewHolder(holder: VH, position: Int) {
-            val appModel = junkAppsList[holder.bindingAdapterPosition]
+            val animation = AnimationUtils.loadAnimation(ctx, R.anim.fade_in)
 
             holder.binding.run {
+                val appModel = junkAppsList[holder.bindingAdapterPosition]
                 imgAppIcon.setImageDrawable(appModel.icon)
                 txtAppName.text = appModel.appName
                 txtCacheVal.text = appModel.appSize
@@ -301,7 +333,6 @@ class CleanerActivity : FullScreenActivity() {
         override fun getItemCount(): Int {
             return junkAppsList.size
         }
-
     }
 
     interface AppItemClickListener {

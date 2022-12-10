@@ -12,13 +12,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ashudevs.facebookurlextractor.FacebookExtractor
 import com.ashudevs.facebookurlextractor.FacebookFile
+import com.bumptech.glide.Glide
 import com.downloader.Error
 import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
@@ -28,11 +32,10 @@ import com.example.allviddownloader.adapters.StoriesListAdapter
 import com.example.allviddownloader.collage_maker.ui.activities.CollageMakerHomeActivity
 import com.example.allviddownloader.collage_maker.ui.activities.CollageViewActivity
 import com.example.allviddownloader.collage_maker.utils.SystemUtils
-import com.example.allviddownloader.databinding.BottomsheetFbBinding
-import com.example.allviddownloader.databinding.BottomsheetInstaBinding
-import com.example.allviddownloader.databinding.FragmentHomeNewBinding
-import com.example.allviddownloader.databinding.ViewDialogBinding
-import com.example.allviddownloader.models.*
+import com.example.allviddownloader.databinding.*
+import com.example.allviddownloader.models.DownloadData
+import com.example.allviddownloader.models.ItemModel
+import com.example.allviddownloader.models.TrayModel
 import com.example.allviddownloader.speedtest.SpeedTestActivity
 import com.example.allviddownloader.tools.age_calc.AgeCalculatorActivity
 import com.example.allviddownloader.tools.cleaner.CleanerHomeActivity
@@ -56,7 +59,6 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.io.*
 import java.net.*
-import java.util.*
 import java.util.regex.Pattern
 
 
@@ -221,6 +223,8 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     drawerLayout.closeDrawer(GravityCompat.END)
                 }
             }
+
+            initMyPopularVideos()
 
             llInstagram.setOnClickListener {
                 AdsUtils.clicksCountTools++
@@ -654,6 +658,86 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
 //                    }
 //                }
 //            }
+        }
+    }
+
+    data class PopularVids(var title: String, var thumbUrl: String, var videoUrl: String)
+
+    private fun initMyPopularVideos() {
+        binding.run {
+            rvPopularVideos.layoutManager = LinearLayoutManager(ctx).apply {
+                orientation = RecyclerView.HORIZONTAL
+            }
+            val popularAdapter = PopularVideoAdapter(ctx)
+            rvPopularVideos.adapter = popularAdapter
+            popularAdapter.popularItemClickListener =
+                object : PopularVideoAdapter.PopularItemClickListener {
+                    override fun onItemClick(url: String) {
+                        openUrl(url)
+                    }
+                }
+            val titleArr = ctx.resources.getStringArray(R.array.myfun_titles_array)
+            val thumbArr = ctx.resources.getStringArray(R.array.myfun_thumbs_array)
+            val videoArr = ctx.resources.getStringArray(R.array.myfun_array)
+            val popularList = mutableListOf<PopularVids>()
+            for (i in thumbArr.indices) {
+                popularList.add(PopularVids(titleArr[i], thumbArr[i], videoArr[i]))
+            }
+            popularList.shuffle()
+            popularAdapter.popularList = popularList
+
+            popularAdapter.notifyDataSetChanged()
+        }
+    }
+
+    fun openUrl(url: String) {
+        AdsUtils.loadInterstitialAd(requireActivity(),
+            getString(R.string.interstitial_id),
+            object : AdsUtils.Companion.FullScreenCallback() {
+                override fun continueExecution() {
+                    startActivity(
+                        Intent(ctx, FunnyVideosActivity::class.java)
+                            .putExtra("customUrl", url)
+                    )
+                }
+            })
+    }
+
+    class PopularVideoAdapter(var ctx: Context) :
+        RecyclerView.Adapter<PopularVideoAdapter.VH>() {
+
+        var popularList = mutableListOf<PopularVids>()
+        var popularItemClickListener: PopularItemClickListener? = null
+
+        inner class VH(var binding: ItemPopularVideosBinding) :
+            RecyclerView.ViewHolder(binding.root)
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
+            return VH(ItemPopularVideosBinding.inflate(LayoutInflater.from(ctx), parent, false))
+        }
+
+        override fun onBindViewHolder(holder: VH, position: Int) {
+            holder.binding.run {
+                val popularVid = popularList[holder.bindingAdapterPosition]
+
+                Glide.with(ctx).load(popularVid.thumbUrl)
+                    .centerCrop()
+                    .into(imgMyFun)
+
+                txtFunny.text = popularVid.title
+
+                root.setOnClickListener {
+                    popularItemClickListener?.onItemClick(popularVid.videoUrl)
+                }
+            }
+        }
+
+        override fun getItemCount(): Int {
+            return popularList.size
+        }
+
+        interface PopularItemClickListener {
+            fun onItemClick(url: String)
         }
     }
 

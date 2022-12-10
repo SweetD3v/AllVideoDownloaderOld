@@ -93,10 +93,6 @@ class WAStatusActivity : FullScreenActivity() {
         binding.toolbar.imgBack.setOnClickListener {
             onBackPressed()
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
 
         Log.e("TAG", "onCreate: " + allPermissionsGranted())
         if (!allPermissionsGranted() || contentResolver.persistedUriPermissions.size <= 0) {

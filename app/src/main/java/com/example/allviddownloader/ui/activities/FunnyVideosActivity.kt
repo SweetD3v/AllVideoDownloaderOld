@@ -18,7 +18,8 @@ import com.example.allviddownloader.utils.setDarkStatusBarColor
 class FunnyVideosActivity : AppCompatActivity() {
     val binding by lazy { ActivityFunnyVideosBinding.inflate(layoutInflater) }
 
-    var downloadUrl: String? = null
+    var lastUrl: String? = null
+    var counts = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +63,9 @@ class FunnyVideosActivity : AppCompatActivity() {
             }
             webView.webViewClient = WVClient()
             webView.webChromeClient = ChromeClient()
-            webView.loadUrl("https://myvideo.fun")
+            if (intent.hasExtra("customUrl"))
+                webView.loadUrl(intent.getStringExtra("customUrl").toString())
+            else webView.loadUrl("https://myvideo.fun")
         }
     }
 
@@ -86,10 +89,25 @@ class FunnyVideosActivity : AppCompatActivity() {
         override fun onProgressChanged(view: WebView?, newProgress: Int) {
             super.onProgressChanged(view, newProgress)
 
-            if (view?.url.toString() != "https://myvideo.fun/") {
-                downloadUrl = view?.url.toString()
-            }
-            Log.e("TAG", "onProgressChanged: ${view?.url}")
+//            if (view?.url.toString() != "https://myvideo.fun/") {
+//                if (view?.url.toString() != lastUrl) {
+//                    lastUrl = view?.url.toString()
+//                    counts++
+//
+//                    if (counts == 3) {
+//                        counts = 0
+//                        AdsUtils.loadInterstitialAd(this@FunnyVideosActivity,
+//                            getString(R.string.interstitial_id),
+//                            object : AdsUtils.Companion.FullScreenCallback() {
+//                                override fun continueExecution() {
+//                                    Log.e("TAG", "fullScreenAdClosed: ")
+//                                }
+//                            })
+//                    }
+//                }
+//            }
+
+            Log.e("TAG", "onProgressChanged: ${view?.url} | Position: $counts")
         }
     }
 
@@ -124,6 +142,14 @@ class FunnyVideosActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        if (intent.hasExtra("customUrl")) {
+            AdsUtils.loadInterstitialAd(this@FunnyVideosActivity,
+                getString(R.string.interstitial_id),
+                object : AdsUtils.Companion.FullScreenCallback() {
+                    override fun continueExecution() {
+                        finish()
+                    }
+                })
+        } else finish()
     }
 }
