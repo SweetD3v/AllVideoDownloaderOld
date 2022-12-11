@@ -9,6 +9,7 @@
         layout="@layout/topbar_common" />
 
     <RelativeLayout
+        android:id="@+id/rlBottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/llBottom"

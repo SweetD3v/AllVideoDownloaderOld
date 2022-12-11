@@ -10,6 +10,7 @@ import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
 import com.example.allviddownloader.utils.AdsUtils
 import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.adjustInsetsBottom
 import com.example.allviddownloader.utils.adjustInsets
 import gun0912.tedimagepicker.builder.TedImagePicker
 

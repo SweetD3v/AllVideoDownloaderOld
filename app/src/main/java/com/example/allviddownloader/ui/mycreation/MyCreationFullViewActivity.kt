@@ -196,6 +196,8 @@ class MyCreationFullViewActivity : AppCompatActivity() {
             file = RootDirectoryFBDownlaoder
         } else if (type.equals("all")) {
             file = originalPath
+        } else if (type.equals("wallpapers")) {
+            file = RootDirectoryWallpapers
         }
 
         Log.e("TAG", "loadMedia: ${file?.absolutePath}")

@@ -1,4 +1,4 @@
-package com.example.allviddownloader.ui.activities
+package com.example.allviddownloader.tools.cleaner
 
 import android.animation.Animator
 import android.content.Context
@@ -17,6 +17,7 @@ import com.example.allviddownloader.databinding.ItemJunkFilesBinding
 import com.example.allviddownloader.phone_booster.app_utils.getAllAppsPermissions
 import com.example.allviddownloader.phone_booster.app_utils.getCleanableSize
 import com.example.allviddownloader.phone_booster.models.AppModel
+import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.AdsUtils.Companion.loadInterstitialAd
 import com.example.allviddownloader.widgets.MarginItemDecoration

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="280dp"
     app:cardBackgroundColor="@color/_e5e5e5"
-    app:cardCornerRadius="0dp"
+    app:cardCornerRadius="4dp"
     app:cardElevation="0dp">
 
     <ImageView
@@ -40,7 +40,8 @@
         android:layout_gravity="bottom|center_horizontal"
         android:background="#B3000000"
         android:orientation="horizontal"
-        android:paddingVertical="8dp">
+        android:paddingVertical="8dp"
+        android:visibility="gone">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgDeleteNew"

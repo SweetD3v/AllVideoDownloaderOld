@@ -86,7 +86,7 @@ class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>() {
     }
 
     override fun onPermissionGranted() {
-//        loadImages()
+        loadImages()
     }
 
     private fun loadImages() {

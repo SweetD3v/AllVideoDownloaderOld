@@ -60,6 +60,17 @@ class AgeCalculatorActivity : FullScreenActivity() {
                 onBackPressed()
             }
 
+            btnReset.setOnClickListener {
+                val cal = Calendar.getInstance()
+                edtDay2.setText("${cal.get(Calendar.DAY_OF_MONTH)}")
+                edtMonth2.setText("${cal.get(Calendar.MONTH) + 1}")
+                edtYear2.setText("${cal.get(Calendar.YEAR)}")
+
+                edtDay1.text.clear()
+                edtMonth1.text.clear()
+                edtYear1.text.clear()
+            }
+
             val cal = Calendar.getInstance()
 
             edtDay2.setText("${cal.get(Calendar.DAY_OF_MONTH)}")

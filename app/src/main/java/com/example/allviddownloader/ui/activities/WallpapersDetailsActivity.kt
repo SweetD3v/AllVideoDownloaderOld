@@ -11,11 +11,8 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityWallpaperDetailsBinding
-import com.example.allviddownloader.utils.AdsUtils
-import com.example.allviddownloader.utils.NetworkState
+import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.downloader.BasicImageDownloader
-import com.example.allviddownloader.utils.originalPath
-import com.example.allviddownloader.utils.shareMediaUri
 import java.io.File
 
 class WallpapersDetailsActivity : BaseActivity() {
@@ -23,6 +20,10 @@ class WallpapersDetailsActivity : BaseActivity() {
     var isAllVisible: Boolean = false
     var imageUrl: String? = null
     var downloadUrl = ""
+    val wallType by lazy {
+        if (intent.hasExtra("wallType")) intent.getStringExtra("wallType")
+        else ""
+    }
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +76,7 @@ class WallpapersDetailsActivity : BaseActivity() {
                     false
                 }
             }
-
+            Log.e("TAG", "continueExecution: $wallType")
             fabDownload.setOnClickListener {
                 AdsUtils.loadInterstitialAd(
                     this@WallpapersDetailsActivity,
@@ -85,7 +86,12 @@ class WallpapersDetailsActivity : BaseActivity() {
                             imageUrl = downloadUrl
                             imageUrl?.let { url ->
                                 BasicImageDownloader(this@WallpapersDetailsActivity)
-                                    .saveImageToExternal(url, File(originalPath, "Wallpapers"))
+                                    .saveImageToExternal(
+                                        url,
+                                        if (wallType == "wallpapers")
+                                            RootDirectoryWallpapers
+                                        else RootDirectoryStatus
+                                    )
                             }
                         }
                     })
@@ -95,7 +101,7 @@ class WallpapersDetailsActivity : BaseActivity() {
                 imageUrl = downloadUrl
                 imageUrl?.let { url ->
                     BasicImageDownloader(this@WallpapersDetailsActivity)
-                        .saveImageToTemp(url, File(originalPath, "Wallpapers"), false, {
+                        .saveImageToTemp(url, File(externalCacheDir, "Wallpapers"), false, {
                         }) {
                             Log.e("TAG", "onCreate: ${it}")
                             shareMediaUri(this@WallpapersDetailsActivity, arrayListOf(it))

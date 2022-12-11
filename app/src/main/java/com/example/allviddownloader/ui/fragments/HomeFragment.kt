@@ -35,6 +35,7 @@ import com.example.allviddownloader.collage_maker.utils.SystemUtils
 import com.example.allviddownloader.databinding.*
 import com.example.allviddownloader.models.DownloadData
 import com.example.allviddownloader.models.ItemModel
+import com.example.allviddownloader.models.PopularVids
 import com.example.allviddownloader.models.TrayModel
 import com.example.allviddownloader.speedtest.SpeedTestActivity
 import com.example.allviddownloader.tools.age_calc.AgeCalculatorActivity
@@ -224,7 +225,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                 }
             }
 
-            initMyPopularVideos()
+//            initMyPopularVideos()
 
             llInstagram.setOnClickListener {
                 AdsUtils.clicksCountTools++
@@ -292,14 +293,14 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                             override fun continueExecution() {
                                 startActivity(
                                     Intent(ctx, WallpapersActivity::class.java)
-                                        .putExtra("walpType", "wallpapers")
+                                        .putExtra("wallType", "wallpapers")
                                 )
                             }
                         })
                 } else {
                     startActivity(
                         Intent(ctx, WallpapersActivity::class.java)
-                            .putExtra("walpType", "wallpapers")
+                            .putExtra("wallType", "wallpapers")
                     )
                 }
             }
@@ -315,14 +316,14 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                             override fun continueExecution() {
                                 startActivity(
                                     Intent(ctx, WallpapersActivity::class.java)
-                                        .putExtra("walpType", "status")
+                                        .putExtra("wallType", "status")
                                 )
                             }
                         })
                 } else {
                     startActivity(
                         Intent(ctx, WallpapersActivity::class.java)
-                            .putExtra("walpType", "status")
+                            .putExtra("wallType", "status")
                     )
                 }
             }
@@ -661,8 +662,6 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
         }
     }
 
-    data class PopularVids(var title: String, var thumbUrl: String, var videoUrl: String)
-
     private fun initMyPopularVideos() {
         binding.run {
             rvPopularVideos.layoutManager = LinearLayoutManager(ctx).apply {
@@ -677,7 +676,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     }
                 }
             val titleArr = ctx.resources.getStringArray(R.array.myfun_titles_array)
-            val thumbArr = ctx.resources.getStringArray(R.array.myfun_thumbs_array)
+            val thumbArr = ctx.resources.getStringArray(R.array.status_arr)
             val videoArr = ctx.resources.getStringArray(R.array.myfun_array)
             val popularList = mutableListOf<PopularVids>()
             for (i in thumbArr.indices) {
@@ -724,7 +723,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     .centerCrop()
                     .into(imgMyFun)
 
-                txtFunny.text = popularVid.title
+                txtFunny.gone()
 
                 root.setOnClickListener {
                     popularItemClickListener?.onItemClick(popularVid.videoUrl)

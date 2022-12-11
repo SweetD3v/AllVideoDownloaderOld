@@ -1,7 +1,5 @@
 package com.example.allviddownloader.ui.activities
 
-import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -10,8 +8,6 @@ import android.os.Parcelable
 import android.os.storage.StorageManager
 import android.provider.DocumentsContract
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -30,49 +26,50 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class WAStatusActivity : FullScreenActivity() {
     val binding by lazy { ActivityWastatusBinding.inflate(layoutInflater) }
-    private val PERMISSIONS = mutableListOf(
-        Manifest.permission.READ_EXTERNAL_STORAGE
-    ).apply {
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-    }
+
+    //    private val PERMISSIONS = mutableListOf(
+//        Manifest.permission.READ_EXTERNAL_STORAGE
+//    ).apply {
+//        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+//            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//        }
+//    }
     private val tabTitles = arrayOf("Status", "Downloads")
 
     val imgFragment = WAImagesFragment.newInstance()
     val vidFragment = WAVideoFragment.newInstance()
     val savedFragment = WADownloadsFragment.newInstance()
 
-    val permissionsLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
-        ) { result ->
-            var granted = true
-            if (result != null) {
-                for (b in result.values) {
-                    if (!b) {
-                        granted = false
-                        break
-                    }
-                }
-            } else granted = false
+//    val permissionsLauncher =
+//        registerForActivityResult(
+//            ActivityResultContracts.RequestMultiplePermissions()
+//        ) { result ->
+//            var granted = true
+//            if (result != null) {
+//                for (b in result.values) {
+//                    if (!b) {
+//                        granted = false
+//                        break
+//                    }
+//                }
+//            } else granted = false
+//
+//        }
 
-        }
-
-    val statusFileResultLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val data: Intent = result.data!!
-                Log.d("HEY: ", data.data.toString())
-                contentResolver.takePersistableUriPermission(
-                    data.data!!,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-            }
-        }
+//    val statusFileResultLauncher =
+//        registerForActivityResult(
+//            ActivityResultContracts.StartActivityForResult()
+//        ) { result ->
+//            if (result.resultCode == RESULT_OK) {
+//                val data: Intent = result.data!!
+//                Log.d("HEY: ", data.data.toString())
+//                contentResolver.takePersistableUriPermission(
+//                    data.data!!,
+//                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+//                )
+//                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,20 +91,19 @@ class WAStatusActivity : FullScreenActivity() {
             onBackPressed()
         }
 
-        Log.e("TAG", "onCreate: " + allPermissionsGranted())
-        if (!allPermissionsGranted() || contentResolver.persistedUriPermissions.size <= 0) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
-                && contentResolver.persistedUriPermissions.size <= 0
-            ) {
-                openDocTreeStatus()
-            } else {
-                if (!allPermissionsGranted())
-                    permissionsLauncher.launch(PERMISSIONS.toTypedArray())
-                else setupViewPager()
-            }
-        } else {
-            setupViewPager()
-        }
+//        if (!allPermissionsGranted() || contentResolver.persistedUriPermissions.size <= 0) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
+//                && contentResolver.persistedUriPermissions.size <= 0
+//            ) {
+//                openDocTreeStatus()
+//            } else {
+//                if (!allPermissionsGranted())
+//                    permissionsLauncher.launch(PERMISSIONS.toTypedArray())
+//                else setupViewPager()
+//            }
+//        } else {
+        setupViewPager()
+//        }
     }
 
     private fun setupViewPager() {
@@ -121,40 +117,40 @@ class WAStatusActivity : FullScreenActivity() {
         }
     }
 
-    private fun allPermissionsGranted() = PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
-    }
+//    private fun allPermissionsGranted() = PERMISSIONS.all {
+//        ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
+//    }
+//
+//    private fun arePermissionDenied(): Boolean {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            return contentResolver.persistedUriPermissions.size <= 0
+//        }
+//        for (str in PERMISSIONS) {
+//            if (ActivityCompat.checkSelfPermission(
+//                    this,
+//                    str
+//                ) != PackageManager.PERMISSION_GRANTED
+//            ) {
+//                return true
+//            }
+//        }
+//        return false
+//    }
 
-    private fun arePermissionDenied(): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            return contentResolver.persistedUriPermissions.size <= 0
-        }
-        for (str in PERMISSIONS) {
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    str
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return true
-            }
-        }
-        return false
-    }
-
-    @RequiresApi(Build.VERSION_CODES.R)
-    private fun openDocTreeStatus() {
-        Log.e("TAG", "requestPermissionQ: ")
-        val createOpenDocumentTreeIntent =
-            (getSystemService(STORAGE_SERVICE) as StorageManager).primaryStorageVolume.createOpenDocumentTreeIntent()
-        val replace: String =
-            (createOpenDocumentTreeIntent.getParcelableExtra<Parcelable>(DocumentsContract.EXTRA_INITIAL_URI) as Uri?).toString()
-                .replace("/root/", "/document/")
-        val parse: Uri =
-            Uri.parse("$replace%3AAndroid%2Fmedia%2Fcom.whatsapp%2FWhatsApp%2FMedia%2F.Statuses")
-        Log.d("URI", parse.toString())
-        createOpenDocumentTreeIntent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, parse)
-        statusFileResultLauncher.launch(createOpenDocumentTreeIntent)
-    }
+//    @RequiresApi(Build.VERSION_CODES.R)
+//    private fun openDocTreeStatus() {
+//        Log.e("TAG", "requestPermissionQ: ")
+//        val createOpenDocumentTreeIntent =
+//            (getSystemService(STORAGE_SERVICE) as StorageManager).primaryStorageVolume.createOpenDocumentTreeIntent()
+//        val replace: String =
+//            (createOpenDocumentTreeIntent.getParcelableExtra<Parcelable>(DocumentsContract.EXTRA_INITIAL_URI) as Uri?).toString()
+//                .replace("/root/", "/document/")
+//        val parse: Uri =
+//            Uri.parse("$replace%3AAndroid%2Fmedia%2Fcom.whatsapp%2FWhatsApp%2FMedia%2F.Statuses")
+//        Log.d("URI", parse.toString())
+//        createOpenDocumentTreeIntent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, parse)
+//        statusFileResultLauncher.launch(createOpenDocumentTreeIntent)
+//    }
 
     inner class FragmentsAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int {

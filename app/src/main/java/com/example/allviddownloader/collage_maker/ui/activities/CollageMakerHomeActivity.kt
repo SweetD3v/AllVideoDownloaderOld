@@ -2,15 +2,15 @@ package com.example.allviddownloader.collage_maker.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
 import com.example.allviddownloader.R
 import com.example.allviddownloader.databinding.ActivityCollageMakerHomeBinding
 import com.example.allviddownloader.ui.activities.FullScreenActivity
 import com.example.allviddownloader.ui.fragments.HomeFragment
 import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
-import com.example.allviddownloader.utils.AdsUtils
-import com.example.allviddownloader.utils.NetworkState
-import com.example.allviddownloader.utils.adjustInsets
+import com.example.allviddownloader.utils.*
 import gun0912.tedimagepicker.builder.TedImagePicker
 
 class CollageMakerHomeActivity : FullScreenActivity() {
@@ -29,7 +29,12 @@ class CollageMakerHomeActivity : FullScreenActivity() {
                 R.drawable.top_bar_gradient_purple
             )
 
-            toolbar.rlMain.adjustInsets(this@CollageMakerHomeActivity)
+            adjustInsetsBoth(this@CollageMakerHomeActivity, { marginTop ->
+                toolbar.rlMain.topMargin = marginTop
+            }, { marginBottom ->
+                Log.e("TAG", "marginBottom: ${pxToDp(llBottom.marginBottom)}")
+                rlRoot.bottomMargin = marginBottom
+            })
 
             toolbar.imgBack.setOnClickListener {
                 onBackPressed()

@@ -175,7 +175,7 @@
             android:name="com.karumi.dexter.DexterActivity"
             android:theme="@style/Dexter.Internal.Theme.Transparent" />
         <activity
-            android:name=".ui.activities.CleanerActivity"
+            android:name=".tools.cleaner.CleanerActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

@@ -1,8 +1,20 @@
 package com.example.allviddownloader.ui.fragments
 
+import android.Manifest
+import android.content.Intent
 import android.graphics.Rect
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Parcelable
+import android.os.storage.StorageManager
+import android.provider.DocumentsContract
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allviddownloader.R
@@ -24,6 +36,46 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
     var job = Job()
     var ioScope = CoroutineScope(Dispatchers.IO + job)
     var uiScope = CoroutineScope(Dispatchers.Main + job)
+
+    private val PERMISSIONS = mutableListOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    ).apply {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+    }
+
+    val permissionsLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { result ->
+            var granted = true
+            if (result != null) {
+                for (b in result.values) {
+                    if (!b) {
+                        granted = false
+                        break
+                    }
+                }
+            } else granted = false
+
+        }
+
+    val statusFileResultLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                val data: Intent = result.data!!
+                Log.d("HEY: ", data.data.toString())
+                ctx.contentResolver.takePersistableUriPermission(
+                    data.data!!,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+                Toast.makeText(ctx, "Success", Toast.LENGTH_SHORT).show()
+                onPermissionGranted()
+            }
+        }
 
     var waMediaAdapter: WAMediaAdapter? = null
 
@@ -64,6 +116,21 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun openDocTreeStatus() {
+        Log.e("TAG", "requestPermissionQ: ")
+        val createOpenDocumentTreeIntent =
+            (ctx.getSystemService(AppCompatActivity.STORAGE_SERVICE) as StorageManager).primaryStorageVolume.createOpenDocumentTreeIntent()
+        val replace: String =
+            (createOpenDocumentTreeIntent.getParcelableExtra<Parcelable>(DocumentsContract.EXTRA_INITIAL_URI) as Uri?).toString()
+                .replace("/root/", "/document/")
+        val parse: Uri =
+            Uri.parse("$replace%3AAndroid%2Fmedia%2Fcom.whatsapp%2FWhatsApp%2FMedia%2F.Statuses")
+        Log.d("URI", parse.toString())
+        createOpenDocumentTreeIntent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, parse)
+        statusFileResultLauncher.launch(createOpenDocumentTreeIntent)
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -73,12 +140,23 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
 //        } else {
 //            permissionRequest.launch(permissions.toTypedArray())
 //        }
-
-        loadImages()
+        if (!allPermissionsGranted() || ctx.contentResolver.persistedUriPermissions.size <= 0) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
+                && ctx.contentResolver.persistedUriPermissions.size <= 0
+            ) {
+                openDocTreeStatus()
+            } else {
+                if (!allPermissionsGranted())
+                    permissionsLauncher.launch(PERMISSIONS.toTypedArray())
+                else onPermissionGranted()
+            }
+        }else{
+            onPermissionGranted()
+        }
     }
 
     override fun onPermissionGranted() {
-//        loadImages()
+        loadImages()
     }
 
     private fun loadImages() {
@@ -90,37 +168,16 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
             var imageListNew: MutableList<Media>
             ioScope.launch {
                 getMediaWACoroutine(ctx) { list ->
-
+                    Log.e("TAG", "loadImages: ${list.size}")
                     imageListNew =
                         list.filter { !it.path.contains(".noMedia", true) }.toMutableList()
-                    if (imagesList.size != imageListNew.size) {
-                        imagesList = imageListNew
+                    imagesList = imageListNew
 
-                        uiScope.launch {
-
-                            waMediaAdapter?.mediaList = imagesList
-                            waMediaAdapter?.notifyDataSetChanged()
-                        }
+                    uiScope.launch {
+                        waMediaAdapter?.updateEmployeeListItems(imagesList)
                     }
                 }
             }
-
-//            getMediaWAAll(ctx) { list ->
-//                for (media in list) {
-//                    if (!media.path.contains(".nomedia", true)
-//                    ) {
-//                        imageListNew.add(media)
-//                    }
-//                }
-//                if (imageListNew.size != imagesList.size) {
-//                    Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
-//                    Log.e("TAG", "loadImages: ${imagesList.size}")
-//                    imagesList = imageListNew
-//                    val waMediaAdapter = WAMediaAdapter(ctx, imagesList)
-//                    binding.rvWAImages.adapter = waMediaAdapter
-//                    waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
-//                }
-//            }
         }
     }
 

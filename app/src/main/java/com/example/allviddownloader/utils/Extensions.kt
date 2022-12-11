@@ -55,6 +55,17 @@ var RootDirectoryInstaShow = File(
             + File.separator + AllVidApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Insta"
 )
+
+var RootDirectoryWallpapers = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Wallpapers"
+)
+var RootDirectoryStatus = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Status"
+)
 var RootDirectoryTwitter = "All Video HD Downloader/Twitter/"
 var RootDirectoryTwitterShow = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath

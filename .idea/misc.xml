@@ -147,6 +147,9 @@
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_cache_cleaner.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_cartoon.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_cartoonify_home.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_cleaner_home.xml" value="0.33" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_cleaner_home_new.xml" value="0.33" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_collage_maker_home.xml" value="0.25" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_compress_photo.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_compress_video.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_compress_video_home.xml" value="0.3546875" />
@@ -165,6 +168,7 @@
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_ringtone.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_speed_test.xml" value="0.3536458333333333" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_splash.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_wallpaper_details.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_wallpapers.xml" value="0.19583333333333333" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_wastatus.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/admob_native_medium_new.xml" value="0.3546875" />
@@ -174,15 +178,22 @@
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/dialog_server_down.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/empty_view.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home_new.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragment_waimages.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragments_downloads.xml" value="0.33" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_attitude_status.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_junk_files.xml" value="0.3536458333333333" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_my_creation.xml" value="0.3536458333333333" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_myfun_videos.xml" value="0.3536458333333333" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_permission_cleaner.xml" value="0.33" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_popular_videos.xml" value="0.18854166666666666" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_status.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/item_wallpapers.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/navigation_layout.xml" value="0.18854166666666666" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/progress_dialog.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/row_adjust_view.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/row_editing_tools.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/topbar_common.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/speed_meter/src/main/res/layout/net_speed_notification_view.xml" value="0.3546875" />
       </map>
     </option>

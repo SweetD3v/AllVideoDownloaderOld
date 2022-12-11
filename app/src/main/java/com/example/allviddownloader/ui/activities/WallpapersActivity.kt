@@ -20,6 +20,7 @@ import com.example.allviddownloader.databinding.ItemWallCategoriesBinding
 import com.example.allviddownloader.databinding.ItemWallpapersBinding
 import com.example.allviddownloader.interfaces.CategorySelectionListener
 import com.example.allviddownloader.models.WallModelPixabay
+import com.example.allviddownloader.ui.mycreation.MyCreationToolsActivity
 import com.example.allviddownloader.utils.*
 import com.example.allviddownloader.utils.apis.RestApi
 import com.example.allviddownloader.widgets.BSFragmentBuilder
@@ -41,6 +42,10 @@ class WallpapersActivity : FullScreenActivity() {
     var categorySheet: BSFragmentBuilder? = null
     var catSelected = 0
     var reset = true
+    val wallType by lazy {
+        if (intent.hasExtra("wallType")) intent.getStringExtra("wallType")
+        else ""
+    }
 
     companion object {
         var pageIndex = 1
@@ -69,6 +74,22 @@ class WallpapersActivity : FullScreenActivity() {
 
             binding.toolbar.rlMain.adjustInsets(this@WallpapersActivity)
 
+            binding.toolbar.imgDownloads.visible()
+            binding.toolbar.imgDownloads.setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@WallpapersActivity,
+                        MyCreationToolsActivity::class.java
+                    ).apply {
+                        putExtra(
+                            MyCreationToolsActivity.CREATION_TYPE,
+                            if (wallType == "wallpapers")
+                                "wallpapers"
+                            else "status"
+                        )
+                    })
+            }
+
             loadWallpapers()
         }
     }
@@ -91,11 +112,11 @@ class WallpapersActivity : FullScreenActivity() {
             )
 
             wallpapersList = mutableListOf()
-            wallpapersAdapter = WallpapersAdapter(this@WallpapersActivity)
+            wallpapersAdapter = WallpapersAdapter(this@WallpapersActivity, wallType.toString())
             binding.rvWallpapers.adapter = wallpapersAdapter
 
             val arr: Array<String>
-            if (intent.getStringExtra("walpType") == "wallpapers") {
+            if (wallType == "wallpapers") {
                 binding.toolbar.txtTitle.text = getString(R.string.wallpapers)
                 binding.toolbar.root.background = ContextCompat.getDrawable(
                     this@WallpapersActivity,
@@ -203,7 +224,8 @@ class WallpapersActivity : FullScreenActivity() {
     }
 
     class WallpapersAdapter(
-        var ctx: Context
+        var ctx: Context,
+        var wallType: String
     ) :
         RecyclerView.Adapter<WallpapersAdapter.VH>() {
         lateinit var wallpapers: MutableList<WallModelPixabay.PhotoDetails>
@@ -240,6 +262,7 @@ class WallpapersActivity : FullScreenActivity() {
                 ctx.startActivity(
                     Intent(ctx, WallpapersDetailsActivity::class.java)
                         .putExtra("position", holder.adapterPosition)
+                        .putExtra("wallType", wallType)
                         .putExtra(
                             WALLPAPER_ORIGINAL_URL,
                             wallpapers[holder.adapterPosition].largeImageURL

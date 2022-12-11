@@ -97,6 +97,18 @@ class MyCreationToolsActivity : FullScreenActivity() {
                     this@MyCreationToolsActivity,
                     R.drawable.top_bar_gradient_yellow
                 )
+            } else if (type.equals("wallpapers")) {
+                toolbar.txtTitle.text = getString(R.string.wallpapers)
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_yellow
+                )
+            } else if (type.equals("status")) {
+                toolbar.txtTitle.text = getString(R.string.status_maker)
+                toolbar.root.background = ContextCompat.getDrawable(
+                    this@MyCreationToolsActivity,
+                    R.drawable.top_bar_gradient_green
+                )
             }
 
             if (NetworkState.isOnline()) {
@@ -174,6 +186,10 @@ class MyCreationToolsActivity : FullScreenActivity() {
             file = RootDirectoryFBDownlaoder
         } else if (type.equals("all")) {
             file = originalPath
+        } else if (type.equals("wallpapers")) {
+            file = RootDirectoryWallpapers
+        } else if (type.equals("status")) {
+            file = RootDirectoryStatus
         }
 
         Log.e("TAG", "loadMedia: ${file?.exists()}")
@@ -187,15 +203,22 @@ class MyCreationToolsActivity : FullScreenActivity() {
                     MyCreationToolsActivity.mediaList = mediaList
 
                     if (type.equals("all"))
-                        MyCreationToolsActivity.mediaList = ArrayList(MyCreationToolsActivity.mediaList?.filter { mediaItem ->
-                            !mediaItem.path.contains("Insta Grid", true)
-                        } ?: arrayListOf())
+                        MyCreationToolsActivity.mediaList =
+                            ArrayList(MyCreationToolsActivity.mediaList?.filter { mediaItem ->
+                                !mediaItem.path.contains("Insta Grid", true)
+                            } ?: arrayListOf())
 
                     MyCreationToolsActivity.mediaList?.sortByDescending { item -> item.date }
                     val myCreationAdapter =
-                        MyCreationAdapter(this, MyCreationToolsActivity.mediaList ?: mutableListOf())
+                        MyCreationAdapter(
+                            this,
+                            MyCreationToolsActivity.mediaList ?: mutableListOf()
+                        )
                     binding.rvMyCreation.adapter = myCreationAdapter
-                    myCreationAdapter.notifyItemRangeChanged(0, MyCreationToolsActivity.mediaList?.size ?: 0)
+                    myCreationAdapter.notifyItemRangeChanged(
+                        0,
+                        MyCreationToolsActivity.mediaList?.size ?: 0
+                    )
                 }
             }
         }

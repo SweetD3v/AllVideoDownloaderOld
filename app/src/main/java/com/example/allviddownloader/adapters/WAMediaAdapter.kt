@@ -5,16 +5,19 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.allviddownloader.databinding.ItemStatusBinding
 import com.example.allviddownloader.models.Media
 import com.example.allviddownloader.ui.activities.FullViewWhatsappActivity
-import com.example.allviddownloader.utils.*
+import com.example.allviddownloader.utils.MediaDiffCallback
+import com.example.allviddownloader.utils.dpToPx
+
 
 class WAMediaAdapter(
     var ctx: Context,
-    var mediaList: MutableList<Media>
+    var oldMediaList: MutableList<Media>
 ) :
     RecyclerView.Adapter<WAMediaAdapter.VH>() {
 
@@ -22,13 +25,25 @@ class WAMediaAdapter(
         var loadingPosition = 0
     }
 
+    fun updateEmployeeListItems(employees: MutableList<Media>) {
+        val diffCallback = MediaDiffCallback(this.oldMediaList, employees)
+        val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(diffCallback)
+        this.oldMediaList.clear()
+        this.oldMediaList.addAll(employees)
+        diffResult.dispatchUpdatesTo(this)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(ItemStatusBinding.inflate(LayoutInflater.from(ctx), parent, false))
     }
 
+    override fun onBindViewHolder(holder: VH, position: Int, payloads: MutableList<Any>) {
+        super.onBindViewHolder(holder, position, payloads)
+    }
+
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val media = mediaList[holder.bindingAdapterPosition]
-        holder.loadingPosition = position;
+        val media = oldMediaList[holder.bindingAdapterPosition]
+        holder.loadingPosition = position
 
 //        if (holder.loadingPosition == position) {
 //            Picasso.get().load(media.uri).into(holder.binding.ivThumbnail)
@@ -55,7 +70,7 @@ class WAMediaAdapter(
                     .putExtra("position", holder.bindingAdapterPosition)
                     .putExtra(
                         "type",
-                        if (mediaList[holder.bindingAdapterPosition].isVideo) "video"
+                        if (oldMediaList[holder.bindingAdapterPosition].isVideo) "video"
                         else "photo"
                     )
             )
@@ -63,6 +78,6 @@ class WAMediaAdapter(
     }
 
     override fun getItemCount(): Int {
-        return mediaList.size
+        return oldMediaList.size
     }
 }
