@@ -25,7 +25,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintVertical_bias="0.0">
 
-            <com.example.allviddownloader.collage_maker.features.college.PuzzleView
+            <com.tools.videodownloader.collage_maker.features.college.PuzzleView
                 android:id="@+id/puzzle_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

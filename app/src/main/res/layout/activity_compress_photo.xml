@@ -51,7 +51,7 @@
                                 android:scaleType="centerCrop" />
                         </com.google.android.material.card.MaterialCardView>
 
-                        <com.example.allviddownloader.widgets.SquareImageView
+                        <com.tools.videodownloader.widgets.SquareImageView
                             android:id="@+id/imgCompressed"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"

@@ -1,13 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 
 android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.allviddownloader"
+        applicationId "com.tools.videodownloader"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -24,11 +25,11 @@ android {
 
     buildTypes {
         debug {
-            resValue("string", "rapid_api_key", "3fe1bd0f0amshee4af0f8309384ap1c0032jsn137ef742b00d")
+            resValue("string", "rapid_api_key", "05b494342bmsh71968bd53aac90ep1be7fbjsna61136c6b7fa")
             resValue("string", "rapid_api_host_insta", "instagram-downloader-download-instagram-videos-stories.p.rapidapi.com")
-            resValue("string", "rapid_api_host_fb", "socialdownloader.p.rapidapi.com")
+            resValue("string", "rapid_api_host_fb", "facebook-story-saver-and-video-downloader.p.rapidapi.com")
             resValue("string", "base_url_insta", "https://instagram-downloader-download-instagram-videos-stories.p.rapidapi.com/")
-            resValue("string", "base_url_fb", "https://socialdownloader.p.rapidapi.com/")
+            resValue("string", "base_url_fb", "https://facebook-story-saver-and-video-downloader.p.rapidapi.com/")
 
             resValue("string", "admob_app_id", "ca-app-pub-3940256099942544~3347511713")
             resValue("string", "app_open_id", "ca-app-pub-3940256099942544/3419835294")
@@ -39,11 +40,11 @@ android {
             resValue("string", "playstore_url", "\"https://play.google.com/store/apps/details?id=%s\"")
         }
         release {
-            resValue("string", "rapid_api_key", "3fe1bd0f0amshee4af0f8309384ap1c0032jsn137ef742b00d")
+            resValue("string", "rapid_api_key", "05b494342bmsh71968bd53aac90ep1be7fbjsna61136c6b7fa")
             resValue("string", "rapid_api_host_insta", "instagram-downloader-download-instagram-videos-stories.p.rapidapi.com")
-            resValue("string", "rapid_api_host_fb", "socialdownloader.p.rapidapi.com")
+            resValue("string", "rapid_api_host_fb", "facebook-story-saver-and-video-downloader.p.rapidapi.com")
             resValue("string", "base_url_insta", "https://instagram-downloader-download-instagram-videos-stories.p.rapidapi.com/")
-            resValue("string", "base_url_fb", "https://socialdownloader.p.rapidapi.com/")
+            resValue("string", "base_url_fb", "https://facebook-story-saver-and-video-downloader.p.rapidapi.com/")
 
             resValue("string", "admob_app_id", "ca-app-pub-3940256099942544~3347511713")
             resValue("string", "app_open_id", "ca-app-pub-3940256099942544/3419835294")
@@ -128,6 +129,10 @@ dependencies {
     implementation 'androidx.browser:browser:1.4.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.github.chathuralakmal:AndroidImagePopup:1.2.2'
+
+    implementation platform("com.google.firebase:firebase-bom:30.0.1")
+    implementation "com.google.firebase:firebase-analytics"
+    implementation "com.google.firebase:firebase-config"
 
     implementation 'com.github.armcha:ColoredShadowImageView:1.1.0'
     implementation project(path: ':shapeimageview')

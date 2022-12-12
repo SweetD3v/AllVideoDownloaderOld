@@ -54,7 +54,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.example.allviddownloader.collage_maker.crop.CropImageView xmlns:custom="http://schemas.android.com/apk/res-auto"
+    <com.tools.videodownloader.collage_maker.crop.CropImageView xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:id="@+id/crop_view"
         android:layout_width="match_parent"
         android:layout_height="0.0dip"

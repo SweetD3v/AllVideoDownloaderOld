@@ -112,7 +112,7 @@ class SpeedMeterService : Service() {
 
     private fun createPendingIntent(): PendingIntent? {
         val intent =
-            Intent(this, Class.forName("com.example.allviddownloader.ui.activities.MainActivity"))
+            Intent(this, Class.forName("com.tools.videodownloader.ui.activities.MainActivity"))
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
         return PendingIntent.getActivity(

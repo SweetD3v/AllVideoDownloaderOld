@@ -38,7 +38,7 @@
                     android:layout_height="match_parent" />
             </com.google.android.material.card.MaterialCardView>
 
-            <com.example.allviddownloader.utils.BaseRecyclerView
+            <com.tools.videodownloader.utils.BaseRecyclerView
                 android:id="@+id/rvMyCreation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

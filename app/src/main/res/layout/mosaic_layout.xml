@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true" />
 
-        <com.example.allviddownloader.collage_maker.features.mosaic.MosaicView
+        <com.tools.videodownloader.collage_maker.features.mosaic.MosaicView
             android:id="@+id/mosaicView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

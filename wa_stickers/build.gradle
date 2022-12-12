@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        def contentProviderAuthority = "com.example.allviddownloader.stickercontentprovider"
+        def contentProviderAuthority = "com.tools.videodownloader.stickercontentprovider"
         // Creates a placeholder property to use in the manifest.
         manifestPlaceholders =
                 [contentProviderAuthority: contentProviderAuthority]

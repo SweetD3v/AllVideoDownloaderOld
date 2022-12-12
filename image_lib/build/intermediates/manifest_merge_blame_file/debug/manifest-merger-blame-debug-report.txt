@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="21"
-6-->F:\ClientProjects\AllVideoDownloader\image_lib\src\main\AndroidManifest.xml
+6-->E:\Vishrut\AndroidProjects\AllVideoDownloader\image_lib\src\main\AndroidManifest.xml
 7        android:targetSdkVersion="32" />
-7-->F:\ClientProjects\AllVideoDownloader\image_lib\src\main\AndroidManifest.xml
+7-->E:\Vishrut\AndroidProjects\AllVideoDownloader\image_lib\src\main\AndroidManifest.xml
 8
 9</manifest>

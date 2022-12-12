@@ -11,7 +11,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"
-        android:name="com.example.allviddownloader.ui.fragments.DownloadsFragment"
+        android:name="videodownloader.ui.fragments.DownloadsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bannerContainer"

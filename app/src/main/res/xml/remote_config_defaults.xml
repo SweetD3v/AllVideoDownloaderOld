@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+    <entry>
+        <key>ad_manage</key>
+        <value>
+            -1
+        </value>
+    </entry>
+</defaults>
