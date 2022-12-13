@@ -16,6 +16,7 @@ import com.tools.videodownloader.speedtest.test.HttpUploadTest
 import com.tools.videodownloader.speedtest.test.PingTest
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.utils.adjustInsets
+import com.tools.videodownloader.utils.gone
 import com.tools.videodownloader.utils.visible
 import java.text.DecimalFormat
 
@@ -94,8 +95,21 @@ class SpeedTestActivity : FullScreenActivity() {
             toolbar.imgBack.setOnClickListener { onBackPressed() }
 
             startSpeedTest.setOnClickListener {
+                startSpeedTest.gone()
                 imgSpeedMeter.visible()
                 imgSpeedMeterHande.visible()
+                testSpeed()
+            }
+
+            startSpeedTestAgain.setOnClickListener {
+                imgSpeedMeter.visible()
+                imgSpeedMeterHande.visible()
+                startSpeedTestAgain.gone()
+
+                txtPing.text = "Ping - ms"
+                txtDownloadSpeed.text = "- mbps"
+                txtUploadSpeed.text = "- mbps"
+
                 testSpeed()
             }
         }
@@ -252,7 +266,7 @@ class SpeedTestActivity : FullScreenActivity() {
                                 Log.e("TAG", "")
                             } else {
                                 try {
-                                    runOnUiThread(Runnable {
+                                    runOnUiThread {
 //                                        tickProgressMeasure.setmPUnit("ms")
 //                                        tvPing.setText(
 //                                            dec.format(pingTest.getAvgRtt()).toString() + ""
@@ -266,7 +280,7 @@ class SpeedTestActivity : FullScreenActivity() {
 
                                         binding.txtPing.text =
                                             "${dec.format(pingTest.avgRtt)} ms"
-                                    })
+                                    }
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }
@@ -732,6 +746,13 @@ class SpeedTestActivity : FullScreenActivity() {
                             }
                         }
                         if (pingTestFinished && downloadTestFinished && uploadTest.isFinished) {
+                            binding.run {
+                                imgSpeedMeter.post {
+                                    imgSpeedMeter.gone()
+                                    imgSpeedMeterHande.gone()
+                                    startSpeedTestAgain.visible()
+                                }
+                            }
                             break
                         }
                         if (pingTest.isFinished) {

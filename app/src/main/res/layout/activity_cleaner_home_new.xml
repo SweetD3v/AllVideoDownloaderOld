@@ -114,63 +114,161 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.6">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <RelativeLayout
                     android:id="@+id/imgStorageCleaner"
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/cache"
+                    android:elevation="-1dp"
                     app:layout_constraintBottom_toTopOf="@id/btnOptimize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/storage_clean" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="16dp" />
+
+                    <TextView
+                        android:id="@+id/txtTotalPercentage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@id/txtClanBottom"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:gravity="center|bottom"
+                        android:paddingBottom="20dp"
+                        android:text="36%"
+                        android:textColor="@color/white"
+                        android:textSize="32sp" />
+
+                    <TextView
+                        android:id="@+id/txtClanBottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="48dp"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:gravity="center"
+                        android:text="Can be\nfreed"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </RelativeLayout>
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgJunkCleaner"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
+                    android:background="@drawable/cache"
+                    android:paddingHorizontal="48dp"
+                    android:paddingBottom="24dp"
                     app:layout_constraintBottom_toTopOf="@id/btnOptimize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.15"
-                    app:srcCompat="@drawable/junk_claner" />
+                    app:srcCompat="@drawable/ic_junk_clener_new" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32sp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center"
+                    android:text="Junk"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/imgJunkCleaner"
+                    app:layout_constraintEnd_toEndOf="@id/imgJunkCleaner"
+                    app:layout_constraintStart_toStartOf="@id/imgJunkCleaner" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgCacheCleaner"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:background="@drawable/cache"
+                    android:paddingHorizontal="36dp"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="48dp"
                     app:layout_constraintBottom_toTopOf="@id/btnOptimize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.85"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.23"
-                    app:srcCompat="@drawable/cache_cleaner" />
+                    app:srcCompat="@drawable/ic_cache_new" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center"
+                    android:text="Cache"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/imgCacheCleaner"
+                    app:layout_constraintEnd_toEndOf="@id/imgCacheCleaner"
+                    app:layout_constraintStart_toStartOf="@id/imgCacheCleaner" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgCPUCooler"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:background="@drawable/cache"
+                    android:paddingHorizontal="36dp"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="48dp"
                     app:layout_constraintBottom_toTopOf="@id/btnOptimize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.15"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.8"
-                    app:srcCompat="@drawable/cpu_cooler" />
+                    app:srcCompat="@drawable/cpu_cooler_new" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center"
+                    android:text="CPU"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/imgCPUCooler"
+                    app:layout_constraintEnd_toEndOf="@id/imgCPUCooler"
+                    app:layout_constraintStart_toStartOf="@id/imgCPUCooler" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgBatteryBoost"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
+                    android:background="@drawable/cache"
+                    android:paddingHorizontal="48dp"
+                    android:paddingBottom="36dp"
                     app:layout_constraintBottom_toTopOf="@id/btnOptimize"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.85"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.9"
-                    app:srcCompat="@drawable/battery_boost" />
+                    app:srcCompat="@drawable/ic_battery_new" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="36dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center"
+                    android:text="Battery"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/imgBatteryBoost"
+                    app:layout_constraintEnd_toEndOf="@id/imgBatteryBoost"
+                    app:layout_constraintStart_toStartOf="@id/imgBatteryBoost" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnOptimize"

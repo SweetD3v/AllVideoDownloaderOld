@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/gilroy_semibold"
-                android:text="Ping 0.0 ms"
+                android:text="Ping - ms"
                 android:textColor="#9a9a9a"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -143,20 +143,36 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llPing"
+            app:layout_constraintVertical_bias="0.4"
             app:srcCompat="@drawable/ic_start_speed" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/startSpeedTestAgain"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="24dp"
+            android:elevation="2dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llPing"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_retry" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgSpeedMeter"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/startSpeedTest"
+            app:layout_constraintBottom_toBottomOf="@id/startSpeedTest"
+            app:layout_constraintEnd_toEndOf="@id/startSpeedTest"
+            app:layout_constraintStart_toStartOf="@id/startSpeedTest"
+            app:layout_constraintTop_toTopOf="@id/startSpeedTest"
             app:srcCompat="@drawable/speed_meter" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -169,6 +185,7 @@
             app:layout_constraintStart_toStartOf="@id/imgSpeedMeter"
             app:layout_constraintTop_toTopOf="@id/imgSpeedMeter"
             app:layout_constraintVertical_bias="0.7"
-            app:srcCompat="@drawable/speed_test_hand" />
+            app:srcCompat="@drawable/speed_test_hand"
+            app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
