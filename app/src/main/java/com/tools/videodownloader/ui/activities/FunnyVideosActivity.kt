@@ -1,7 +1,7 @@
 package com.tools.videodownloader.ui.activities
 
+import android.app.Activity
 import android.content.Context
-import android.net.Uri
 import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
@@ -13,28 +13,25 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.tools.videodownloader.R
 import com.tools.videodownloader.databinding.ActivityFunnyVideosBinding
 import com.tools.videodownloader.databinding.ItemAttitudeStatusBinding
 import com.tools.videodownloader.models.PopularVids
-import com.tools.videodownloader.utils.AdsUtils
-import com.tools.videodownloader.utils.NetworkState
+import com.tools.videodownloader.utils.*
 import com.tools.videodownloader.utils.downloader.BasicImageDownloader
-import com.tools.videodownloader.utils.invisible
-import com.tools.videodownloader.utils.setDarkStatusBarColor
 
 class FunnyVideosActivity : AppCompatActivity() {
     val binding by lazy { ActivityFunnyVideosBinding.inflate(layoutInflater) }
 
     var lastUrl: String? = null
     var counts = 0
+    val customUrl by lazy { if (intent.hasExtra("customUrl")) intent.getStringExtra("customUrl") else "" }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setDarkStatusBarColor(this, R.color.black)
         setContentView(binding.root)
-
-        loadAttitudeVideos()
 
         binding.run {
             if (NetworkState.isOnline())
@@ -45,10 +42,6 @@ class FunnyVideosActivity : AppCompatActivity() {
 
             initMyPopularVideos()
         }
-    }
-
-    private fun loadAttitudeVideos() {
-
     }
 
 //    private fun loadVideos() {
@@ -92,11 +85,22 @@ class FunnyVideosActivity : AppCompatActivity() {
             val thumbArr =
                 this@FunnyVideosActivity.resources.getStringArray(R.array.myfun_thumbs_array)
             val videoArr = this@FunnyVideosActivity.resources.getStringArray(R.array.fun_videos)
-            val popularList = mutableListOf<PopularVids>()
-            for (i in thumbArr.indices) {
-                popularList.add(PopularVids(titleArr[i], thumbArr[i], videoArr[i]))
+            var popularList = mutableListOf<PopularVids>()
+            for (i in videoArr.indices) {
+                popularList.add(PopularVids("Title${i}", thumbArr[i], videoArr[i]))
             }
             popularList.shuffle()
+            if (customUrl != "")
+                popularList.add(
+                    0,
+                    PopularVids(
+                        "Title0",
+                        customUrl.toString(),
+                        customUrl.toString()
+                    )
+                )
+            popularList = popularList.distinctBy { it.videoUrl }.toMutableList()
+//            popularList.add(0, PopularVids(titleArr[i], thumbArr[i], videoArr[i]))
             popularAdapter.popularList = popularList
             viewPagerVid.adapter = popularAdapter
 
@@ -125,11 +129,27 @@ class FunnyVideosActivity : AppCompatActivity() {
             holder.binding.run {
                 val popularVid = popularList[holder.bindingAdapterPosition]
 
-//                Glide.with(ctx).load(popularVid.thumbUrl)
-//                    .centerCrop()
-//                    .into(imgWallpaper)
+                Glide.with(ctx).load(popularVid.videoUrl)
+                    .into(imgWallpaper)
 
-                videoView.setVideoURI(Uri.parse(popularVid.videoUrl))
+                fabDownload.setOnClickListener {
+                    AdsUtils.loadInterstitialAd(
+                        ctx as Activity,
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                popularVid.videoUrl.let { url ->
+                                    BasicImageDownloader(ctx)
+                                        .saveImageToExternal(
+                                            url,
+                                            RootDirectoryFacts
+                                        )
+                                }
+                            }
+                        })
+                }
+
+//                videoView.setVideoURI(Uri.parse(popularVid.videoUrl))
                 imgPlay.setOnClickListener {
                     videoView.setOnPreparedListener {
                         imgPlay.invisible()

@@ -61,6 +61,12 @@ var RootDirectoryWallpapers = File(
             + File.separator + AllVidApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Wallpapers"
 )
+
+var RootDirectoryFacts = File(
+    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
+            + File.separator + AllVidApp.getInstance()
+        .getString(R.string.app_name) + File.separator + "Facts"
+)
 var RootDirectoryStatus = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + AllVidApp.getInstance()

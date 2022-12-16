@@ -225,7 +225,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                 }
             }
 
-//            initMyPopularVideos()
+            initMyPopularVideos()
 
             llInstagram.setOnClickListener {
                 AdsUtils.clicksCountTools++
@@ -683,10 +683,10 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                 }
             val titleArr = ctx.resources.getStringArray(R.array.myfun_titles_array)
             val thumbArr = ctx.resources.getStringArray(R.array.status_arr)
-            val videoArr = ctx.resources.getStringArray(R.array.myfun_array)
+            val videoArr = ctx.resources.getStringArray(R.array.fun_videos)
             val popularList = mutableListOf<PopularVids>()
-            for (i in thumbArr.indices) {
-                popularList.add(PopularVids(titleArr[i], thumbArr[i], videoArr[i]))
+            for (i in videoArr.indices) {
+                popularList.add(PopularVids(titleArr[i], videoArr[i], videoArr[i]))
             }
             popularList.shuffle()
             popularAdapter.popularList = popularList
@@ -729,7 +729,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     .centerCrop()
                     .into(imgMyFun)
 
-                txtFunny.gone()
+                txtFunny.text = popularVid.title
 
                 root.setOnClickListener {
                     popularItemClickListener?.onItemClick(popularVid.videoUrl)

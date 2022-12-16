@@ -47,7 +47,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AllVidDownloader"
         android:usesCleartextTraffic="true"
-        tools:replace="android:theme, android:icon"
+        tools:replace="android:theme, android:icon, android:label"
         tools:targetApi="30">
 
         <activity
