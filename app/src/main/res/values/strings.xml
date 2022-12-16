@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">11 All Video Downloader</string>
+    <string name="app_name">All Video Downloader &amp; Tools</string>
     <string name="paste_link">Paste link</string>
     <string name="paste">Paste</string>
     <string name="download">Download</string>
@@ -103,6 +103,10 @@
     <string name="my_creations">My Creations</string>
     <string name="junk_files_found">Junk files found : %s</string>
     <string name="optimize">Optimize</string>
+    <string name="did_you_know">Did you know?</string>
+    <string name="share_using">Share Using</string>
+    <string name="share_app_text">Hi friends!\nCheck out this All video downloader app and enjoy funny videos with your friends.\n\nDownload it here - https://play.google.com/store/apps/details?id=%s</string>
+    <string name="done">Done</string>
 
     <string-array name="wallp_arr">
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fJjphUzRq64EoCViXztAyJXBE6kzAnIAf6sJKArZzASRmUaJESz2r1qWMzUZxuXHaAR3eJuOGxiQej_3hdFzaBkV_OQDwPhjtBt26EGoqOoy6LkvDNq65oes5QZk5Cv__RagBLcBDkvL-4riMOdFbbK5Dwnms_E628Mh6P1OfhwHn35r8yMR6poY/s1280/photo_2022-09-17_06-02-57.jpg</item>

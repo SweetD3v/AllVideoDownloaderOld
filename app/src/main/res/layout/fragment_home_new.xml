@@ -397,7 +397,7 @@
                                 android:layout_marginTop="4dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:gravity="center_horizontal"
-                                android:text="@string/funny"
+                                android:text="You know?"
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -526,11 +526,12 @@
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/gilroy_semibold"
                         android:gravity="center_vertical"
-                        android:text="@string/popular_videos"
+                        android:text="@string/did_you_know"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/txtMore"
                         android:layout_width="wrap_content"
                         android:layout_height="?actionBarSize"
                         android:layout_alignParentEnd="true"

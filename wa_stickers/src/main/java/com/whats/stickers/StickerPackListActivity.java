@@ -8,9 +8,17 @@
 
 package com.whats.stickers;
 
+import android.app.Activity;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +42,18 @@ public class StickerPackListActivity extends AddStickerPackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sticker_pack_list);
+
+        getWindow().setStatusBarColor(Color.parseColor("#00000000"));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+        adjustInsetsBoth(this, (topMargin, bottomMargin) -> {
+            RelativeLayout rlMain = findViewById(R.id.rlMain);
+            RelativeLayout rlMainTop = findViewById(R.id.rlMainTop);
+            ((ViewGroup.MarginLayoutParams) rlMain.getLayoutParams()).setMargins(0, topMargin, 0, 0);
+            ((ViewGroup.MarginLayoutParams) rlMainTop.getLayoutParams()).setMargins(0, 0, 0, bottomMargin);
+        });
+
         packRecyclerView = findViewById(R.id.sticker_pack_list);
         stickerPackList = getIntent().getParcelableArrayListExtra(EXTRA_STICKER_PACK_LIST_DATA);
         showStickerPackList(stickerPackList);
@@ -44,6 +64,23 @@ public class StickerPackListActivity extends AddStickerPackActivity {
         findViewById(R.id.imgBack).setOnClickListener(v -> {
             onBackPressed();
         });
+    }
+
+    interface OnMarginsCalculateListener {
+        void onMarginsCalculated(int topMargin, int bottomMargin);
+    }
+
+    private void adjustInsetsBoth(Activity activity, OnMarginsCalculateListener calculateListener) {
+        ViewCompat.setOnApplyWindowInsetsListener(
+                activity.getWindow().getDecorView(), (v, insets) -> {
+                    int statusbarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+                    int navbarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
+                    Log.e("TAG", "adjustInsets: " + statusbarHeight);
+
+                    if (calculateListener != null)
+                        calculateListener.onMarginsCalculated(statusbarHeight, navbarHeight);
+                    return insets;
+                });
     }
 
     @Override

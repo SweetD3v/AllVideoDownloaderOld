@@ -41,6 +41,11 @@ class FunnyVideosActivity : AppCompatActivity() {
                 )
 
             initMyPopularVideos()
+
+            setSupportActionBar(toolbar)
+            toolbar.setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
     }
 
@@ -87,7 +92,7 @@ class FunnyVideosActivity : AppCompatActivity() {
             val videoArr = this@FunnyVideosActivity.resources.getStringArray(R.array.fun_videos)
             var popularList = mutableListOf<PopularVids>()
             for (i in videoArr.indices) {
-                popularList.add(PopularVids("Title${i}", thumbArr[i], videoArr[i]))
+                popularList.add(PopularVids("Title${i}", videoArr[i], videoArr[i]))
             }
             popularList.shuffle()
             if (customUrl != "")

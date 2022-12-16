@@ -1,0 +1,27 @@
+Privacy Policy 
+
+This page is used to inform website visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service. 
+
+Respecting your privacy is a fundamental policy of our company , and therefore, we formulate this Privacy Policy to inform you of how we collect, use and share your personal information. 
+
+Non- Personal Information
+We may collect and use non-personal information in the following circumstances. To have a better understanding in user’s behavior, solve problems in products and services, improve our products, services and advertising, we may collect non-personal information such as installed application name and package name, the data of install, frequency of use, country, equipment and channel.
+
+
+Permissions uses in App and its uses
+
+WRITE_EXTERNAL_STORAGE:
+This permission used for store or save your created video on SD card or memory card. It also required for store temporary file for animations.
+
+READ_EXTERNAL_STORAGE:
+This permission used for show all photos on our app. Photos are use for creating video.
+
+INTERNET:
+This permission required to download video themes or music. It also required showing ads on app.
+
+ACCESS_NETWORK_STATE:
+This permission required to check internet is available or not before downloading video effect theme or music.
+
+
+Contact Us
+If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact us .......

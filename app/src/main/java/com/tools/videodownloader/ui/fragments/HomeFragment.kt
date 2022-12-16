@@ -39,7 +39,7 @@ import com.tools.videodownloader.models.PopularVids
 import com.tools.videodownloader.models.TrayModel
 import com.tools.videodownloader.speedtest.SpeedTestActivity
 import com.tools.videodownloader.tools.age_calc.AgeCalculatorActivity
-import com.tools.videodownloader.tools.cleaner.CleanerHomeActivity
+import com.tools.videodownloader.tools.cleaner.CleanerActivity
 import com.tools.videodownloader.tools.compress.PhotoCmpHomeActivity
 import com.tools.videodownloader.tools.insta_grid.InstaGridActivity
 import com.tools.videodownloader.tools.photo_filters.PhotoFilterHomeActivity
@@ -213,16 +213,18 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                 }
 
                 llShare.setOnClickListener {
-
+                    openShareIntent()
                 }
 
                 llPrivacyPolicy.setOnClickListener {
-
+                    startActivity(Intent(ctx, PrivacyPolicyActivity::class.java))
                 }
 
                 imgBackDrawer.setOnClickListener {
                     drawerLayout.closeDrawer(GravityCompat.END)
                 }
+
+                txtVersion.text = requireActivity().getVersionName()
             }
 
             initMyPopularVideos()
@@ -450,11 +452,29 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                         ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
-                                startActivity(Intent(ctx, CleanerHomeActivity::class.java))
+                                startActivity(Intent(ctx, CleanerActivity::class.java))
                             }
                         })
                 } else {
-                    startActivity(Intent(ctx, CleanerHomeActivity::class.java))
+                    startActivity(Intent(ctx, CleanerActivity::class.java))
+                }
+            }
+
+
+            txtMore.setOnClickListener {
+                AdsUtils.clicksCountTools++
+                if (NetworkState.isOnline() && AdsUtils.clicksCountTools == 2) {
+                    AdsUtils.clicksCountTools = 0
+                    AdsUtils.loadInterstitialAd(
+                        requireActivity(),
+                        ctx.getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                startActivity(Intent(ctx, FunnyVideosActivity::class.java))
+                            }
+                        })
+                } else {
+                    startActivity(Intent(ctx, FunnyVideosActivity::class.java))
                 }
             }
 
@@ -666,6 +686,14 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
 //                }
 //            }
         }
+    }
+
+    private fun openShareIntent() {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_text, ctx.packageName))
+        startActivity(Intent.createChooser(intent, getString(R.string.share_using)))
     }
 
     private fun initMyPopularVideos() {

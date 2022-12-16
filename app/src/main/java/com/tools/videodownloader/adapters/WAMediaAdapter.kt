@@ -13,6 +13,7 @@ import com.tools.videodownloader.models.Media
 import com.tools.videodownloader.ui.activities.FullViewWhatsappActivity
 import com.tools.videodownloader.utils.MediaDiffCallback
 import com.tools.videodownloader.utils.dpToPx
+import com.tools.videodownloader.utils.gone
 
 
 class WAMediaAdapter(
@@ -63,6 +64,8 @@ class WAMediaAdapter(
 //            Picasso.get().load(media.uri).into(holder.binding.ivThumbnail)
             holder.binding.imgPlay.visibility = View.GONE
         }
+
+        holder.binding.imgDelete.gone()
 
         holder.itemView.setOnClickListener {
             ctx.startActivity(

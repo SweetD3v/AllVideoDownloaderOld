@@ -15,7 +15,7 @@ import com.tools.videodownloader.models.FireAdModel
 class RemoteConfigUtils {
     companion object {
         private var mFirebaseRemoteConfig: FirebaseRemoteConfig? = null
-        private val ADMOB_DATA = "ad_type"
+        private val ADMOB_DATA = "ad_manage"
         private var admobData: FireAdModel? = null
 
         public fun fetchDataFromRemoteConfig(context: Context) {
@@ -36,7 +36,7 @@ class RemoteConfigUtils {
 
                             if (mFirebaseRemoteConfig!!.getString(ADMOB_DATA) != "-1") {
                                 admob_data = mFirebaseRemoteConfig!!.getString(ADMOB_DATA)
-                                Log.e("FRC", "onComplete: ${admob_data}")
+                                Log.e("FRC", "onFirebaseComplete: ${admob_data}")
                             }
 
                             val gsonMoreApps = Gson()

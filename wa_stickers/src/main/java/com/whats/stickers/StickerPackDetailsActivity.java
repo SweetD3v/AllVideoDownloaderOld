@@ -8,19 +8,27 @@
 
 package com.whats.stickers;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.Formatter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,6 +69,18 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sticker_pack_details);
+
+        getWindow().setStatusBarColor(Color.parseColor("#00000000"));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+        adjustInsetsBoth(this, (topMargin, bottomMargin) -> {
+            RelativeLayout rlMain = findViewById(R.id.rlMain);
+            LinearLayout rlMainTop = findViewById(R.id.rlMainTop);
+            ((ViewGroup.MarginLayoutParams) rlMain.getLayoutParams()).setMargins(0, topMargin, 0, 0);
+            ((ViewGroup.MarginLayoutParams) rlMainTop.getLayoutParams()).setMargins(0, 0, 0, bottomMargin);
+        });
+
         boolean showUpButton = getIntent().getBooleanExtra(EXTRA_SHOW_UP_BUTTON, false);
         stickerPack = getIntent().getParcelableExtra(EXTRA_STICKER_PACK_DATA);
         TextView packNameTextView = findViewById(R.id.pack_name);
@@ -96,6 +116,19 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
         findViewById(R.id.imgBack).setOnClickListener(v -> {
             onBackPressed();
         });
+    }
+
+    private void adjustInsetsBoth(Activity activity, StickerPackListActivity.OnMarginsCalculateListener calculateListener) {
+        ViewCompat.setOnApplyWindowInsetsListener(
+                activity.getWindow().getDecorView(), (v, insets) -> {
+                    int statusbarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+                    int navbarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
+                    Log.e("TAG", "adjustInsets: " + statusbarHeight);
+
+                    if (calculateListener != null)
+                        calculateListener.onMarginsCalculated(statusbarHeight, navbarHeight);
+                    return insets;
+                });
     }
 
     private void launchInfoActivity(String publisherWebsite, String publisherEmail, String privacyPolicyWebsite, String licenseAgreementWebsite, String trayIconUriString) {

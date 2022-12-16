@@ -40,7 +40,7 @@ class CleanerActivity : FullScreenActivity() {
         override fun run() {
             cachePercentageReverse -= 2
             binding.txtTotalPercentage.text = "$cachePercentageReverse %"
-            binding.btnCleanCache.text = "Cleaning..."
+            binding.btnCleanJunk.text = "Cleaning..."
             handler?.postDelayed(this, 50)
 
             if (cachePercentageReverse == 0) {
@@ -91,8 +91,8 @@ class CleanerActivity : FullScreenActivity() {
                             txtTotalCacheSize.animate().scaleX(1f).scaleY(1f).apply {
                                 duration = 500
                             }
-                            btnCleanCache.text = "Done"
-                            btnCleanCache.isEnabled = true
+                            btnCleanJunk.text = "Done"
+                            btnCleanJunk.isEnabled = true
                         }, 500)
                 }
             }
@@ -105,7 +105,7 @@ class CleanerActivity : FullScreenActivity() {
         override fun run() {
             cachePercentage += 1
             binding.txtTotalPercentage.text = "$cachePercentage %"
-            binding.btnCleanCache.text = "Optimizing..."
+            binding.btnCleanJunk.text = "Optimizing..."
             handler?.postDelayed(this, 50)
 
             if (cachePercentage == 100) {
@@ -148,8 +148,8 @@ class CleanerActivity : FullScreenActivity() {
 
                                         override fun onAnimationEnd(p0: Animator?) {
                                             txtTotalCacheSize.text = "Cache size"
-                                            btnCleanCache.text = "Clean"
-                                            btnCleanCache.isEnabled = true
+                                            btnCleanJunk.text = "Clean"
+                                            btnCleanJunk.isEnabled = true
                                         }
 
                                         override fun onAnimationCancel(p0: Animator?) {
@@ -189,15 +189,23 @@ class CleanerActivity : FullScreenActivity() {
                     this@CleanerActivity, getString(R.string.admob_native_id),
                     adFrame
                 )
+//                AdsUtils.loadBanner(
+//                    this@CleanerActivity, getString(R.string.interstitial_id),
+//                    bannerContainer
+//                )
             }
 
             toolbar.txtTitle.text = getString(R.string.cleaner)
             toolbar.root.background = ContextCompat.getDrawable(
                 this@CleanerActivity,
-                R.drawable.top_bar_gradient_orange
+                R.drawable.top_bar_gradient_green
             )
 
-            toolbar.rlMain.adjustInsets(this@CleanerActivity)
+            adjustInsetsBoth(this@CleanerActivity, {
+                toolbar.rlMain.topMargin = it
+            }, {
+                rlMain.bottomMargin = it
+            })
 
             toolbar.imgBack.setOnClickListener {
                 onBackPressed()
@@ -245,51 +253,51 @@ class CleanerActivity : FullScreenActivity() {
 //                        || it.permissions.contains(batteryPerms[3])
 //            })
 
-//            btnCleanCache.setOnClickListener {
-//                if (btnCleanCache.text.equals("Done")) {
-//                    loadInterstitialAd(
-//                        this@CleanerActivity,
-//                        getString(R.string.interstitial_id),
-//                        object : AdsUtils.Companion.FullScreenCallback() {
-//
-//                            override fun onAdFailed() {
-//                                showedAd = false
-//                            }
-//
-//                            override fun onAdDismissed() {
-//                                showedAd = true
-//                            }
-//
-//                            override fun onAdFailedToShow() {
-//                                showedAd = false
-//                            }
-//
-//                            override fun onAdShowed() {
-//                                showedAd = true
-//                            }
-//
-//                            override fun continueExecution() {
-//                                onBackPressed()
-//                            }
-//                        })
-//                } else {
-//                    object : AsyncTaskRunner<Void?, String>(this@CleanerActivity) {
-//                        override fun doInBackground(params: Void?): String {
-//                            cacheDir.deleteRecursively()
-//                            return "Cleaning..."
-//                        }
-//
-//                        override fun onPostExecute(result: String?) {
-//                            super.onPostExecute(result)
-//                            result?.let { size ->
-//                                handlerReverse?.post(runnableReverse)
-//                                binding.txtTotalCacheSize.text = size
-//                                btnCleanCache.isEnabled = false
-//                            }
-//                        }
-//                    }.execute(null, false)
-//                }
-//            }
+            btnCleanJunk.setOnClickListener {
+                if (btnCleanJunk.text.equals("Done")) {
+                    loadInterstitialAd(
+                        this@CleanerActivity,
+                        getString(R.string.interstitial_id),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+
+                            override fun onAdFailed() {
+                                showedAd = false
+                            }
+
+                            override fun onAdDismissed() {
+                                showedAd = true
+                            }
+
+                            override fun onAdFailedToShow() {
+                                showedAd = false
+                            }
+
+                            override fun onAdShowed() {
+                                showedAd = true
+                            }
+
+                            override fun continueExecution() {
+                                onBackPressed()
+                            }
+                        })
+                } else {
+                    object : AsyncTaskRunner<Void?, String>(this@CleanerActivity) {
+                        override fun doInBackground(params: Void?): String {
+                            cacheDir.deleteRecursively()
+                            return "Cleaning..."
+                        }
+
+                        override fun onPostExecute(result: String?) {
+                            super.onPostExecute(result)
+                            result?.let { size ->
+                                handlerReverse?.post(runnableReverse)
+                                binding.txtTotalCacheSize.text = size
+                                btnCleanJunk.isEnabled = false
+                            }
+                        }
+                    }.execute(null, false)
+                }
+            }
         }
     }
 

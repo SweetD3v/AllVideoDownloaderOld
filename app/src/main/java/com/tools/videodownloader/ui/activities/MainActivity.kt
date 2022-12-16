@@ -1,10 +1,19 @@
 package com.tools.videodownloader.ui.activities
 
+import android.Manifest
 import android.content.Intent
+import android.content.res.Configuration
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
+import android.util.DisplayMetrics
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -21,8 +30,72 @@ import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 class MainActivity : BaseActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     val tabTitles = arrayOf("Home", "Status Saver")
+    val permissionsList = arrayListOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE
+    ).apply {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    val storagePermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { list: Map<String, Boolean> ->
+            val granted = list.all { it.value }
+
+            if (!granted) {
+                if (shouldShowRequestPermissionRationale(permissionsList[0])) {
+                    askForStoragePermission()
+                } else {
+                    showPermissionDialog()
+                }
+            }
+        }
+
+    fun askForStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            storagePermissionLauncher.launch(permissionsList.toTypedArray())
+        }
+    }
+
+    var permissionDialog: AlertDialog? = null
+
+    fun showPermissionDialog() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Permission required")
+            .setCancelable(false)
+            .setMessage("Some permissions are needed to be allowed to use this app without any problems.")
+            .setPositiveButton("Settings") { dialog, _ ->
+                dialog.dismiss()
+                val intent = Intent()
+                intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                val uri = Uri.fromParts(
+                    "package", packageName,
+                    null
+                )
+                intent.data = uri
+                startActivity(intent)
+            }
+        if (permissionDialog == null)
+            permissionDialog = builder.create()
+        if ((permissionDialog?.isShowing != true)) {
+            permissionDialog?.show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        val configuration: Configuration = resources.configuration
+        configuration.fontScale = 1f //0.85 small size, 1 normal size, 1,15 big etc
+
+        val metrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(metrics)
+        metrics.scaledDensity = configuration.fontScale * metrics.density
+        configuration.densityDpi = resources.displayMetrics.xdpi.toInt()
+        baseContext.resources.updateConfiguration(configuration, metrics)
+
         setContentView(binding.root)
 
         startService(Intent(this, SpeedMeterService::class.java))
@@ -109,6 +182,12 @@ class MainActivity : BaseActivity() {
 //                tab.text = tabTitles[position]
 //            }.attach()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        askForStoragePermission()
     }
 
 //    private fun setBottomColor(position: Int) {

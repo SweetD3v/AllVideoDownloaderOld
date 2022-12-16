@@ -95,6 +95,7 @@ class SpeedTestActivity : FullScreenActivity() {
             toolbar.imgBack.setOnClickListener { onBackPressed() }
 
             startSpeedTest.setOnClickListener {
+                txtPing.text = "Connecting..."
                 startSpeedTest.gone()
                 imgSpeedMeter.visible()
                 imgSpeedMeterHande.visible()
@@ -102,11 +103,12 @@ class SpeedTestActivity : FullScreenActivity() {
             }
 
             startSpeedTestAgain.setOnClickListener {
+                txtPing.text = "Connecting..."
+
                 imgSpeedMeter.visible()
                 imgSpeedMeterHande.visible()
                 startSpeedTestAgain.gone()
 
-                txtPing.text = "Ping - ms"
                 txtDownloadSpeed.text = "- mbps"
                 txtUploadSpeed.text = "- mbps"
 
@@ -748,8 +750,8 @@ class SpeedTestActivity : FullScreenActivity() {
                         if (pingTestFinished && downloadTestFinished && uploadTest.isFinished) {
                             binding.run {
                                 imgSpeedMeter.post {
-                                    imgSpeedMeter.gone()
-                                    imgSpeedMeterHande.gone()
+//                                    imgSpeedMeter.gone()
+//                                    imgSpeedMeterHande.gone()
                                     startSpeedTestAgain.visible()
                                 }
                             }

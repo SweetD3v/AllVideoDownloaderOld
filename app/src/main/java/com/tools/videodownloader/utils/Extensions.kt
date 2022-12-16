@@ -2,6 +2,7 @@ package com.tools.videodownloader.utils
 
 import android.app.Activity
 import android.content.*
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
 import android.media.ThumbnailUtils
@@ -1022,4 +1023,10 @@ fun shareToInsta(
     }
     shareIntent.type = "image/jpeg"
     ctx.startActivity(shareIntent)
+}
+
+fun Activity.getVersionName(): String = try {
+    packageManager?.getPackageInfo(packageName, 0)?.versionName ?: ""
+} catch (e: PackageManager.NameNotFoundException) {
+    ""
 }

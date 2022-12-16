@@ -95,7 +95,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="2dp"
-                android:background="@drawable/top_bar_gradient_blue"
+                android:background="@drawable/top_bar_gradient_green"
                 android:backgroundTint="@color/black"
                 android:fontFamily="@font/gilroy_bold"
                 android:gravity="center"

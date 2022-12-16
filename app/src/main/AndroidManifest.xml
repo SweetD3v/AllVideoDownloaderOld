@@ -49,24 +49,24 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme, android:icon, android:label"
         tools:targetApi="30">
-
+        <activity
+            android:name=".ui.activities.PrivacyPolicyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.tools.videodownloader.CleanerAnimActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.tools.videodownloader.tools.cleaner.CleanerHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.tools.videodownloader.speedtest.SpeedTestActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name="com.tools.videodownloader.ui.activities.SettingsActivity"
+            android:name=".ui.activities.SettingsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -86,7 +86,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.PicEditActivity"
+            android:name=".ui.activities.PicEditActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -109,7 +109,7 @@
             android:name="com.tools.videodownloader.tools.video_player.VideoPlayerActivity"
             android:exported="false" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.AllDownloadsActivity"
+            android:name=".ui.activities.AllDownloadsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -158,14 +158,14 @@
             android:name="com.tools.videodownloader.tools.cartoonify.SaveShareCartoonActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.FullViewWASavedActivity"
+            android:name=".ui.activities.FullViewWASavedActivity"
             android:exported="false" />
         <activity
             android:name="com.tools.videodownloader.ui.mycreation.MyCreationFullViewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.FBDownloaderHomeActivity"
+            android:name=".ui.activities.FBDownloaderHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -173,7 +173,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.InstaDownloaderHomeActivity"
+            android:name=".ui.activities.InstaDownloaderHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -184,19 +184,19 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.StatusMakerActivity"
+            android:name=".ui.activities.StatusMakerActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.WallpapersDetailsActivity"
+            android:name=".ui.activities.WallpapersDetailsActivity"
             android:configChanges="screenSize|orientation"
             android:exported="false" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.RingtoneActivity"
+            android:name=".ui.activities.RingtoneActivity"
             android:configChanges="screenSize|orientation"
             android:exported="false" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.FunnyVideosActivity"
+            android:name=".ui.activities.FunnyVideosActivity"
             android:exported="false"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
@@ -205,54 +205,54 @@
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.VimeoActivity"
+            android:name=".ui.activities.VimeoActivity"
             android:exported="false"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.WallpapersActivity"
+            android:name=".ui.activities.WallpapersActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.FBMainActivity"
+            android:name=".ui.activities.FBMainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.FullViewWhatsappActivity"
+            android:name=".ui.activities.FullViewWhatsappActivity"
             android:exported="false" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.FullViewActivity"
+            android:name=".ui.activities.FullViewActivity"
             android:exported="false" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.FullViewDownloadsActivity"
+            android:name=".ui.activities.FullViewDownloadsActivity"
             android:exported="false" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.WAStatusActivity"
+            android:name=".ui.activities.WAStatusActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.VideoViewActivity"
+            android:name=".ui.activities.VideoViewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.InstagramActivity"
+            android:name=".ui.activities.InstagramActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.InstaLoginActivity"
+            android:name=".ui.activities.InstaLoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.ImageViewActivity"
+            android:name=".ui.activities.ImageViewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.activities.SplashScreenActivity"
+            android:name=".ui.activities.SplashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
