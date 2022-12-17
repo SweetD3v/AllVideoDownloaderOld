@@ -47,6 +47,8 @@ class AllVidApp : MultiDexApplication(), Application.ActivityLifecycleCallbacks,
         MobileAds.initialize(this) {}
         appOpenAdManager = AppOpenAdManager()
 
+        RemoteConfigUtils.fetchDataFromRemoteConfig(this)
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
@@ -57,7 +59,6 @@ class AllVidApp : MultiDexApplication(), Application.ActivityLifecycleCallbacks,
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onMoveToForeground() {
         Log.e("TAG", "onMoveToForeground: ")
-        RemoteConfigUtils.fetchDataFromRemoteConfig(this)
         currentActivity?.let {
             appOpenAdManager.showAdIfAvailable(it, object : OnShowAdCompleteListener {
                 override fun onShowAdComplete() {
@@ -84,7 +85,7 @@ class AllVidApp : MultiDexApplication(), Application.ActivityLifecycleCallbacks,
             isLoadingAd = true
             val request = AdRequest.Builder().build()
             AppOpenAd.load(
-                context, RemoteConfigUtils.adIdAppOpen(), request,
+                context, getString(R.string.app_open_id), request,
                 AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
                 object : AppOpenAd.AppOpenAdLoadCallback() {
 

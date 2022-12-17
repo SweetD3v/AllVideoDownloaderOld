@@ -14,7 +14,6 @@ import com.tools.videodownloader.collage_maker.utils.SystemUtils
 import com.tools.videodownloader.databinding.ActivityCompressPhotoBinding
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.utils.*
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import id.zelory.compressor.Compressor
 import io.reactivex.disposables.Disposable
 import java.io.File
@@ -44,7 +43,7 @@ class CompressPhotoActivity : FullScreenActivity() {
 //            )
             AdsUtils.loadNativeSmall(
                 this@CompressPhotoActivity,
-                RemoteConfigUtils.adIdNative(),
+                getString(R.string.admob_native_id),
                 binding.adFrame
             )
         }
@@ -88,7 +87,7 @@ class CompressPhotoActivity : FullScreenActivity() {
         binding.btnCompress.setOnClickListener { v ->
             AdsUtils.loadInterstitialAd(
                 this,
-                RemoteConfigUtils.adIdInterstital(),
+                getString(R.string.interstitial_id),
                 object : AdsUtils.Companion.FullScreenCallback() {
                     override fun continueExecution() {
                         startCompressingPhoto()

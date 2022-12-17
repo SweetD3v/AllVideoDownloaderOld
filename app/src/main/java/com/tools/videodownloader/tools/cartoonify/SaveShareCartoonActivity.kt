@@ -11,7 +11,6 @@ import com.tools.videodownloader.R
 import com.tools.videodownloader.databinding.ActivitySaveShareCartoonBinding
 import com.tools.videodownloader.ui.activities.BaseActivity
 import com.tools.videodownloader.utils.*
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,7 +35,7 @@ class SaveShareCartoonActivity : BaseActivity() {
 
                 AdsUtils.loadNativeSmall(
                     this@SaveShareCartoonActivity,
-                    RemoteConfigUtils.adIdNative(),
+                    getString(R.string.admob_native_id),
                     adFrame
                 )
             }

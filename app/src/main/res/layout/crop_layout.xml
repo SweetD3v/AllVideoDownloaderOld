@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/confirmToolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/white"
+        android:background="#85FD99"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -58,12 +58,15 @@
         android:id="@+id/crop_view"
         android:layout_width="match_parent"
         android:layout_height="0.0dip"
-        android:layout_margin="16dp"
+        android:paddingLeft="16.0dip"
+        android:paddingTop="16.0dip"
+        android:paddingRight="16.0dip"
+        android:paddingBottom="16.0dip"
         custom:layout_constraintBottom_toTopOf="@+id/guideline"
         custom:layout_constraintLeft_toLeftOf="parent"
         custom:layout_constraintRight_toRightOf="parent"
         custom:layout_constraintTop_toBottomOf="@id/confirmToolbar"
-        custom:scv_background_color="@color/white"
+        custom:scv_background_color="@color/black"
         custom:scv_crop_mode="fit_image"
         custom:scv_frame_color="@color/colorAccent"
         custom:scv_frame_stroke_weight="1.0dip"

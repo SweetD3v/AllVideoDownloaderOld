@@ -203,44 +203,9 @@ class AdsUtils {
                             frameLayout.visibility = View.GONE
                         }
                     })
-                    .build()
-            adLoader.loadAd(AdRequest.Builder().build())
-        }
-
-        fun loadNativeSmall(
-            context: Context,
-            adId: String,
-            frameLayout: FrameLayout,
-            adLoaded: () -> Unit,
-            adFailed: () -> Unit
-        ) {
-            val adLoader =
-                AdLoader.Builder(context, adId)
-                    .forNativeAd { nativeAd: NativeAd ->
-                        val adView =
-                            (context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
-                                .inflate(
-                                    R.layout.admob_native_small,
-                                    null
-                                ) as NativeAdView
-                        adView.mediaView = adView.findViewById(R.id.media_view)
-                        adView.headlineView = adView.findViewById(R.id.primary)
-                        adView.bodyView = adView.findViewById(R.id.secondary)
-                        adView.callToActionView = adView.findViewById(R.id.call_to_action)
-                        adView.iconView = adView.findViewById(R.id.icon)
-                        adView.advertiserView = adView.findViewById(R.id.tertiary)
-                        populateUnifiedNativeAdView(adView, nativeAd)
-                        frameLayout.visibility = View.VISIBLE
-                        frameLayout.removeAllViews()
-                        frameLayout.addView(adView)
-                    }
                     .withAdListener(object : AdListener() {
-                        override fun onAdLoaded() {
-                            adLoaded()
-                        }
-                        override fun onAdFailedToLoad(adError: LoadAdError) {
-                            frameLayout.visibility = View.GONE
-                            adFailed()
+                        override fun onAdFailedToLoad(error: LoadAdError) {
+                            Log.e("TAG", "onAdFailedToLoad: $error")
                         }
                     })
                     .build()

@@ -20,7 +20,6 @@ import com.tools.videodownloader.tools.photo_filters.PhotoFiltersSaveActivity
 import com.tools.videodownloader.tools.photo_filters.PhotoFiltersUtils
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.utils.*
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import org.wysaid.common.Common
 import org.wysaid.nativePort.CGEDeformFilterWrapper
 import org.wysaid.nativePort.CGEImageHandler
@@ -155,7 +154,7 @@ class PhotoWarpActivity : FullScreenActivity() {
 
         if (NetworkState.isOnline())
             AdsUtils.loadBanner(
-                this, RemoteConfigUtils.adIdBanner(),
+                this, getString(R.string.banner_id_details),
                 binding.bannerContainer
             )
 
@@ -232,7 +231,7 @@ class PhotoWarpActivity : FullScreenActivity() {
                                 ).show()
 
                                 AdsUtils.loadInterstitialAd(this@PhotoWarpActivity,
-                                    RemoteConfigUtils.adIdInterstital(),
+                                    getString(R.string.interstitial_id),
                                     object : AdsUtils.Companion.FullScreenCallback() {
                                         override fun continueExecution() {
                                             PhotoFiltersUtils.photoFilterBmp = it

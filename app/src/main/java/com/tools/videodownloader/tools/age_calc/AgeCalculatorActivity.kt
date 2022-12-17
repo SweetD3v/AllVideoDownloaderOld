@@ -10,7 +10,6 @@ import com.tools.videodownloader.databinding.ActivityAgeCalculatorBinding
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.utils.*
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.util.*
 
 class AgeCalculatorActivity : FullScreenActivity() {
@@ -44,7 +43,7 @@ class AgeCalculatorActivity : FullScreenActivity() {
 //                )
                 AdsUtils.loadNative(
                     this@AgeCalculatorActivity,
-                    RemoteConfigUtils.adIdNative(),
+                    getString(R.string.admob_native_id),
                     adFrame
                 )
             }
@@ -263,7 +262,7 @@ class AgeCalculatorActivity : FullScreenActivity() {
             val nextDays = (calNext[Calendar.DAY_OF_MONTH]).toString()
 
             AdsUtils.loadInterstitialAd(this@AgeCalculatorActivity,
-                RemoteConfigUtils.adIdInterstital(),
+                getString(R.string.interstitial_id),
                 object : AdsUtils.Companion.FullScreenCallback() {
                     override fun continueExecution() {
                         startActivity(

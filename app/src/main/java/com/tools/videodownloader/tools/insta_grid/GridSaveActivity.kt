@@ -10,7 +10,6 @@ import com.tools.videodownloader.databinding.ActivityGridSaveBinding
 import com.tools.videodownloader.tools.insta_grid.GridUtils.Companion.saveImageTemp
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.utils.*
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 
 class GridSaveActivity : FullScreenActivity() {
     val binding by lazy { ActivityGridSaveBinding.inflate(layoutInflater) }
@@ -39,7 +38,7 @@ class GridSaveActivity : FullScreenActivity() {
 
                 AdsUtils.loadNativeSmall(
                     this@GridSaveActivity,
-                    RemoteConfigUtils.adIdNative(),
+                    getString(R.string.admob_native_id),
                     adFrame
                 )
             }
@@ -73,7 +72,7 @@ class GridSaveActivity : FullScreenActivity() {
 
             toolbar.imgSave.setOnClickListener {
                 AdsUtils.loadInterstitialAd(this@GridSaveActivity,
-                    RemoteConfigUtils.adIdInterstital(),
+                    getString(R.string.interstitial_id),
                     object : AdsUtils.Companion.FullScreenCallback() {
                         override fun continueExecution() {
                             object : AsyncTaskRunner<Void?, Void?>(this@GridSaveActivity) {

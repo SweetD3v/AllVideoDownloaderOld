@@ -8,8 +8,9 @@ import com.tools.videodownloader.R
 import com.tools.videodownloader.databinding.ActivityPhotocmpHomeBinding
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.ui.mycreation.MyCreationToolsActivity
-import com.tools.videodownloader.utils.*
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
+import com.tools.videodownloader.utils.AdsUtils
+import com.tools.videodownloader.utils.NetworkState
+import com.tools.videodownloader.utils.adjustInsets
 import gun0912.tedimagepicker.builder.TedImagePicker.Companion.with
 
 class PhotoCmpHomeActivity : FullScreenActivity() {
@@ -33,23 +34,18 @@ class PhotoCmpHomeActivity : FullScreenActivity() {
 
                 AdsUtils.loadNative(
                     this@PhotoCmpHomeActivity,
-                    RemoteConfigUtils.adIdNative(),
+                    getString(R.string.admob_native_id),
                     adFrame
                 )
             }
+
 
             toolbar.root.background = ContextCompat.getDrawable(
                 this@PhotoCmpHomeActivity,
                 R.drawable.top_bar_gradient_purple
             )
             toolbar.txtTitle.text = getString(R.string.photo_compress)
-
-            adjustInsetsBoth(this@PhotoCmpHomeActivity,
-                {
-                    toolbar.rlMain.topMargin = it
-                }, {
-                    rlMainTop.bottomMargin = it
-                })
+            toolbar.rlMain.adjustInsets(this@PhotoCmpHomeActivity)
 
             toolbar.imgBack.setOnClickListener { onBackPressed() }
 

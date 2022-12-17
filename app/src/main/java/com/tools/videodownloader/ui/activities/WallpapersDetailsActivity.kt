@@ -13,7 +13,6 @@ import com.tools.videodownloader.R
 import com.tools.videodownloader.databinding.ActivityWallpaperDetailsBinding
 import com.tools.videodownloader.utils.*
 import com.tools.videodownloader.utils.downloader.BasicImageDownloader
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.io.File
 
 class WallpapersDetailsActivity : BaseActivity() {
@@ -39,16 +38,9 @@ class WallpapersDetailsActivity : BaseActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@WallpapersDetailsActivity, RemoteConfigUtils.adIdBanner(),
+                    this@WallpapersDetailsActivity, getString(R.string.banner_id_details),
                     binding.bannerContainer
                 )
-
-            adjustInsetsBoth(this@WallpapersDetailsActivity,
-                {
-                    toolbar.topMargin = it
-                }, {
-                    rlMainTop.bottomMargin = it
-                })
 
             appTitle.text = ""
             setSupportActionBar(binding.toolbar)
@@ -88,7 +80,7 @@ class WallpapersDetailsActivity : BaseActivity() {
             fabDownload.setOnClickListener {
                 AdsUtils.loadInterstitialAd(
                     this@WallpapersDetailsActivity,
-                    RemoteConfigUtils.adIdInterstital(),
+                    getString(R.string.interstitial_id),
                     object : AdsUtils.Companion.FullScreenCallback() {
                         override fun continueExecution() {
                             imageUrl = downloadUrl
@@ -180,7 +172,7 @@ class WallpapersDetailsActivity : BaseActivity() {
 
             AdsUtils.loadInterstitialAd(
                 this,
-                RemoteConfigUtils.adIdInterstital(),
+                getString(R.string.interstitial_id),
                 object : AdsUtils.Companion.FullScreenCallback() {
                     override fun continueExecution() {
                         finish()

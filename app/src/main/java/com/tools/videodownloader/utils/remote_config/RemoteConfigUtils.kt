@@ -28,21 +28,23 @@ class RemoteConfigUtils {
             mFirebaseRemoteConfig!!.setConfigSettingsAsync(configSettings)
             mFirebaseRemoteConfig!!.setDefaultsAsync(R.xml.remote_config_defaults)
             mFirebaseRemoteConfig!!.fetchAndActivate()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        var admob_data: String? = null
+                .addOnCompleteListener(object : OnCompleteListener<Boolean> {
+                    override fun onComplete(task: Task<Boolean>) {
+                        if (task.isSuccessful) {
+                            var admob_data: String? = null
 
 
-                        if (mFirebaseRemoteConfig!!.getString(ADMOB_DATA) != "-1") {
-                            admob_data = mFirebaseRemoteConfig!!.getString(ADMOB_DATA)
-                            Log.e("FRC", "onFirebaseComplete: ${admob_data}")
+                            if (mFirebaseRemoteConfig!!.getString(ADMOB_DATA) != "-1") {
+                                admob_data = mFirebaseRemoteConfig!!.getString(ADMOB_DATA)
+                                Log.e("FRC", "onFirebaseComplete: ${admob_data}")
+                            }
+
+                            val gsonMoreApps = Gson()
+                            val typeMoreApps = object : TypeToken<FireAdModel?>() {}.type
+                            admobData = gsonMoreApps.fromJson(admob_data, typeMoreApps)
                         }
-
-                        val gsonMoreApps = Gson()
-                        val typeMoreApps = object : TypeToken<FireAdModel?>() {}.type
-                        admobData = gsonMoreApps.fromJson(admob_data, typeMoreApps)
                     }
-                }
+                })
         }
 
         fun isAdmobEnabled(): Boolean {
@@ -50,27 +52,19 @@ class RemoteConfigUtils {
         }
 
         fun adIdInterstital(): String {
-            return if (isAdmobEnabled())
-                admobData?.ad_type?.admob?.interstitial.toString()
-            else "-"
+            return admobData?.ad_type?.admob?.interstitial.toString()
         }
 
         fun adIdBanner(): String {
-            return if (isAdmobEnabled())
-                admobData?.ad_type?.admob?.banner.toString()
-            else "-"
+            return admobData?.ad_type?.admob?.banner.toString()
         }
 
         fun adIdNative(): String {
-            return if (isAdmobEnabled())
-                admobData?.ad_type?.admob?.native.toString()
-            else "-"
+            return admobData?.ad_type?.admob?.native.toString()
         }
 
         fun adIdAppOpen(): String {
-            return if (isAdmobEnabled())
-                admobData?.ad_type?.admob?.app_open.toString()
-            else "-"
+            return admobData?.ad_type?.admob?.app_open.toString()
         }
     }
 }

@@ -100,24 +100,20 @@ class BasicImageDownloader(var ctx: Context) {
         val dirName = AllVidApp.getInstance().getExternalFilesDir("insta")!!
         if (!dirName.exists())
             dirName.mkdirs()
-
-        val path = dirName //Creates app specific folder
-        path.mkdirs()
-
-        var displayName = ""
-        displayName = "IMG_${System.currentTimeMillis()}"
-        val imageFile = File(path, "$displayName.png")
-
         object : AsyncTaskRunner<String, Bitmap>(ctx) {
+            var displayName: String = ""
 
             override fun doInBackground(params: String?): Bitmap? {
-                Log.e("TAG", "saveImageToExternal: ${imgUrl}")
                 val url = URL(imgUrl)
                 val connection = url.openConnection()
                 val image = BitmapFactory.decodeStream(connection.getInputStream())
+                Log.e("TAG", "saveImageToExternal: ${image.width}")
 
                 //Create Path to save Image
-                // Imagename.png
+                val path = dirName //Creates app specific folder
+                path.mkdirs()
+                displayName = "IMG_${System.currentTimeMillis()}"
+                val imageFile = File(path, "$displayName.png") // Imagename.png
                 val out = FileOutputStream(imageFile)
                 if (!imageFile.exists())
                     imageFile.createNewFile()
@@ -136,26 +132,22 @@ class BasicImageDownloader(var ctx: Context) {
 
                     if (!RootDirectoryInstaDownlaoder.exists())
                         RootDirectoryInstaDownlaoder.mkdirs()
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        saveBitmapImage(
-                            ctx, bmp,
-                            displayName,
-                            RootDirectoryInstaDownlaoder.name
-                        ) {
-                            Toast.makeText(ctx, "Photo saved!", Toast.LENGTH_SHORT).show()
-                            MediaScannerConnection.scanFile(
-                                ctx,
-                                arrayOf(it),
-                                null
-                            ) { path, uri ->
-                                Log.i("ExternalStorage", "Scanned $path:")
-                                Log.i("ExternalStorage", "-> uri=$uri")
-                            }
-
-                            action()
+                    saveBitmapImage(
+                        ctx, bmp,
+                        displayName,
+                        RootDirectoryInstaDownlaoder.name
+                    ) {
+                        Toast.makeText(ctx, "Photo saved!", Toast.LENGTH_SHORT).show()
+                        MediaScannerConnection.scanFile(
+                            ctx,
+                            arrayOf(it),
+                            null
+                        ) { path, uri ->
+                            Log.i("ExternalStorage", "Scanned $path:")
+                            Log.i("ExternalStorage", "-> uri=$uri")
                         }
-                    } else {
-                        imageFile.copyTo(File(RootDirectoryInstaDownlaoder, imageFile.name), true)
+
+                        action()
                     }
                 }
             }

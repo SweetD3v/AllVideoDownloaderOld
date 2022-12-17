@@ -11,7 +11,6 @@ import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.ui.fragments.HomeFragment
 import com.tools.videodownloader.ui.mycreation.MyCreationToolsActivity
 import com.tools.videodownloader.utils.*
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import gun0912.tedimagepicker.builder.TedImagePicker
 
 class CollageMakerHomeActivity : FullScreenActivity() {
@@ -48,7 +47,7 @@ class CollageMakerHomeActivity : FullScreenActivity() {
 //                )
                 AdsUtils.loadNative(
                     this@CollageMakerHomeActivity,
-                    RemoteConfigUtils.adIdNative(),
+                    getString(R.string.admob_native_id),
                     adFrame
                 )
             }

@@ -20,6 +20,9 @@ class FBModel {
             class FBVideoDetails {
                 @SerializedName("playable_url")
                 var playable_url: String? = ""
+
+                @SerializedName("url")
+                var url: String? = ""
             }
         }
     }

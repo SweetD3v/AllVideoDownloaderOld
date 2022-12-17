@@ -1,8 +1,6 @@
 package com.tools.videodownloader.ui.activities;
 
-import static com.tools.videodownloader.utils.DisplayUtilsKt.adjustInsetsBoth;
-import static com.tools.videodownloader.utils.DisplayUtilsKt.setBottomMargin;
-import static com.tools.videodownloader.utils.DisplayUtilsKt.setTopMargin;
+import static com.tools.videodownloader.utils.DisplayUtilsKt.adjustInsets;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -44,11 +42,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdLoader;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.nativead.NativeAd;
 import com.tools.videodownloader.R;
 import com.tools.videodownloader.collage_maker.features.DrawBitmapModel;
 import com.tools.videodownloader.collage_maker.features.adjust.adjust.AdjustAdapter;
@@ -80,7 +73,11 @@ import com.tools.videodownloader.utils.AdsUtils;
 import com.tools.videodownloader.utils.ExtensionsKt;
 import com.tools.videodownloader.utils.FileUtilsss;
 import com.tools.videodownloader.utils.NetworkState;
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.nativead.NativeAd;
 
 import org.wysaid.myUtils.MsgUtil;
 import org.wysaid.nativePort.CGENativeLibrary;
@@ -174,20 +171,14 @@ public class PicEditActivity extends FullScreenActivity implements OnPhotoEditor
         binding.toolbar.txtTitle.setText(getString(R.string.photo_editor));
         binding.toolbar.imgSave.setTextColor(Color.parseColor("#efc67a"));
         ExtensionsKt.visible(binding.toolbar.imgSave);
-        adjustInsetsBoth(PicEditActivity.this, topMargin -> {
-            setTopMargin(binding.toolbar.rlMain, topMargin);
-            return null;
-        }, bottomMargin -> {
-            setBottomMargin(binding.rlMainTop, bottomMargin);
-            return null;
-        });
+        adjustInsets(binding.toolbar.rlMain, PicEditActivity.this);
         binding.toolbar.getRoot().setBackground(ContextCompat.getDrawable(
                 PicEditActivity.this,
                 R.drawable.top_bar_gradient_yellow
         ));
 
         if (NetworkState.Companion.isOnline())
-            AdsUtils.Companion.loadBanner(this, RemoteConfigUtils.Companion.adIdBanner(),
+            AdsUtils.Companion.loadBanner(this, getString(R.string.banner_id_details),
                     binding.bannerContainer);
 
         setContentView(binding.getRoot());
@@ -291,6 +282,7 @@ public class PicEditActivity extends FullScreenActivity implements OnPhotoEditor
         this.eraseSize.setProgress(20);
     }
 
+
     public void showColorBlurBrush() {
         this.brushSize.setVisibility(View.VISIBLE);
         this.mColorBush.setVisibility(View.VISIBLE);
@@ -316,6 +308,7 @@ public class PicEditActivity extends FullScreenActivity implements OnPhotoEditor
         this.brushSize.setProgress(20);
     }
 
+
     public void showColorBrush() {
         this.brushSize.setVisibility(View.VISIBLE);
         this.mColorBush.setVisibility(View.VISIBLE);
@@ -333,7 +326,7 @@ public class PicEditActivity extends FullScreenActivity implements OnPhotoEditor
         this.magicBrush.setBackgroundResource(0);
         this.magicBrush.setTextColor(ContextCompat.getColor(this, R.color.unselected_color));
         this.brush.setBackground(ContextCompat.getDrawable(this, R.drawable.border_bottom));
-        this.brush.setTextColor(ContextCompat.getColor(this, R.color.black));
+        this.brush.setTextColor(ContextCompat.getColor(this, R.color.white));
         this.brushBlur.setBackgroundResource(0);
         this.brushBlur.setTextColor(ContextCompat.getColor(this, R.color.unselected_color));
         this.mPicImageEditor.setBrushMode(1);
@@ -348,7 +341,7 @@ public class PicEditActivity extends FullScreenActivity implements OnPhotoEditor
         this.mMagicBrush.setVisibility(View.VISIBLE);
         this.erase.setImageResource(R.drawable.eraser);
         this.magicBrush.setBackground(ContextCompat.getDrawable(this, R.drawable.border_bottom));
-        this.magicBrush.setTextColor(ContextCompat.getColor(this, R.color.black));
+        this.magicBrush.setTextColor(ContextCompat.getColor(this, R.color.white));
         this.brush.setBackgroundResource(0);
         this.brush.setTextColor(ContextCompat.getColor(this, R.color.unselected_color));
         this.brushBlur.setBackgroundResource(0);
@@ -1116,7 +1109,7 @@ public class PicEditActivity extends FullScreenActivity implements OnPhotoEditor
                 return;
             }
 
-            AdsUtils.Companion.loadInterstitialAd(PicEditActivity.this, RemoteConfigUtils.Companion.adIdInterstital(),
+            AdsUtils.Companion.loadInterstitialAd(PicEditActivity.this, getString(R.string.interstitial_id),
                     new AdsUtils.Companion.FullScreenCallback() {
                         @Override
                         public void continueExecution() {
@@ -1134,7 +1127,8 @@ public class PicEditActivity extends FullScreenActivity implements OnPhotoEditor
     }
 
     private void refreshAddialog() {
-        AdLoader.Builder builder = new AdLoader.Builder(this, RemoteConfigUtils.Companion.adIdNative());
+        AdLoader.Builder builder = new AdLoader.Builder(this, getResources().getString(
+                R.string.admob_native_id));
 
         builder.forNativeAd(unifiedNativeAd -> {
             if (nativeAd != null) {

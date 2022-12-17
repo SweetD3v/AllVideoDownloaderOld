@@ -23,7 +23,6 @@ import com.tools.videodownloader.models.WallModelPixabay
 import com.tools.videodownloader.ui.mycreation.MyCreationToolsActivity
 import com.tools.videodownloader.utils.*
 import com.tools.videodownloader.utils.apis.RestApi
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import com.tools.videodownloader.widgets.BSFragmentBuilder
 import com.tools.videodownloader.widgets.MarginItemDecoration
 import retrofit2.Call
@@ -69,16 +68,11 @@ class WallpapersActivity : FullScreenActivity() {
 
             AdsUtils.loadNative(
                 this@WallpapersActivity,
-                RemoteConfigUtils.adIdNative(),
+                getString(R.string.admob_native_id),
                 binding.adFrame
             )
 
-            adjustInsetsBoth(this@WallpapersActivity,
-                {
-                    binding.toolbar.rlMain.topMargin = it
-                }, {
-                    binding.rlMainTop.bottomMargin = it
-                })
+            binding.toolbar.rlMain.adjustInsets(this@WallpapersActivity)
 
             binding.toolbar.imgDownloads.visible()
             binding.toolbar.imgDownloads.setOnClickListener {

@@ -53,7 +53,6 @@ import com.tools.videodownloader.utils.*
 import com.tools.videodownloader.utils.SMType.*
 import com.tools.videodownloader.utils.apis.CommonClassForAPI
 import com.tools.videodownloader.utils.downloader.BasicImageDownloader
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import com.tools.videodownloader.widgets.BSFragmentBuilder
 import com.whats.stickers.WAStickersActivity
 import gun0912.tedimagepicker.builder.TedImagePicker.Companion.with
@@ -207,16 +206,6 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
 
         binding.run {
             navigationView.run {
-//                AdsUtils.loadNativeSmall(
-//                    ctx,
-//                    RemoteConfigUtils.adIdNative(),
-//                    adFrame, {
-//                        headerImage.gone()
-//                    }, {
-//                        headerImage.visible()
-//                    }
-//                )
-
                 txtVersion.text = BuildConfig.VERSION_NAME
 
                 llRate.setOnClickListener {
@@ -246,7 +235,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, InstaDownloaderHomeActivity::class.java))
@@ -267,7 +256,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, FBDownloaderHomeActivity::class.java))
@@ -284,7 +273,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, WAStatusActivity::class.java))
@@ -301,7 +290,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(
@@ -324,7 +313,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(
@@ -347,7 +336,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(
@@ -392,7 +381,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, FunnyVideosActivity::class.java))
@@ -409,7 +398,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, AgeCalculatorActivity::class.java))
@@ -426,7 +415,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, InstaGridActivity::class.java))
@@ -443,7 +432,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, PhotoCmpHomeActivity::class.java))
@@ -460,7 +449,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, CleanerActivity::class.java))
@@ -478,7 +467,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, FunnyVideosActivity::class.java))
@@ -495,7 +484,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 launchCollage()
@@ -512,7 +501,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
 //                    AdsUtils.clicksCountTools = 0
 //                    AdsUtils.loadInterstitialAd(
 //                        requireActivity(),
-//                        RemoteConfigUtils.adIdInterstital(),
+//                        ctx.getString(R.string.interstitial_id),
 //                        object : AdsUtils.Companion.FullScreenCallback() {
 //                            override fun continueExecution() {
 //                                startActivity(Intent(ctx, CartoonifyHomeActivity::class.java))
@@ -529,7 +518,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
 //                    AdsUtils.clicksCountTools = 0
 //                    AdsUtils.loadInterstitialAd(
 //                        requireActivity(),
-//                        RemoteConfigUtils.adIdInterstital(),
+//                        ctx.getString(R.string.interstitial_id),
 //                        object : AdsUtils.Companion.FullScreenCallback() {
 //                            override fun continueExecution() {
 //                                startActivity(Intent(ctx, SketchifyHomeActivity::class.java))
@@ -546,7 +535,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, PhotoFilterHomeActivity::class.java))
@@ -563,7 +552,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(Intent(ctx, PhotoWarpHomeActivity::class.java))
@@ -580,7 +569,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 startActivity(
@@ -607,7 +596,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
                     AdsUtils.clicksCountTools = 0
                     AdsUtils.loadInterstitialAd(
                         requireActivity(),
-                        RemoteConfigUtils.adIdInterstital(),
+                        ctx.getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 with(ctx)
@@ -736,7 +725,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
 
     fun openUrl(url: String) {
         AdsUtils.loadInterstitialAd(requireActivity(),
-            RemoteConfigUtils.adIdInterstital(),
+            getString(R.string.interstitial_id),
             object : AdsUtils.Companion.FullScreenCallback() {
                 override fun continueExecution() {
                     startActivity(

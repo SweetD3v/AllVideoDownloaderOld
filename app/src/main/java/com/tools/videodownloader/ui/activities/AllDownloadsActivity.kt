@@ -7,7 +7,6 @@ import com.tools.videodownloader.databinding.ActivityAllDownloadsBinding
 import com.tools.videodownloader.utils.AdsUtils
 import com.tools.videodownloader.utils.NetworkState
 import com.tools.videodownloader.utils.adjustInsets
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 
 class AllDownloadsActivity : FullScreenActivity() {
     val binding by lazy { ActivityAllDownloadsBinding.inflate(layoutInflater) }
@@ -29,7 +28,7 @@ class AllDownloadsActivity : FullScreenActivity() {
             if (NetworkState.isOnline()) {
                 AdsUtils.loadBanner(
                     this@AllDownloadsActivity,
-                    RemoteConfigUtils.adIdBanner(), bannerContainer
+                    getString(R.string.banner_id_details), bannerContainer
                 )
             }
         }

@@ -15,26 +15,24 @@ class MarginItemDecoration(
         parent: RecyclerView, state: RecyclerView.State
     ) {
         with(outRect) {
-//            if (orientation == GridLayoutManager.VERTICAL) {
-//                if (parent.getChildAdapterPosition(view) < spanCount) {
-//                    top = spaceSize
-//                }
-//                if (parent.getChildAdapterPosition(view) % spanCount == 0) {
-//                    left = spaceSize
-//                }
-//            } else {
-//                if (parent.getChildAdapterPosition(view) < spanCount) {
-//                    left = spaceSize
-//                }
-//                if (parent.getChildAdapterPosition(view) % spanCount == 0) {
-//                    top = spaceSize
-//                }
-//            }
+            if (orientation == GridLayoutManager.VERTICAL) {
+                if (parent.getChildAdapterPosition(view) < spanCount) {
+                    top = spaceSize
+                }
+                if (parent.getChildAdapterPosition(view) % spanCount == 0) {
+                    left = spaceSize
+                }
+            } else {
+                if (parent.getChildAdapterPosition(view) < spanCount) {
+                    left = spaceSize
+                }
+                if (parent.getChildAdapterPosition(view) % spanCount == 0) {
+                    top = spaceSize
+                }
+            }
 
-            top = spaceSize / 2
-            left = spaceSize
             right = spaceSize
-            bottom = spaceSize / 2
+            bottom = spaceSize
         }
     }
 }

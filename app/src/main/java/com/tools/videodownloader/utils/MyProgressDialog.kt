@@ -18,8 +18,8 @@ class MyProgressDialog {
         var dialog: Dialog? = null
         fun showDialog(context: Context?, text: String, cancelable: Boolean) {
             dialog = Dialog(context!!, R.style.RoundedCornersDialog)
-            dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
-            dialog?.setCancelable(false)
+            dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
+            dialog!!.setCancelable(false)
             val linearLayout = LinearLayout(context)
             linearLayout.orientation = LinearLayout.HORIZONTAL
             val layoutParams = LinearLayout.LayoutParams(
@@ -51,16 +51,16 @@ class MyProgressDialog {
             )
             textView.layoutParams = linearlayoutParams_text
             linearLayout.addView(textView)
-            dialog?.window?.setContentView(linearLayout, layoutParams)
-            dialog?.setCancelable(cancelable)
-            if (dialog != null && dialog?.isShowing == false) {
-                dialog?.show()
+            dialog!!.window!!.setContentView(linearLayout, layoutParams)
+            dialog!!.setCancelable(cancelable)
+            if (dialog != null && !dialog!!.isShowing) {
+                dialog!!.show()
             }
         }
 
         fun dismissDialog() {
-            if (dialog != null && dialog?.isShowing == true) {
-                dialog?.dismiss()
+            if (dialog != null && dialog!!.isShowing) {
+                dialog!!.dismiss()
             }
         }
 

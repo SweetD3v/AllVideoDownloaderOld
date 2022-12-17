@@ -12,15 +12,14 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.steelkiwi.cropiwa.AspectRatio;
 import com.tools.videodownloader.R;
 import com.tools.videodownloader.collage_maker.crop.CropImageView;
 import com.tools.videodownloader.collage_maker.features.crop.adapter.AspectRatioPreviewAdapter;
+import com.steelkiwi.cropiwa.AspectRatio;
 
 
 public class PicsartCropDialogFragment extends DialogFragment implements AspectRatioPreviewAdapter.OnNewSelectedListener {
@@ -69,16 +68,10 @@ public class PicsartCropDialogFragment extends DialogFragment implements AspectR
         }
     }
 
-    @Override
-    public int getTheme() {
-        return R.style.FullScreenDialog;
-    }
-
     @Nullable
     public View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-        getDialog().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        getDialog().getWindow().setStatusBarColor(ContextCompat.getColor(getContext(), R.color.bg_default));
-
+        getDialog().getWindow().requestFeature(1);
+        getDialog().getWindow().setFlags(1024, 1024);
         View inflate = layoutInflater.inflate(R.layout.crop_layout, viewGroup, false);
         AspectRatioPreviewAdapter aspectRatioPreviewAdapter = new AspectRatioPreviewAdapter();
         aspectRatioPreviewAdapter.setListener(this);
@@ -87,12 +80,24 @@ public class PicsartCropDialogFragment extends DialogFragment implements AspectR
         recyclerView.setAdapter(aspectRatioPreviewAdapter);
         this.mCropView = inflate.findViewById(R.id.crop_view);
         this.mCropView.setCropMode(CropImageView.CropMode.FREE);
-        inflate.findViewById(R.id.rotate).setOnClickListener(view -> PicsartCropDialogFragment.this.mCropView.rotateImage(CropImageView.RotateDegrees.ROTATE_90D));
+        inflate.findViewById(R.id.rotate).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                PicsartCropDialogFragment.this.mCropView.rotateImage(CropImageView.RotateDegrees.ROTATE_90D);
+            }
+        });
 
-        inflate.findViewById(R.id.imgSave).setOnClickListener(view -> new OnSaveCrop().execute(new Void[0]));
+        inflate.findViewById(R.id.imgSave).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                new OnSaveCrop().execute(new Void[0]);
+            }
+        });
         this.loadingView = inflate.findViewById(R.id.loadingView);
         this.loadingView.setVisibility(View.GONE);
-        inflate.findViewById(R.id.imgClose).setOnClickListener(view -> PicsartCropDialogFragment.this.dismiss());
+        inflate.findViewById(R.id.imgClose).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                PicsartCropDialogFragment.this.dismiss();
+            }
+        });
         return inflate;
     }
 
@@ -113,7 +118,6 @@ public class PicsartCropDialogFragment extends DialogFragment implements AspectR
     class OnSaveCrop extends AsyncTask<Void, Bitmap, Bitmap> {
         OnSaveCrop() {
         }
-
         public void onPreExecute() {
             PicsartCropDialogFragment.this.showLoading(true);
         }
@@ -131,9 +135,11 @@ public class PicsartCropDialogFragment extends DialogFragment implements AspectR
 
     public void showLoading(boolean z) {
         if (z) {
+            getActivity().getWindow().setFlags(16, 16);
             this.loadingView.setVisibility(View.VISIBLE);
             return;
         }
+        getActivity().getWindow().clearFlags(16);
         this.loadingView.setVisibility(View.GONE);
     }
 }

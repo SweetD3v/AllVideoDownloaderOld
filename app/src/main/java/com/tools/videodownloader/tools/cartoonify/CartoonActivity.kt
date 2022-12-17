@@ -15,7 +15,6 @@ import com.tools.videodownloader.databinding.ActivityCartoonBinding
 import com.tools.videodownloader.ui.activities.BaseActivity
 import com.tools.videodownloader.utils.AdsUtils
 import com.tools.videodownloader.utils.NetworkState
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.io.ByteArrayOutputStream
 import java.nio.IntBuffer
 
@@ -48,7 +47,7 @@ class CartoonActivity : BaseActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@CartoonActivity, RemoteConfigUtils.adIdBanner(),
+                    this@CartoonActivity, getString(R.string.banner_id_details),
                     bannerContainer
                 )
 

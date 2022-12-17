@@ -20,7 +20,6 @@ import com.tools.videodownloader.phone_booster.models.AppModel
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.utils.*
 import com.tools.videodownloader.utils.AdsUtils.Companion.loadInterstitialAd
-import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import com.tools.videodownloader.widgets.MarginItemDecoration
 import java.util.*
 
@@ -187,8 +186,7 @@ class CleanerActivity : FullScreenActivity() {
 
             if (NetworkState.isOnline()) {
                 AdsUtils.loadNativeSmall(
-                    this@CleanerActivity,
-                    RemoteConfigUtils.adIdNative(),
+                    this@CleanerActivity, getString(R.string.admob_native_id),
                     adFrame
                 )
 //                AdsUtils.loadBanner(
@@ -198,10 +196,10 @@ class CleanerActivity : FullScreenActivity() {
             }
 
             toolbar.txtTitle.text = getString(R.string.cleaner)
-//            toolbar.root.background = ContextCompat.getDrawable(
-//                this@CleanerActivity,
-//                R.drawable.top_bar_gradient_green
-//            )
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@CleanerActivity,
+                R.drawable.top_bar_gradient_green
+            )
 
             adjustInsetsBoth(this@CleanerActivity, {
                 toolbar.rlMain.topMargin = it
@@ -259,7 +257,7 @@ class CleanerActivity : FullScreenActivity() {
                 if (btnCleanJunk.text.equals("Done")) {
                     loadInterstitialAd(
                         this@CleanerActivity,
-                        RemoteConfigUtils.adIdInterstital(),
+                        getString(R.string.interstitial_id),
                         object : AdsUtils.Companion.FullScreenCallback() {
 
                             override fun onAdFailed() {
@@ -367,7 +365,7 @@ class CleanerActivity : FullScreenActivity() {
         if (!showedAd) {
             loadInterstitialAd(
                 this,
-                RemoteConfigUtils.adIdInterstital(),
+                getString(R.string.interstitial_id),
                 object : AdsUtils.Companion.FullScreenCallback() {
                     override fun continueExecution() {
                         finish()
