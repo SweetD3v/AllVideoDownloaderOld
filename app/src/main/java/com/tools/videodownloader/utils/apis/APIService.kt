@@ -39,7 +39,7 @@ interface APIService {
     ): Call<RingPreviewModel>
 
     @FormUrlEncoded
-    @Headers("Content-Type:application/x-www-form-urlencoded")
+    @Headers("content-type:application/x-www-form-urlencoded")
     @POST
     fun getMediaUrlFacebook(
         @Header("X-RapidAPI-Key") rapid_key: String,

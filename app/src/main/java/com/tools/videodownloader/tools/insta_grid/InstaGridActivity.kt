@@ -9,10 +9,8 @@ import androidx.core.content.ContextCompat
 import com.tools.videodownloader.R
 import com.tools.videodownloader.databinding.ActivityInstaGridBinding
 import com.tools.videodownloader.ui.activities.FullScreenActivity
-import com.tools.videodownloader.utils.AdsUtils
-import com.tools.videodownloader.utils.NetworkState
-import com.tools.videodownloader.utils.adjustInsets
-import com.tools.videodownloader.utils.getBitmapFromUri
+import com.tools.videodownloader.utils.*
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import com.yalantis.ucrop.UCrop
 import gun0912.tedimagepicker.builder.TedImagePicker
 import java.io.File
@@ -61,7 +59,12 @@ class InstaGridActivity : FullScreenActivity() {
                 R.drawable.top_bar_gradient_pink1
             )
 
-            toolbar.rlMain.adjustInsets(this@InstaGridActivity)
+            adjustInsetsBoth(this@InstaGridActivity,
+                {
+                    toolbar.rlMain.topMargin = it
+                }, {
+                    rlMainTop.bottomMargin = it
+                })
 
             toolbar.txtTitle.text = getString(R.string.insta_grid)
 
@@ -72,7 +75,7 @@ class InstaGridActivity : FullScreenActivity() {
 //                )
                 AdsUtils.loadNativeSmall(
                     this@InstaGridActivity,
-                    getString(R.string.admob_native_id),
+                    RemoteConfigUtils.adIdNative(),
                     adFrame
                 )
             }

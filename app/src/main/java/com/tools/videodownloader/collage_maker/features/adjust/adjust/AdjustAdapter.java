@@ -41,16 +41,18 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustAdapter.ViewHolder
         return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_adjust_view, viewGroup, false));
     }
 
+    @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.toolName.setText(this.lstAdjusts.get(i).name);
         viewHolder.icon.setImageDrawable(this.selectedFilterIndex != i ? this.lstAdjusts.get(i).icon : this.lstAdjusts.get(i).selectedIcon);
         if (selectedFilterIndex == i) {
-            viewHolder.toolName.setTextColor(ContextCompat.getColor(context, R.color.textColorPrimary));
+            viewHolder.toolName.setTextColor(ContextCompat.getColor(context, R.color.black));
         } else {
             viewHolder.toolName.setTextColor(ContextCompat.getColor(context, R.color.unselected_color));
         }
     }
 
+    @Override
     public int getItemCount() {
         return this.lstAdjusts.size();
     }
@@ -68,12 +70,10 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustAdapter.ViewHolder
             super(view);
             this.icon = view.findViewById(R.id.icon);
             this.toolName = view.findViewById(R.id.tool_name);
-            view.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    AdjustAdapter.this.selectedFilterIndex = ViewHolder.this.getLayoutPosition();
-                    AdjustAdapter.this.adjustListener.onAdjustSelected(AdjustAdapter.this.lstAdjusts.get(AdjustAdapter.this.selectedFilterIndex));
-                    AdjustAdapter.this.notifyDataSetChanged();
-                }
+            view.setOnClickListener(view1 -> {
+                AdjustAdapter.this.selectedFilterIndex = ViewHolder.this.getLayoutPosition();
+                AdjustAdapter.this.adjustListener.onAdjustSelected(AdjustAdapter.this.lstAdjusts.get(AdjustAdapter.this.selectedFilterIndex));
+                AdjustAdapter.this.notifyDataSetChanged();
             });
         }
     }
@@ -83,7 +83,7 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustAdapter.ViewHolder
     }
 
     private void init() {
-        this.lstAdjusts = new ArrayList();
+        this.lstAdjusts = new ArrayList<>();
         this.lstAdjusts.add(new AdjustModel(0, this.context.getString(R.string.brightness), "brightness",
                 this.context.getDrawable(R.drawable.brightness_unpress), this.context.getDrawable(R.drawable.brightness_press), -1.0f, 0.0f, 1.0f));
         this.lstAdjusts.add(new AdjustModel(1, this.context.getString(R.string.contrast), "contrast",
@@ -94,7 +94,7 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustAdapter.ViewHolder
                 this.context.getDrawable(R.drawable.sharpen_unpress), this.context.getDrawable(R.drawable.sharpen_press), -1.0f, 0.0f, 10.0f));
     }
 
-    public class AdjustModel {
+    public static class AdjustModel {
         String code;
         Drawable icon;
         public int index;

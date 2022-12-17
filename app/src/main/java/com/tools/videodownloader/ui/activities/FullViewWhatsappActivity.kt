@@ -29,6 +29,7 @@ import com.tools.videodownloader.databinding.ItemFullViewBinding
 import com.tools.videodownloader.models.Media
 import com.tools.videodownloader.ui.fragments.WAImagesFragment.Companion.imagesList
 import com.tools.videodownloader.utils.*
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.io.File
 
 class FullViewWhatsappActivity : AppCompatActivity() {
@@ -50,7 +51,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@FullViewWhatsappActivity, getString(R.string.banner_id_details),
+                    this@FullViewWhatsappActivity, RemoteConfigUtils.adIdBanner(),
                     bannerContainer
                 )
 
@@ -141,7 +142,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
             fabDownload.setOnClickListener {
                 AdsUtils.loadInterstitialAd(
                     this@FullViewWhatsappActivity,
-                    getString(R.string.interstitial_id),
+                    RemoteConfigUtils.adIdInterstital(),
                     object : AdsUtils.Companion.FullScreenCallback() {
                         override fun continueExecution() {
                             val image = imagesList[binding.viewPagerMedia.currentItem]

@@ -9,16 +9,17 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
+import androidx.core.content.ContextCompat
 import com.tools.videodownloader.R
 import com.tools.videodownloader.databinding.ActivitySpeedTestBinding
 import com.tools.videodownloader.speedtest.test.HttpDownloadTest
 import com.tools.videodownloader.speedtest.test.HttpUploadTest
 import com.tools.videodownloader.speedtest.test.PingTest
 import com.tools.videodownloader.ui.activities.FullScreenActivity
-import com.tools.videodownloader.utils.adjustInsets
-import com.tools.videodownloader.utils.gone
-import com.tools.videodownloader.utils.visible
+import com.tools.videodownloader.utils.*
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
 class SpeedTestActivity : FullScreenActivity() {
     val binding by lazy { ActivitySpeedTestBinding.inflate(layoutInflater) }
@@ -89,30 +90,67 @@ class SpeedTestActivity : FullScreenActivity() {
         )
 
         binding.run {
-            toolbar.rlMain.adjustInsets(this@SpeedTestActivity)
+            adjustInsetsBoth(this@SpeedTestActivity,
+                {
+                    toolbar.rlMain.topMargin = it
+                }, {
+                    rlMainTop.bottomMargin = it
+                })
             toolbar.txtTitle.text = getString(R.string.internet_speed_test)
+
+            toolbar.root.background = ContextCompat.getDrawable(
+                this@SpeedTestActivity,
+                R.drawable.top_bar_gradient_pink_speed
+            )
 
             toolbar.imgBack.setOnClickListener { onBackPressed() }
 
+            if (NetworkState.isOnline()) {
+                AdsUtils.loadBanner(
+                    this@SpeedTestActivity,
+                    RemoteConfigUtils.adIdBanner(),
+                    bannerContainer
+                )
+            }
+
             startSpeedTest.setOnClickListener {
-                txtPing.text = "Connecting..."
-                startSpeedTest.gone()
-                imgSpeedMeter.visible()
-                imgSpeedMeterHande.visible()
-                testSpeed()
+                if (NetworkState.isOnline()) {
+                    AdsUtils.loadInterstitialAd(this@SpeedTestActivity,
+                        RemoteConfigUtils.adIdInterstital(),
+                        object : AdsUtils.Companion.FullScreenCallback() {
+                            override fun continueExecution() {
+                                animConnecting.visible()
+                                llPingText.invisible()
+                                txtPing.text = "Connecting..."
+                                startSpeedTest.gone()
+                                imgSpeedMeter.visible()
+                                imgSpeedMeterHande.visible()
+                                testSpeed()
+                            }
+                        })
+                } else {
+                    animConnecting.visible()
+                    llPingText.invisible()
+                    txtPing.text = "Connecting..."
+                    startSpeedTest.gone()
+                    imgSpeedMeter.visible()
+                    imgSpeedMeterHande.visible()
+                    testSpeed()
+                }
             }
 
             startSpeedTestAgain.setOnClickListener {
-                txtPing.text = "Connecting..."
-
-                imgSpeedMeter.visible()
-                imgSpeedMeterHande.visible()
-                startSpeedTestAgain.gone()
-
-                txtDownloadSpeed.text = "- mbps"
-                txtUploadSpeed.text = "- mbps"
-
-                testSpeed()
+//                txtPing.text = "Connecting..."
+//
+//                imgSpeedMeter.visible()
+//                imgSpeedMeterHande.visible()
+//                startSpeedTestAgain.gone()
+//
+//                txtDownloadSpeed.text = "- mbps"
+//                txtUploadSpeed.text = "- mbps"
+//
+//                testSpeed()
+                onBackPressed()
             }
         }
 
@@ -280,6 +318,8 @@ class SpeedTestActivity : FullScreenActivity() {
                                             }"
                                         )
 
+                                        binding.animConnecting.invisible()
+                                        binding.llPingText.visible()
                                         binding.txtPing.text =
                                             "${dec.format(pingTest.avgRtt)} ms"
                                     }
@@ -412,6 +452,7 @@ class SpeedTestActivity : FullScreenActivity() {
                                 val downloadRate: Double = downloadTest.instantDownloadRate
                                 downloadRateList.add(downloadRate)
                                 position = getPositionByRateNew(downloadRate)
+                                var downSpeed = 0
                                 try {
                                     runOnUiThread {
                                         Log.i("TAG", "j = $j")
@@ -428,6 +469,8 @@ class SpeedTestActivity : FullScreenActivity() {
                                                 downloadSpeedInstant =
                                                     dec.format(0.125 * downloadTest.instantDownloadRate)
                                                         .toString()
+                                                downSpeed =
+                                                    downloadSpeedInstant.toFloat().roundToInt()
 //                                                tvDownload.setText(
 //                                                    dec.format(0.125 * downloadTest.getInstantDownloadRate())
 //                                                        .toString() + ""
@@ -438,6 +481,8 @@ class SpeedTestActivity : FullScreenActivity() {
                                                 downloadSpeedInstant =
                                                     dec.format(125 * downloadTest.instantDownloadRate)
                                                         .toString()
+                                                downSpeed =
+                                                    downloadSpeedInstant.toFloat().roundToInt()
 //                                                tvDownload.setText(
 //                                                    dec.format(125 * downloadTest.getInstantDownloadRate())
 //                                                        .toString() + ""
@@ -448,6 +493,8 @@ class SpeedTestActivity : FullScreenActivity() {
                                                 downloadSpeedInstant =
                                                     dec.format(downloadTest.instantDownloadRate)
                                                         .toString()
+                                                downSpeed =
+                                                    downloadSpeedInstant.toFloat().roundToInt()
 //                                                tvDownload.setText(
 //                                                    dec.format(downloadTest.getInstantDownloadRate())
 //                                                        .toString() + ""
@@ -458,6 +505,8 @@ class SpeedTestActivity : FullScreenActivity() {
                                                 downloadSpeedInstant =
                                                     dec.format(1000 * downloadTest.instantDownloadRate)
                                                         .toString()
+                                                downSpeed =
+                                                    downloadSpeedInstant.toFloat().roundToInt()
 //                                                tvDownload.setText(
 //                                                    dec.format(1000 * downloadTest.getInstantDownloadRate())
 //                                                        .toString() + ""
@@ -539,7 +588,14 @@ class SpeedTestActivity : FullScreenActivity() {
                                         interpolator = LinearInterpolator()
                                         duration = 100
                                     }
-                                    binding.imgSpeedMeterHande.startAnimation(rotate)
+                                    Log.e("TAG", "testSpeed: ${position.toFloat()}")
+                                    binding.imgSpeedMeter.post {
+                                        try {
+                                            binding.imgSpeedMeter.setSpeed(downSpeed, 0)
+                                        } catch (e: Exception) {
+                                        }
+                                    }
+//                                    binding.imgSpeedMeterHande.startAnimation(rotate)
 
                                 } catch (e: Exception) {
                                     e.printStackTrace()
@@ -617,6 +673,7 @@ class SpeedTestActivity : FullScreenActivity() {
                                 val uploadRate: Double = uploadTest.instantUploadRate
                                 uploadRateList.add(uploadRate)
                                 position = getPositionByRateNew(uploadRate)
+                                var upSpeed = 0
                                 try {
                                     runOnUiThread {
 //                                        tickProgressMeasure.setmPUnit(
@@ -631,6 +688,7 @@ class SpeedTestActivity : FullScreenActivity() {
                                                 uploadSpeedInstant =
                                                     dec.format(0.125 * uploadTest.instantUploadRate)
                                                         .toString()
+                                                upSpeed = uploadSpeedInstant.toFloat().roundToInt()
 //                                                tvUpload.setText(
 //                                                    dec.format(0.125 * uploadTest.getInstantUploadRate())
 //                                                        .toString() + ""
@@ -641,6 +699,7 @@ class SpeedTestActivity : FullScreenActivity() {
                                                 uploadSpeedInstant =
                                                     dec.format(125 * uploadTest.instantUploadRate)
                                                         .toString()
+                                                upSpeed = uploadSpeedInstant.toFloat().roundToInt()
 //                                                tvUpload.setText(
 //                                                    dec.format(125 * uploadTest.getInstantUploadRate())
 //                                                        .toString() + ""
@@ -651,6 +710,7 @@ class SpeedTestActivity : FullScreenActivity() {
                                                 uploadSpeedInstant =
                                                     dec.format(uploadTest.instantUploadRate)
                                                         .toString()
+                                                upSpeed = uploadSpeedInstant.toFloat().roundToInt()
 //                                                tvUpload.setText(
 //                                                    dec.format(uploadTest.getInstantUploadRate())
 //                                                        .toString() + ""
@@ -661,6 +721,7 @@ class SpeedTestActivity : FullScreenActivity() {
                                                 uploadSpeedInstant =
                                                     dec.format(1000 * uploadTest.instantUploadRate)
                                                         .toString()
+                                                upSpeed = uploadSpeedInstant.toFloat().roundToInt()
 //                                                tvUpload.setText(
 //                                                    dec.format(1000 * uploadTest.getInstantUploadRate())
 //                                                        .toString() + ""
@@ -744,7 +805,15 @@ class SpeedTestActivity : FullScreenActivity() {
                                     interpolator = LinearInterpolator()
                                     duration = 100
                                 }
-                                binding.imgSpeedMeterHande.startAnimation(rotate)
+//                                binding.imgSpeedMeterHande.startAnimation(rotate)
+
+                                binding.imgSpeedMeter.post {
+                                    try {
+                                        binding.imgSpeedMeter.setSpeed(upSpeed, 0)
+                                    } catch (e: Exception) {
+                                    }
+                                }
+
                             }
                         }
                         if (pingTestFinished && downloadTestFinished && uploadTest.isFinished) {

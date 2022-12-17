@@ -39,11 +39,11 @@
     <application
         android:name="com.tools.videodownloader.AllVidApp"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:preserveLegacyExternalStorage="true"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@drawable/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_rounded"
         android:supportsRtl="true"
         android:theme="@style/Theme.AllVidDownloader"
         android:usesCleartextTraffic="true"
@@ -275,6 +275,10 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_app_id" />
+
+        <!--        <meta-data-->
+        <!--            android:name="com.google.android.gms.ads.AD_MANAGER_APP"-->
+        <!--            android:value="true" />-->
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.utils.AdsUtils
 import com.tools.videodownloader.utils.NetworkState
 import com.tools.videodownloader.utils.adjustInsets
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -58,7 +59,7 @@ class AgeCalcDetailsActivity : FullScreenActivity() {
 //                )
 
                 AdsUtils.loadNativeSmall(
-                    this@AgeCalcDetailsActivity, getString(R.string.admob_native_id),
+                    this@AgeCalcDetailsActivity, RemoteConfigUtils.adIdNative(),
                     adFrame
                 )
             }

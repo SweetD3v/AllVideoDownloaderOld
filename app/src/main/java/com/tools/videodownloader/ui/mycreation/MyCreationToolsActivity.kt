@@ -18,6 +18,8 @@ import com.tools.videodownloader.databinding.ItemMyCreationBinding
 import com.tools.videodownloader.models.Media
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.utils.*
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
+import com.tools.videodownloader.widgets.MarginItemDecoration
 import java.io.File
 
 class MyCreationToolsActivity : FullScreenActivity() {
@@ -38,7 +40,11 @@ class MyCreationToolsActivity : FullScreenActivity() {
 
         binding.run {
 
-            toolbar.rlMain.adjustInsets(this@MyCreationToolsActivity)
+            adjustInsetsBoth(this@MyCreationToolsActivity, {
+                toolbar.rlMain.topMargin = it
+            }, {
+                rlMainTop.bottomMargin = it
+            })
 
             toolbar.txtTitle.text = getString(R.string.my_creations)
             if (type.equals("photo_cmp")) {
@@ -119,27 +125,26 @@ class MyCreationToolsActivity : FullScreenActivity() {
 
                 AdsUtils.loadNative(
                     this@MyCreationToolsActivity,
-                    getString(R.string.admob_native_id),
+                    RemoteConfigUtils.adIdNative(),
                     adFrame
                 )
             }
 
-            toolbar.rlMain.adjustInsets(this@MyCreationToolsActivity)
-
             toolbar.imgBack.setOnClickListener { onBackPressed() }
             rvMyCreation.isNestedScrollingEnabled = false
             rvMyCreation.layoutManager = GridLayoutManager(this@MyCreationToolsActivity, 2)
-//            rvWAImages.addItemDecoration(MarginItemDecoration(dpToPx(8)))
+
             val albumGridSpacing = resources.getDimension(R.dimen.rv_margin)
 
-            if (decorationAdded == false) {
+            if (rvMyCreation.itemDecorationCount == 0) {
                 decorationAdded = true
-                rvMyCreation.addOuterGridSpacing((albumGridSpacing).toInt())
-                rvMyCreation.addItemDecoration(
-                    GridMarginDecoration(
-                        albumGridSpacing.toInt()
-                    )
-                )
+                rvMyCreation.addItemDecoration(MarginItemDecoration(dpToPx(8)))
+//                rvMyCreation.addOuterGridSpacing((albumGridSpacing).toInt())
+//                rvMyCreation.addItemDecoration(
+//                    GridMarginDecoration(
+//                        albumGridSpacing.toInt()
+//                    )
+//                )
             }
         }
     }
@@ -264,7 +269,7 @@ class MyCreationToolsActivity : FullScreenActivity() {
         mediaList?.clear()
         AdsUtils.loadInterstitialAd(
             this,
-            getString(R.string.interstitial_id),
+            RemoteConfigUtils.adIdInterstital(),
             object : AdsUtils.Companion.FullScreenCallback() {
                 override fun continueExecution() {
                     finish()

@@ -28,6 +28,7 @@ import com.tools.videodownloader.databinding.ActivityFullviewWaSavedBinding
 import com.tools.videodownloader.databinding.ItemFullViewBinding
 import com.tools.videodownloader.models.Media
 import com.tools.videodownloader.utils.*
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.io.File
 
 class FullViewWASavedActivity : AppCompatActivity() {
@@ -46,7 +47,7 @@ class FullViewWASavedActivity : AppCompatActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@FullViewWASavedActivity, getString(R.string.banner_id_details),
+                    this@FullViewWASavedActivity, RemoteConfigUtils.adIdBanner(),
                     bannerContainer
                 )
 
@@ -372,7 +373,7 @@ class FullViewWASavedActivity : AppCompatActivity() {
 
             AdsUtils.loadInterstitialAd(
                 this,
-                getString(R.string.interstitial_id),
+                RemoteConfigUtils.adIdInterstital(),
                 object : AdsUtils.Companion.FullScreenCallback() {
                     override fun continueExecution() {
                         finish()

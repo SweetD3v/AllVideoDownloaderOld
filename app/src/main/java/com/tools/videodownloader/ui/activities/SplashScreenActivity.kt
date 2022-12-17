@@ -6,15 +6,17 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.tools.videodownloader.R
-import com.tools.videodownloader.databinding.ActivitySplashBinding
-import com.tools.videodownloader.utils.adjustInsets
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
+import com.tools.videodownloader.databinding.ActivitySplashBinding
+import com.tools.videodownloader.utils.adjustInsetsBoth
+import com.tools.videodownloader.utils.bottomMargin
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
+import com.tools.videodownloader.utils.topMargin
 
 class SplashScreenActivity : FullScreenActivity(), LifecycleObserver {
     val binding by lazy { ActivitySplashBinding.inflate(layoutInflater) }
@@ -31,7 +33,11 @@ class SplashScreenActivity : FullScreenActivity(), LifecycleObserver {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.clMain.adjustInsets(this)
+        adjustInsetsBoth(this@SplashScreenActivity, {
+            binding.clMain.topMargin = it
+        }, {
+            binding.clMain.bottomMargin = it
+        })
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
     }
@@ -70,7 +76,7 @@ class SplashScreenActivity : FullScreenActivity(), LifecycleObserver {
         }
         val request: AdRequest = getAdRequest()
         AppOpenAd.load(
-            this, getString(R.string.app_open_id), request,
+            this, RemoteConfigUtils.adIdAppOpen(), request,
             AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback
         )
     }

@@ -27,6 +27,7 @@ import com.tools.videodownloader.ui.activities.VideoViewActivity
 import com.tools.videodownloader.ui.mycreation.MyCreationToolsActivity.Companion.mediaList
 import com.tools.videodownloader.utils.*
 import com.squareup.picasso.Picasso
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.io.File
 
 class MyCreationFullViewActivity : AppCompatActivity() {
@@ -50,7 +51,7 @@ class MyCreationFullViewActivity : AppCompatActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@MyCreationFullViewActivity, getString(R.string.banner_id_details),
+                    this@MyCreationFullViewActivity, RemoteConfigUtils.adIdBanner(),
                     bannerContainer
                 )
 

@@ -16,6 +16,7 @@ import com.tools.videodownloader.utils.AdsUtils
 import com.tools.videodownloader.utils.FileUtilsss
 import com.tools.videodownloader.utils.NetworkState
 import com.tools.videodownloader.utils.adjustInsets
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.io.File
 
 class CompressSavePhotoActivity : FullScreenActivity() {
@@ -48,7 +49,7 @@ class CompressSavePhotoActivity : FullScreenActivity() {
 
             AdsUtils.loadNative(
                 this@CompressSavePhotoActivity,
-                getString(R.string.admob_native_id),
+                RemoteConfigUtils.adIdNative(),
                 binding.adFrame
             )
         }
