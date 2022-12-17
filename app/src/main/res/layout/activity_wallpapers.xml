@@ -6,76 +6,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/topbar_common" />
-
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
+        android:id="@+id/rlMainTop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/bannerContainer"
-        android:layout_below="@id/toolbar"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/topbar_common" />
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_above="@id/bannerContainer"
+            android:layout_below="@id/toolbar"
+            android:scrollbars="none">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/adCard"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
+                android:orientation="vertical">
 
-                <FrameLayout
-                    android:id="@+id/adFrame"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/adCard"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.card.MaterialCardView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:cardUseCompatPadding="true">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvWallpapers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/item_status" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+                    <FrameLayout
+                        android:id="@+id/adFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.card.MaterialCardView>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/bannerContainer"
-        android:indeterminate="true"
-        android:progressTint="@color/colorPrimary"
-        android:visibility="gone" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvWallpapers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_status" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/colorAccent"
-        android:src="@drawable/ic_filter"
-        android:visibility="gone"
-        app:fabCustomSize="56dp"
-        app:maxImageSize="24dp"
-        app:tint="@color/white" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bannerContainer"
+            android:indeterminate="true"
+            android:progressTint="@color/colorPrimary"
+            android:visibility="gone" />
 
-    <FrameLayout
-        android:id="@+id/bannerContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:elevation="2dp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/colorAccent"
+            android:src="@drawable/ic_filter"
+            android:visibility="gone"
+            app:fabCustomSize="56dp"
+            app:maxImageSize="24dp"
+            app:tint="@color/white" />
+
+        <FrameLayout
+            android:id="@+id/bannerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="2dp" />
+    </RelativeLayout>
 </RelativeLayout>

@@ -19,6 +19,7 @@ import com.tools.videodownloader.databinding.ActivityPhotoFilterBinding
 import com.tools.videodownloader.tools.cartoonify.CartoonActivity
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.utils.*
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import com.zomato.photofilters.SampleFilters
 
 class PhotoFilterActivity : FullScreenActivity() {
@@ -55,7 +56,7 @@ class PhotoFilterActivity : FullScreenActivity() {
 
         if (NetworkState.isOnline())
             AdsUtils.loadBanner(
-                this, getString(R.string.banner_id_details),
+                this, RemoteConfigUtils.adIdBanner(),
                 binding.bannerContainer
             )
 
@@ -111,7 +112,7 @@ class PhotoFilterActivity : FullScreenActivity() {
                             ).show()
 
                             AdsUtils.loadInterstitialAd(this@PhotoFilterActivity,
-                                getString(R.string.interstitial_id),
+                                RemoteConfigUtils.adIdInterstital(),
                                 object : AdsUtils.Companion.FullScreenCallback() {
                                     override fun continueExecution() {
                                         PhotoFiltersUtils.photoFilterBmp = filterBmp

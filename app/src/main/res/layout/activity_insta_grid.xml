@@ -6,94 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".tools.insta_grid.InstaGridActivity">
 
-    <ScrollView
+    <RelativeLayout
+        android:id="@+id/rlMainTop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bannerContainer"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_above="@id/bannerContainer"
+            android:fillViewport="true">
 
-            <include
-                android:id="@+id/toolbar"
-                layout="@layout/topbar_common" />
-
-            <com.tools.videodownloader.widgets.SquareLinearLayout
-                android:id="@+id/rlTop"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/toolbar">
+                android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgCropped"
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/topbar_common" />
+
+                <com.tools.videodownloader.widgets.SquareLinearLayout
+                    android:id="@+id/rlTop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:background="@color/_e5e5e5"
-                    android:scaleType="centerCrop" />
-            </com.tools.videodownloader.widgets.SquareLinearLayout>
+                    android:layout_below="@id/toolbar">
 
-            <LinearLayout
-                android:id="@+id/llBottom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rlTop"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="8dp">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgCropped"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="16dp"
+                        android:background="@color/_e5e5e5"
+                        android:scaleType="centerCrop" />
+                </com.tools.videodownloader.widgets.SquareLinearLayout>
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/llBottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/gilroy_semibold"
+                    android:layout_below="@id/rlTop"
                     android:gravity="center"
-                    android:text="Level up your profile with Beautiful grids"
-                    android:textColor="@color/black_translucent3"
-                    android:textSize="16sp" />
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
 
-                <TextView
-                    android:id="@+id/imgSelectImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/bg_gradient_rounded1_2_pink"
-                    android:fontFamily="@font/gilroy_bold"
-                    android:gravity="center"
-                    android:paddingHorizontal="32dp"
-                    android:text="Select Image"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/btnPaste"
-                    app:layout_constraintEnd_toStartOf="@id/btnPaste"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/btnPaste" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:gravity="center"
+                        android:text="Level up your profile with Beautiful grids"
+                        android:textColor="@color/black_translucent3"
+                        android:textSize="16sp" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/adCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/llBottom"
-                android:layout_marginHorizontal="8dp"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
+                    <TextView
+                        android:id="@+id/imgSelectImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_gradient_rounded1_2_pink"
+                        android:fontFamily="@font/gilroy_bold"
+                        android:gravity="center"
+                        android:paddingHorizontal="32dp"
+                        android:text="Select Image"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@id/btnPaste"
+                        app:layout_constraintEnd_toStartOf="@id/btnPaste"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/btnPaste" />
+                </LinearLayout>
 
-                <FrameLayout
-                    android:id="@+id/adFrame"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/adCard"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.card.MaterialCardView>
-        </RelativeLayout>
-    </ScrollView>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/llBottom"
+                    android:layout_marginHorizontal="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:cardUseCompatPadding="true">
 
-    <FrameLayout
-        android:id="@+id/bannerContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:elevation="2dp" />
+                    <FrameLayout
+                        android:id="@+id/adFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+        </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/bannerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="2dp" />
+    </RelativeLayout>
 </RelativeLayout>

@@ -9,9 +9,8 @@ import com.tools.videodownloader.databinding.ActivityPhotoWarpHomeBinding
 import com.tools.videodownloader.tools.cartoonify.CartoonActivity.Companion.SELECTED_PHOTO
 import com.tools.videodownloader.ui.activities.FullScreenActivity
 import com.tools.videodownloader.ui.mycreation.MyCreationToolsActivity
-import com.tools.videodownloader.utils.AdsUtils
-import com.tools.videodownloader.utils.NetworkState
-import com.tools.videodownloader.utils.adjustInsets
+import com.tools.videodownloader.utils.*
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import gun0912.tedimagepicker.builder.TedImagePicker
 
 class PhotoWarpHomeActivity : FullScreenActivity() {
@@ -31,7 +30,7 @@ class PhotoWarpHomeActivity : FullScreenActivity() {
 
                 AdsUtils.loadNative(
                     this@PhotoWarpHomeActivity,
-                    getString(R.string.admob_native_id),
+                    RemoteConfigUtils.adIdNative(),
                     adFrame
                 )
             }
@@ -42,7 +41,12 @@ class PhotoWarpHomeActivity : FullScreenActivity() {
                 R.drawable.top_bar_gradient_orange
             )
 
-            toolbar.rlMain.adjustInsets(this@PhotoWarpHomeActivity)
+            adjustInsetsBoth(this@PhotoWarpHomeActivity,
+                {
+                    toolbar.rlMain.topMargin = it
+                }, {
+                    rlMainTop.bottomMargin = it
+                })
 
             llPhotoFilters.setOnClickListener {
                 TedImagePicker.with(this@PhotoWarpHomeActivity)

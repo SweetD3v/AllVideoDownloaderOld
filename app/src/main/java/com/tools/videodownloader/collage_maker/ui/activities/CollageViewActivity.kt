@@ -26,24 +26,18 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tools.videodownloader.R
-import com.tools.videodownloader.collage_maker.ui.EditingToolType
-import com.tools.videodownloader.collage_maker.ui.EditingToolType.*
-import com.tools.videodownloader.collage_maker.utils.FileUtils.saveBitmapAsFile
-import com.tools.videodownloader.databinding.ActivityPuzzleBinding
-import com.tools.videodownloader.ui.activities.FullScreenActivity
-import com.tools.videodownloader.ui.activities.MainActivity
-import com.tools.videodownloader.ui.fragments.HomeFragment
-import com.tools.videodownloader.utils.*
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Picasso.LoadedFrom
 import com.squareup.picasso.Target
 import com.steelkiwi.cropiwa.AspectRatio
+import com.tools.videodownloader.R
 import com.tools.videodownloader.collage_maker.features.college.CollegeUtils
 import com.tools.videodownloader.collage_maker.features.college.PuzzleLayout
 import com.tools.videodownloader.collage_maker.features.college.PuzzleLayoutParser
 import com.tools.videodownloader.collage_maker.features.college.PuzzleView
 import com.tools.videodownloader.collage_maker.features.college.adapter.PuzzleAdapter
+import com.tools.videodownloader.collage_maker.ui.EditingToolType
+import com.tools.videodownloader.collage_maker.ui.EditingToolType.*
 import com.tools.videodownloader.collage_maker.ui.adapters.AspectRatioPreviewAdapter
 import com.tools.videodownloader.collage_maker.ui.adapters.BottomToolsAdapter
 import com.tools.videodownloader.collage_maker.ui.adapters.CollegeBGAdapter
@@ -53,9 +47,16 @@ import com.tools.videodownloader.collage_maker.ui.fragments.PicsartCropDialogFra
 import com.tools.videodownloader.collage_maker.ui.interfaces.FilterListener
 import com.tools.videodownloader.collage_maker.ui.interfaces.Sticker_interfce
 import com.tools.videodownloader.collage_maker.utils.FileUtils.createBitmap
+import com.tools.videodownloader.collage_maker.utils.FileUtils.saveBitmapAsFile
 import com.tools.videodownloader.collage_maker.utils.SystemUtils
 import com.tools.videodownloader.collage_maker.utils.UtilsFilter
+import com.tools.videodownloader.databinding.ActivityPuzzleBinding
 import com.tools.videodownloader.tools.photo_filters.PhotoFiltersUtils
+import com.tools.videodownloader.ui.activities.FullScreenActivity
+import com.tools.videodownloader.ui.activities.MainActivity
+import com.tools.videodownloader.ui.fragments.HomeFragment
+import com.tools.videodownloader.utils.*
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import gun0912.tedimagepicker.builder.TedImagePicker.Companion.with
 import org.wysaid.nativePort.CGENativeLibrary
 import org.wysaid.nativePort.CGENativeLibrary.LoadImageCallback
@@ -235,7 +236,7 @@ class CollageViewActivity : FullScreenActivity(), BottomToolsAdapter.OnItemSelec
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         if (NetworkState.isOnline()) AdsUtils.loadBanner(
-            this, getString(R.string.banner_id_details),
+            this, RemoteConfigUtils.adIdBanner(),
             binding.bannerContainer
         )
 
@@ -243,7 +244,11 @@ class CollageViewActivity : FullScreenActivity(), BottomToolsAdapter.OnItemSelec
             toolbar.txtTitle.text = getString(R.string.collage_maker)
             toolbar.imgSave.setTextColor(Color.parseColor("#b5a4ee"))
             toolbar.imgSave.visible()
-            toolbar.rlMain.adjustInsets(this@CollageViewActivity)
+            adjustInsetsBoth(this@CollageViewActivity, {
+                toolbar.rlMain.topMargin = it
+            }, {
+                rlMainTop.bottomMargin = it
+            })
             toolbar.root.background = ContextCompat.getDrawable(
                 this@CollageViewActivity,
                 R.drawable.top_bar_gradient_purple
@@ -441,7 +446,7 @@ class CollageViewActivity : FullScreenActivity(), BottomToolsAdapter.OnItemSelec
         rvBackgroundList.adapter = puzzleBackgroundAdapter
         rvBackgroundList.visibility = View.VISIBLE
         tvChangeBackgroundBlur.setBackgroundResource(R.drawable.border_bottom)
-        tvChangeBackgroundBlur.setTextColor(ContextCompat.getColor(this, R.color.white))
+        tvChangeBackgroundBlur.setTextColor(ContextCompat.getColor(this, R.color.black))
         rvBackgroundGradient.visibility = View.GONE
         tvChangeBackgroundGradient.setBackgroundResource(0)
         tvChangeBackgroundGradient.setTextColor(
@@ -463,7 +468,7 @@ class CollageViewActivity : FullScreenActivity(), BottomToolsAdapter.OnItemSelec
     fun selectBackgroundColorTab() {
         rvBackgroundColor.visibility = View.VISIBLE
         tvChangeBackgroundColor.setBackgroundResource(R.drawable.border_bottom)
-        tvChangeBackgroundColor.setTextColor(ContextCompat.getColor(this, R.color.white))
+        tvChangeBackgroundColor.setTextColor(ContextCompat.getColor(this, R.color.black))
         rvBackgroundColor.scrollToPosition(0)
         (rvBackgroundColor.adapter as CollegeBGAdapter?)?.setSelectedSquareIndex(-1)
         rvBackgroundColor.adapter?.notifyDataSetChanged()
@@ -488,7 +493,7 @@ class CollageViewActivity : FullScreenActivity(), BottomToolsAdapter.OnItemSelec
     fun selectBackgroundGradientTab() {
         rvBackgroundGradient.visibility = View.VISIBLE
         tvChangeBackgroundGradient.setBackgroundResource(R.drawable.border_bottom)
-        tvChangeBackgroundGradient.setTextColor(ContextCompat.getColor(this, R.color.white))
+        tvChangeBackgroundGradient.setTextColor(ContextCompat.getColor(this, R.color.black))
         rvBackgroundGradient.scrollToPosition(0)
         (rvBackgroundGradient.adapter as CollegeBGAdapter?)?.setSelectedSquareIndex(-1)
         rvBackgroundGradient.adapter?.notifyDataSetChanged()
@@ -1136,7 +1141,7 @@ class CollageViewActivity : FullScreenActivity(), BottomToolsAdapter.OnItemSelec
                 null as Array<String?>?
             ) { str: String?, uri: Uri? -> }
             AdsUtils.loadInterstitialAd(this@CollageViewActivity,
-                getString(R.string.interstitial_id),
+                RemoteConfigUtils.adIdInterstital(),
                 object : AdsUtils.Companion.FullScreenCallback() {
                     override fun continueExecution() {
                         val intent = Intent(

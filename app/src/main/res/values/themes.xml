@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.AllVidDownloader" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
@@ -57,6 +57,13 @@
         <item name="android:background">@drawable/rounded_bg_white_8</item>
         <item name="android:windowMinWidthMajor">100%</item>
         <item name="android:windowMinWidthMinor">100%</item>
+    </style>
+
+    <style name="FullScreenDialog" parent="@style/Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:statusBarColor">@color/bg_default</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -162,11 +169,9 @@
 
     <style name="SeekBaStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">20.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">56.0dip</item>
         <item name="android:layout_marginRight">56.0dip</item>
-        <item name="android:progressDrawable">@drawable/custom_progressbar_drawable</item>
-        <item name="android:thumb">@drawable/custom_thumb</item>
         <item name="android:splitTrack">false</item>
     </style>
 </resources>

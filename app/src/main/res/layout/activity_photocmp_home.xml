@@ -5,149 +5,155 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/rlMainTop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bannerContainer">
-
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/topbar_common" />
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/llBottom"
-            android:layout_below="@id/toolbar">
+            android:layout_above="@id/bannerContainer">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/adCard"
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/topbar_common" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/llBottom"
+                android:layout_below="@id/toolbar">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/adCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:cardUseCompatPadding="true">
+
+                    <FrameLayout
+                        android:id="@+id/adFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.card.MaterialCardView>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/llBottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginHorizontal="8dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
+                android:layout_marginBottom="48dp"
+                android:orientation="vertical">
 
-                <FrameLayout
-                    android:id="@+id/adFrame"
+                <LinearLayout
+                    android:id="@+id/llPhotoCompress"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.card.MaterialCardView>
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_rounded_edit_home"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="84dp"
+                            android:layout_height="72dp"
+                            android:layout_centerInParent="true"
+                            app:srcCompat="@drawable/ic_edit_home" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="Compress Image"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="24dp"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="Compress any photo without losing quality"
+                            android:textColor="@color/white_home"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llMyCreation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_rounded_edit_home"
+                    android:backgroundTint="@color/green_tint"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="84dp"
+                            android:layout_height="72dp"
+                            android:layout_centerInParent="true"
+                            app:srcCompat="@drawable/ic_creation_home" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="My Creation"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="24dp"
+                            android:fontFamily="@font/karla_semibold"
+                            android:text="See your creations &amp; share with your friends"
+                            android:textColor="@color/white_home"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/llBottom"
+        <FrameLayout
+            android:id="@+id/bannerContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="48dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/llPhotoCompress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_rounded_edit_home"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="84dp"
-                        android:layout_height="72dp"
-                        android:layout_centerInParent="true"
-                        app:srcCompat="@drawable/ic_edit_home" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/gilroy_medium"
-                        android:text="Compress Image"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="24dp"
-                        android:fontFamily="@font/gilroy_semibold"
-                        android:text="Compress any photo without losing quality"
-                        android:textColor="@color/white_home"
-                        android:textSize="14sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llMyCreation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/bg_rounded_edit_home"
-                android:backgroundTint="@color/green_tint"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="84dp"
-                        android:layout_height="72dp"
-                        android:layout_centerInParent="true"
-                        app:srcCompat="@drawable/ic_creation_home" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="My Creation"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="24dp"
-                        android:fontFamily="@font/karla_semibold"
-                        android:text="See your creations &amp; share with your friends"
-                        android:textColor="@color/white_home"
-                        android:textSize="14sp" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+            android:elevation="2dp" />
     </RelativeLayout>
-
-    <FrameLayout
-        android:id="@+id/bannerContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:elevation="2dp" />
 </RelativeLayout>

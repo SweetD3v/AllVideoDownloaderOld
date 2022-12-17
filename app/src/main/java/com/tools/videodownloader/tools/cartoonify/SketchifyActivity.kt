@@ -14,6 +14,7 @@ import com.tools.videodownloader.databinding.ActivitySketchifyBinding
 import com.tools.videodownloader.ui.activities.BaseActivity
 import com.tools.videodownloader.utils.AdsUtils
 import com.tools.videodownloader.utils.NetworkState
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import java.io.ByteArrayOutputStream
 import java.nio.IntBuffer
 
@@ -44,7 +45,7 @@ class SketchifyActivity : BaseActivity() {
 
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@SketchifyActivity, getString(R.string.banner_id_details),
+                    this@SketchifyActivity, RemoteConfigUtils.adIdBanner(),
                     bannerContainer
                 )
 

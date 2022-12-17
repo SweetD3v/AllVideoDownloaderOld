@@ -28,13 +28,13 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.steelkiwi.cropiwa.AspectRatio;
 import com.tools.videodownloader.R;
 import com.tools.videodownloader.collage_maker.features.crop.adapter.AspectRatioPreviewAdapter;
 import com.tools.videodownloader.collage_maker.features.draw.AdapterColor;
 import com.tools.videodownloader.collage_maker.features.draw.BrushColorListener;
 import com.tools.videodownloader.collage_maker.utils.SystemUtils;
 import com.tools.videodownloader.collage_maker.utils.UtilsFilter;
-import com.steelkiwi.cropiwa.AspectRatio;
 
 
 public class InstaDialog extends DialogFragment implements AspectRatioPreviewAdapter.OnNewSelectedListener, AdapterInsta.BackgroundInstaListener, BrushColorListener {
@@ -88,10 +88,16 @@ public class InstaDialog extends DialogFragment implements AspectRatioPreviewAda
         this.instaSaveListener = instaSaveListener2;
     }
 
+    @Override
+    public int getTheme() {
+        return R.style.FullScreenDialog;
+    }
+
     @Nullable
     public View onCreateView(LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-        getDialog().getWindow().requestFeature(1);
-        getDialog().getWindow().setFlags(1024, 1024);
+        getDialog().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getDialog().getWindow().setStatusBarColor(ContextCompat.getColor(getContext(), R.color.bg_default));
+
         View inflate = layoutInflater.inflate(R.layout.insta_layout, viewGroup, false);
         AspectRatioPreviewAdapter aspectRatioPreviewAdapter = new AspectRatioPreviewAdapter();
         aspectRatioPreviewAdapter.setListener(this);
@@ -105,48 +111,42 @@ public class InstaDialog extends DialogFragment implements AspectRatioPreviewAda
         this.rvBackground.setAdapter(new AdapterInsta(getContext(), this));
         this.rvBackground.setVisibility(View.GONE);
         this.ratio = inflate.findViewById(R.id.ratio);
-        this.ratio.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                InstaDialog.this.fixedRatioList.setVisibility(View.VISIBLE);
-                InstaDialog.this.rvBackground.setVisibility(View.GONE);
-                InstaDialog.this.instagramPadding.setVisibility(View.GONE);
-                InstaDialog.this.ratio.setTextColor(ContextCompat.getColor(getContext(), R.color.textColorPrimary));
-                InstaDialog.this.ratio.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.border_bottom));
-                InstaDialog.this.background.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
-                InstaDialog.this.border.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
-                InstaDialog.this.background.setBackgroundResource(0);
-                InstaDialog.this.border.setBackgroundResource(0);
-            }
+        this.ratio.setOnClickListener(view -> {
+            InstaDialog.this.fixedRatioList.setVisibility(View.VISIBLE);
+            InstaDialog.this.rvBackground.setVisibility(View.GONE);
+            InstaDialog.this.instagramPadding.setVisibility(View.GONE);
+            InstaDialog.this.ratio.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+//                InstaDialog.this.ratio.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.border_bottom));
+            InstaDialog.this.background.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
+            InstaDialog.this.border.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
+            InstaDialog.this.background.setBackgroundResource(0);
+            InstaDialog.this.border.setBackgroundResource(0);
         });
         this.background = inflate.findViewById(R.id.background);
-        this.background.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                InstaDialog.this.fixedRatioList.setVisibility(View.GONE);
-                InstaDialog.this.rvBackground.setVisibility(View.VISIBLE);
-                InstaDialog.this.instagramPadding.setVisibility(View.GONE);
-                InstaDialog.this.background.setTextColor(ContextCompat.getColor(getContext(), R.color.textColorPrimary));
-                InstaDialog.this.background.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.border_bottom));
-                InstaDialog.this.ratio.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
-                InstaDialog.this.border.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
-                InstaDialog.this.ratio.setBackgroundResource(0);
-                InstaDialog.this.border.setBackgroundResource(0);
-            }
+        this.background.setOnClickListener(view -> {
+            InstaDialog.this.fixedRatioList.setVisibility(View.GONE);
+            InstaDialog.this.rvBackground.setVisibility(View.VISIBLE);
+            InstaDialog.this.instagramPadding.setVisibility(View.GONE);
+            InstaDialog.this.background.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+//                InstaDialog.this.background.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.border_bottom));
+            InstaDialog.this.ratio.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
+            InstaDialog.this.border.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
+            InstaDialog.this.ratio.setBackgroundResource(0);
+            InstaDialog.this.border.setBackgroundResource(0);
         });
         this.instagramPadding = inflate.findViewById(R.id.instagramPadding);
         this.instagramPadding.setVisibility(View.GONE);
         this.border = inflate.findViewById(R.id.border);
-        this.border.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                InstaDialog.this.instagramPadding.setVisibility(View.VISIBLE);
-                InstaDialog.this.fixedRatioList.setVisibility(View.GONE);
-                InstaDialog.this.rvBackground.setVisibility(View.GONE);
-                InstaDialog.this.border.setTextColor(ContextCompat.getColor(getContext(), R.color.textColorPrimary));
-                InstaDialog.this.border.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.border_bottom));
-                InstaDialog.this.background.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
-                InstaDialog.this.ratio.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
-                InstaDialog.this.background.setBackgroundResource(0);
-                InstaDialog.this.ratio.setBackgroundResource(0);
-            }
+        this.border.setOnClickListener(view -> {
+            InstaDialog.this.instagramPadding.setVisibility(View.VISIBLE);
+            InstaDialog.this.fixedRatioList.setVisibility(View.GONE);
+            InstaDialog.this.rvBackground.setVisibility(View.GONE);
+            InstaDialog.this.border.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+//                InstaDialog.this.border.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.border_bottom));
+            InstaDialog.this.background.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
+            InstaDialog.this.ratio.setTextColor(ContextCompat.getColor(getContext(), R.color.unselected_color));
+            InstaDialog.this.background.setBackgroundResource(0);
+            InstaDialog.this.ratio.setBackgroundResource(0);
         });
         RecyclerView recyclerView = inflate.findViewById(R.id.rv_colors);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
@@ -250,11 +250,9 @@ public class InstaDialog extends DialogFragment implements AspectRatioPreviewAda
 
     public void showLoading(boolean z) {
         if (z) {
-            getActivity().getWindow().setFlags(16, 16);
             this.loadingView.setVisibility(View.VISIBLE);
             return;
         }
-        getActivity().getWindow().clearFlags(16);
         this.loadingView.setVisibility(View.GONE);
     }
 

@@ -10,6 +10,7 @@ import com.tools.videodownloader.ui.mycreation.MyCreationToolsActivity
 import com.tools.videodownloader.utils.AdsUtils
 import com.tools.videodownloader.utils.NetworkState
 import com.tools.videodownloader.utils.adjustInsets
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 
 class PhotoFiltersSaveActivity : FullScreenActivity() {
     val binding by lazy { ActivityPhotoFiltersSaveBinding.inflate(layoutInflater) }
@@ -26,7 +27,7 @@ class PhotoFiltersSaveActivity : FullScreenActivity() {
 
             AdsUtils.loadNative(
                 this@PhotoFiltersSaveActivity,
-                getString(R.string.admob_native_id),
+                RemoteConfigUtils.adIdNative(),
                 binding.adFrame
             )
         }

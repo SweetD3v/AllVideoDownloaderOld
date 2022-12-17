@@ -7,18 +7,19 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.tools.videodownloader.R
+import com.tools.videodownloader.databinding.ActivityInstaDownloaderHomeBinding
+import com.tools.videodownloader.databinding.DialogServerDownBinding
 import com.tools.videodownloader.ui.mycreation.MyCreationToolsActivity
 import com.tools.videodownloader.utils.*
 import com.tools.videodownloader.utils.apis.InstaModel
 import com.tools.videodownloader.utils.apis.POST_TYPE
 import com.tools.videodownloader.utils.apis.RestApiClient
 import com.tools.videodownloader.utils.downloader.BasicImageDownloader
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.tools.videodownloader.R
-import com.tools.videodownloader.databinding.ActivityInstaDownloaderHomeBinding
-import com.tools.videodownloader.databinding.DialogServerDownBinding
 
 class InstaDownloaderHomeActivity : FullScreenActivity() {
 
@@ -39,7 +40,7 @@ class InstaDownloaderHomeActivity : FullScreenActivity() {
 
                 AdsUtils.loadNative(
                     this@InstaDownloaderHomeActivity,
-                    getString(R.string.admob_native_id),
+                    RemoteConfigUtils.adIdNative(),
                     adFrame
                 )
             }
@@ -75,7 +76,7 @@ class InstaDownloaderHomeActivity : FullScreenActivity() {
                 if (etText.text.isNotEmpty()) {
                     if (NetworkState.isOnline()) {
                         AdsUtils.loadInterstitialAd(this@InstaDownloaderHomeActivity,
-                            getString(R.string.interstitial_id),
+                            RemoteConfigUtils.adIdInterstital(),
                             object : AdsUtils.Companion.FullScreenCallback() {
                                 override fun continueExecution() {
                                     startDownload(etText.text.trim().toString())
@@ -118,28 +119,33 @@ class InstaDownloaderHomeActivity : FullScreenActivity() {
                     val instaModel = response.body()
 
                     instaModel?.let { model ->
-                        if (model.getPostType() == POST_TYPE.PHOTO) {
-                            BasicImageDownloader(this@InstaDownloaderHomeActivity)
-                                .saveImageToExternalInsta(
-                                    instaModel.media
-                                ) {
-                                    Toast.makeText(
-                                        this@InstaDownloaderHomeActivity,
-                                        "Image Downloaded.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
+                        Log.e("TAG", "downLink: ${instaModel.media}")
+                        if (instaModel.media.isNotEmpty()) {
+                            if (model.getPostType() == POST_TYPE.PHOTO) {
+                                BasicImageDownloader(this@InstaDownloaderHomeActivity)
+                                    .saveImageToExternalInsta(
+                                        instaModel.media
+                                    ) {
+                                        Toast.makeText(
+                                            this@InstaDownloaderHomeActivity,
+                                            "Image Downloaded.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                            } else {
+                                BasicImageDownloader(this@InstaDownloaderHomeActivity)
+                                    .saveVideoToExternalInsta(
+                                        instaModel.media
+                                    ) {
+                                        Toast.makeText(
+                                            this@InstaDownloaderHomeActivity,
+                                            "Video Downloaded.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                            }
                         } else {
-                            BasicImageDownloader(this@InstaDownloaderHomeActivity)
-                                .saveVideoToExternalInsta(
-                                    instaModel.media
-                                ) {
-                                    Toast.makeText(
-                                        this@InstaDownloaderHomeActivity,
-                                        "Video Downloaded.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
+                            toastShort(this@InstaDownloaderHomeActivity, "Please enter valid url.")
                         }
                     } ?: run {
                         MyProgressDialog.dismissDialog()
@@ -181,12 +187,12 @@ class InstaDownloaderHomeActivity : FullScreenActivity() {
             val fbList = mutableListOf<String>()
             val instaList = mutableListOf<String>()
             for (i in clipboardItems.indices) {
-                if (clipboardItems[i].contains("www.facebook.com")) {
+                if (clipboardItems[i].contains("facebook")) {
                     fbList.add(clipboardItems[i])
                 }
             }
             for (i in clipboardItems.indices) {
-                if (clipboardItems[i].contains("www.instagram.com")) {
+                if (clipboardItems[i].contains("instagram")) {
                     instaList.add(clipboardItems[i])
                 }
             }

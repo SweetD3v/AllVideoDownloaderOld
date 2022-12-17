@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="60.0dip"
-    android:layout_height="80.0dip">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/aspect_ratio_preview"
         android:layout_width="45.0dip"
         android:layout_height="45.0dip"
-        android:layout_centerInParent="true" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtRatio"
+        android:layout_width="match_parent"
+        android:layout_marginTop="4dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/aspect_ratio_preview"
+        android:fontFamily="@font/gilroy_semibold"
+        android:gravity="center"
+        android:text="16:9"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
 </RelativeLayout>

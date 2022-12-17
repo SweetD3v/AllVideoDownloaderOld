@@ -103,9 +103,10 @@ class MainActivity : BaseActivity() {
         Log.e("TAG", "interAdId: ${RemoteConfigUtils.adIdInterstital()}")
 
         binding.run {
+
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@MainActivity, getString(R.string.banner_id_details),
+                    this@MainActivity, RemoteConfigUtils.adIdBanner(),
                     bannerContainer
                 )
 

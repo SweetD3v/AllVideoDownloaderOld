@@ -20,6 +20,7 @@ import com.tools.videodownloader.databinding.ItemAttitudeStatusBinding
 import com.tools.videodownloader.models.PopularVids
 import com.tools.videodownloader.utils.*
 import com.tools.videodownloader.utils.downloader.BasicImageDownloader
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 
 class FunnyVideosActivity : AppCompatActivity() {
     val binding by lazy { ActivityFunnyVideosBinding.inflate(layoutInflater) }
@@ -36,7 +37,7 @@ class FunnyVideosActivity : AppCompatActivity() {
         binding.run {
             if (NetworkState.isOnline())
                 AdsUtils.loadBanner(
-                    this@FunnyVideosActivity, getString(R.string.banner_id_details),
+                    this@FunnyVideosActivity, RemoteConfigUtils.adIdBanner(),
                     bannerContainer
                 )
 
@@ -140,7 +141,7 @@ class FunnyVideosActivity : AppCompatActivity() {
                 fabDownload.setOnClickListener {
                     AdsUtils.loadInterstitialAd(
                         ctx as Activity,
-                        ctx.getString(R.string.interstitial_id),
+                        RemoteConfigUtils.adIdInterstital(),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
                                 popularVid.videoUrl.let { url ->
@@ -262,7 +263,7 @@ class FunnyVideosActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (intent.hasExtra("customUrl")) {
             AdsUtils.loadInterstitialAd(this@FunnyVideosActivity,
-                getString(R.string.interstitial_id),
+                RemoteConfigUtils.adIdInterstital(),
                 object : AdsUtils.Companion.FullScreenCallback() {
                     override fun continueExecution() {
                         finish()

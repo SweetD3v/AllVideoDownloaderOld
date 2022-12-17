@@ -21,6 +21,7 @@ import com.tools.videodownloader.ui.activities.FullScreenActivity;
 import com.tools.videodownloader.ui.mycreation.MyCreationToolsActivity;
 import com.tools.videodownloader.utils.AdsUtils;
 import com.tools.videodownloader.utils.NetworkState;
+import com.tools.videodownloader.utils.remote_config.RemoteConfigUtils;
 
 import java.io.File;
 
@@ -39,7 +40,7 @@ public class CollageSaveShareActivity extends FullScreenActivity {
 //                    getString(R.string.banner_id_details));
             AdsUtils.Companion.loadNative(
                     this,
-                    getString(R.string.admob_native_id),
+                    RemoteConfigUtils.Companion.adIdNative(),
                     binding.adFrame
             );
         }
