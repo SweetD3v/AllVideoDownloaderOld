@@ -37,7 +37,8 @@
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
                         android:background="@color/_e5e5e5"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/grid_girl" />
                 </com.tools.videodownloader.widgets.SquareLinearLayout>
 
                 <LinearLayout

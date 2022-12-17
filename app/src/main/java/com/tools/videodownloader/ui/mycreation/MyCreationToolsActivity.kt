@@ -95,7 +95,7 @@ class MyCreationToolsActivity : FullScreenActivity() {
             } else if (type.equals("fb_downloader")) {
                 toolbar.root.background = ContextCompat.getDrawable(
                     this@MyCreationToolsActivity,
-                    R.drawable.top_bar_gradient_green
+                    R.drawable.top_bar_gradient_blue
                 )
             } else if (type.equals("all")) {
                 toolbar.txtTitle.text = getString(R.string.downloads)

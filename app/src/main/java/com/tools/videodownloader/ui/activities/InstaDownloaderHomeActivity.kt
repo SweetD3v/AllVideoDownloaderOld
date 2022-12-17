@@ -2,6 +2,8 @@ package com.tools.videodownloader.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -24,6 +26,20 @@ import retrofit2.Response
 class InstaDownloaderHomeActivity : FullScreenActivity() {
 
     val binding by lazy { ActivityInstaDownloaderHomeBinding.inflate(layoutInflater) }
+
+    val handler = Handler(Looper.getMainLooper())
+    var count = 0
+    val runnable = object : Runnable {
+        override fun run() {
+            count++
+            handler.postDelayed(this, 1000)
+            if (count >= 10) {
+                handler.removeCallbacks(this)
+                pd.dismissDialog()
+            }
+        }
+    }
+    val pd by lazy { MyProgressDialog }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,7 +118,9 @@ class InstaDownloaderHomeActivity : FullScreenActivity() {
 
     private fun startDownload(url: String) {
         Log.e("TAG", "startDownload: $url")
-        MyProgressDialog.showDialog(this, "Please wait...", false)
+        pd.showDialog(this, "Please wait...", false)
+        handler.post(runnable)
+
         val service = RestApiClient.getInstance(RestApiClient.Companion.SOCIAL_TYPE.INSTA).service
 
         val call: Call<InstaModel> = service.getMediaUrlInstagram(
@@ -113,7 +131,8 @@ class InstaDownloaderHomeActivity : FullScreenActivity() {
 
         call.enqueue(object : Callback<InstaModel> {
             override fun onResponse(call: Call<InstaModel>, response: Response<InstaModel>) {
-                MyProgressDialog.dismissDialog()
+                pd.dismissDialog()
+                handler.removeCallbacks(runnable)
                 Log.e("TAG", "isShowing: ${MyProgressDialog.dialog?.isShowing}")
                 if (response.isSuccessful) {
                     val instaModel = response.body()
@@ -148,18 +167,21 @@ class InstaDownloaderHomeActivity : FullScreenActivity() {
                             toastShort(this@InstaDownloaderHomeActivity, "Please enter valid url.")
                         }
                     } ?: run {
-                        MyProgressDialog.dismissDialog()
+                        pd.dismissDialog()
+                        handler.removeCallbacks(runnable)
                         showErrorDialog()
                     }
                 } else {
                     Log.e("TAG", "onResponseError: ${response.errorBody()}")
-                    MyProgressDialog.dismissDialog()
+                    pd.dismissDialog()
+                    handler.removeCallbacks(runnable)
                     showErrorDialog()
                 }
             }
 
             override fun onFailure(call: Call<InstaModel>, t: Throwable) {
-                MyProgressDialog.dismissDialog()
+                pd.dismissDialog()
+                handler.removeCallbacks(runnable)
                 showErrorDialog()
             }
         })

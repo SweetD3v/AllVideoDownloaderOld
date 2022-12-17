@@ -85,8 +85,6 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         val configuration: Configuration = resources.configuration
         configuration.fontScale = 1f //0.85 small size, 1 normal size, 1,15 big etc
 

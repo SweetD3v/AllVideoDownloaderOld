@@ -38,9 +38,13 @@ class PhotoFilterActivity : FullScreenActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.rlMain.adjustInsets(this)
-
         binding.run {
+            adjustInsetsBoth(this@PhotoFilterActivity, {
+                rlMain.topMargin = it
+            }, {
+                rlMain.bottomMargin = it
+            })
+
             toolbar.txtTitle.text = getString(R.string.photo_filters)
             toolbar.imgSave.visible()
             toolbar.imgSave.setTextColor(Color.parseColor("#37E8FF"))
@@ -48,7 +52,6 @@ class PhotoFilterActivity : FullScreenActivity() {
                 this@PhotoFilterActivity,
                 R.drawable.top_bar_gradient_light_blue1
             )
-            toolbar.rlMain.adjustInsets(this@PhotoFilterActivity)
             toolbar.imgBack.setOnClickListener {
                 onBackPressed()
             }

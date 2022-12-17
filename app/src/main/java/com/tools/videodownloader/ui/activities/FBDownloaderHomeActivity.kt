@@ -2,6 +2,8 @@ package com.tools.videodownloader.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -27,6 +29,20 @@ import retrofit2.Response
 class FBDownloaderHomeActivity : FullScreenActivity() {
 
     val binding by lazy { ActivityFbdownloaderHomeBinding.inflate(layoutInflater) }
+    val handler = Handler(Looper.getMainLooper())
+    var count = 0
+    val runnable = object : Runnable {
+        override fun run() {
+            count++
+            handler.postDelayed(this, 1000)
+            if (count >= 10) {
+                handler.removeCallbacks(this)
+                pd.dismissDialog()
+            }
+        }
+    }
+
+    val pd by lazy { MyProgressDialog }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +94,11 @@ class FBDownloaderHomeActivity : FullScreenActivity() {
                             RemoteConfigUtils.adIdInterstital(),
                             object : AdsUtils.Companion.FullScreenCallback() {
                                 override fun continueExecution() {
+                                    pd.showDialog(
+                                        this@FBDownloaderHomeActivity,
+                                        "Please wait...",
+                                        false
+                                    )
                                     startDownloadVolley(etText.text.trim().toString())
                                 }
                             })
@@ -103,8 +124,7 @@ class FBDownloaderHomeActivity : FullScreenActivity() {
         val baseUrl = getString(R.string.base_url_fb)
         val queue = Volley.newRequestQueue(this)
 
-        val pd = MyProgressDialog
-        pd.showDialog(this@FBDownloaderHomeActivity, "Please wait...", false)
+        handler.post(runnable)
 
         val request: StringRequest = object : StringRequest(
             Method.POST, baseUrl,

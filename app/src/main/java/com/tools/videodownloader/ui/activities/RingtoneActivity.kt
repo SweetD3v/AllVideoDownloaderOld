@@ -64,7 +64,7 @@ class RingtoneActivity : BaseActivity(), RingToneSelectionListener {
                 MarginItemDecoration(
                     resources.getDimensionPixelSize(
                         R.dimen.rv_space
-                    ), 1, RecyclerView.VERTICAL
+                    ),
                 )
             )
 

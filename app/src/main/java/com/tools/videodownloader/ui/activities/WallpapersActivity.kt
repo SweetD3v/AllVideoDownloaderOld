@@ -113,7 +113,7 @@ class WallpapersActivity : FullScreenActivity() {
                 MarginItemDecoration(
                     resources.getDimensionPixelSize(
                         R.dimen.rv_space
-                    ), 2, RecyclerView.VERTICAL
+                    )
                 )
             )
 
@@ -155,7 +155,7 @@ class WallpapersActivity : FullScreenActivity() {
             rvWallCategories.layoutManager = GridLayoutManager(this@WallpapersActivity, 2).apply {
                 orientation = LinearLayoutManager.VERTICAL
             }
-            rvWallCategories.addItemDecoration(MarginItemDecoration(dpToPx(4), 2))
+            rvWallCategories.addItemDecoration(MarginItemDecoration(dpToPx(4)))
 
             val categoryList = resources.getStringArray(R.array.category_arr)
             val categoryAdapter = CategoryAdapter(this@WallpapersActivity)

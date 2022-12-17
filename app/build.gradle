@@ -54,7 +54,7 @@ android {
 
             resValue("string", "playstore_url", "\"https://play.google.com/store/apps/details?id=%s\"")
 
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
