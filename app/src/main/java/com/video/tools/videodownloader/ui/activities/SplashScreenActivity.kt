@@ -77,7 +77,7 @@ class SplashScreenActivity : FullScreenActivity(), LifecycleObserver {
         val request: AdRequest = getAdRequest()
         AppOpenAd.load(
             this, RemoteConfigUtils.adIdAppOpen(), request,
-            AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback
+            AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback!!
         )
     }
 

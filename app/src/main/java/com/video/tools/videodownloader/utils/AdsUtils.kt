@@ -128,7 +128,7 @@ class AdsUtils {
             bannerContainer.addView(adView)
             val adRequest = AdRequest.Builder().build()
             val adSize = getAdSize(activity)
-            adView?.adSize = adSize
+            adView?.setAdSize(adSize)
             adView?.loadAd(adRequest)
         }
 

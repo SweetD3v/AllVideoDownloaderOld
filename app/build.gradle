@@ -104,7 +104,7 @@ dependencies {
 //    implementation 'androidx.room:room-coroutines:2.1.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
     implementation project(path: ':facebookurlextractor')
-    implementation 'com.google.android.gms:play-services-ads:20.6.0'
+    implementation 'com.google.android.gms:play-services-ads:21.2.0'
 
     //Other Deps
     implementation 'com.github.YuganshT79:Smiley-Rating:1.0.2'
