@@ -8,7 +8,7 @@ import org.opencv.core.Mat;
 
 // C++: class Tonemap
 /**
- * Base class for tonemapping algorithms - tools that are used to map HDR image to 8-bit range.
+ * Base class for tonemapping algorithms - video that are used to map HDR image to 8-bit range.
  */
 public class Tonemap extends Algorithm {
 

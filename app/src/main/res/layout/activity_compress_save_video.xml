@@ -87,7 +87,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.tools.videodownloader.widgets.SquareRelativeLayout
+            <com.video.tools.videodownloader.widgets.SquareRelativeLayout
                 android:id="@+id/llCompressLeft"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -126,9 +126,9 @@
                     android:text="Size: 0 KB"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </com.tools.videodownloader.widgets.SquareRelativeLayout>
+            </com.video.tools.videodownloader.widgets.SquareRelativeLayout>
 
-            <com.tools.videodownloader.widgets.SquareRelativeLayout
+            <com.video.tools.videodownloader.widgets.SquareRelativeLayout
                 android:id="@+id/llCompressRight"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -166,7 +166,7 @@
                     android:text="Size: 0 KB"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </com.tools.videodownloader.widgets.SquareRelativeLayout>
+            </com.video.tools.videodownloader.widgets.SquareRelativeLayout>
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton

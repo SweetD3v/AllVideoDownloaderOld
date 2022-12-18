@@ -1,8 +1,10 @@
 package com.internet.speed_meter
 
 import android.app.*
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import android.graphics.drawable.Icon
 import android.os.Build
@@ -15,6 +17,22 @@ class SpeedMeterService : Service() {
     private val timer by lazy { Timer() }
     private val NOTIFICATION_ID = 1
     private val CHANNEL_ID = "traffic_service"
+
+    companion object {
+        const val SPEED_STATS = "com.internet.speed_meter.SPEED_STATS"
+    }
+
+    var stopIt = false
+
+    val brReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            stopIt = true
+            timer.cancel()
+            notificationManager.cancel(NOTIFICATION_ID)
+            stopForeground(true)
+            stopService()
+        }
+    }
 
     private val notificationLayout by lazy {
         RemoteViews(
@@ -61,6 +79,8 @@ class SpeedMeterService : Service() {
     override fun onCreate() {
         super.onCreate()
 
+        registerReceiver(brReceiver, IntentFilter(SPEED_STATS))
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel(CHANNEL_ID, "Traffic Status Service")
         }
@@ -69,9 +89,11 @@ class SpeedMeterService : Service() {
 
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
-                val downloadSpeed = TrafficUtils.getNetworkSpeed()
-                saveToDB(downloadSpeed)
-                updateNotification(downloadSpeed)
+                if (!stopIt) {
+                    val downloadSpeed = TrafficUtils.getNetworkSpeed()
+                    saveToDB(downloadSpeed)
+                    updateNotification(downloadSpeed)
+                }
             }
         }, 0, 500)
     }
@@ -112,7 +134,10 @@ class SpeedMeterService : Service() {
 
     private fun createPendingIntent(): PendingIntent? {
         val intent =
-            Intent(this, Class.forName("com.tools.videodownloader.ui.activities.MainActivity"))
+            Intent(
+                this,
+                Class.forName("com.video.tools.videodownloader.ui.activities.MainActivity")
+            )
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
         return PendingIntent.getActivity(
@@ -131,5 +156,19 @@ class SpeedMeterService : Service() {
         chan.lockscreenVisibility = Notification.VISIBILITY_PUBLIC
         notificationManager.createNotificationChannel(chan)
         return channelId
+    }
+
+    fun stopService() {
+        stopIt = false
+        timer.cancel()
+        stopForeground(true)
+        stopSelf()
+    }
+
+    override fun onDestroy() {
+        stopIt = false
+        timer.cancel()
+        unregisterReceiver(brReceiver)
+        super.onDestroy()
     }
 }

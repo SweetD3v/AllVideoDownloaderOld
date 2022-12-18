@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.tools.videodownloader">
+    package="com.video.tools.videodownloader">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -37,7 +37,7 @@
     </queries>
 
     <application
-        android:name="com.tools.videodownloader.AllVidApp"
+        android:name=".AllVidApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -54,15 +54,15 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.CleanerAnimActivity"
+            android:name=".CleanerAnimActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.cleaner.CleanerHomeActivity"
+            android:name=".tools.cleaner.CleanerHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.speedtest.SpeedTestActivity"
+            android:name=".speedtest.SpeedTestActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -70,19 +70,19 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.compress.PhotoCmpHomeActivity"
+            android:name=".tools.compress.PhotoCmpHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.compress.CompressPhotoActivity"
+            android:name=".tools.compress.CompressPhotoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.compress.CompressSavePhotoActivity"
+            android:name=".tools.compress.CompressSavePhotoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.photoeditor.PicEditorHomeActivity"
+            android:name=".tools.photoeditor.PicEditorHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -90,78 +90,78 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.collage_maker.ui.activities.CollageMakerHomeActivity"
+            android:name=".collage_maker.ui.activities.CollageMakerHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.collage_maker.ui.activities.CollageSaveShareActivity"
+            android:name=".collage_maker.ui.activities.CollageSaveShareActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.insta_grid.GridSaveActivity"
+            android:name=".tools.insta_grid.GridSaveActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.insta_grid.InstaGridActivity"
+            android:name=".tools.insta_grid.InstaGridActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.video_player.VideoPlayerActivity"
+            android:name=".tools.video_player.VideoPlayerActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.AllDownloadsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.age_calc.AgeCalcDetailsActivity"
+            android:name=".tools.age_calc.AgeCalcDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.age_calc.AgeCalculatorActivity"
+            android:name=".tools.age_calc.AgeCalculatorActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.photo_filters.deform.PhotoWarpActivity"
+            android:name=".tools.photo_filters.deform.PhotoWarpActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.photo_filters.deform.PhotoWarpHomeActivity"
+            android:name=".tools.photo_filters.deform.PhotoWarpHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.photo_filters.PhotoFilterHomeActivity"
+            android:name=".tools.photo_filters.PhotoFilterHomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.photo_filters.PhotoFiltersSaveActivity"
+            android:name=".tools.photo_filters.PhotoFiltersSaveActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.photo_filters.PhotoFilterActivity"
+            android:name=".tools.photo_filters.PhotoFilterActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.cartoonify.CartoonActivity"
+            android:name=".tools.cartoonify.CartoonActivity"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.cartoonify.SketchifyActivity"
+            android:name=".tools.cartoonify.SketchifyActivity"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.cartoonify.CartoonifyHomeActivity"
+            android:name=".tools.cartoonify.CartoonifyHomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.cartoonify.SketchifyHomeActivity"
+            android:name=".tools.cartoonify.SketchifyHomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.tools.cartoonify.SaveShareCartoonActivity"
+            android:name=".tools.cartoonify.SaveShareCartoonActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.FullViewWASavedActivity"
             android:exported="false" />
         <activity
-            android:name="com.tools.videodownloader.ui.mycreation.MyCreationFullViewActivity"
+            android:name=".ui.mycreation.MyCreationFullViewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -169,7 +169,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.ui.mycreation.MyCreationToolsActivity"
+            android:name=".ui.mycreation.MyCreationToolsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -180,7 +180,7 @@
             android:name="com.karumi.dexter.DexterActivity"
             android:theme="@style/Dexter.Internal.Theme.Transparent" />
         <activity
-            android:name="com.tools.videodownloader.tools.cleaner.CleanerActivity"
+            android:name=".tools.cleaner.CleanerActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -201,7 +201,7 @@
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.tools.videodownloader.collage_maker.ui.activities.CollageViewActivity"
+            android:name=".collage_maker.ui.activities.CollageViewActivity"
             android:hardwareAccelerated="true"
             android:screenOrientation="portrait" />
         <activity

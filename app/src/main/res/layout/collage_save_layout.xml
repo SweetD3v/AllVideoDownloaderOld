@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.tools.videodownloader.widgets.SquareLinearLayout
+            <com.video.tools.videodownloader.widgets.SquareLinearLayout
                 android:id="@+id/llSaveView"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
@@ -48,7 +48,7 @@
                         android:layout_gravity="center" />
 
                 </com.google.android.material.card.MaterialCardView>
-            </com.tools.videodownloader.widgets.SquareLinearLayout>
+            </com.video.tools.videodownloader.widgets.SquareLinearLayout>
 
             <TextView
                 android:id="@+id/txtSaved"

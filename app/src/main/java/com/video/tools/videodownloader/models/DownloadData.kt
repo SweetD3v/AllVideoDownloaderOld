@@ -1,0 +1,9 @@
+package com.video.tools.videodownloader.models
+
+class DownloadData(
+    var url: String,
+    var name: String,
+    var path: String
+) {
+    constructor() : this("", "", "")
+}

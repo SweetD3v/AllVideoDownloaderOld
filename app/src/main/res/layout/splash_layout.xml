@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true" />
 
-        <com.tools.videodownloader.collage_maker.features.splash.ResizableSplashView
+        <com.video.tools.videodownloader.collage_maker.features.splash.ResizableSplashView
             android:id="@+id/splashView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

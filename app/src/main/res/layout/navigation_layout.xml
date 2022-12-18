@@ -67,11 +67,48 @@
         android:layout_marginTop="36dp"
         android:background="#9b9b9b" />
 
+    <RelativeLayout
+        android:id="@+id/llSpeedMeter"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginTop="24dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgData"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:padding="4dp"
+            app:srcCompat="@drawable/ic_internet"
+            app:tint="@color/text_color_drawer" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:layout_toStartOf="@id/switchDataSpeed"
+            android:layout_toEndOf="@id/imgData"
+            android:fontFamily="@font/gilroy_medium"
+            android:gravity="center_vertical"
+            android:text="@string/show_data_speed_in_notification"
+            android:textColor="@color/text_color_drawer"
+            android:textSize="18sp" />
+
+        <Switch
+            android:id="@+id/switchDataSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="24dp" />
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/llShare"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

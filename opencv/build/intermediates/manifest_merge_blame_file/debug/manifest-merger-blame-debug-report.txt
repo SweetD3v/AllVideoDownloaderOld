@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="21"
-6-->E:\Vishrut\AndroidProjects\AllVideoDownloader\opencv\java\AndroidManifest.xml
+6-->F:\ClientProjects\AllVideoDownloader\opencv\java\AndroidManifest.xml
 7        android:targetSdkVersion="26" />
-7-->E:\Vishrut\AndroidProjects\AllVideoDownloader\opencv\java\AndroidManifest.xml
+7-->F:\ClientProjects\AllVideoDownloader\opencv\java\AndroidManifest.xml
 8
 9</manifest>

@@ -69,7 +69,7 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.tools.videodownloader.tools.photoeditor.ImagePicEditorView
+                    <com.video.tools.videodownloader.tools.photoeditor.ImagePicEditorView
                         android:id="@+id/imagePicEditorView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

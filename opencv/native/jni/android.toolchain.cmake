@@ -1780,7 +1780,7 @@ endif()
 #   ANDROID_SUPPORTED_ABIS : list of currently allowed values for ANDROID_ABI
 #   ANDROID_TOOLCHAIN_MACHINE_NAME : "arm-linux-androideabi", "arm-eabi" or "i686-android-linux"
 #   ANDROID_TOOLCHAIN_ROOT : path to the top level of toolchain (standalone or placed inside NDK)
-#   ANDROID_CLANG_TOOLCHAIN_ROOT : path to clang tools
+#   ANDROID_CLANG_TOOLCHAIN_ROOT : path to clang video
 #   ANDROID_SUPPORTED_NATIVE_API_LEVELS : list of native API levels found inside NDK
 #   ANDROID_STL_INCLUDE_DIRS : stl include paths
 #   ANDROID_RTTI : if rtti is enabled by the runtime
