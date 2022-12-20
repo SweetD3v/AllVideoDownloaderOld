@@ -1,0 +1,170 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 21 min SDK version: x86",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -909174935
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\RelWithDebInfo\\1r1j3c65\\x86\\android_gradle_build.json due to:",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -206105361
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\RelWithDebInfo\\1r1j3c65\\x86\\android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 500680651
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\RelWithDebInfo\\1r1j3c65\\x86\\metadata_generation_command.txt, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1425156265
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1551954693
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\RelWithDebInfo\\1r1j3c65\\x86\u0027",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1549815263
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : E:\\android_sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003dx86\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dE:\\android_sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dE:\\android_sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\RelWithDebInfo\\1r1j3c65\\obj\\x86\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\RelWithDebInfo\\1r1j3c65\\obj\\x86\n-DCMAKE_BUILD_TYPE\u003dRelWithDebInfo\n-BC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\RelWithDebInfo\\1r1j3c65\\x86\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1740431293
+  },
+  {
+    "level_": 0,
+    "message_": "Executable : E:\\android_sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003dx86\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86\n-DANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dE:\\android_sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dE:\\android_sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\RelWithDebInfo\\1r1j3c65\\obj\\x86\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\RelWithDebInfo\\1r1j3c65\\obj\\x86\n-DCMAKE_BUILD_TYPE\u003dRelWithDebInfo\n-BC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\RelWithDebInfo\\1r1j3c65\\x86\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -985389310
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\RelWithDebInfo\\1r1j3c65\\x86\\compile_commands.json.bin normally",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1919284811
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1239608442
+  },
+  {
+    "level_": 0,
+    "message_": "write command file C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\RelWithDebInfo\\1r1j3c65\\x86\\metadata_generation_command.txt",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 305583395
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "release|x86",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1117285770
+  }
+]

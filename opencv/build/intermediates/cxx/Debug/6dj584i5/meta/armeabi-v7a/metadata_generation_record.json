@@ -1,0 +1,184 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 21 min SDK version: armeabi-v7a",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1296104195
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\6dj584i5\\armeabi-v7a\\android_gradle_build.json due to:",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -92471396
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\6dj584i5\\armeabi-v7a\\android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1278499610
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\6dj584i5\\armeabi-v7a\\metadata_generation_command.txt, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1549749532
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1868744301
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\6dj584i5\\armeabi-v7a\u0027",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 704513698
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\6dj584i5\\armeabi-v7a\u0027",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 336185366
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : E:\\android_sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003darmeabi-v7a\n-DCMAKE_ANDROID_ARCH_ABI\u003darmeabi-v7a\n-DANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dE:\\android_sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dE:\\android_sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\Debug\\6dj584i5\\obj\\armeabi-v7a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\Debug\\6dj584i5\\obj\\armeabi-v7a\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\6dj584i5\\armeabi-v7a\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1038770579
+  },
+  {
+    "level_": 0,
+    "message_": "Executable : E:\\android_sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003darmeabi-v7a\n-DCMAKE_ANDROID_ARCH_ABI\u003darmeabi-v7a\n-DANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dE:\\android_sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dE:\\android_sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\Debug\\6dj584i5\\obj\\armeabi-v7a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\Debug\\6dj584i5\\obj\\armeabi-v7a\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\6dj584i5\\armeabi-v7a\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1635512530
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\6dj584i5\\armeabi-v7a\\compile_commands.json.bin normally",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1592934068
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1556398050
+  },
+  {
+    "level_": 0,
+    "message_": "write command file C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\6dj584i5\\armeabi-v7a\\metadata_generation_command.txt",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -2125024666
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -800496162
+  }
+]

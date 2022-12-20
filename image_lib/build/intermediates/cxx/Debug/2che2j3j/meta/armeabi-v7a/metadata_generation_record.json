@@ -1,0 +1,996 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 21 min SDK version: armeabi-v7a",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1612907766
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\armeabi-v7a\\android_gradle_build.json due to:",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1072685627
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\armeabi-v7a\\android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -597536361
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\armeabi-v7a\\metadata_generation_command.txt, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -819137099
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 482788966
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\armeabi-v7a\u0027",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 930087327
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\armeabi-v7a\u0027",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1702189995
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : E:\\android_sdk\\cmake\\3.10.2.4988404\\bin\\cmake.exe\narguments : \n-HC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003darmeabi-v7a\n-DCMAKE_ANDROID_ARCH_ABI\u003darmeabi-v7a\n-DANDROID_NDK\u003dE:\\android_sdk\\ndk\\24.0.8215888\n-DCMAKE_ANDROID_NDK\u003dE:\\android_sdk\\ndk\\24.0.8215888\n-DCMAKE_TOOLCHAIN_FILE\u003dE:\\android_sdk\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dE:\\android_sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx\\Debug\\2che2j3j\\obj\\armeabi-v7a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx\\Debug\\2che2j3j\\obj\\armeabi-v7a\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\armeabi-v7a\n-GNinja\njvmArgs : \n\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1533765445
+  },
+  {
+    "level_": 0,
+    "message_": "\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1759855580
+  },
+  {
+    "level_": 0,
+    "message_": "[\u003d\u003d \"CMake Server\" \u003d\u003d[\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1357995774
+  },
+  {
+    "level_": 0,
+    "message_": "{\"supportedProtocolVersions\":[{\"isExperimental\":true,\"major\":1,\"minor\":1}],\"type\":\"hello\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 642611165
+  },
+  {
+    "level_": 0,
+    "message_": "]\u003d\u003d \"CMake Server\" \u003d\u003d]\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -248172354
+  },
+  {
+    "level_": 0,
+    "message_": "{\n  \"type\": \"handshake\",\n  \"cookie\": \"gradle-cmake-cookie\",\n  \"protocolVersion\": {\n    \"isExperimental\": true,\n    \"major\": 1,\n    \"minor\": 1\n  },\n  \"sourceDirectory\": \"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/src/main/cpp\",\n  \"buildDirectory\": \"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/armeabi-v7a\",\n  \"generator\": \"Ninja\"\n}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -266258119
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"gradle-cmake-cookie\",\"inReplyTo\":\"handshake\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1760070975
+  },
+  {
+    "level_": 0,
+    "message_": "{\n  \"type\": \"configure\",\n  \"cacheArguments\": [\n    \"\",\n    \"-DCMAKE_SYSTEM_NAME\\u003dAndroid\",\n    \"-DCMAKE_EXPORT_COMPILE_COMMANDS\\u003dON\",\n    \"-DCMAKE_SYSTEM_VERSION\\u003d21\",\n    \"-DANDROID_PLATFORM\\u003dandroid-21\",\n    \"-DANDROID_ABI\\u003darmeabi-v7a\",\n    \"-DCMAKE_ANDROID_ARCH_ABI\\u003darmeabi-v7a\",\n    \"-DANDROID_NDK\\u003dE:\\\\android_sdk\\\\ndk\\\\24.0.8215888\",\n    \"-DCMAKE_ANDROID_NDK\\u003dE:\\\\android_sdk\\\\ndk\\\\24.0.8215888\",\n    \"-DCMAKE_TOOLCHAIN_FILE\\u003dE:\\\\android_sdk\\\\ndk\\\\24.0.8215888\\\\build\\\\cmake\\\\android.toolchain.cmake\",\n    \"-DCMAKE_MAKE_PROGRAM\\u003dE:\\\\android_sdk\\\\cmake\\\\3.10.2.4988404\\\\bin\\\\ninja.exe\",\n    \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\\u003dC:\\\\Users\\\\Dev4Life\\\\StudioProjects\\\\AllVideoDownloader\\\\image_lib\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\2che2j3j\\\\obj\\\\armeabi-v7a\",\n    \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\\u003dC:\\\\Users\\\\Dev4Life\\\\StudioProjects\\\\AllVideoDownloader\\\\image_lib\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\2che2j3j\\\\obj\\\\armeabi-v7a\",\n    \"-DCMAKE_BUILD_TYPE\\u003dDebug\"\n  ]\n}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1070537487
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\u0027s built-in compiler identification.\\nCall Stack (most recent call first):\\n  E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake:54 (include)\\n  E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\\n  CMakeLists.txt\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -914291314
+  },
+  {
+    "level_": 2,
+    "message_": "CMake Warning at E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\u0027s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake:54 (include)\r\n  E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\r\n  CMakeLists.txt\r\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1048539763
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working C compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1981301844
+  },
+  {
+    "level_": 0,
+    "message_": "Check for working C compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1872216100
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\u0027s built-in compiler identification.\\nCall Stack (most recent call first):\\n  E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2094548154
+  },
+  {
+    "level_": 2,
+    "message_": "CMake Warning at E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\u0027s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 467358787
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":33,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1585730237
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working C compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1027190910
+  },
+  {
+    "level_": 0,
+    "message_": "Check for working C compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1776864054
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compiler ABI info\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -2067845737
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting C compiler ABI info",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1532078193
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":65,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -663141006
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compiler ABI info - done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1900210918
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting C compiler ABI info - done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -959028690
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compile features\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 695154994
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting C compile features",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1264367226
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":96,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1497047740
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":126,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1727106022
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":155,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 661268110
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compile features - done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1193891093
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting C compile features - done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -359238429
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working CXX compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 354006476
+  },
+  {
+    "level_": 0,
+    "message_": "Check for working CXX compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1844576700
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":184,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1245325054
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working CXX compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -2141472414
+  },
+  {
+    "level_": 0,
+    "message_": "Check for working CXX compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 720689834
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compiler ABI info\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1167458281
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting CXX compiler ABI info",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1022155761
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":211,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 111335353
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compiler ABI info - done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 264128614
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting CXX compiler ABI info - done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -800422482
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compile features\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 31463090
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting CXX compile features",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1628677638
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":237,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 942966821
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":262,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -507255571
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":287,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 438468590
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":311,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2137407076
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compile features - done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -692478613
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting CXX compile features - done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1739595421
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":1000,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -156760558
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Configuring done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -383986347
+  },
+  {
+    "level_": 0,
+    "message_": "Configuring done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1335615005
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 110038226
+  },
+  {
+    "level_": 0,
+    "message_": "{\"type\":\"compute\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1202504601
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"progressCurrent\":1000,\"progressMaximum\":1000,\"progressMessage\":\"Generating\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -273917660
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"message\":\"Generating done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1748282607
+  },
+  {
+    "level_": 0,
+    "message_": "Generating done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1083812002
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1147593559
+  },
+  {
+    "level_": 0,
+    "message_": "{\"type\":\"cmakeInputs\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1131269560
+  },
+  {
+    "level_": 0,
+    "message_": "{\"buildFiles\":[{\"isCMake\":true,\"isTemporary\":false,\"sources\":[\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystem.cmake.in\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInitialize.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Initialize.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine-C.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android/Determine-Compiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeFindBinUtils.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-FindBinUtils.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCXXCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine-CXX.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android/Determine-Compiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeFindBinUtils.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-FindBinUtils.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompiler.cmake.in\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeGenericSystem.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Linux.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/UnixPaths.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/GNU.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-C.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCompilerCommon.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompilerABI.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeParseImplicitLinkInfo.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompilerABI.c\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompileFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Internal/FeatureTesting.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-CXX.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCXXCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCompilerCommon.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompilerABI.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeParseImplicitLinkInfo.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompileFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Internal/FeatureTesting.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompiler.cmake.in\"]},{\"isCMake\":false,\"isTemporary\":false,\"sources\":[\"CMakeLists.txt\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/platforms.cmake\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/compiler_id.cmake\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake\"]},{\"isCMake\":false,\"isTemporary\":true,\"sources\":[\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/3.10.2/CMakeSystem.cmake\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/3.10.2/CMakeCCompiler.cmake\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/feature_tests.c\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/feature_tests.c\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/feature_tests.c\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/3.10.2/CMakeCCompiler.cmake\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/Debug/2che2j3j/armeabi-v7a/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake\"]}],\"cmakeRootDirectory\":\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10\",\"cookie\":\"\",\"inReplyTo\":\"cmakeInputs\",\"sourceDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/src/main/cpp\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1402637888
+  },
+  {
+    "level_": 0,
+    "message_": "{\"type\":\"codemodel\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1432423138
+  },
+  {
+    "level_": 0,
+    "message_": "{\"configurations\":[{\"name\":\"Debug\",\"projects\":[{\"buildDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/armeabi-v7a\",\"name\":\"Project\",\"sourceDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/src/main/cpp\",\"targets\":[{\"artifacts\":[\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/build/intermediates/cxx/Debug/2che2j3j/obj/armeabi-v7a/libJniBitmapOperationsLibrary.so\"],\"buildDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/armeabi-v7a\",\"fileGroups\":[{\"compileFlags\":\"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE\u003d2 -march\u003darmv7-a -mthumb -Wformat -Werror\u003dformat-security   -fno-limit-debug-info  -fPIC  \",\"defines\":[\"JniBitmapOperationsLibrary_EXPORTS\"],\"isGenerated\":false,\"language\":\"CXX\",\"sources\":[\"JniBitmapOperationsLibrary.cpp\"]}],\"fullName\":\"libJniBitmapOperationsLibrary.so\",\"linkFlags\":\"-static-libstdc++ -Wl,--build-id\u003dsha1 -Wl,--no-rosegment -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments\",\"linkLibraries\":\"-llog -ljnigraphics -latomic -lm\",\"linkerLanguage\":\"CXX\",\"name\":\"JniBitmapOperationsLibrary\",\"sourceDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/src/main/cpp\",\"sysroot\":\"E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/sysroot\",\"type\":\"SHARED_LIBRARY\"}]}]}],\"cookie\":\"\",\"inReplyTo\":\"codemodel\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -597799715
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\armeabi-v7a\\compile_commands.json.bin normally",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -162897727
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 170442715
+  },
+  {
+    "level_": 0,
+    "message_": "write command file C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\armeabi-v7a\\metadata_generation_command.txt",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1579158009
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2108515799
+  }
+]

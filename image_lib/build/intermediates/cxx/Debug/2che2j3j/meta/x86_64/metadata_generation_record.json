@@ -1,0 +1,996 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 21 min SDK version: x86_64",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1768287618
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\x86_64\\android_gradle_build.json due to:",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1378538667
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\x86_64\\android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 588786757
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\x86_64\\metadata_generation_command.txt, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1657395075
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1326169737
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\x86_64\u0027",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1286874879
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\x86_64\u0027",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 344024949
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : E:\\android_sdk\\cmake\\3.10.2.4988404\\bin\\cmake.exe\narguments : \n-HC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003dx86_64\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86_64\n-DANDROID_NDK\u003dE:\\android_sdk\\ndk\\24.0.8215888\n-DCMAKE_ANDROID_NDK\u003dE:\\android_sdk\\ndk\\24.0.8215888\n-DCMAKE_TOOLCHAIN_FILE\u003dE:\\android_sdk\\ndk\\24.0.8215888\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dE:\\android_sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx\\Debug\\2che2j3j\\obj\\x86_64\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx\\Debug\\2che2j3j\\obj\\x86_64\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BC:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\x86_64\n-GNinja\njvmArgs : \n\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 719528371
+  },
+  {
+    "level_": 0,
+    "message_": "\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -916474809
+  },
+  {
+    "level_": 0,
+    "message_": "[\u003d\u003d \"CMake Server\" \u003d\u003d[\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -2093590751
+  },
+  {
+    "level_": 0,
+    "message_": "{\"supportedProtocolVersions\":[{\"isExperimental\":true,\"major\":1,\"minor\":1}],\"type\":\"hello\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1485991936
+  },
+  {
+    "level_": 0,
+    "message_": "]\u003d\u003d \"CMake Server\" \u003d\u003d]\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 595208417
+  },
+  {
+    "level_": 0,
+    "message_": "{\n  \"type\": \"handshake\",\n  \"cookie\": \"gradle-cmake-cookie\",\n  \"protocolVersion\": {\n    \"isExperimental\": true,\n    \"major\": 1,\n    \"minor\": 1\n  },\n  \"sourceDirectory\": \"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/src/main/cpp\",\n  \"buildDirectory\": \"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/x86_64\",\n  \"generator\": \"Ninja\"\n}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1960452061
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"gradle-cmake-cookie\",\"inReplyTo\":\"handshake\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1691515550
+  },
+  {
+    "level_": 0,
+    "message_": "{\n  \"type\": \"configure\",\n  \"cacheArguments\": [\n    \"\",\n    \"-DCMAKE_SYSTEM_NAME\\u003dAndroid\",\n    \"-DCMAKE_EXPORT_COMPILE_COMMANDS\\u003dON\",\n    \"-DCMAKE_SYSTEM_VERSION\\u003d21\",\n    \"-DANDROID_PLATFORM\\u003dandroid-21\",\n    \"-DANDROID_ABI\\u003dx86_64\",\n    \"-DCMAKE_ANDROID_ARCH_ABI\\u003dx86_64\",\n    \"-DANDROID_NDK\\u003dE:\\\\android_sdk\\\\ndk\\\\24.0.8215888\",\n    \"-DCMAKE_ANDROID_NDK\\u003dE:\\\\android_sdk\\\\ndk\\\\24.0.8215888\",\n    \"-DCMAKE_TOOLCHAIN_FILE\\u003dE:\\\\android_sdk\\\\ndk\\\\24.0.8215888\\\\build\\\\cmake\\\\android.toolchain.cmake\",\n    \"-DCMAKE_MAKE_PROGRAM\\u003dE:\\\\android_sdk\\\\cmake\\\\3.10.2.4988404\\\\bin\\\\ninja.exe\",\n    \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\\u003dC:\\\\Users\\\\Dev4Life\\\\StudioProjects\\\\AllVideoDownloader\\\\image_lib\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\2che2j3j\\\\obj\\\\x86_64\",\n    \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\\u003dC:\\\\Users\\\\Dev4Life\\\\StudioProjects\\\\AllVideoDownloader\\\\image_lib\\\\build\\\\intermediates\\\\cxx\\\\Debug\\\\2che2j3j\\\\obj\\\\x86_64\",\n    \"-DCMAKE_BUILD_TYPE\\u003dDebug\"\n  ]\n}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2035629858
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\u0027s built-in compiler identification.\\nCall Stack (most recent call first):\\n  E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake:54 (include)\\n  E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\\n  CMakeLists.txt\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -70910543
+  },
+  {
+    "level_": 2,
+    "message_": "CMake Warning at E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\u0027s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake:54 (include)\r\n  E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\r\n  CMakeLists.txt\r\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -205158992
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working C compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1137921073
+  },
+  {
+    "level_": 0,
+    "message_": "Check for working C compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1579370425
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake:415 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\u0027s built-in compiler identification.\\nCall Stack (most recent call first):\\n  E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake:54 (include)\\n  C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 256366489
+  },
+  {
+    "level_": 2,
+    "message_": "CMake Warning at E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake:415 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\u0027s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake:54 (include)\r\n  C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -2125245964
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":33,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1865856288
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working C compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -183810139
+  },
+  {
+    "level_": 0,
+    "message_": "Check for working C compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -933483283
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compiler ABI info\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1224464966
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting C compiler ABI info",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -688697422
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":65,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 180239765
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compiler ABI info - done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1551375607
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting C compiler ABI info - done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -115647919
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compile features\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1538535765
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting C compile features",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2107747997
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":96,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1954538785
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":126,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -883725251
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":155,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1504648881
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compile features - done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -350510322
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting C compile features - done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 484142342
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working CXX compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1197387247
+  },
+  {
+    "level_": 0,
+    "message_": "Check for working CXX compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1001195929
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":184,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -401944283
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working CXX compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1298091643
+  },
+  {
+    "level_": 0,
+    "message_": "Check for working CXX compiler: E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1564070605
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compiler ABI info\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -324077510
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting CXX compiler ABI info",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -178774990
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":211,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 954716124
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compiler ABI info - done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1107509385
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting CXX compiler ABI info - done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 42958289
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compile features\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 874843861
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting CXX compile features",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -785296867
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":237,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1786347592
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":262,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 336125200
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":287,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1281849361
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":311,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1314179449
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compile features - done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 150902158
+  },
+  {
+    "level_": 0,
+    "message_": "Detecting CXX compile features - done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -896214650
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":1000,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 686620213
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Configuring done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 459394424
+  },
+  {
+    "level_": 0,
+    "message_": "Configuring done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -2115971520
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 953418997
+  },
+  {
+    "level_": 0,
+    "message_": "{\"type\":\"compute\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -359123830
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"progressCurrent\":1000,\"progressMaximum\":1000,\"progressMessage\":\"Generating\",\"progressMinimum\":0,\"type\":\"progress\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 569463111
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"message\":\"Generating done\",\"type\":\"message\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1703303918
+  },
+  {
+    "level_": 0,
+    "message_": "Generating done",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1927192773
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1990974330
+  },
+  {
+    "level_": 0,
+    "message_": "{\"type\":\"cmakeInputs\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -287888789
+  },
+  {
+    "level_": 0,
+    "message_": "{\"buildFiles\":[{\"isCMake\":true,\"isTemporary\":false,\"sources\":[\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystem.cmake.in\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInitialize.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Initialize.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine-C.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android/Determine-Compiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeFindBinUtils.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-FindBinUtils.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCXXCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine-CXX.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android/Determine-Compiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeFindBinUtils.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-FindBinUtils.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompiler.cmake.in\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeGenericSystem.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Linux.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/UnixPaths.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/GNU.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-C.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCompilerCommon.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompilerABI.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeParseImplicitLinkInfo.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompilerABI.c\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompileFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Internal/FeatureTesting.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-CXX.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCXXCompiler.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCompilerCommon.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompilerABI.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeParseImplicitLinkInfo.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompileFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Internal/FeatureTesting.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompiler.cmake.in\"]},{\"isCMake\":false,\"isTemporary\":false,\"sources\":[\"CMakeLists.txt\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/platforms.cmake\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/compiler_id.cmake\",\"E:/android_sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake\"]},{\"isCMake\":false,\"isTemporary\":true,\"sources\":[\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/3.10.2/CMakeCCompiler.cmake\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/feature_tests.c\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/feature_tests.c\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/feature_tests.c\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/3.10.2/CMakeCCompiler.cmake\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/feature_tests.cxx\",\"../../../.cxx/Debug/2che2j3j/x86_64/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake\"]}],\"cmakeRootDirectory\":\"E:/android_sdk/cmake/3.10.2.4988404/share/cmake-3.10\",\"cookie\":\"\",\"inReplyTo\":\"cmakeInputs\",\"sourceDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/src/main/cpp\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -2114164641
+  },
+  {
+    "level_": 0,
+    "message_": "{\"type\":\"codemodel\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -589042367
+  },
+  {
+    "level_": 0,
+    "message_": "{\"configurations\":[{\"name\":\"Debug\",\"projects\":[{\"buildDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/x86_64\",\"name\":\"Project\",\"sourceDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/src/main/cpp\",\"targets\":[{\"artifacts\":[\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/build/intermediates/cxx/Debug/2che2j3j/obj/x86_64/libJniBitmapOperationsLibrary.so\"],\"buildDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/.cxx/Debug/2che2j3j/x86_64\",\"fileGroups\":[{\"compileFlags\":\"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE\u003d2 -Wformat -Werror\u003dformat-security   -fno-limit-debug-info  -fPIC  \",\"defines\":[\"JniBitmapOperationsLibrary_EXPORTS\"],\"isGenerated\":false,\"language\":\"CXX\",\"sources\":[\"JniBitmapOperationsLibrary.cpp\"]}],\"fullName\":\"libJniBitmapOperationsLibrary.so\",\"linkFlags\":\"-static-libstdc++ -Wl,--build-id\u003dsha1 -Wl,--no-rosegment -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments\",\"linkLibraries\":\"-llog -ljnigraphics -latomic -lm\",\"linkerLanguage\":\"CXX\",\"name\":\"JniBitmapOperationsLibrary\",\"sourceDirectory\":\"C:/Users/Dev4Life/StudioProjects/AllVideoDownloader/image_lib/src/main/cpp\",\"sysroot\":\"E:/android_sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/windows-x86_64/sysroot\",\"type\":\"SHARED_LIBRARY\"}]}]}],\"cookie\":\"\",\"inReplyTo\":\"codemodel\",\"type\":\"reply\"}\n",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1815924231
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\x86_64\\compile_commands.json.bin normally",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1394930667
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1013823486
+  },
+  {
+    "level_": 0,
+    "message_": "write command file C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\2che2j3j\\x86_64\\metadata_generation_command.txt",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -533103585
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "C:\\Users\\Dev4Life\\StudioProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1343070726
+  }
+]
