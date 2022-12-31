@@ -90,12 +90,6 @@ public var RootDirectoryInstaDownlaoder = File(
         .getString(R.string.app_name) + File.separator + "Insta Downloader"
 )
 
-public var RootDirectoryFunny = File(
-    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
-            + File.separator + AllVidApp.getInstance()
-        .getString(R.string.app_name) + File.separator + "Funny Videos"
-)
-
 public var RootDirectoryFBDownlaoder = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + AllVidApp.getInstance()
