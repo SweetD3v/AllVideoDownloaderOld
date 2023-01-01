@@ -30,9 +30,9 @@ public class PieceToolsAdapter extends RecyclerView.Adapter<PieceToolsAdapter.Vi
         this.mToolList.add(new ToolModel("Change", R.drawable.background_icon_white, EditingToolType.REPLACE_IMG));
         this.mToolList.add(new ToolModel("Crop", R.drawable.ic_crop_two_white, EditingToolType.CROP));
 //        this.mToolList.add(new ToolModel("Filter", R.drawable.ic_filter_two_white, ToolType.FILTER));
-        this.mToolList.add(new ToolModel("H Flip", R.drawable.h_flip_white, EditingToolType.H_FLIP));
-        this.mToolList.add(new ToolModel("V Flip", R.drawable.v_flip_white, EditingToolType.V_FLIP));
         this.mToolList.add(new ToolModel("Rotate", R.drawable.ic_rotate_propic, EditingToolType.ROTATE));
+        this.mToolList.add(new ToolModel("Flip", R.drawable.h_flip_white, EditingToolType.H_FLIP));
+//        this.mToolList.add(new ToolModel("V Flip", R.drawable.v_flip_white, EditingToolType.V_FLIP));
     }
 
     class ToolModel {

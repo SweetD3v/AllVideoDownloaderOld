@@ -77,7 +77,6 @@
                     android:id="@+id/btnCleanJunk"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_above="@+id/bannerContainer"
                     android:layout_gravity="bottom|center"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"

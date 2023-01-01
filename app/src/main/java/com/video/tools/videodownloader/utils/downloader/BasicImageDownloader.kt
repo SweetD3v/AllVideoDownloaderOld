@@ -983,7 +983,7 @@ class BasicImageDownloader(var ctx: Context) {
     fun writeToDisk(
         @NonNull imageFile: File, @NonNull image: Bitmap,
         @NonNull listener: OnBitmapSaveListener,
-        @NonNull format: Bitmap.CompressFormat?, shouldOverwrite: Boolean
+        format: Bitmap.CompressFormat?, shouldOverwrite: Boolean
     ) {
         if (imageFile.isDirectory) {
             listener.onBitmapSaveError(
@@ -1103,7 +1103,7 @@ class BasicImageDownloader(var ctx: Context) {
         var errorCode = 0
             private set
 
-        constructor(@NonNull message: String?) : super(message)
+        constructor(message: String?) : super(message)
         constructor(@NonNull error: Throwable) : super(error.message, error.cause) {
             stackTrace = error.stackTrace
         }
