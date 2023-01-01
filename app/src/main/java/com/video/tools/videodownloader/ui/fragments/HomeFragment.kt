@@ -78,7 +78,6 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
         }
     }
 
-    private var photoUrl = ""
     private var videoUrl = ""
 
     lateinit var prefs: SharedPreferences
@@ -737,6 +736,7 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
             }
             val popularAdapter = PopularVideoAdapter(ctx)
             rvPopularVideos.adapter = popularAdapter
+            rvPopularVideos.isNestedScrollingEnabled = false
             popularAdapter.popularItemClickListener =
                 object : PopularVideoAdapter.PopularItemClickListener {
                     override fun onItemClick(url: String) {

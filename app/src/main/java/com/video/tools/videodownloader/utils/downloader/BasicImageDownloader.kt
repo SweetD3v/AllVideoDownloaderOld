@@ -538,7 +538,7 @@ class BasicImageDownloader(var ctx: Context) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         FileUtilsss.saveVideoAPI30(
                             ctx, imageFile, imageFile.name,
-                            RootDirectoryFunny
+                            RootDirectoryFacts
                         ) {
                             Log.e("TAG", "onPostExecuteFinal: $it")
                             MediaScannerConnection.scanFile(
