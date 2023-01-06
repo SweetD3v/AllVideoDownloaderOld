@@ -1,14 +1,19 @@
 package com.video.tools.videodownloader.speedtest
 
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.video.tools.videodownloader.R
 import com.video.tools.videodownloader.databinding.ActivitySpeedTestBinding
@@ -83,7 +88,23 @@ class SpeedTestActivity : FullScreenActivity() {
     private var i = 0f
     private var j: Float = 0f
     private var k: Float = 0f
-    private var testing = false
+
+    var cachePercentage: Int = 0
+    var handlerConnecting: Handler? = Handler(Looper.getMainLooper())
+    val runnableConnecting = object : Runnable {
+        override fun run() {
+            cachePercentage += 1
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                binding.progressConnecting.setProgress(cachePercentage, true)
+            else binding.progressConnecting.progress = cachePercentage
+            handlerConnecting?.postDelayed(this, 65)
+
+            if (cachePercentage == 100) {
+                handlerConnecting?.removeCallbacks(this)
+                cachePercentage = 0
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,20 +114,6 @@ class SpeedTestActivity : FullScreenActivity() {
         )
 
         binding.run {
-            adjustInsetsBoth(this@SpeedTestActivity,
-                {
-                    toolbar.rlMain.topMargin = it
-                }, {
-                    rlMainTop.bottomMargin = it
-                })
-            toolbar.txtTitle.text = getString(R.string.internet_speed_test)
-
-            toolbar.root.background = ContextCompat.getDrawable(
-                this@SpeedTestActivity,
-                R.drawable.top_bar_gradient_pink_speed
-            )
-
-            toolbar.imgBack.setOnClickListener { onBackPressed() }
 
             if (NetworkState.isOnline()) {
                 AdsUtils.loadBanner(
@@ -116,44 +123,58 @@ class SpeedTestActivity : FullScreenActivity() {
                 )
             }
 
+            txtDownloadSpeed.setColors(Color.parseColor("#0E9300"), Color.parseColor("#11B200"))
+            txtUploadSpeed.setColors(Color.parseColor("#A58E07"), Color.parseColor("#C1A502"))
+
+            toolbar.imgBack.setOnClickListener { onBackPressed() }
+
             startSpeedTest.setOnClickListener {
+                imgSpeedMeter.fillColor = Color.parseColor("#0E9300")
                 if (NetworkState.isOnline()) {
+                    llConnecting.visibility = View.VISIBLE
+                    handlerConnecting?.post(runnableConnecting)
                     AdsUtils.loadInterstitialAd(this@SpeedTestActivity,
                         RemoteConfigUtils.adIdInterstital(),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
-                                animConnecting.visible()
-                                llPingText.invisible()
-                                txtPing.text = "Connecting..."
-                                startSpeedTest.gone()
-                                imgSpeedMeter.visible()
-                                imgSpeedMeterHande.visible()
+                                txtPing.text = "-"
+                                startSpeedTest.visibility = View.GONE
                                 testSpeed()
                             }
                         })
                 } else {
-                    animConnecting.visible()
-                    llPingText.invisible()
-                    txtPing.text = "Connecting..."
-                    startSpeedTest.gone()
-                    imgSpeedMeter.visible()
-                    imgSpeedMeterHande.visible()
-                    testSpeed()
+                    Toast.makeText(
+                        this@SpeedTestActivity,
+                        "Please connect to the Internet.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
+            seekbarStrength.setOnTouchListener { v, event -> return@setOnTouchListener true }
+
             startSpeedTestAgain.setOnClickListener {
-//                txtPing.text = "Connecting..."
-//
-//                imgSpeedMeter.visible()
-//                imgSpeedMeterHande.visible()
-//                startSpeedTestAgain.gone()
-//
-//                txtDownloadSpeed.text = "- mbps"
-//                txtUploadSpeed.text = "- mbps"
-//
-//                testSpeed()
-                onBackPressed()
+                imgSpeedMeter.fillColor = Color.parseColor("#0E9300")
+                if (NetworkState.isOnline()) {
+                    handlerConnecting?.post(runnableConnecting)
+                    llConnecting.visibility = View.VISIBLE
+                    llStrength.visibility = View.GONE
+                    clStartSpeedTestAgain.visibility = View.GONE
+                    imgSpeedMeter.visibility = View.VISIBLE
+                    binding.imgSpeedMeter.setSpeed(0, 0)
+                    txtPing.text = "-"
+
+                    txtDownloadSpeed.text = "-"
+                    txtUploadSpeed.text = "-"
+
+                    testSpeed()
+                } else {
+                    Toast.makeText(
+                        this@SpeedTestActivity,
+                        "Please connect to the Internet.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
 
@@ -321,8 +342,10 @@ class SpeedTestActivity : FullScreenActivity() {
                                             }"
                                         )
 
-                                        binding.animConnecting.invisible()
-                                        binding.llPingText.visible()
+                                        binding.llConnecting.visibility = View.GONE
+                                        handlerConnecting?.removeCallbacks(runnableConnecting)
+                                        cachePercentage = 0
+                                        binding.progressConnecting.progress = 0
                                         binding.txtPing.text =
                                             "${dec.format(pingTest.avgRtt)} ms"
                                     }
@@ -576,7 +599,13 @@ class SpeedTestActivity : FullScreenActivity() {
                                         j++
 
                                         binding.txtDownloadSpeed.text =
-                                            "$downloadSpeedInstant Mbps"
+                                            "$downloadSpeedInstant"
+                                        binding.txtDownloadPS.text = "Mbps"
+
+                                        binding.seekbarStrength.post {
+                                            binding.seekbarStrength.progress =
+                                                downloadTest.instantDownloadRate.roundToInt()
+                                        }
                                     }
                                     lastPosition = position
 
@@ -598,7 +627,6 @@ class SpeedTestActivity : FullScreenActivity() {
                                         } catch (e: Exception) {
                                         }
                                     }
-//                                    binding.imgSpeedMeterHande.startAnimation(rotate)
 
                                 } catch (e: Exception) {
                                     e.printStackTrace()
@@ -790,7 +818,9 @@ class SpeedTestActivity : FullScreenActivity() {
 //                                        }
                                         k++
 
-                                        binding.txtUploadSpeed.text = "$uploadSpeedInstant Mbps"
+                                        binding.imgSpeedMeter.fillColor = Color.parseColor("#A58E07")
+                                        binding.txtUploadSpeed.text = "$uploadSpeedInstant"
+                                        binding.txtUploadPS.text = "Mbps"
                                     }
                                 } catch (e: Exception) {
                                     e.printStackTrace()
@@ -808,7 +838,6 @@ class SpeedTestActivity : FullScreenActivity() {
                                     interpolator = LinearInterpolator()
                                     duration = 100
                                 }
-//                                binding.imgSpeedMeterHande.startAnimation(rotate)
 
                                 binding.imgSpeedMeter.post {
                                     try {
@@ -822,9 +851,9 @@ class SpeedTestActivity : FullScreenActivity() {
                         if (pingTestFinished && downloadTestFinished && uploadTest.isFinished) {
                             binding.run {
                                 imgSpeedMeter.post {
-//                                    imgSpeedMeter.gone()
-//                                    imgSpeedMeterHande.gone()
-                                    startSpeedTestAgain.visible()
+                                    imgSpeedMeter.visibility = View.GONE
+                                    llStrength.visibility = View.VISIBLE
+                                    clStartSpeedTestAgain.visibility = View.VISIBLE
                                 }
                             }
                             break

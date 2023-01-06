@@ -80,6 +80,11 @@
         <item name="android:windowMinWidthMinor">80%</item>
     </style>
 
+    <style name="ShapeableImageView50" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="rtl_RecyclerTabLayout.Tab" parent="@style/rtl_RecyclerTabLayout">
         <item name="android:textSize">14.0sp</item>
         <item name="android:textColor">?android:textColorSecondary</item>
