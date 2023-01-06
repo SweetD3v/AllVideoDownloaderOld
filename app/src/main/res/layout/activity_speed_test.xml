@@ -347,6 +347,24 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/adCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toTopOf="@id/clStartSpeedTestAgain"
+                app:layout_constraintTop_toBottomOf="@id/llSpeedOld">
+
+                <FrameLayout
+                    android:id="@+id/adFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.card.MaterialCardView>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clStartSpeedTestAgain"
                 android:layout_width="match_parent"

@@ -191,10 +191,21 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center_vertical"
+                    android:text="Editing Tools"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginTop="16dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -355,7 +366,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -372,6 +382,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
+                        android:layout_marginTop="8dp"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -515,7 +526,6 @@
                     android:id="@+id/rlPopularVids"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="48dp"
                     android:orientation="vertical">
 
@@ -526,9 +536,121 @@
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/gilroy_semibold"
                         android:gravity="center_vertical"
-                        android:text="@string/did_you_know"
+                        android:text="Entertainment"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtPopularVideos"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/llGame1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/viewg1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center_horizontal"
+                                app:srcCompat="@drawable/ic_game1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_horizontal"
+                                android:text="Quiz"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/viewg1"
+                            android:layout_width="4dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/dash_strokes_vertical"
+                            app:layout_constraintBottom_toBottomOf="@id/llGame1"
+                            app:layout_constraintEnd_toStartOf="@id/llGame2"
+                            app:layout_constraintStart_toEndOf="@id/llGame1"
+                            app:layout_constraintTop_toTopOf="@id/llGame1" />
+
+                        <LinearLayout
+                            android:id="@+id/llGame2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/viewg2"
+                            app:layout_constraintStart_toEndOf="@id/viewg1"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center_horizontal"
+                                app:srcCompat="@drawable/ic_game2" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_horizontal"
+                                android:text="Cricket"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/viewg2"
+                            android:layout_width="4dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/dash_strokes_vertical"
+                            app:layout_constraintBottom_toBottomOf="@id/llGame2"
+                            app:layout_constraintEnd_toStartOf="@id/llGame3"
+                            app:layout_constraintStart_toEndOf="@id/llGame2"
+                            app:layout_constraintTop_toTopOf="@id/llGame2" />
+
+                        <LinearLayout
+                            android:id="@+id/llGame3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/viewg2"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center_horizontal"
+                                app:srcCompat="@drawable/ic_game3" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="16dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:gravity="center_horizontal"
+                                android:text="Game"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:id="@+id/txtMore"
@@ -540,7 +662,8 @@
                         android:gravity="center_vertical"
                         android:text="@string/more"
                         android:textColor="@color/_929292"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:visibility="gone" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvPopularVideos"
@@ -550,6 +673,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_popular_videos" />
                 </RelativeLayout>

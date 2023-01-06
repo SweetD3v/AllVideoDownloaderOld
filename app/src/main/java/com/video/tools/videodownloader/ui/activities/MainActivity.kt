@@ -6,8 +6,6 @@ import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.provider.Settings
 import android.util.DisplayMetrics
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.snackbar.Snackbar
 import com.video.tools.videodownloader.R
 import com.video.tools.videodownloader.databinding.ActivityMainBinding
 import com.video.tools.videodownloader.ui.fragments.HomeFragment
@@ -365,14 +362,29 @@ class MainActivity : BaseActivity() {
     var doubleBackToExitPressedOnce = false
 
     override fun onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
+//        if (doubleBackToExitPressedOnce) {
+//            finish()
+//            return
+//        }
+//        doubleBackToExitPressedOnce = true
+//        Snackbar.make(binding.root, "Press BACK again to exit", Snackbar.LENGTH_SHORT).show()
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            doubleBackToExitPressedOnce = false
+//        }, 2000)
+
+        if (NetworkState.isOnline()) {
+            AdsUtils.loadInterstitialAd(
+                this,
+                RemoteConfigUtils.adIdInterstital(),
+                object : AdsUtils.Companion.FullScreenCallback() {
+                    override fun continueExecution() {
+                        startActivity(Intent(this@MainActivity, ExitActivity::class.java))
+                        finish()
+                    }
+                })
+        } else {
+            startActivity(Intent(this, ExitActivity::class.java))
             finish()
-            return
         }
-        doubleBackToExitPressedOnce = true
-        Snackbar.make(binding.root, "Press BACK again to exit", Snackbar.LENGTH_SHORT).show()
-        Handler(Looper.getMainLooper()).postDelayed({
-            doubleBackToExitPressedOnce = false
-        }, 2000)
     }
 }

@@ -131,12 +131,12 @@ class SpeedTestActivity : FullScreenActivity() {
             startSpeedTest.setOnClickListener {
                 imgSpeedMeter.fillColor = Color.parseColor("#0E9300")
                 if (NetworkState.isOnline()) {
-                    llConnecting.visibility = View.VISIBLE
-                    handlerConnecting?.post(runnableConnecting)
                     AdsUtils.loadInterstitialAd(this@SpeedTestActivity,
                         RemoteConfigUtils.adIdInterstital(),
                         object : AdsUtils.Companion.FullScreenCallback() {
                             override fun continueExecution() {
+                                llConnecting.visibility = View.VISIBLE
+                                handlerConnecting?.post(runnableConnecting)
                                 txtPing.text = "-"
                                 startSpeedTest.visibility = View.GONE
                                 testSpeed()
@@ -155,6 +155,7 @@ class SpeedTestActivity : FullScreenActivity() {
 
             startSpeedTestAgain.setOnClickListener {
                 imgSpeedMeter.fillColor = Color.parseColor("#0E9300")
+                adCard.gone()
                 if (NetworkState.isOnline()) {
                     handlerConnecting?.post(runnableConnecting)
                     llConnecting.visibility = View.VISIBLE
@@ -166,6 +167,13 @@ class SpeedTestActivity : FullScreenActivity() {
 
                     txtDownloadSpeed.text = "-"
                     txtUploadSpeed.text = "-"
+
+                    bannerContainer.visible()
+                    AdsUtils.loadBanner(
+                        this@SpeedTestActivity,
+                        RemoteConfigUtils.adIdBanner(),
+                        bannerContainer
+                    )
 
                     testSpeed()
                 } else {
@@ -854,6 +862,15 @@ class SpeedTestActivity : FullScreenActivity() {
                                     imgSpeedMeter.visibility = View.GONE
                                     llStrength.visibility = View.VISIBLE
                                     clStartSpeedTestAgain.visibility = View.VISIBLE
+                                    adCard.visible()
+
+                                    AdsUtils.destroyBanner()
+                                    bannerContainer.gone()
+
+                                    AdsUtils.loadNative(
+                                        this@SpeedTestActivity, RemoteConfigUtils.adIdNative(),
+                                        adFrame
+                                    )
                                 }
                             }
                             break

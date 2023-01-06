@@ -7,83 +7,50 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.TranslateAnimation
 import com.video.tools.videodownloader.CleanerAnimActivity
 import com.video.tools.videodownloader.R
+import com.video.tools.videodownloader.databinding.ActivityCleanerHomeBinding
 import com.video.tools.videodownloader.databinding.ActivityCleanerHomeNewBinding
 import com.video.tools.videodownloader.phone_booster.app_utils.getCleanableSize
 import com.video.tools.videodownloader.phone_booster.app_utils.getStorageFreeSizePercent
 import com.video.tools.videodownloader.phone_booster.app_utils.getStorageOccupiedSizePercent
 import com.video.tools.videodownloader.ui.activities.FullScreenActivity
-import com.video.tools.videodownloader.utils.adjustInsets
-import com.video.tools.videodownloader.utils.formatSize
+import com.video.tools.videodownloader.utils.*
 
 
 class CleanerHomeActivity : FullScreenActivity() {
-    val binding by lazy { ActivityCleanerHomeNewBinding.inflate(layoutInflater) }
+    val binding by lazy { ActivityCleanerHomeBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        animateBubbles()
-
         binding.run {
-            txtTitle.text = getString(R.string.collage_maker)
-            toolbar.adjustInsets(this@CleanerHomeActivity)
 
-            imgBack.setOnClickListener {
-                onBackPressed()
+            adjustInsetsBoth(this@CleanerHomeActivity, {
+                toolbar.rlMain.topMargin = it
+            }, {
+                bannerContainer.bottomMargin = it
+            })
+
+            toolbar.txtTitle.text = getString(R.string.cleaner)
+            toolbar.imgBack.setOnClickListener { onBackPressed() }
+            animCleaner.setOnClickListener {
+                AppUtils.CLEANER_TYPE = 0
+                startActivity(Intent(this@CleanerHomeActivity, PhoneBoosterActivity::class.java))
             }
-
-            txtTotalPercentage.text = getStorageOccupiedSizePercent()
-
-            imgStorageCleaner.setOnClickListener {
-                startActivity(Intent(this@CleanerHomeActivity, CleanerActivity::class.java))
+            clBatterySaver.setOnClickListener {
+                AppUtils.CLEANER_TYPE = 1
+                startActivity(Intent(this@CleanerHomeActivity, PhoneBoosterActivity::class.java))
             }
-
-            imgJunkCleaner.setOnClickListener {
-                startActivity(Intent(this@CleanerHomeActivity, CleanerAnimActivity::class.java)
-                    .apply {
-                        putExtra("clean_type", 1)
-                    })
+            clNetOptimization.setOnClickListener {
+                AppUtils.CLEANER_TYPE = 2
+                startActivity(Intent(this@CleanerHomeActivity, PhoneBoosterActivity::class.java))
             }
-
-            imgBatteryBoost.setOnClickListener {
-                startActivity(Intent(this@CleanerHomeActivity, CleanerAnimActivity::class.java)
-                    .apply {
-                        putExtra("clean_type", 2)
-                    })
+            clPhoneBooster.setOnClickListener {
+                AppUtils.CLEANER_TYPE = 3
+                startActivity(Intent(this@CleanerHomeActivity, PhoneBoosterActivity::class.java))
             }
-
-            imgCacheCleaner.setOnClickListener {
-                startActivity(Intent(this@CleanerHomeActivity, CleanerAnimActivity::class.java)
-                    .apply {
-                        putExtra("clean_type", 3)
-                    })
-            }
-
-            imgCPUCooler.setOnClickListener {
-                startActivity(Intent(this@CleanerHomeActivity, CleanerAnimActivity::class.java)
-                    .apply {
-                        putExtra("clean_type", 4)
-                    })
-            }
-
-            getCleanableSize(this@CleanerHomeActivity) { size ->
-                txtCleanSize.text = size.formatSize()
-            }
-            txtFreeStorage.text = getStorageFreeSizePercent()
-        }
-    }
-
-    private fun animateBubbles() {
-        binding.run {
-            imgJunkCleaner.post {
-                val animation: Animation =
-                    TranslateAnimation(0f, 0f, 0f, imgJunkCleaner.height / 2f).apply {
-                        duration = 500 // duration - half a second
-                        interpolator = LinearInterpolator() // do not alter animation rate
-                        repeatCount = Animation.INFINITE // Repeat animation infinitely
-                        repeatMode = Animation.REVERSE
-                    }
-                imgJunkCleaner.startAnimation(animation)
+            clCpuCooler.setOnClickListener {
+                AppUtils.CLEANER_TYPE = 4
+                startActivity(Intent(this@CleanerHomeActivity, PhoneBoosterActivity::class.java))
             }
         }
     }

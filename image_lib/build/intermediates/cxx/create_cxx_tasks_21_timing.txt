@@ -129,3 +129,38 @@ create_cxx_tasks
   [gap of 14ms]
 create_cxx_tasks completed in 89ms
 
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 13ms
+    [gap of 47ms]
+  create-initial-cxx-model completed in 60ms
+  [gap of 15ms]
+create_cxx_tasks completed in 75ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-variant-model 23ms
+    create-module-model
+      create-project-model 10ms
+    create-module-model completed in 23ms
+    [gap of 26ms]
+  create-initial-cxx-model completed in 98ms
+create_cxx_tasks completed in 104ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    [gap of 42ms]
+    create-ARM64_V8A-model 10ms
+  create-initial-cxx-model completed in 61ms
+  [gap of 11ms]
+create_cxx_tasks completed in 72ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model 59ms
+  [gap of 13ms]
+create_cxx_tasks completed in 72ms
+

@@ -17,7 +17,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.GetMultipleContents
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -281,6 +284,49 @@ class HomeFragment : BaseFragment<FragmentHomeNewBinding>() {
 
             imgDrawer.setOnClickListener {
                 binding.drawerLayout.openDrawer(GravityCompat.END)
+            }
+
+            val colorScheme = CustomTabColorSchemeParams.Builder()
+                .setToolbarColor(
+                    ContextCompat.getColor(
+                        ctx,
+                        R.color.white
+                    )
+                )
+                .build()
+            val customtabs = CustomTabsIntent.Builder()
+                .setDefaultColorSchemeParams(colorScheme)
+                .build()
+
+            llGame1.setOnClickListener {
+                AdsUtils.loadInterstitialAd(
+                    requireActivity(),
+                    RemoteConfigUtils.adIdInterstital(),
+                    object : AdsUtils.Companion.FullScreenCallback() {
+                        override fun continueExecution() {
+                            customtabs.launchUrl(ctx, getString(R.string.link_game1).toUri())
+                        }
+                    })
+            }
+            llGame2.setOnClickListener {
+                AdsUtils.loadInterstitialAd(
+                    requireActivity(),
+                    RemoteConfigUtils.adIdInterstital(),
+                    object : AdsUtils.Companion.FullScreenCallback() {
+                        override fun continueExecution() {
+                            customtabs.launchUrl(ctx, getString(R.string.link_game2).toUri())
+                        }
+                    })
+            }
+            llGame3.setOnClickListener {
+                AdsUtils.loadInterstitialAd(
+                    requireActivity(),
+                    RemoteConfigUtils.adIdInterstital(),
+                    object : AdsUtils.Companion.FullScreenCallback() {
+                        override fun continueExecution() {
+                            customtabs.launchUrl(ctx, getString(R.string.link_game3).toUri())
+                        }
+                    })
             }
 
             llFacebook.setOnClickListener {

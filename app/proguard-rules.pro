@@ -6,3 +6,9 @@
 
 # keep everything in this package from being renamed only
 -keepnames class com.video.tools.videodownloader.models.** { *; }
+
+# keep everything in this package from being removed or renamed
+-keep class com.video.tools.videodownloader.speedtest.** { *; }
+
+# keep everything in this package from being renamed only
+-keepnames class com.video.tools.videodownloader.speedtest.** { *; }
