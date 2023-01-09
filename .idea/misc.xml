@@ -141,6 +141,7 @@
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/ic_delete_file.xml" value="0.236" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/ic_insta_grid.xml" value="0.236" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/ic_retry.xml" value="0.236" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/ic_status_maker.xml" value="0.236" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/ic_wallpaper.xml" value="0.236" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/internet_speed.xml" value="0.236" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/drawable/rounded_bg_bottom_4.xml" value="0.236" />
@@ -180,7 +181,7 @@
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_grid_save.xml" value="0.2911500641299701" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_insta_downloader_home.xml" value="0.33" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_insta_grid.xml" value="0.33" />
-        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_main.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_my_creation_full_view.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_my_creation_tools.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/activity_photo_filter_home.xml" value="0.2911500641299701" />
@@ -206,7 +207,7 @@
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/dialog_server_down.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/empty_view.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home.xml" value="0.3546875" />
-        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home_new.xml" value="0.3546875" />
+        <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragment_home_new.xml" value="0.22" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragment_waimages.xml" value="0.3546875" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/fragments_downloads.xml" value="0.33" />
         <entry key="..\:/Vishrut/AndroidProjects/AllVideoDownloader/app/src/main/res/layout/insta_layout.xml" value="0.2911500641299701" />
