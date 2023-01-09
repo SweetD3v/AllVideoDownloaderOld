@@ -84,13 +84,13 @@ public class AspectRatioPreviewAdapter extends RecyclerView.Adapter<AspectRatioP
         }
 
         public void onClick(View view) {
-            if (AspectRatioPreviewAdapter.this.lastSelectedView != getAdapterPosition()) {
-                AspectRatioPreviewAdapter.this.selectedRatio = AspectRatioPreviewAdapter.this.ratios.get(getAdapterPosition());
-                AspectRatioPreviewAdapter.this.lastSelectedView = getAdapterPosition();
-                if (AspectRatioPreviewAdapter.this.listener != null) {
-                    AspectRatioPreviewAdapter.this.listener.onNewAspectRatioSelected(AspectRatioPreviewAdapter.this.selectedRatio);
+            if (lastSelectedView != getBindingAdapterPosition()) {
+                selectedRatio = ratios.get(getBindingAdapterPosition());
+                lastSelectedView = getBindingAdapterPosition();
+                if (listener != null) {
+                    listener.onNewAspectRatioSelected(selectedRatio);
                 }
-                AspectRatioPreviewAdapter.this.notifyDataSetChanged();
+                notifyDataSetChanged();
             }
         }
     }

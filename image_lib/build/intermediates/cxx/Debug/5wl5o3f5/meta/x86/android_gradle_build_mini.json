@@ -1,0 +1,33 @@
+{
+  "buildFiles": [
+    "E:\\AndoidProjects\\AllVideoDownloader\\image_lib\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "E:\\android_sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+      "-C",
+      "E:\\AndoidProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\5wl5o3f5\\x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "E:\\android_sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+    "-C",
+    "E:\\AndoidProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\5wl5o3f5\\x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "JniBitmapOperationsLibrary-Debug-x86": {
+      "artifactName": "JniBitmapOperationsLibrary",
+      "buildCommandComponents": [
+        "E:\\android_sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+        "-C",
+        "E:\\AndoidProjects\\AllVideoDownloader\\image_lib\\.cxx\\Debug\\5wl5o3f5\\x86",
+        "JniBitmapOperationsLibrary"
+      ],
+      "abi": "x86",
+      "output": "E:\\AndoidProjects\\AllVideoDownloader\\image_lib\\build\\intermediates\\cxx\\Debug\\5wl5o3f5\\obj\\x86\\libJniBitmapOperationsLibrary.so",
+      "runtimeFiles": []
+    }
+  }
+}

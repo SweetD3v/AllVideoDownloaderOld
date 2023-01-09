@@ -16,7 +16,109 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/bannerContainer"
             android:layout_below="@id/toolbar">
+
+            <RelativeLayout
+                android:id="@+id/clIMGSpeedMeter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <me.ibrahimsn.lib.Speedometer
+                    android:id="@+id/imgSpeedMeter"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="36dp"
+                    app:borderColor="#B3D8D8D8"
+                    app:borderSize="24dp"
+                    app:fillColor="#eb008b"
+                    app:maxSpeed="100"
+                    app:metricText="Mb/s"
+                    app:textColor="#BF000000"
+                    app:textGap="48dp" />
+
+                <LinearLayout
+                    android:id="@+id/llStrength"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:background="@drawable/bg_rounded_8"
+                    android:backgroundTint="#efefef"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/imgSpeedMeter">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroy_bold"
+                        android:gravity="center"
+                        android:text="Weak"
+                        android:textAllCaps="true"
+                        android:textColor="#ee1624"
+                        android:textSize="22sp" />
+
+                    <SeekBar
+                        android:id="@+id/seekbarStrength"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="#efefef"
+                        android:indeterminateDrawable="@android:drawable/progress_horizontal"
+                        android:indeterminateOnly="false"
+                        android:maxHeight="3dp"
+                        android:minHeight="3dp"
+                        android:progressBackgroundTint="@color/white"
+                        android:progressDrawable="@android:drawable/progress_horizontal"
+                        android:progressTint="#6593f4"
+                        android:thumb="@drawable/thumb_speed_test" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="Weak"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:gravity="center"
+                            android:text="Normal"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:gravity="end"
+                            android:text="Strong"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/llSpeedOld"
@@ -25,267 +127,326 @@
                 android:layout_marginTop="24dp"
                 android:baselineAligned="false"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/llSpeedOld"
-                app:layout_constraintVertical_bias="0.6">
+                app:layout_constraintTop_toBottomOf="@id/clIMGSpeedMeter">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_rounded_4"
-                    android:backgroundTint="#e5f3e9"
+                    android:background="@drawable/bg_rounded_8"
+                    android:backgroundTint="#efefef"
                     android:orientation="horizontal"
                     android:padding="16dp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgDownload"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        app:srcCompat="@drawable/ic_download_speed" />
-
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
+                        android:layout_centerInParent="true">
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgDownload"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            app:srcCompat="@drawable/ic_download_speed" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:fontFamily="@font/gilroy_semibold"
-                            android:text="@string/download"
-                            android:textColor="#008923"
-                            android:textSize="18sp" />
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtDownloadSpeed"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="@font/gilroy_medium"
-                            android:text="- mbps"
-                            android:textColor="#008923"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-                </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:text="@string/download"
+                                android:textColor="#292929"
+                                android:textSize="16sp" />
 
-                <LinearLayout
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:gravity="bottom"
+                                android:orientation="horizontal">
+
+                                <com.video.tools.videodownloader.widgets.MyGradientTextView
+                                    android:id="@+id/txtDownloadSpeed"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gilroy_bold"
+                                    android:text="-"
+                                    android:textColor="#008923"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:id="@+id/txtDownloadPS"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:text="Mbps"
+                                    android:textColor="#292929"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_rounded_4"
-                    android:backgroundTint="#fde5ec"
+                    android:backgroundTint="#efefef"
                     android:orientation="horizontal"
                     android:padding="16dp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgUpload"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        app:srcCompat="@drawable/ic_upload_speed" />
-
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
+                        android:layout_centerInParent="true">
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgUpload"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            app:srcCompat="@drawable/ic_upload_speed" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:fontFamily="@font/gilroy_semibold"
-                            android:text="@string/upload"
-                            android:textColor="#ea0043"
-                            android:textSize="18sp" />
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txtUploadSpeed"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:layout_marginTop="4dp"
-                            android:fontFamily="@font/gilroy_medium"
-                            android:text="- mbps"
-                            android:textColor="#ea0043"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-                </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="24dp"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:text="@string/upload"
+                                android:textColor="#292929"
+                                android:textSize="16sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:gravity="bottom"
+                                android:orientation="horizontal">
+
+                                <com.video.tools.videodownloader.widgets.MyGradientTextView
+                                    android:id="@+id/txtUploadSpeed"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/gilroy_bold"
+                                    android:text="-"
+                                    android:textColor="#008923"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:id="@+id/txtUploadPS"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:fontFamily="@font/gilroy_semibold"
+                                    android:text="Mbps"
+                                    android:textColor="#292929"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
             </LinearLayout>
 
-            <!--        <androidx.appcompat.widget.AppCompatImageView-->
-            <!--            android:id="@+id/startSpeedTest"-->
-            <!--            android:layout_width="150dp"-->
-            <!--            android:layout_height="150dp"-->
-            <!--            android:layout_marginTop="24dp"-->
-            <!--            android:elevation="5dp"-->
-            <!--            android:visibility="gone"-->
-            <!--            app:layout_constraintBottom_toTopOf="@id/llSpeedOld"-->
-            <!--            app:layout_constraintEnd_toEndOf="parent"-->
-            <!--            app:layout_constraintStart_toStartOf="parent"-->
-            <!--            app:layout_constraintTop_toTopOf="parent"-->
-            <!--            app:layout_constraintVertical_bias="0.4"-->
-            <!--            app:srcCompat="@drawable/ic_start_speed"/>-->
-
-            <TextView
-                android:id="@+id/startSpeedTestAgain"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="bottom|center"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/bg_gradient_rounded_pink"
-                android:clickable="true"
-                android:elevation="8dp"
-                android:focusable="true"
-                android:fontFamily="@font/gilroy_bold"
-                android:gravity="center"
-                android:text="@string/done"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/llSpeedOld"
-                app:layout_constraintVertical_bias="0.1" />
-
-            <TextView
-                android:id="@+id/startSpeedTest"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_gravity="bottom|center"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/bg_gradient_rounded_pink"
-                android:clickable="true"
-                android:elevation="8dp"
-                android:focusable="true"
-                android:fontFamily="@font/gilroy_bold"
-                android:gravity="center"
-                android:text="@string/start"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/llSpeedOld"
-                app:layout_constraintVertical_bias="0.2" />
-
-            <!--        <androidx.appcompat.widget.AppCompatImageView-->
-            <!--            android:id="@+id/imgSpeedMeter"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="300dp"-->
-            <!--            android:visibility="gone"-->
-            <!--            app:layout_constraintBottom_toBottomOf="@id/startSpeedTest"-->
-            <!--            app:layout_constraintEnd_toEndOf="@id/startSpeedTest"-->
-            <!--            app:layout_constraintStart_toStartOf="@id/startSpeedTest"-->
-            <!--            app:layout_constraintTop_toTopOf="@id/startSpeedTest"-->
-            <!--            app:srcCompat="@drawable/speed_meter" />-->
-
-            <me.ibrahimsn.lib.Speedometer
-                android:id="@+id/imgSpeedMeter"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                app:borderColor="#B3D8D8D8"
-                app:borderSize="24dp"
-                app:fillColor="@color/pink"
-                app:layout_constraintBottom_toTopOf="@id/startSpeedTest"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.3"
-                app:maxSpeed="100"
-                app:metricText="Mb/s"
-                app:textColor="#BF000000"
-                app:textGap="48dp" />
-
-            <!--        <androidx.appcompat.widget.AppCompatImageView-->
-            <!--            android:id="@+id/imgSpeedMeterHande"-->
-            <!--            android:layout_width="0dp"-->
-            <!--            android:layout_height="350dp"-->
-            <!--            android:layout_marginHorizontal="48dp"-->
-            <!--            android:visibility="gone"-->
-            <!--            app:layout_constraintEnd_toEndOf="@id/imgSpeedMeter"-->
-            <!--            app:layout_constraintStart_toStartOf="@id/imgSpeedMeter"-->
-            <!--            app:layout_constraintTop_toTopOf="@id/imgSpeedMeter"-->
-            <!--            app:layout_constraintVertical_bias="0.7"-->
-            <!--            app:srcCompat="@drawable/speed_test_hand"-->
-            <!--            app:tint="@color/black" />-->
-
-            <RelativeLayout
-                android:id="@+id/llPing"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/llPingText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@id/llSpeedOld"
-                app:layout_constraintTop_toBottomOf="@id/imgSpeedMeter">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llSpeedOld">
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/animConnecting"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:visibility="invisible"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/connecting_net" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:srcCompat="@drawable/ic_mobile_data" />
 
-                <LinearLayout
-                    android:id="@+id/llPingText"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:gravity="center_vertical"
+                    android:text="Ping"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        app:srcCompat="@drawable/ic_mobile_data" />
+                <TextView
+                    android:id="@+id/txtPing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:gravity="center_vertical"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtPing"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:fontFamily="@font/gilroy_semibold"
-                        android:gravity="center_vertical"
-                        android:text="0 ms"
-                        android:textColor="#9a9a9a"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/imgSpeedMeterHande"
-                android:layout_width="0dp"
-                android:layout_height="350dp"
-                android:layout_marginHorizontal="48dp"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@id/imgSpeedMeter"
-                app:layout_constraintStart_toStartOf="@id/imgSpeedMeter"
-                app:layout_constraintTop_toTopOf="@id/imgSpeedMeter"
-                app:layout_constraintVertical_bias="0.7" />
-
-            <FrameLayout
-                android:id="@+id/bannerContainer"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clStartSpeedTest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="2dp"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/startSpeedTest"
+                    app:layout_constraintEnd_toEndOf="@id/startSpeedTest"
+                    app:layout_constraintStart_toStartOf="@id/startSpeedTest"
+                    app:layout_constraintTop_toTopOf="@id/startSpeedTest"
+                    app:shapeAppearanceOverlay="@style/ShapeableImageView50"
+                    app:srcCompat="@drawable/bg_gradient_rounded_blue" />
+
+                <TextView
+                    android:id="@+id/startSpeedTest"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="bottom|center"
+                    android:clickable="true"
+                    android:elevation="8dp"
+                    android:focusable="true"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center"
+                    android:text="@string/start"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/adCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toTopOf="@id/clStartSpeedTestAgain"
+                app:layout_constraintTop_toBottomOf="@id/llSpeedOld">
+
+                <FrameLayout
+                    android:id="@+id/adFrame"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clStartSpeedTestAgain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/startSpeedTestAgain"
+                    app:layout_constraintEnd_toEndOf="@id/startSpeedTestAgain"
+                    app:layout_constraintStart_toStartOf="@id/startSpeedTestAgain"
+                    app:layout_constraintTop_toTopOf="@id/startSpeedTestAgain"
+                    app:shapeAppearanceOverlay="@style/ShapeableImageView50"
+                    app:srcCompat="@drawable/bg_gradient_rounded_blue" />
+
+                <TextView
+                    android:id="@+id/startSpeedTestAgain"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="bottom|center"
+                    android:clickable="true"
+                    android:elevation="8dp"
+                    android:focusable="true"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center"
+                    android:text="@string/test_again"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/llConnecting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llSpeedOld">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:gravity="center"
+                    android:text="Connecting..."
+                    android:textColor="#2860e9"
+                    android:textSize="16sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressConnecting"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="16dp"
+                    android:progressBackgroundTint="#e5e5e5"
+                    android:progressDrawable="@android:drawable/progress_horizontal"
+                    android:progressTint="#2860e9"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llSpeedOld" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/bannerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:elevation="2dp" />
     </RelativeLayout>
 </RelativeLayout>

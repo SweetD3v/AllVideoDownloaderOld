@@ -110,6 +110,13 @@
     <string name="done">Done</string>
     <string name="start">Start</string>
     <string name="show_data_speed_in_notification">Show data speed</string>
+    <string name="test_again">Test Again</string>
+    <string name="network_optimization">Network Optimization</string>
+    <string name="phone_booster">Phone Booster</string>
+    <string name="cpu_cooler">CPU Cooler</string>
+    <string name="battery_n_saver">Battery\nSaver</string>
+    <string name="network_n_optimization">Network\nOptimization</string>
+    <string name="exit">Exit</string>
 
     <string-array name="wallp_arr">
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fJjphUzRq64EoCViXztAyJXBE6kzAnIAf6sJKArZzASRmUaJESz2r1qWMzUZxuXHaAR3eJuOGxiQej_3hdFzaBkV_OQDwPhjtBt26EGoqOoy6LkvDNq65oes5QZk5Cv__RagBLcBDkvL-4riMOdFbbK5Dwnms_E628Mh6P1OfhwHn35r8yMR6poY/s1280/photo_2022-09-17_06-02-57.jpg</item>

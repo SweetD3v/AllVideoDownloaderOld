@@ -54,6 +54,14 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".tools.cleaner.PhoneBoosterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.ExitActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".CleanerAnimActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

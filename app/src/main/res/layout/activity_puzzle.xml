@@ -121,7 +121,7 @@
                             android:layout_width="25.0dip"
                             android:layout_height="25.0dip"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/border_1"
+                            android:src="@drawable/layout_press"
                             app:tint="@color/black" />
 
                         <SeekBar

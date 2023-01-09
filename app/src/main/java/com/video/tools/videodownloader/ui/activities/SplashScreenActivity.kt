@@ -1,6 +1,7 @@
 package com.video.tools.videodownloader.ui.activities
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,6 +16,7 @@ import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
 import com.video.tools.videodownloader.databinding.ActivitySplashBinding
 import com.video.tools.videodownloader.utils.adjustInsetsBoth
 import com.video.tools.videodownloader.utils.bottomMargin
+import com.video.tools.videodownloader.utils.gone
 import com.video.tools.videodownloader.utils.remote_config.RemoteConfigUtils
 import com.video.tools.videodownloader.utils.topMargin
 
@@ -25,6 +27,23 @@ class SplashScreenActivity : FullScreenActivity(), LifecycleObserver {
     private var appOpenAd: AppOpenAd? = null
     private var loadCallback: AppOpenAdLoadCallback? = null
     private var loadTime = 0L
+
+    var cachePercentage: Int = 0
+    var handlerConnecting: Handler? = Handler(Looper.getMainLooper())
+    val runnableConnecting = object : Runnable {
+        override fun run() {
+            cachePercentage += 1
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                binding.progressLoading.setProgress(cachePercentage, true)
+            else binding.progressLoading.progress = cachePercentage
+            handlerConnecting?.postDelayed(this, 50)
+
+            if (cachePercentage == 100) {
+                handlerConnecting?.removeCallbacks(this)
+                cachePercentage = 0
+            }
+        }
+    }
 
     var handler: Handler? = Handler(Looper.getMainLooper())
     var runnable = Runnable { showAdIfAvailable() }
@@ -46,17 +65,24 @@ class SplashScreenActivity : FullScreenActivity(), LifecycleObserver {
         super.onResume()
         fetchAd()
         handler?.postDelayed(runnable, SPLASH_TIME_OUT)
+        handlerConnecting?.post(runnableConnecting)
     }
 
     override fun onPause() {
         handler?.removeCallbacks(runnable)
         handler = Handler(Looper.getMainLooper())
+        handlerConnecting?.removeCallbacks(runnableConnecting)
+        handlerConnecting = Handler(Looper.getMainLooper())
+        cachePercentage = 0
         super.onPause()
     }
 
     override fun onDestroy() {
         handler?.removeCallbacks(runnable)
         handler = null
+        handlerConnecting?.removeCallbacks(runnableConnecting)
+        handlerConnecting = null
+        cachePercentage = 0
         super.onDestroy()
     }
 
@@ -70,9 +96,6 @@ class SplashScreenActivity : FullScreenActivity(), LifecycleObserver {
                 loadTime = System.currentTimeMillis()
             }
 
-            override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                super.onAdFailedToLoad(loadAdError)
-            }
         }
         val request: AdRequest = getAdRequest()
         AppOpenAd.load(
@@ -86,27 +109,32 @@ class SplashScreenActivity : FullScreenActivity(), LifecycleObserver {
             val fullScreenContentCallback: FullScreenContentCallback =
                 object : FullScreenContentCallback() {
                     override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                        startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
-                        finish()
+                        continueExecution()
                     }
 
                     override fun onAdShowedFullScreenContent() {
                         isShowingAd = true
+                        binding.llLoading.gone()
                     }
 
                     override fun onAdDismissedFullScreenContent() {
                         appOpenAd = null
                         isShowingAd = false
-                        startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
-                        finish()
+                        continueExecution()
                     }
                 }
-            appOpenAd!!.setFullScreenContentCallback(fullScreenContentCallback)
-            appOpenAd!!.show(this)
+            appOpenAd?.fullScreenContentCallback = fullScreenContentCallback
+            appOpenAd?.show(this)
         } else {
-            startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
-            finish()
+            continueExecution()
         }
+    }
+
+    fun continueExecution(){
+        handlerConnecting?.removeCallbacks(runnableConnecting)
+        cachePercentage = 0
+        startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+        finish()
     }
 
     private fun getAdRequest(): AdRequest {

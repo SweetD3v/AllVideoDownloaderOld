@@ -20,7 +20,6 @@ import com.video.tools.videodownloader.ui.activities.FullScreenActivity
 import com.video.tools.videodownloader.utils.*
 import com.video.tools.videodownloader.utils.AdsUtils.Companion.loadInterstitialAd
 import com.video.tools.videodownloader.utils.remote_config.RemoteConfigUtils
-import com.video.tools.videodownloader.utils.*
 import com.video.tools.videodownloader.widgets.MarginItemDecoration
 import java.util.*
 
@@ -239,14 +238,14 @@ class CleanerActivity : FullScreenActivity() {
                 }
             }
 
-            btnCleanJunk.setOnClickListener {
-                junkAdapter.clearItems()
-                txtCleanableSize.text =
-                    String.format(
-                        Locale.ENGLISH,
-                        getString(R.string.junk_files_found, "0 B")
-                    )
-            }
+//            btnCleanJunk.setOnClickListener {
+//                junkAdapter.clearItems()
+//                txtCleanableSize.text =
+//                    String.format(
+//                        Locale.ENGLISH,
+//                        getString(R.string.junk_files_found, "0 B")
+//                    )
+//            }
 
 //            permissions = ArrayList(permissions.filter {
 //                it.permissions.contains(batteryPerms[0])
@@ -256,48 +255,50 @@ class CleanerActivity : FullScreenActivity() {
 //            })
 
             btnCleanJunk.setOnClickListener {
-                if (btnCleanJunk.text.equals("Done")) {
-                    loadInterstitialAd(
-                        this@CleanerActivity,
-                        RemoteConfigUtils.adIdInterstital(),
-                        object : AdsUtils.Companion.FullScreenCallback() {
+                if (btnCleanJunk.isEnabled) {
+                    if (btnCleanJunk.text.equals("Done")) {
+                        loadInterstitialAd(
+                            this@CleanerActivity,
+                            RemoteConfigUtils.adIdInterstital(),
+                            object : AdsUtils.Companion.FullScreenCallback() {
 
-                            override fun onAdFailed() {
-                                showedAd = false
+                                override fun onAdFailed() {
+                                    showedAd = false
+                                }
+
+                                override fun onAdDismissed() {
+                                    showedAd = true
+                                }
+
+                                override fun onAdFailedToShow() {
+                                    showedAd = false
+                                }
+
+                                override fun onAdShowed() {
+                                    showedAd = true
+                                }
+
+                                override fun continueExecution() {
+                                    onBackPressed()
+                                }
+                            })
+                    } else {
+                        object : AsyncTaskRunner<Void?, String>(this@CleanerActivity) {
+                            override fun doInBackground(params: Void?): String {
+                                cacheDir.deleteRecursively()
+                                return "Cleaning..."
                             }
 
-                            override fun onAdDismissed() {
-                                showedAd = true
+                            override fun onPostExecute(result: String?) {
+                                super.onPostExecute(result)
+                                result?.let { size ->
+                                    handlerReverse?.post(runnableReverse)
+                                    binding.txtTotalCacheSize.text = size
+                                    btnCleanJunk.isEnabled = false
+                                }
                             }
-
-                            override fun onAdFailedToShow() {
-                                showedAd = false
-                            }
-
-                            override fun onAdShowed() {
-                                showedAd = true
-                            }
-
-                            override fun continueExecution() {
-                                onBackPressed()
-                            }
-                        })
-                } else {
-                    object : AsyncTaskRunner<Void?, String>(this@CleanerActivity) {
-                        override fun doInBackground(params: Void?): String {
-                            cacheDir.deleteRecursively()
-                            return "Cleaning..."
-                        }
-
-                        override fun onPostExecute(result: String?) {
-                            super.onPostExecute(result)
-                            result?.let { size ->
-                                handlerReverse?.post(runnableReverse)
-                                binding.txtTotalCacheSize.text = size
-                                btnCleanJunk.isEnabled = false
-                            }
-                        }
-                    }.execute(null, false)
+                        }.execute(null, false)
+                    }
                 }
             }
         }

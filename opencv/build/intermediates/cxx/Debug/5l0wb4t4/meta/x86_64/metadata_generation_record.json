@@ -1,0 +1,184 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 21 min SDK version: x86_64",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -470930626
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON E:\\AndoidProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\5l0wb4t4\\x86_64\\android_gradle_build.json due to:",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1167106380
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json E:\\AndoidProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\5l0wb4t4\\x86_64\\android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -631425018
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file E:\\AndoidProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\5l0wb4t4\\x86_64\\metadata_generation_command.txt, will remove stale json folder",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1523538684
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1671440567
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027E:\\AndoidProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\5l0wb4t4\\x86_64\u0027",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1475387586
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027E:\\AndoidProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\5l0wb4t4\\x86_64\u0027",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1204593718
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : E:\\android_sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HE:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003dx86_64\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86_64\n-DANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dE:\\android_sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dE:\\android_sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dE:\\AndoidProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\Debug\\5l0wb4t4\\obj\\x86_64\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dE:\\AndoidProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\Debug\\5l0wb4t4\\obj\\x86_64\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BE:\\AndoidProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\5l0wb4t4\\x86_64\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -927664871
+  },
+  {
+    "level_": 0,
+    "message_": "Executable : E:\\android_sdk\\cmake\\3.18.1\\bin\\cmake.exe\narguments : \n-HE:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d21\n-DANDROID_PLATFORM\u003dandroid-21\n-DANDROID_ABI\u003dx86_64\n-DCMAKE_ANDROID_ARCH_ABI\u003dx86_64\n-DANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_ANDROID_NDK\u003dE:\\android_sdk\\ndk\\21.4.7075529\n-DCMAKE_TOOLCHAIN_FILE\u003dE:\\android_sdk\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003dE:\\android_sdk\\cmake\\3.18.1\\bin\\ninja.exe\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003dE:\\AndoidProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\Debug\\5l0wb4t4\\obj\\x86_64\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003dE:\\AndoidProjects\\AllVideoDownloader\\opencv\\build\\intermediates\\cxx\\Debug\\5l0wb4t4\\obj\\x86_64\n-DCMAKE_BUILD_TYPE\u003dDebug\n-BE:\\AndoidProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\5l0wb4t4\\x86_64\n-GNinja\n-DANDROID_STL\u003dc++_shared\njvmArgs : \n\n",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2425978
+  },
+  {
+    "level_": 0,
+    "message_": "Exiting generation of E:\\AndoidProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\5l0wb4t4\\x86_64\\compile_commands.json.bin normally",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1787638892
+  },
+  {
+    "level_": 0,
+    "message_": "done executing cmake",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1983786818
+  },
+  {
+    "level_": 0,
+    "message_": "write command file E:\\AndoidProjects\\AllVideoDownloader\\opencv\\.cxx\\Debug\\5l0wb4t4\\x86_64\\metadata_generation_command.txt",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1264380926
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed without problems",
+    "file_": "E:\\AndoidProjects\\AllVideoDownloader\\opencv\\libcxx_helper\\CMakeLists.txt",
+    "tag_": "debug|x86_64",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -45713734
+  }
+]
